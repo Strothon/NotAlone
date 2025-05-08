@@ -72,12 +72,12 @@ NotAlone/
 
 ## 👥 Contributors
 
-- [Your Name] - Backend Development
-- [Your Friend's Name] - Frontend Development
+- Strothon - Backend Development
+- BİLGE ZERDA KEKLİK - Frontend Development
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE] file for details.
 
 ## 🙏 Acknowledgments
 
@@ -94,4 +94,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Contact
 
-For any questions or suggestions, please feel free to reach out to [your contact information]. 
+For any questions or suggestions, please feel free to reach out to . 
