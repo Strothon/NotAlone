@@ -1,0 +1,1363 @@
+/* Genel stil */
+html, body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    background-color: #f0f0f0;
+    background: url('../img/pudrapembe.png') no-repeat center center fixed;
+    font-family: 'Roboto Flex', sans-serif;
+    font-weight: 400;
+    padding-left: 60px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 1.6rem;
+}
+
+
+html {
+    font-size: 62.5%;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+}
+*, *::before, *::after {
+    -webkit-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+/* Üst menü */
+/* Üst menü */
+#menu {
+    background-color: #ffffff;
+    padding: 10px 0px; /* Sol ve sağdan boşluk bırakıldı */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    width: 97%;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Menü elemanlarını blok haline getirme, padding ve çizgi ekleme */
+/* Menü elemanları arasına 10px mesafe ekler */
+#menu a {
+    text-decoration: none;
+    color: #252525;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px;
+    margin-right: 0px; /* Başlıklar arasına 10px mesafe */
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Son başlık olan 'Events' ile user iconu arasına 30px mesafe ekler */
+#menu a:last-child {
+    margin-right: 30px; /* Son başlık ile user ikon arasına 30px mesafe */
+}
+
+
+/* İlk menü elemanındaki sol çizgiyi kaldır */
+#menu a:first-child {
+    border-left: none; /* İlk elemanda çizgi olmasın */
+    margin-left: 0; /* İlk elemanda sola kaydırma olmasın */
+}
+
+/* Son menü elemanındaki sağ çizgiyi kaldır */
+#menu a:last-child {
+    border-right: none; /* Son elemanda çizgi olmasın */
+}
+
+#menu a:hover {
+    background-color: #f3f3f3;
+}
+
+
+nav li {
+    list-style-type: none;
+}
+
+
+#logo {
+    font-size: 30px;
+    color: #e7bcbc;
+    font-weight: bold;
+    padding-left: 20px;
+    flex-grow: 1;  /* Logo ortalanacak şekilde ayarlandı */
+    text-align: left; /* Sol tarafta hizalama */
+    transition: transform 0.3s ease, color 0.3s ease; /* Yumuşak geçiş ekleniyor */
+}
+
+/* Üst logo hover efekti */
+#logo:hover {
+    transform: scale(1.07); /* Boyut büyüme */
+    color: #e7bcbc; /* Renk değişimi */
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1; /* Menü sağda ortalanacak */
+}
+
+nav a {
+    text-decoration: none;
+    color: #e7bcbc;
+    margin-right: 25px;
+    font-size: 1.4rem; 
+    font-weight: 250;
+}
+
+nav a:hover {
+    border-bottom: 2px solid #e7bcbc;
+}
+
+/* Sol Sütun */
+#sol-sutun {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 60px; /* Genişlik ayarı */
+    height: 100%; /* Tüm ekran boyu */
+    background-color: #c0bfbf; /* Gri renk */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1100;
+}
+
+.menu-logo {
+    color: white;
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+.menu-icon {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+
+
+/* Sol Yandan Açılan Menü */
+.sidenav {
+    position: fixed;
+    top: 0;
+    left: -300px; /* Başlangıçta gizli */
+    width: 250px; /* Sağdan biraz daha dar */
+    height: 100%;
+    background-color: #adacac;
+    z-index: 9999;
+    transition: left 0.3s ease;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+}
+
+.sidenav.active {
+    left: 0;
+}
+
+.sidenav .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 25px;
+    cursor: pointer;
+    color: white;
+}
+
+.sidenav__inner {
+    padding: 0;
+}
+
+/* Menü başlığı ve logo alanı */
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10px;
+}
+
+#logo-menu {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Navigasyon menüsü */
+.sidenav nav {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.sidenav nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.sidenav nav a i {
+    width: 20px;
+}
+
+.sidenav nav a:hover {
+    background-color: #e7bcbc;
+    color: white;
+}
+
+/* Menü toggle butonu */
+#menu-toggle {
+    font-size: 30px;
+    cursor: pointer;
+    color: #ffffff;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1001;
+}
+
+
+/* Footer Styles */
+/* Footer Styles */
+.footer {
+    background-color: rgb(126, 126, 126);
+    color: #fff;
+    padding: 30px 0 10px;
+    width: 100%;
+    margin-left: -60px; /* body'deki padding-left'i dengelemek için */
+    padding-left: 60px; /* body padding'ini korumak için içeriğe padding ekliyoruz */
+    position: relative;
+    bottom: 0;
+}
+
+.footer-content {
+    max-width: calc(100% - 20px);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 50px;
+    padding: 0 10px;
+}
+/* Logo Section */
+
+#logoFooter {
+    font-size: 40px;
+    color: #e7bcbc;
+    font-weight: bold;
+    padding-left: 20px;
+    flex-grow: 1;  /* Logo ortalanacak şekilde ayarlandı */
+    text-align: left; /* Sol tarafta hizalama */
+    transition: transform 0.3s ease, color 0.3s ease; /* Yumuşak geçiş ekleniyor */
+}
+
+/* alt logo hover efekti */
+#logoFooter:hover {
+    transform: scale(1.15); /* Boyut büyüme */
+    color: #e7bcbc; /* Renk değişimi */
+}
+.footer .logo-text {
+    margin-top: 10px;
+    margin-left: 20px;
+    font-size: 30px; /* Slogan boyutunu ayarla */
+    font-weight: bold; /* Sloganı kalın yap */
+    color: #e7bcbc; /* Renk seçimi */
+}
+
+.footer .logo-text p {
+    margin: 0;
+    font-size: px;
+    font-weight: bold;
+    color: #e7bcbc;
+}
+
+/* Quick Links Section */
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: #e7bcbc;
+}
+
+/* Contact Section */
+.footer-contact p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.footer-contact i {
+    margin-right: 10px;
+    font-size: 18px;
+    color: #e7bcbc;
+}
+
+/* Social Media Section */
+.footer-social .social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social .social-icons a {
+    color: #fff;
+    font-size: 24px;
+    transition: color 0.3s ease;
+}
+
+.footer-social .social-icons a:hover {
+    color: #e7bcbc;
+}
+
+/* Copyright Section */
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Section Headers */
+.footer h4 {
+    color: #e7bcbc;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
+/*-------------------------------------------------------------------*/
+
+/* Sidebar kısmı */
+.sidebar {
+    position: absolute;
+    right: 180px;
+    top: 700px;
+    width: 300px;
+    height: 650px; /* Sabit yükseklik */
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar kutuları */
+.sidebar .twitter-box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    text-align: center;
+    height: 450px; /* Sabit yükseklik ver */
+}
+
+/* Logo kutusunun düzenlemesi */
+.sidebar .logo-box {
+    display: flex; /* Flexbox düzeni kullanarak logo ve sloganı yan yana hizalayacağız */
+    align-items: center; /* Yatayda ortalama */
+    margin-bottom: 30px; /* Logo ve slogan arasında boşluk */
+}
+
+/* Logo boyutunu büyüt */
+.sidebar .logo-box img {
+    max-width: 100px; /* Logoyu büyüt */
+    height: auto;
+    margin-right: 20px; /* Logo ile slogan arasına boşluk ekle */
+}
+.sidebar .logo-text {
+    font-size: 30px; /* Slogan boyutunu ayarla */
+    font-weight: bold; /* Sloganı kalın yap */
+    color: #e7bcbc; /* Renk seçimi */
+}
+
+.sidebar .logo-text p {
+    margin: 0;
+    font-size: px;
+    font-weight: bold;
+    color: #e7bcbc;
+}
+
+.sidebar .logo-text p:first-child {
+    font-size: 30px; /* İlk satırdaki yazıyı biraz daha büyük yapmak için */
+}
+
+/* Twitter kutusunu büyütüyoruz */
+.sidebar .twitter-box {
+    margin-top: 20px;
+}
+
+.sidebar .twitter-box h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Twitter iframe'ini düzenledim */
+.twitter-feed iframe {
+    width: 100%;
+    height: 600px;
+    border: none;
+    margin-left: 0;
+}
+
+/* Mobil cihazlar için */
+@media (max-width: 768px) {
+    .container2 {
+        flex-direction: column; /* Mobilde içerik ve sidebar alt alta gelir */
+    }
+
+    .latest-posts .post {
+        width: 100%; /* Kartlar tam genişlikte */
+        margin-left: 0; /* Sol boşluk kaldır */
+    }
+
+    .sidebar {
+        position: static; /* Sidebar mobilde sabit olmasın */
+        margin-left: 0;
+    }
+}
+/*----------------------------------------------------*/
+/*HAKKIMIZDA KISMI*/
+/* Genel yazı stili */
+.hakkimizda-box p, .hakkimizda-box ul, .hakkimizda-box li {
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: #4a4a4a;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+}
+
+/* Bağlantılar */
+.hakkimizda-box a {
+    color: #0073e6;
+    text-decoration: none;
+}
+
+.hakkimizda-box a:hover {
+    text-decoration: underline;
+}
+
+/* Kalın metin için stil */
+.hakkimizda-box strong {
+    font-weight: bold;
+    color: #ff0000;
+    font-size: 1.3rem;
+}
+
+/* Yazı kutusu için stil */
+.hakkimizda-box {
+    position: relative;
+    top: -0px; /* Kutuyu yukarı taşır */
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 25px;
+    margin: 100px auto;
+    max-width: 850px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-left: 11%;
+    margin-right: 10%;
+}
+
+/* Liste elemanları için stil */
+.hakkimizda-box ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+/* Twitter kısmını sağa hizalama */
+.social-icons {
+    text-align: right; /* Sağ tarafa hizalama */
+    margin-top: 20px;
+}
+
+
+/*///////////////////////////////////////////////////////////////////////*/
+
+
+/* Sağ Menü Stili */
+.sidenav-right {
+    position: fixed;
+    top: 0;
+    right: -350px; /* Başlangıçta gizli */
+    width: 300px;
+    height: 100%;
+    background-color: #adacac;
+    z-index: 9999; 
+    transition: right 0.3s ease;
+    padding: 20px;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.5);
+}
+
+.sidenav-right.active {
+    right: 0;
+}
+
+.sidenav-right .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 25px;
+    cursor: pointer;
+    color: white;
+}
+
+.sidenav-right h2 {
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+.sidenav-right .form-control {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 1.2rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.sidenav-right .submit-button {
+    background-color: #e7bcbc;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.sidenav-right .submit-button:hover {
+    background-color: rgb(206, 153, 153);
+}
+
+.sidenav-right .links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.sidenav-right .links a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.sidenav-right .links a:hover {
+    text-decoration: none;
+    color: rgb(109, 109, 109);
+}
+
+#userIcon {
+    position: relative;
+    left: -5px; /* Sola kaydırmak için negatif bir değer verin */
+    font-size: 20px;
+}
+/* Varsayılan ikon stili (giriş yapmamış kullanıcılar için) */
+#userIcon i {
+    color: #e7bcbc !important; /* Pudra pembesi sadece çerçeve */
+    fill: transparent !important; /* İçi boş */
+    transition: all 0.3s ease;
+}
+
+/* Giriş yapmış kullanıcılar için ikon stili */
+.logged-in-icon {
+    color: #e7bcbc !important; /* Pudra pembesi çerçeve */
+    fill: #e7bcbc !important; /* Pudra pembesi dolgu */
+}
+
+/* User Panel Styles */
+.user-panel-section {
+    padding: 20px;
+}
+
+.user-info {
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.user-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.user-header i {
+    font-size: 1.2rem;
+}
+
+.user-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.logout-container {
+    padding-top: 5px;
+}
+
+#logoutButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    gap: px;
+    background-color: #e7bcbc;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 100%;
+}
+
+#logoutButton:hover {
+    background-color: rgb(206, 153, 153);
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+}
+
+.nav-item i {
+    width: 20px;
+}
+
+#userIcon {
+    position: relative;
+    left: -5px; /* Sola kaydırmak için negatif bir değer verin */
+    font-size: 20px;
+}
+
+/* Auth Panel Genel Stilleri */
+.auth-section {
+    padding: 20px 0;
+}
+
+.auth-description {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Form Elemanları */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #e7bcbc;
+    box-shadow: 0 0 0 2px rgba(231, 188, 188, 0.2);
+}
+
+/* Select Elementi için Özel Stiller */
+select.form-control {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 15px;
+    padding-right: 30px;
+}
+
+/* Submit Butonu */
+.submit-button {
+    width: 87%;
+    background-color: #e7bcbc;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.submit-button:hover {
+    background-color: rgb(206, 153, 153);
+}
+
+/* Linkler */
+.links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.links a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.links a:hover {
+    color: #e7bcbc;
+}
+/* Şifre alanı için stil */
+.password-container {
+    position: relative;
+}
+
+.password-container input {
+    width: calc(100% - 30px); /* Göz ikonuna yer bırakmak için genişliği ayarla */
+}
+
+.password-container i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+}
+
+/* Auth Panel Genel Stilleri */
+.auth-section {
+    padding: 20px 0;
+}
+
+.auth-description {
+    color: white;
+    margin-bottom: 20px;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    position: relative; /* Göz ikonunu konumlandırmak için */
+}
+
+.form-group input {
+    width: calc(100% - 30px); /* Göz ikonu için yer bırak */
+}
+
+.form-group i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #aaa;
+    transition: color 0.3s ease;
+}
+
+.form-group i:hover {
+    color: #333;
+}
+
+/* Form Elemanları */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #e7bcbc;
+    box-shadow: 0 0 0 2px rgba(231, 188, 188, 0.2);
+}
+
+/* Select Elementi için Özel Stiller */
+select.form-control {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 15px;
+    padding-right: 30px;
+}
+
+/* Submit Butonu */
+.submit-button {
+    width: 87%;
+    background-color: #e7bcbc;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 10px;
+}
+
+.submit-button:hover {
+    background-color: rgb(206, 153, 153);
+}
+
+/* Linkler */
+.links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+}
+
+.links a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+.links a:hover {
+    color: #e7bcbc;
+}
+
+/* Main content area */
+main {
+    margin-left: 15%;
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+/* Posts section */
+.posts-section {
+    width: 100%;
+    max-width: 800px;
+    margin-right: 10%; /* Sidebar için yer açmak amacıyla sağa kaydırma */
+    margin-top: 150px; /* Üstten boşluk bırakma */
+}
+
+/* Post card */
+.post-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+}
+
+/* Post header */
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.user-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.username {
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin: 0;
+}
+
+.post-date {
+    font-size: 1.2rem;
+    color: #888;
+}
+
+/* Post content */
+.post-content {
+    margin-bottom: 15px;
+}
+
+.post-content p {
+    font-size: 1.4rem;
+    line-height: 1.6;
+    margin-bottom: 10px;
+}
+
+.post-image {
+    width: 100%;
+    border-radius: 10px;
+}
+
+/* Post actions */
+.post-actions {
+    display: flex;
+    gap: 15px;
+    padding: 10px 0;
+    border-top: 1px solid #eee;
+}
+
+.post-actions button {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    border-radius: 20px;
+    transition: background-color 0.2s;
+}
+
+.post-actions button:hover {
+    background-color: rgba(231, 188, 188, 0.1);
+}
+
+.post-actions button.active {
+    color: #e7bcbc;
+}
+
+.post-actions button i {
+    margin-right: 8px;
+    font-size: 1.6rem;
+}
+
+/* Comments section */
+.post-comments {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.comment {
+    display: flex;
+    margin-bottom: 12px;
+    padding: 12px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+}
+
+.comment-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.comment-content {
+    flex-grow: 1;
+}
+
+.comment-username {
+    font-size: 1.4rem;
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.comment-content p {
+    font-size: 1.3rem;
+    color: #666;
+}
+
+/* Comment form */
+.comment-form {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.comment-input {
+    flex: 1;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    font-size: 1.4rem;
+}
+
+.comment-input:focus {
+    outline: none;
+    border-color: #e7bcbc;
+}
+
+.comment-submit {
+    background-color: #e7bcbc;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+
+.comment-submit:hover {
+    background-color: #d4a5a5;
+}
+
+/* Like count styling */
+.like-count {
+    font-weight: 500;
+    color: #666;
+    margin-left: 5px;
+    transition: all 0.3s ease;
+}
+
+.like-button.active .like-count {
+    color: #e7bcbc;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .post-card {
+        margin: 15px;
+        padding: 20px;
+    }
+
+    .user-avatar {
+        width: 50px;
+        height: 50px;
+    }
+
+    .post-actions {
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .post-actions button {
+        flex: 1;
+        justify-content: center;
+    }
+}
+
+/* Trending sidebar */
+.trending-sidebar {
+    position: absolute;
+    right: 180px;
+    top: 170px;
+    width: 300px;
+    height: 400px; /* Sabit yükseklik */
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: -4px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.trending-sidebar h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 600;
+    border-bottom: 2px solid #e7bcbc;
+    padding-bottom: 10px;
+}
+
+.trending-topics {
+    list-style: none;
+    padding: 0;
+}
+
+.trending-topics li {
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
+}
+
+.trending-topics a {
+    text-decoration: none;
+    color: #666;
+    font-size: 1.4rem;
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    border-radius: 25px;
+    background-color: #f8f8f8;
+    transition: all 0.3s ease;
+}
+
+.trending-topics a:hover {
+    background-color: #e7bcbc;
+    color: white;
+    transform: translateX(5px);
+}
+.grid {
+    max-width: 1200px;
+    margin: 25px auto;
+    columns: 3; /* Creates masonry-like columns */
+    column-gap: 25px; /* Space between columns */
+    padding: 20px;
+}
+
+.grid-item {
+    width: 100%;
+    margin-bottom: 25px; /* Space between rows */
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    break-inside: avoid; /* Prevent cards from splitting between columns */
+    display: inline-block; /* Important for column layout */
+}
+
+
+.grid-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 1200px) {
+    .grid {
+        columns: 2;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid {
+        columns: 1;
+    }
+}
+
+.quote {
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.author-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #fd9797;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.author-info {
+    color: #666;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .grid-item {
+        width: calc(100% - 20px);
+    }
+}
+
+hr {
+    border: none; /* Varsayılan sınırı kaldır */
+    height: 1px; /* Yüksekliği ayarla */
+    background-color: #ddd; /* Daha açık bir renk belirle */
+    margin: 20px 0; /* Üst ve alt boşluk ekle */
+}
+/* Başlık stilini ayarlıyoruz */
+.fusion-column-wrapper {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 5vw 1vw;
+}
+
+.fusion-title {
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+
+.fusion-title-2 h2 {
+    font-family: "Outfit", sans-serif;
+    font-size: 70px;
+    font-weight: 600;
+    color: #ffffff;
+    margin: 0; /* Margin'i sıfırladım */
+}
+
+.title-text {
+    color: #ffffff;
+}
+
+.fusion-text {
+    text-align: center;
+    font-family: "Outfit", sans-serif;
+    font-size: 30px;
+    color: #ffffff;
+    line-height: 1.5;
+    margin: 0; /* Margin'i sıfırladım */
+}
+
+.subtitle-text {
+    color: #ffffff;
+    font-size: 30px;
+    font-weight: 400;
+}
+
+.fusion-title-3 {
+    font-size: 30px;
+    color: var(--awb-color8);
+    margin-top: 0;
+}
+
+.join-section {
+    background-color: #ffffff;  /* Beyaz arka plan */
+    padding: 30px 20px;         /* İçeriğe yeterli boşluk */
+    text-align: center;         /* Metin hizalama */
+    margin-top: 20px;           /* Footer'dan biraz uzaklık */
+}
+
+.join-section h1 {
+    font-family: 'Outfit', sans-serif;
+    color: #313849;
+    margin-bottom: 10px; /* Alt boşluk */
+    line-height: 1.2;   /* Satır aralığı */
+}
+
+.cta-button {
+    background-color: #e7bcbc;
+    color: #fff;
+    padding: 18px 40px;
+    border-radius: 16px;
+    font-size: 20px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    text-transform: capitalize;
+}
+
+.story-form {
+    display: none;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: all 0.5s ease-in-out;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+textarea {
+    width: 96%;
+    height: 150px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-family: 'Outfit', sans-serif;
+    margin-bottom: 10px;
+}
+
+.profile-preview {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-icon {
+    width: 40px;
+    height: 40px;
+    background-color: #fd9797;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.submit-button {
+    margin-top: 15px;
+    background-color: #e7bcbc;
+    color: #fff;
+    padding: 10px 39px;
+    border-radius: 16px;
+    font-size: 16px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+}

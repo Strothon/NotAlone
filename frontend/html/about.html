@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | NOTALONE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/581952776c.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="owl/owl.carousel.min.css">
+    <link rel="stylesheet" href="owl/owl.theme.default.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="owl/script.js"></script>
+
+</head>
+<body>
+    <!-- Sol Sütun -->
+    <div id="sol-sutun">
+        <div id="menu-toggle" onclick="toggleMenu()">☰</div> <!-- Menü Butonu -->
+    </div>
+
+    <!-- Sabit Üst Menü -->
+    <section id="menu">
+        <div id="logo">NOTALONE</div>
+        <div id="menu-toggle" onclick="toggleMenu()">☰</div>
+        <nav>
+            <li><a href="../html/home.html">Home</a></li>
+            <li><a href="../html/about.html">About</a></li>
+            <li><a href="../html/knowyourrights.html">Know Your Rights</a></li>
+            <li><a href="../html/stories.html">Stories</a></li>
+            <li><a href="../html/blog.html">Blog</a></li>
+            <li><a href="../html/forum.html">Forum</a></li>
+            <li><a href="../html/support.html">Support</a></li>
+            <li><a href="../html/commentPolicy.html">Comment Policy</a></li>
+            <li><a href="javascript:void(0);" id="userIcon"><i class="fa-regular fa-user"></i></a></li>
+        </nav>
+    </section>
+
+    <!-- Sağ Menü -->
+<div id="loginPanel" class="sidenav-right">
+    <div class="sidenav__inner">
+       <!-- Giriş Paneli -->
+<div id="loginForm" class="auth-section">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <h2>Login</h2>
+    <form onsubmit="handleLogin(event)">
+        <input type="email" id="loginEmail" placeholder="Email" required class="form-control">
+        <div class="password-container">
+            <input type="password" id="loginPassword" placeholder="Password" required class="form-control">
+            <i class="fa fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+        </div>
+        <button type="submit" class="submit-button">Login</button>
+        <div class="links">
+            <a href="#" onclick="showForgotPassword(event)">Forgot Password?</a>
+            <a href="#" onclick="showSignUp(event)">Sign Up</a>
+        </div>
+    </form>
+</div>
+
+<!-- Giriş Yaptıktan Sonraki Panel -->
+<div id="userPanelContent" class="user-panel-section" style="display: none;">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <div class="user-info">
+        <div class="user-header">
+            <i class="fa-regular fa-user"></i>
+            <span id="welcomeUsername">Welcome, User</span>
+        </div>
+    </div>
+    
+    <nav class="user-nav">
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-user"></i>
+            <span>My Profile</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-paper-plane"></i>
+            <span>My Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-comment"></i>
+            <span>My Comments</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-heart"></i>
+            <span>Liked Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-bookmark"></i>
+            <span>Saved Posts</span>
+        </a>
+        
+    </nav>
+    <div class="logout-container">
+        <button id="logoutButton" onclick="handleLogout()">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+    </div>
+</div>
+
+
+        <!-- Şifremi Unuttum Paneli -->
+        <div id="forgotPasswordForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Reset Password</h2>
+            <p class="auth-description">Enter your email address and we'll send you a link to reset your password.</p>
+            <form onsubmit="handleForgotPassword(event)">
+                <input type="email" id="resetEmail" placeholder="Email" required class="form-control">
+                <button type="submit" class="submit-button">Send Reset Link</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Back to Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kaydolma Paneli -->
+        <div id="signUpForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Sign Up</h2>
+            <form onsubmit="handleSignUp(event)">
+                <div class="form-group">
+                    <input type="text" id="firstName" placeholder="First Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="lastName" placeholder="Last Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="signUpEmail" placeholder="Email" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="signUpPassword" placeholder="Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder="Phone Number" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="birthDate" placeholder="Birth Date" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <select id="gender" class="form-control" required>
+                        <option value="">Select Gender</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
+                        <option value="prefer-not">Prefer not to say</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-button">Sign Up</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Already have an account? Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kullanıcı Panel İçeriği (giriş yapıldıktan sonra) -->
+        <div id="userPanelContent" class="user-panel-section" style="display: none;">
+            <!-- Mevcut kullanıcı paneli içeriği buraya -->
+        </div>
+    </div>
+</div>
+
+
+    <!-- Sol Sütun -->
+    <div id="sol-sutun">
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div> <!-- Menü Butonu -->
+    </div>
+    
+    <!-- Menü Aç/Kapat İşlevi -->
+    <script>
+        function toggleLeftMenu() {
+            const sidenav = document.getElementById('sidenav');
+            sidenav.classList.toggle('active');
+        }
+    </script>   
+
+<!-- Sol Menü -->
+<div id="sidenav" class="sidenav">
+    <div class="sidenav__inner">
+        <div class="menu-header">
+            <div id="logo-menu">
+                <span style="color:#e7bcbc; font-size: 30px;">
+                    W♀men, Peace and Security
+                </span>
+            </div>
+            <div class="close-btn" onclick="toggleLeftMenu()">✖</div>
+        </div>
+        <nav>
+            <a href="../html/home.html"><i class="fa-solid fa-home"></i>Home</a>
+            <a href="../html/about.html"><i class="fa-solid fa-info"></i>About</a>
+            <a href="../html/knowyourrights.html"><i class="fa-solid fa-balance-scale"></i>Know Your Rights</a>
+            <a href="../html/stories.html"><i class="fa-solid fa-pen"></i>Stories</a>
+            <a href="../html/blog.html"><i class="fa-solid fa-blog"></i>Blog</a>
+            <a href="../html/forum.html"><i class="fa-solid fa-comments"></i>Forum</a>
+            <a href="../html/support.html"><i class="fa-solid fa-calendar"></i>Support</a>
+            <a href="../html/commentPolicy.html"><i class="fa-solid fa-comment"></i>Comment Policy</a>
+        </nav>
+    </div>
+</div>
+
+</section>
+<!-- Sidebar -->
+<div class="sidebarHAKKIMIZDA">
+   <div class="logo-boxHAKKIMIZDA">
+       <img src="../img/2logo.png" alt="Logo"> <!-- Logo -->
+       <div class="logo-text">W♀men, Peace <p>and Security</p></div> <!-- Slogan -->
+   </div>
+
+   <div class="twitter-boxHAKKIMIZDA">
+       <h2>Follow Us</h2>
+       <div class="twitter-feed">
+           <!-- Twitter Widget -->
+           <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" title="Twitter Timeline"
+               src="https://syndication.twitter.com/srv/timeline-profile/screen-name/NOT#ALONE=false&amp;embedId=twitter-widget-0&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfZm9zbnJfc29mdF9pbnRlcnZlbnRpb25zX2VuYWJsZWQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X21peGVkX21lZGlhXzE1ODk3Ijp7ImJ1Y2tldCI6InRyZWF0bWVudCIsInZlcnNpb24iOm51bGx9LCJ0ZndfZXhwZXJpbWVudHNfY29va2llX2V4cGlyYXRpb24iOnsiYnVja2V0IjoxMjA5NjAwLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3Nob3dfYmlyZHdhdGNoX3Bpdm90c19lbmFibGVkIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19kdXBsaWNhdGVfc2NyaWJlc190b19zZXR0aW5ncyI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdXNlX3Byb2ZpbGVfaW1hZ2Vfc2hhcGVfZW5hYmxlZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdmlkZW9faGxzX2R5bmFtaWNfbWFuaWZlc3RzXzE1MDgyIjp7ImJ1Y2tldCI6InRydWVfYml0cmF0ZSIsInZlcnNpb24iOm51bGx9LCJ0ZndfbGVnYWN5X3RpbWVsaW5lX3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9mcm9udGVuZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9fQ%3D%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=true&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=en&amp;maxHeight=400px&amp;origin=https%3A%2F%2Fblogs.lse.ac.uk%2Fwps%2F&amp;partner=jetpack&amp;sessionId=0c6952bf47c9281de6889593d9528bcc3401e8f5&amp;showHeader=true&amp;showReplies=false&amp;siteScreenName=NOT#ALONE&amp;theme=light&amp;transparent=false&amp;widgetsVersion=2615f7e52b7e0%3A1702314776716"
+               style="position: static; visibility: visible; width: 100%; height: 400px; display: block;">
+           </iframe>
+       </div>
+   </div>
+</div>
+
+
+
+<main>
+    <div class="hakkimizda-box">
+        <h1 style="color: #e7bcbc; font-size: 2.5rem; text-align: left; margin-bottom: 1rem;">About</h1>
+        <div class="page-template-default__content post-content">
+            <p> Our blog aims to provide a gender analysis of peace and security in an accessible way for a wide audience.</p>
+            <p>We welcome well-argued, evidence-based submissions that can improve public debate and that explores contemporary issues relating to women, peace and security and women’s human rights in conflict-affected contexts.</p>
+            <p>We are committed to providing information and support regarding women’s legal and moral rights. However, the information we provide does not constitute legal advice, and it is important to consult professionals when expert assistance is needed.</span></p>
+            <p></p>
+            <p>&nbsp;</p>
+            <p ><span style="color: #000000">Notes for Contributors</span></p>
+            <p style="margin-top: 10px;"><span style="color: #000000">Length and format</span></p>
+            <ul>
+                <li>In order to increase readability and accessibility, articles must be between 750 and 1,200 words.</li>
+                <li>If you feel 1,200 words is too limiting for the topic you wish to address, consider breaking the content down into multiple posts which develop your topic or idea. This can also be discussed with the blog editor if you feel that a word count beyond 1,200 is appropriate for the topic.</li>
+            </ul>
+      
+            <p style="margin-top: 20px;"><span style="color: #000000">Audience, writing style and language</span></p>
+            <ul>
+                <li>Our main aim is to increase the public understanding of the broad area of women, peace and security. Your article should be written with a wide audience in mind, including policy-makers and other non-academics.</li>
+                <li>Please remain aware that some ideas and experiences may not translate well into academic terminology; some disciplinary jargon can be inaccessible. Posts should be written as if you are explaining an idea or a concept to a well-read, informed friend who doesn’t happen to be knowledgeable in the area. With this in mind avoid overusing acronyms and academic terms as well as Latin phrases.</li>
+                <li>Use short paragraphs made up of four or five sentences.</li>
+                <li>As with journalistic pieces ‘lead with the best.’ Don’t save your main argument or analysis for the end of the post.</li>
+                <li>Write your article as a standalone piece, even if it summarises material in a longer paper or journal article. Try to present all of your argument and evidence within the text and avoid relying on information contained in external sources.</li>
+</ul>
+      
+            <p style="margin-top: 20px;"><span style="color: #000000">Referencing</span></p>
+            <ul>
+                <li>We use links rather than citations for references. Links should direct readers to more detailed reports or other pieces of research, news items or other blog posts. Open access sources are preferable compared to those behind paywalls (not all readers will have access to online journals or paywalled articles).</li>
+                <li>Consider opportunities to link to other Centre resources, such as working papers, event recordings and the Tackling Violence Against Women resource site.</li>
+                <li>Please insert a hyperlink at the point of your argument that you’d like to reference or simply place the URL in parentheses where you would like it to be placed and the editor will insert the link.</li>
+                <li>Please avoid using footnotes and integrate material directly into the text.</li>
+            </ul>
+      
+            <p style="margin-top: 20px;"><span style="color: #000000">Editing process</span></p>
+            <ul>
+                <li>The blog editor will edit the piece to enhance readability to the blog’s wider audience, or request that you make these edits. Once these edits are complete, we will send you the final version of the article and give you the opportunity to make final edits.</li>
+                <li>All articles on blog should be evidence based. With this in mind, editors may double-check the factual accuracy of certain points, or ask you for links to supporting information.</li>
+            </ul>
+      
+            <p style="margin-top: 20px;"><span style="color: #000000">Comments</span></p>
+            <ul>
+                <li>We welcome comments on posts and will accept any reasonable or constructive comment, including criticisms. We operate a propriety filter, so comments are routed to the blog team and not posted for public view until they have been checked, so there will be a delay in posting. Read the comments policy.</li>
+            </ul>
+    
+        </div>
+    </div>
+</main>
+
+
+
+</section>
+
+<footer class="footer">
+    <div class="footer-content">
+        <!-- Footer Logo Section -->
+        <div class="footer-logo">
+            <div id="logoFooter">NOTALONE</div>
+            <div class="logo-text"><p>W♀men, Peace </p><p>and Security</p></div> 
+        </div>
+
+        <!-- Quick Links Section -->
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../html/home.html">Home</a></li>
+                <li><a href="../html/about.html">About</a></li>
+                <li><a href="../html/knowyourrights.html">Know Your Rights</a></li>
+                <li><a href="../html/stories.html">Stories</a></li>
+                <li><a href="../html/blog.html">Blog</a></li>
+                <li><a href="../html/forum.html">Forum</a></li>
+                <li><a href="../html/support.html">Support</a></li>
+                <li><a href="../html/commentPolicy.html">Comment Policy</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>
+                <i class='bx bx-map'></i>
+                Türk Hava Kurumu Üniversitesi Bahçekapı Mah.
+            </p>
+            <p>
+                <i class='bx bx-phone'></i>
+                (0212) 389 99 99
+            </p>
+            <p>
+                <i class='bx bx-envelope'></i>
+                notalone@gmail.com
+            </p>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="footer-social">
+            <h4>Social Media</h4>
+            <div class="social-icons">
+                <a href="https://www.facebook.com" target="_blank"><i class='bx bxl-facebook'></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class='bx bxl-twitter'></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class='bx bxl-instagram'></i></a>
+                <a href="https://www.linkedin.com/in" target="_blank"><i class='bx bxl-linkedin'></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="footer-bottom">
+        <p>&copy; 2024 NOTALONE</p>
+    </div>
+</footer>
+      
+    <script src="owl/script.js">
+
+    </script>
+    
+    <script src="owl/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1..min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="../js/script.js"></script> <!-- JavaScript dosyasını bağladık -->
+
+</body>
+</html>

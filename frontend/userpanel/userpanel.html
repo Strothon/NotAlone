@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Panel | NOTALONE</title>
+    <link rel="stylesheet" href="../userpanel/userpanel.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/581952776c.js" crossorigin="anonymous"></script>
+    <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css'>
+    <script src="../userpanel/userpanel.js" defer></script>
+
+</head>
+<body>
+    <div class="container profile-grid">
+        <div class="profile-card">
+            <div class="profile-image">
+                <img src="../img/blog.4.jpg" alt="Profile" id="profileImage">
+                <button class="edit-button" onclick="document.getElementById('fileInput').click();">
+                    <i class="fas fa-camera"></i>
+                </button>
+                <input type="file" id="fileInput" style="display: none;" accept="image/*" onchange="updateProfileImage(event)">
+            </div>
+            <div class="profile-info">
+                <h2 id="profileName">User Name</h2>
+                <p><i class="fas fa-envelope"></i> <span id="profileEmail">user@example.com</span></p>
+            </div>
+            <div class="stats">
+                <div>
+                    <div class="font-bold" id="profileFollowers">0</div>
+                    <div class="text-gray">Followers</div>
+                </div>
+                <div>
+                    <div class="font-bold" id="profileFollowing">0</div>
+                    <div class="text-gray">Following</div>
+                </div>
+            </div>
+            <button class="follow-button">Follow</button>
+            <div class="user-details">
+                <div>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span id="profileLocation">Location</span>
+                </div>
+                <div>
+                    <i class="fas fa-calendar"></i>
+                    <span id="profile"></span>
+                </div>
+                <div>    
+                    <span id="profileJoined">Joined Date</span>
+                </div>
+                <div>
+                    <i class="fas fa-heart"></i>
+                    <span id="profileLikes">Total Likes</span>
+                </div>
+            </div>
+        </div>
+        <div class="content-tabs">
+            <div class="tabs">
+                <button class="tab active" data-tab="posts" onclick="showTab('posts')">Posts</button>
+                <button class="tab" data-tab="comments" onclick="showTab('comments')">Comments</button>
+                <button class="tab" data-tab="liked" onclick="showTab('liked')">Liked Posts</button>
+                <button class="tab" data-tab="saved" onclick="showTab('saved')">Saved Posts</button>
+            </div>
+            <div class="tab-content active" id="posts"></div>
+            <div class="tab-content" id="comments"></div>
+            <div class="tab-content" id="liked"></div>
+            <div class="tab-content" id="saved"></div>
+        </div>
+    </div>
+
+    
+    <!-- Sol Sütun -->
+    <div id="sol-sutun">
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div> <!-- Menü Butonu -->
+    </div>
+    
+    <!-- Menü Aç/Kapat İşlevi -->
+    <script>
+        function toggleLeftMenu() {
+            const sidenav = document.getElementById('sidenav');
+            sidenav.classList.toggle('active');
+        }
+    </script>   
+
+
+ <!-- Sabit Üst Menü -->
+ <section id="menu">
+    <div id="logo">NOTALONE</div>
+    <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div>
+    <nav>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="hakkimizda.html">About</a></li>
+        <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+        <li><a href="haklarinibil.html">Know Your Rights</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="#">Forum</a></li>
+        <li><a href="#">Safe Map</a></li>
+        <li><a href="#">Events</a></li>
+        <li><a href="javascript:void(0);" id="userIcon"><i class="fa-regular fa-user"></i></a></li>
+    </nav>
+</section>
+
+<!-- Sol Menü -->
+<div id="sidenav" class="sidenav">
+    <div class="sidenav__inner">
+        <div class="menu-header">
+            <div id="logo-menu">
+                <span style="color:#e7bcbc; font-size: 30px;">
+                    W♀men, Peace and Security
+                </span>
+            </div>
+            <div class="close-btn" onclick="toggleLeftMenu()">✖</div>
+        </div>
+        <nav>
+            <a href="index.html"><i class="fa-solid fa-home"></i>Home</a>
+            <a href="hakkimizda.html"><i class="fa-solid fa-info"></i>About</a>
+            <a href="yorumPolitikasi.html"><i class="fa-solid fa-comment"></i>Comment Policy</a>
+            <a href="haklarinibil.html"><i class="fa-solid fa-balance-scale"></i>Know Your Rights</a>
+            <a href="blog.html"><i class="fa-solid fa-blog"></i>Blog</a>
+            <a href="#"><i class="fa-solid fa-comments"></i>Forum</a>
+            <a href="#"><i class="fa-solid fa-map-marker-alt"></i>Safe Map</a>
+            <a href="#"><i class="fa-solid fa-calendar"></i>Events</a>
+        </nav>
+    </div>
+</div>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <!-- Footer Logo Section -->
+            <div class="footer-logo">
+                <div id="logoFooter">NOTALONE</div>
+                <div class="logo-text"><p>W♀men, Peace </p><p>and Security</p></div> 
+            </div>
+    
+            <!-- Quick Links Section -->
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="hakkimizda.html">About</a></li>
+                    <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+                    <li><a href="haklarinibil.html">Know Your Rights</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="#">Forum</a></li>
+                    <li><a href="#">Safe Map</a></li>
+                    <li><a href="#">Events</a></li>
+                </ul>
+            </div>
+    
+            <!-- Contact Section -->
+            <div class="footer-contact">
+                <h4>Contact</h4>
+                <p>
+                    <i class='bx bx-map'></i>
+                    Türk Hava Kurumu Üniversitesi Bahçekapı Mah.
+                </p>
+                <p>
+                    <i class='bx bx-phone'></i>
+                    (0212) 389 99 99
+                </p>
+                <p>
+                    <i class='bx bx-envelope'></i>
+                    örnek@gmail.com
+                </p>
+            </div>
+    
+            <!-- Social Media Section -->
+            <div class="footer-social">
+                <h4>Social Media</h4>
+                <div class="social-icons">
+                    <a href="#"><i class='bx bxl-facebook'></i></a>
+                    <a href="#"><i class='bx bxl-twitter'></i></a>
+                    <a href="#"><i class='bx bxl-instagram'></i></a>
+                    <a href="#"><i class='bx bxl-linkedin'></i></a>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Copyright Section -->
+        <div class="footer-bottom">
+            <p>&copy; 2024 NOTALONE</p>
+        </div>
+    </footer>
+    <script src="owl/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="../userpanel/userpanel.js"></script> <!-- JavaScript dosyasını bağladık -->
+    </body>
+    </html>

@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anasayfa | NOTALONE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/581952776c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/forum.css">
+    <link rel="stylesheet" href="owl/owl.carousel.min.css">
+    <link rel="stylesheet" href="owl/owl.theme.default.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="owl/script.js"></script>
+
+</head>
+<body>
+
+    <!-- Sabit Üst Menü -->
+    <section id="menu">
+        <div id="logo">NOTALONE</div>
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div>
+        <nav>
+            <li><a href="../html/home.html">Home</a></li>
+            <li><a href="../html/about.html">About</a></li>
+            <li><a href="../html/knowyourrights.html">Know Your Rights</a></li>
+            <li><a href="../html/stories.html">Stories</a></li>
+            <li><a href="../html/blog.html">Blog</a></li>
+            <li><a href="../html/forum.html">Forum</a></li>
+            <li><a href="../html/support.html">Support</a></li>
+            <li><a href="../html/commentPolicy.html">Comment Policy</a></li>
+            <li><a href="javascript:void(0);" id="userIcon"><i class="fa-regular fa-user"></i></a></li>
+        </nav>
+    </section>
+
+<!-- Sağ Menü -->
+<div id="loginPanel" class="sidenav-right">
+    <div class="sidenav__inner">
+       <!-- Giriş Paneli -->
+<div id="loginForm" class="auth-section">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <h2>Login</h2>
+    <form onsubmit="handleLogin(event)">
+        <input type="email" id="loginEmail" placeholder="Email" required class="form-control">
+        <div class="password-container">
+            <input type="password" id="loginPassword" placeholder="Password" required class="form-control">
+            <i class="fa fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+        </div>
+        <button type="submit" class="submit-button">Login</button>
+        <div class="links">
+            <a href="#" onclick="showForgotPassword(event)">Forgot Password?</a>
+            <a href="#" onclick="showSignUp(event)">Sign Up</a>
+        </div>
+    </form>
+</div>
+
+
+<!-- Giriş Yaptıktan Sonraki Panel -->
+<div id="userPanelContent" class="user-panel-section" style="display: none;">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <div class="user-info">
+        <div class="user-header">
+            <i class="fa-regular fa-user"></i>
+            <span id="welcomeUsername">Welcome, User</span>
+        </div>
+    </div>
+    
+    <nav class="user-nav">
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-user"></i>
+            <span>My Profile</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-paper-plane"></i>
+            <span>My Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-comment"></i>
+            <span>My Comments</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-heart"></i>
+            <span>Liked Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-bookmark"></i>
+            <span>Saved Posts</span>
+        </a>
+        
+    </nav>
+    <div class="logout-container">
+        <button id="logoutButton" onclick="handleLogout()">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+    </div>
+</div>
+
+
+        <!-- Şifremi Unuttum Paneli -->
+        <div id="forgotPasswordForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Reset Password</h2>
+            <p class="auth-description">Enter your email address and we'll send you a link to reset your password.</p>
+            <form onsubmit="handleForgotPassword(event)">
+                <input type="email" id="resetEmail" placeholder="Email" required class="form-control">
+                <button type="submit" class="submit-button">Send Reset Link</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Back to Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kaydolma Paneli -->
+        <div id="signUpForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Sign Up</h2>
+            <form onsubmit="handleSignUp(event)">
+                <div class="form-group">
+                    <input type="text" id="firstName" placeholder="First Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="lastName" placeholder="Last Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="signUpEmail" placeholder="Email" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="signUpPassword" placeholder="Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder="Phone Number" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="birthDate" placeholder="Birth Date" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <select id="gender" class="form-control" required>
+                        <option value="">Select Gender</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
+                        <option value="prefer-not">Prefer not to say</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-button">Sign Up</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Already have an account? Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kullanıcı Panel İçeriği (giriş yapıldıktan sonra) -->
+        <div id="userPanelContent" class="user-panel-section" style="display: none;">
+            <!-- Mevcut kullanıcı paneli içeriği buraya -->
+        </div>
+    </div>
+</div>
+
+
+    <!-- Sol Sütun -->
+    <div id="sol-sutun">
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div> <!-- Menü Butonu -->
+    </div>
+    
+    <!-- Menü Aç/Kapat İşlevi -->
+    <script>
+        function toggleLeftMenu() {
+            const sidenav = document.getElementById('sidenav');
+            sidenav.classList.toggle('active');
+        }
+    </script>   
+
+<!-- Sol Menü -->
+<div id="sidenav" class="sidenav">
+    <div class="sidenav__inner">
+        <div class="menu-header">
+            <div id="logo-menu">
+                <span style="color:#e7bcbc; font-size: 30px;">
+                    W♀men, Peace and Security
+                </span>
+            </div>
+            <div class="close-btn" onclick="toggleLeftMenu()">✖</div>
+        </div>
+        <nav>
+            <a href="../html/home.html"><i class="fa-solid fa-home"></i>Home</a>
+            <a href="../html/about.html"><i class="fa-solid fa-info"></i>About</a>
+            <a href="../html/knowyourrights.html"><i class="fa-solid fa-balance-scale"></i>Know Your Rights</a>
+            <a href="../html/stories.html"><i class="fa-solid fa-pen"></i>Stories</a>
+            <a href="../html/blog.html"><i class="fa-solid fa-blog"></i>Blog</a>
+            <a href="../html/forum.html"><i class="fa-solid fa-comments"></i>Forum</a>
+            <a href="../html/support.html"><i class="fa-solid fa-calendar"></i>Support</a>
+            <a href="../html/commentPolicy.html"><i class="fa-solid fa-comment"></i>Comment Policy</a>
+        </nav>
+    </div>
+</div>
+
+
+    <!-- Main content area -->
+    <main>
+        <div class="container"><!-- Paylaş Butonu -->
+            <button id="PostButton" class="Post-button">Share Your Thoughts</button>
+            
+            <!-- Gönderi Oluşturma Formu -->
+            <div id="postFormContainer" class="post-form-container" style="display: none;">
+                <div class="post-form">
+                    <textarea class="post-input" placeholder="Write your thoughts..." id="newPostText"></textarea>
+                    <div class="post-actions">
+                        <label class="file-upload">
+                            <i class="fas fa-image"></i>
+                            Add Image
+                            <input type="file" accept="image/*" style="display: none;" id="postImage">
+                        </label>
+                        <button class="post-button" onclick="createPost()">Send</button>
+                    </div>
+                </div>
+            </div>
+    
+            <!-- Gönderiler Listesi -->
+            <div id="posts-container">
+                <!-- Örnek Gönderi -->
+                <div class="post-card">
+                    <div class="post-header">
+                        <img src="../img/blog.1.jpeg" alt="avatar" class="post-avatar">
+                        <div class="post-user-info">
+                            <div class="post-username">Ayşe Yılmaz</div>
+                            <div class="post-time">2 saat önce</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p class="post-text">Bugün kadın hakları konferansında çok değerli bilgiler edindim. Paylaşmak istedim.</p>
+                        <!--<img src="/api/placeholder/600/400" alt="post image" class="post-image">-->
+
+                    </div>
+                    <div class="interaction-bar">
+                        <button class="interaction-button" onclick="handleLike(this)">
+                            <i class="far fa-heart"></i>
+                            Like
+                        </button>
+                        <button class="interaction-button" onclick="toggleComments(this)">
+                            <i class="far fa-comment"></i>
+                            Comment
+                        </button>
+                        <button class="interaction-button" onclick="handleSave(this)">
+                            <i class="far fa-bookmark"></i>
+                            Save
+                        </button>
+                        <button class="interaction-button" onclick="handleShare(this)">
+                            <i class="far fa-share-square"></i>
+                            Share
+                        </button>
+                    </div>
+                    <div class="comments-section" style="display: none;">
+                        <div class="comment">
+                            <img src="../img/blog.2.jpg" alt="avatar" class="post-avatar" style="width: 32px; height: 32px;">
+                            <div class="comment-content">
+                                <div class="comment-user">Fatma Demir</div>
+                                <div class="comment-text">Harika bir etkinlikmiş!</div>
+                            </div>
+                        </div>
+                        <div class="comment-form">
+                            <input type="text" class="comment-input" placeholder="Yorum yazın...">
+                            <button class="comment-submit" onclick="addComment(this)">Send</button>
+                        </div>
+                    </div>
+                </div>                
+                
+                <!-- Example Post -->
+                <div class="post-card">
+                    <div class="post-header">
+                        <img src="../img/blog.2.jpg" alt="avatar" class="post-avatar">
+                        <div class="post-user-info">
+                            <div class="post-username">Ayşe Yılmaz</div>
+                            <div class="post-time">2 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p class="post-text">I gained very valuable information at the women's rights conference today. I wanted to share it.</p>
+                        <!--<img src="/api/placeholder/600/400" alt="post image" class="post-image">-->
+                    </div>
+                    <div class="interaction-bar">
+                        <button class="interaction-button" onclick="handleLike(this)">
+                            <i class="far fa-heart"></i>
+                            Like
+                        </button>
+                        <button class="interaction-button" onclick="toggleComments(this)">
+                            <i class="far fa-comment"></i>
+                            Comment
+                        </button>
+                        <button class="interaction-button" onclick="handleSave(this)">
+                            <i class="far fa-bookmark"></i>
+                            Save
+                        </button>
+                        <button class="interaction-button" onclick="handleShare(this)">
+                            <i class="far fa-share-square"></i>
+                            Share
+                        </button>
+                    </div>
+                    <div class="comments-section" style="display: none;">
+                        <div class="comment">
+                            <img src="../img/blog.1.jpeg" alt="avatar" class="post-avatar" style="width: 32px; height: 32px;">
+                            <div class="comment-content">
+                                <div class="comment-user">Fatma Demir</div>
+                                <div class="comment-text">What a great event!</div>
+                            </div>
+                        </div>
+                        <div class="comment-form">
+                            <input type="text" class="comment-input" placeholder="Write a comment...">
+                            <button class="comment-submit" onclick="addComment(this)">Send</button>
+                        </div>
+                    </div>
+                </div>                
+                
+                <!-- Example Post -->
+                <div class="post-card">
+                    <div class="post-header">
+                        <img src="../img/blog.3.jpg" alt="avatar" class="post-avatar">
+                        <div class="post-user-info">
+                            <div class="post-username">Ayşe Yılmaz</div>
+                            <div class="post-time">2 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p class="post-text">I gained very valuable information at the women's rights conference today. I wanted to share it.</p>
+                        <!--<img src="/api/placeholder/600/400" alt="post image" class="post-image">-->
+
+                    </div>
+                    <div class="interaction-bar">
+                        <button class="interaction-button" onclick="handleLike(this)">
+                            <i class="far fa-heart"></i>
+                            Like
+                        </button>
+                        <button class="interaction-button" onclick="toggleComments(this)">
+                            <i class="far fa-comment"></i>
+                            Comment
+                        </button>
+                        <button class="interaction-button" onclick="handleSave(this)">
+                            <i class="far fa-bookmark"></i>
+                            Save
+                        </button>
+                        <button class="interaction-button" onclick="handleShare(this)">
+                            <i class="far fa-share-square"></i>
+                            Share
+                        </button>
+                    </div>
+                    <div class="comments-section" style="display: none;">
+                        <div class="comment">
+                            <img src="../img/blog.4.jpg" alt="avatar" class="post-avatar" style="width: 32px; height: 32px;">
+                            <div class="comment-content">
+                                <div class="comment-user">Fatma Demir</div>
+                                <div class="comment-text">What a great event!</div>
+                            </div>
+                        </div>
+                        <div class="comment-form">
+                            <input type="text" class="comment-input" placeholder="Write a comment...">
+                            <button class="comment-submit" onclick="addComment(this)">Send</button>
+                        </div>
+                    </div>
+                </div>                
+                
+                <!-- Example Post -->
+                <div class="post-card">
+                    <div class="post-header">
+                        <img src="../img/blog.1.jpeg" alt="avatar" class="post-avatar">
+                        <div class="post-user-info">
+                            <div class="post-username">Ayşe Yılmaz</div>
+                            <div class="post-time">2 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p class="post-text">I gained very valuable information at the women's rights conference today. I wanted to share it.</p>
+                        <img src="/api/placeholder/600/400" alt="post image" class="post-image">
+                    </div>
+                    <div class="interaction-bar">
+                        <button class="interaction-button" onclick="handleLike(this)">
+                            <i class="far fa-heart"></i>
+                            Like
+                        </button>
+                        <button class="interaction-button" onclick="toggleComments(this)">
+                            <i class="far fa-comment"></i>
+                            Comment
+                        </button>
+                        <button class="interaction-button" onclick="handleSave(this)">
+                            <i class="far fa-bookmark"></i>
+                            Save
+                        </button>
+                        <button class="interaction-button" onclick="handleShare(this)">
+                            <i class="far fa-share-square"></i>
+                            Share
+                        </button>
+                    </div>
+                    <div class="comments-section" style="display: none;">
+                        <div class="comment">
+                            <img src="../img/blog.4.jpg" alt="avatar" class="post-avatar" style="width: 32px; height: 32px;">
+                            <div class="comment-content">
+                                <div class="comment-user">Fatma Demir</div>
+                                <div class="comment-text">What a great event!</div>
+                            </div>
+                        </div>
+                        <div class="comment-form">
+                            <input type="text" class="comment-input" placeholder="Write a comment...">
+                            <button class="comment-submit" onclick="addComment(this)">Send</button>
+                        </div>
+                    </div>
+                </div>                
+                <!-- Example Post -->
+                <div class="post-card">
+                    <div class="post-header">
+                        <img src="../img/blog.5.jpg" alt="avatar" class="post-avatar">
+                        <div class="post-user-info">
+                            <div class="post-username">Ayşe Yılmaz</div>
+                            <div class="post-time">2 hours ago</div>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p class="post-text">I gained very valuable information at the women's rights conference today. I wanted to share it.</p>
+                        <img src="../img/blog.2.jpg" alt="post image" class="post-image">
+                    </div>
+                    <div class="interaction-bar">
+                        <button class="interaction-button" onclick="handleLike(this)">
+                            <i class="far fa-heart"></i>
+                            Like
+                        </button>
+                        <button class="interaction-button" onclick="toggleComments(this)">
+                            <i class="far fa-comment"></i>
+                            Comment
+                        </button>
+                        <button class="interaction-button" onclick="handleSave(this)">
+                            <i class="far fa-bookmark"></i>
+                            Save
+                        </button>
+                        <button class="interaction-button" onclick="handleShare(this)">
+                            <i class="far fa-share-square"></i>
+                            Share
+                        </button>
+                    </div>
+                    <div class="comments-section" style="display: none;">
+                        <div class="comment">
+                            <img src="../img/blog.4.jpg" alt="avatar" class="post-avatar" style="width: 32px; height: 32px;">
+                            <div class="comment-content">
+                                <div class="comment-user">Fatma Demir</div>
+                                <div class="comment-text">What a great event!</div>
+                            </div>
+                        </div>
+                        <div class="comment-form">
+                            <input type="text" class="comment-input" placeholder="Write a comment...">
+                            <button class="comment-submit" onclick="addComment(this)">Send</button>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </main>
+
+
+    <script>
+        let isLoggedIn = false; // Giriş durumunu kontrol etmek için
+
+function showLoginPrompt() {
+    alert('Gönderi paylaşmak için giriş yapmalısınız.');
+}
+
+function createPost() {
+    if (!isLoggedIn) {
+        showLoginPrompt();
+        return;
+    }
+
+    const text = document.getElementById('newPostText').value;
+    const image = document.getElementById('postImage').files[0];
+
+    if (!text.trim()) return;
+
+    const postHtml = `
+        <div class="post-card">
+            <div class="post-header">
+                <img src="/api/placeholder/40/40" alt="avatar" class="post-avatar">
+                <div class="post-user-info">
+                    <div class="post-username">Siz</div>
+                    <div class="post-time">Şimdi</div>
+                </div>
+            </div>
+            <div class="post-content">
+                <p class="post-text">${text}</p>
+                ${image ? `<img src="${URL.createObjectURL(image)}" alt="post image" class="post-image">` : ''}
+            </div>
+            <div class="interaction-bar">
+                <button class="interaction-button" onclick="handleLike(this)">
+                    <i class="far fa-heart"></i>
+                    Beğen
+                </button>
+                <button class="interaction-button" onclick="toggleComments(this)">
+                    <i class="far fa-comment"></i>
+                    Yorum
+                </button>
+                <button class="interaction-button" onclick="handleSave(this)">
+                    <i class="far fa-bookmark"></i>
+                    Kaydet
+                </button>
+                <button class="interaction-button" onclick="handleShare(this)">
+                    <i class="far fa-share-square"></i>
+                    Paylaş
+                </button>
+            </div>
+            <div class="comments-section" style="display: none;">
+                <div class="comment-form">
+                    <input type="text" class="comment-input" placeholder="Yorum yazın...">
+                    <button class="comment-submit" onclick="addComment(this)">Gönder</button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.getElementById('posts-container').insertAdjacentHTML('afterbegin', postHtml);
+    document.getElementById('newPostText').value = '';
+    document.getElementById('postImage').value = '';
+}
+
+function handleLike(button) {
+    if (!isLoggedIn) {
+        showLoginPrompt();
+        return;
+    }
+    button.classList.toggle('active');
+    const icon = button.querySelector('i');
+    icon.classList.toggle('far');
+    icon.classList.toggle('fas');
+}
+
+function toggleComments(button) {
+    const post = button.closest('.post-card');
+    const commentsSection = post.querySelector('.comments-section');
+    commentsSection.style.display = commentsSection.style.display === 'none' ? 'block' : 'none';
+}
+
+function handleSave(button) {
+    if (!isLoggedIn) {
+        showLoginPrompt();
+        return;
+    }
+    button.classList.toggle('active');
+    const icon = button.querySelector('i');
+    icon.classList.toggle('far');
+    icon.classList.toggle('fas');
+}
+
+function handleShare(button) {
+    if (!isLoggedIn) {
+        showLoginPrompt();
+        return;
+    }
+    // Paylaşım fonksiyonelliği buraya eklenebilir
+    alert('Paylaşım özelliği yakında eklenecek!');
+}
+
+function addComment(button) {
+    if (!isLoggedIn) {
+        showLoginPrompt();
+        return;
+    }
+
+    const commentForm = button.closest('.comment-form');
+    const input = commentForm.querySelector('.comment-input');
+    const text = input.value.trim();
+
+    if (!text) return;
+
+    const commentHtml = `
+        <div class="comment">
+            <img src="/api/placeholder/32/32" alt="avatar" class="post-avatar" style="width: 32px; height: 32px;">
+            <div class="comment-content">
+                <div class="comment-user">Siz</div>
+                <div class="comment-text">${text}</div>
+            </div>
+        </div>
+    `;
+
+    const commentsSection = button.closest('.comments-section');
+    commentsSection.insertAdjacentHTML('afterbegin', commentHtml);
+    input.value = '';
+}
+
+// Paylaş Butonuna Tıklanınca Gönderi Formunu Göster
+document.getElementById('PostButton').addEventListener('click', function() {
+    var postFormContainer = document.getElementById('postFormContainer');
+    if (postFormContainer.style.display === 'none') {
+        postFormContainer.style.display = 'block';
+    } else {
+        postFormContainer.style.display = 'none';
+    }
+});
+    </script>
+
+    <!-- footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <!-- Footer Logo Section -->
+        <div class="footer-logo">
+            <div id="logoFooter">NOTALONE</div>
+            <div class="logo-text"><p>W♀men, Peace </p><p>and Security</p></div> 
+        </div>
+
+        <!-- Quick Links Section -->
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../html/home.html">Home</a></li>
+                <li><a href="../html/about.html">About</a></li>
+                <li><a href="../html/knowyourrights.html">Know Your Rights</a></li>
+                <li><a href="../html/stories.html">Stories</a></li>
+                <li><a href="../html/blog.html">Blog</a></li>
+                <li><a href="../html/forum.html">Forum</a></li>
+                <li><a href="../html/support.html">Support</a></li>
+                <li><a href="../html/commentPolicy.html">Comment Policy</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>
+                <i class='bx bx-map'></i>
+                Türk Hava Kurumu Üniversitesi Bahçekapı Mah.
+            </p>
+            <p>
+                <i class='bx bx-phone'></i>
+                (0212) 389 99 99
+            </p>
+            <p>
+                <i class='bx bx-envelope'></i>
+                notalone@gmail.com
+            </p>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="footer-social">
+            <h4>Social Media</h4>
+            <div class="social-icons">
+                <a href="https://www.facebook.com" target="_blank"><i class='bx bxl-facebook'></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class='bx bxl-twitter'></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class='bx bxl-instagram'></i></a>
+                <a href="https://www.linkedin.com/in" target="_blank"><i class='bx bxl-linkedin'></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="footer-bottom">
+        <p>&copy; 2024 NOTALONE</p>
+    </div>
+</footer>
+<script>
+    function filterPosts(keyword) {
+        const posts = document.querySelectorAll('.post-card');
+        posts.forEach(post => {
+            if (post.textContent.includes(keyword)) {
+                post.style.display = 'block';
+            } else {
+                post.style.display = 'none';
+            }
+        });
+    }
+</script>
+
+    <script src="owl/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1..min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="../js/forum.js"></script> <!-- JavaScript dosyasını bağladık -->
+
+</body>
+</html>

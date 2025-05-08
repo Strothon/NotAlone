@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anasayfa | NOTALONE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/581952776c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/support.css">
+    <link rel="stylesheet" href="owl/owl.carousel.min.css">
+    <link rel="stylesheet" href="owl/owl.theme.default.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="owl/script.js"></script>
+
+</head>
+<body>
+
+    <!-- Sabit Üst Menü -->
+    <section id="menu">
+        <div id="logo">NOTALONE</div>
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div>
+        <nav>
+            <li><a href="../html/home.html">Home</a></li>
+            <li><a href="../html/about.html">About</a></li>
+            <li><a href="../html/knowyourrights.html">Know Your Rights</a></li>
+            <li><a href="../html/stories.html">Stories</a></li>
+            <li><a href="../html/blog.html">Blog</a></li>
+            <li><a href="../html/forum.html">Forum</a></li>
+            <li><a href="../html/support.html">Support</a></li>
+            <li><a href="../html/commentPolicy.html">Comment Policy</a></li>
+            <li><a href="javascript:void(0);" id="userIcon"><i class="fa-regular fa-user"></i></a></li>
+        </nav>
+    </section>
+
+
+<!-- Sağ Menü -->
+
+<!-- Sağ Menü -->
+<div id="loginPanel" class="sidenav-right">
+    <div class="sidenav__inner">
+        <!-- Giriş Paneli -->
+        <div id="loginForm" class="auth-section">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Login</h2>
+            <form onsubmit="handleLogin(event)">
+                <input type="email" id="loginEmail" placeholder="Email" required class="form-control">
+                <input type="password" id="loginPassword" placeholder="Password" required class="form-control">
+                <button type="submit" class="submit-button">Login</button>
+                <div class="links">
+                    <a href="#" onclick="showForgotPassword(event)">Forgot Password?</a>
+                    <a href="#" onclick="showSignUp(event)">Sign Up</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Giriş Yaptıktan Sonraki Panel -->
+        <div id="userPanelContent" class="user-panel-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <div class="user-info">
+                <div class="user-header">
+                    <i class="fa-regular fa-user"></i>
+                    <span id="welcomeUsername">Welcome, User</span>
+                </div>
+            </div>
+            <nav class="user-nav">
+                <a href="#" class="nav-item">
+                    <i class="fa-regular fa-paper-plane"></i>
+                    <span>My Posts</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fa-regular fa-comment"></i>
+                    <span>My Comments</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fa-regular fa-heart"></i>
+                    <span>Liked Posts</span>
+                </a>
+                <a href="#" class="nav-item">
+                    <i class="fa-regular fa-bookmark"></i>
+                    <span>Saved Posts</span>
+                </a>
+            </nav>
+            <div class="logout-container">
+                <button id="logoutButton" onclick="handleLogout()">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+        <!-- Şifremi Unuttum Paneli -->
+        <div id="forgotPasswordForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Reset Password</h2>
+            <p class="auth-description">Enter your email address and we'll send you a link to reset your password.</p>
+            <form onsubmit="handleForgotPassword(event)">
+                <input type="email" id="resetEmail" placeholder="Email" required class="form-control">
+                <button type="submit" class="submit-button">Send Reset Link</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Back to Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kaydolma Paneli -->
+        <div id="signUpForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Sign Up</h2>
+            <form onsubmit="handleSignUp(event)">
+                <div class="form-group">
+                    <input type="text" id="firstName" placeholder="First Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="lastName" placeholder="Last Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="signUpEmail" placeholder="Email" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="signUpPassword" placeholder="Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder="Phone Number" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="birthDate" placeholder="Birth Date" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <select id="gender" class="form-control" required>
+                        <option value="">Select Gender</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
+                        <option value="prefer-not">Prefer not to say</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-button">Sign Up</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Already have an account? Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kullanıcı Panel İçeriği (giriş yapıldıktan sonra) -->
+        <div id="userPanelContent" class="user-panel-section" style="display: none;">
+            <!-- Mevcut kullanıcı paneli içeriği buraya -->
+        </div>
+    </div>
+</div>
+
+
+    <!-- Sol Sütun -->
+    <div id="sol-sutun">
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div> <!-- Menü Butonu -->
+    </div>
+    
+    <!-- Menü Aç/Kapat İşlevi -->
+    <script>
+        function toggleLeftMenu() {
+            const sidenav = document.getElementById('sidenav');
+            sidenav.classList.toggle('active');
+        }
+    </script>   
+
+<!-- Sol Menü -->
+<div id="sidenav" class="sidenav">
+    <div class="sidenav__inner">
+        <div class="menu-header">
+            <div id="logo-menu">
+                <span style="color:#e7bcbc; font-size: 30px;">
+                    W♀men, Peace and Security
+                </span>
+            </div>
+            <div class="close-btn" onclick="toggleLeftMenu()">✖</div>
+        </div>
+        <nav>
+            <a href="../html/home.html"><i class="fa-solid fa-home"></i>Home</a>
+            <a href="../html/about.html"><i class="fa-solid fa-info"></i>About</a>
+            <a href="../html/knowyourrights.html"><i class="fa-solid fa-balance-scale"></i>Know Your Rights</a>
+            <a href="../html/stories.html"><i class="fa-solid fa-pen"></i>Stories</a>
+            <a href="../html/blog.html"><i class="fa-solid fa-blog"></i>Blog</a>
+            <a href="../html/forum.html"><i class="fa-solid fa-comments"></i>Forum</a>
+            <a href="../html/support.html"><i class="fa-solid fa-calendar"></i>Support</a>
+            <a href="../html/commentPolicy.html"><i class="fa-solid fa-comment"></i>Comment Policy</a>
+        </nav>
+    </div>
+</div>
+
+
+
+<div class="highlighted-text">
+                <h1><em class="animated">Institutions to Apply for Support<svg class="scribble-underline" role="presentation" viewBox="-320 -70.8161 640.4 59.82" preserveAspectRatio="none"><path d="M-300,-56 C-50,-72 298,-65 300,-59 C332,-53 -239,-36 -255,-27 C-271,-18 -88,-24 91,-20" stroke="rgba(91,62,148,0.67)" pathLength="1" stroke-width="11.111111111111" fill="none"></path></svg></em></h1>
+            </div>
+            
+
+            <main>
+                <div class="section">
+                    <div class="main-title">A) ORGANIZATIONS AFFILIATED WITH THE MINISTRY OF FAMILY AND SOCIAL POLICIES</div>
+                    
+                    <button class="collapsible">1. Centers Available for Counseling Support</button>
+                    <div class="content">
+                        <div class="content-inner">
+                            <p>You can contact the Provincial and District Directorates of the Ministry of Family, Labor and Social Services by phone or in person to get information about the nearest Social Service Center, Violence Prevention and Monitoring Center (ŞÖNİM) and other relevant counseling centers for violence-related counseling support.</p>
+                        </div>
+                    </div>
+            
+                    <button class="collapsible">2. Women's Shelters</button>
+                    <div class="content">
+                        <div class="content-inner">
+                            <p>The addresses and contact information of women's shelters affiliated with the Ministry of Family, Labor and Social Services are not public due to confidentiality principles. You can reach the necessary information by calling the ALO 183 Line and the Violence Prevention and Monitoring Centers (ŞÖNİM) listed below.</p>
+                        </div>
+                    </div>
+            
+                    <button class="collapsible">3. ALO 183 Family, Women, Children and Disabled Social Support Line</button>
+                    <div class="content">
+                        <div class="content-inner">
+                            <p>By calling ALO 183, which provides free service 24/7, you can access information about the nearest Social Service Center, Family Counseling Center, Violence Prevention and Monitoring Center (ŞÖNİM) and women's shelters.</p>
+                        </div>
+                    </div>
+            
+                    <button class="collapsible">4. Violence Prevention and Monitoring Centers (ŞÖNİM)</button>
+<div class="content">
+    <div class="content-inner">
+        <p><strong>1. ADANA ŞÖNİM</strong><br>
+        Phone: (0322) 247 08 35 – 239 99 59<br>
+        Address: Alparslan Türkeş Boulevard Huzurevleri District 77136th St. No: 4 Çukurova, Adana</p>
+        
+        <p><strong>2. ADIYAMAN ŞÖNİM</strong><br>
+        Phone: (0416) 223 12 62<br>
+        Address: Altınşehir District Gölbaşı Highway 5th Km No: 28 Center, Adıyaman</p>
+
+        <p><strong>3. AFYONKARAHİSAR ŞÖNİM</strong><br>
+        Phone: (0272) 213 12 12<br>
+        Address: Dervişpaşa District Merkez Neighborhood 9th Street No: 4 Center, Afyonkarahisar</p>
+
+        <p><strong>4. AĞRI ŞÖNİM</strong><br>
+        Phone: (0472) 215 10 34<br>
+        Address: Erzurum Highway 1st Km. Ağrı Provincial Directorate of Family and Social Services Center, Ağrı</p>
+
+        <p><strong>5. AMASYA ŞÖNİM</strong><br>
+        Phone: (0358) 218 05 57<br>
+        Address: Hacı Ilyas District 05200 Center, Amasya</p>
+
+        <p><strong>6. ANKARA ŞÖNİM</strong><br>
+        Phone: (0312) 705 11 70 – 705 11 71<br>
+        Address: Kültür District Ziyabey Street No: 6 Çankaya, Ankara</p>
+
+        <p><strong>7. ANTALYA ŞÖNİM</strong><br>
+        Phone: (0242) 237 50 01 – 238 77 53<br>
+        Address: Güvenlik District Kızılırmak Street No: 3 Muratpaşa, Antalya</p>
+
+        <p><strong>8. ARDAHAN ŞÖNİM</strong><br>
+        Phone: (0478) 211 68 60<br>
+        Address: Halilefendi District Yüzbaşı Street No: 11 Center, Ardahan</p>
+
+        <p><strong>9. ARTVİN ŞÖNİM</strong><br>
+        Phone: (0466) 212 53 53<br>
+        Address: Çayağzı District Yeni Road No: 17 Center, Artvin</p>
+
+        <p><strong>10. AYDIN ŞÖNİM</strong><br>
+        Phone: (0256) 212 19 84<br>
+        Address: Hasan Efendi District 1900th Street No: 11 Efeler, Aydın</p>
+
+        <p><strong>11. BALIKESİR ŞÖNİM</strong><br>
+        Phone: (0266) 243 04 04<br>
+        Address: Gaziosmanpaşa District No: 2 Center, Balıkesir</p>
+
+        <p><strong>12. BARTIN ŞÖNİM</strong><br>
+        Phone: (0378) 227 18 44<br>
+        Address: Kemerköprü District Yalı Street No: 1 Bartın</p>
+
+        <p><strong>13. BATMAN ŞÖNİM</strong><br>
+        Phone: (0488) 213 96 16<br>
+        Address: Gap District 2519th Street No: 3 Center, Batman</p>
+
+        <p><strong>14. BAYBURT ŞÖNİM</strong><br>
+        Phone: (0458) 211 54 09<br>
+        Address: Tuzcuzade District Nişantaşı Street No: 8 Center, Bayburt</p>
+
+        <p><strong>15. BİLECİK ŞÖNİM</strong><br>
+        Phone: (0228) 212 07 20<br>
+        Address: Gazipaşa District Ali Rıza Özkay Street No: 1 Center, Bilecik</p>
+
+        <p><strong>16. BİNGÖL ŞÖNİM</strong><br>
+        Phone: (0426) 213 16 27<br>
+        Address: Kültür District Şehit Mustafa Gündoğdu Street No: 12 Center, Bingöl</p>
+
+        <p><strong>17. BİTLİS ŞÖNİM</strong><br>
+        Phone: (0434) 226 50 22<br>
+        Address: Hersan District Fatih Street Center, Bitlis</p>
+
+        <p><strong>18. BOLU ŞÖNİM</strong><br>
+        Phone: (0374) 215 35 45<br>
+        Address: Tabaklar District İzzet Baysal Street No: 96 Center, Bolu</p>
+
+        <p><strong>19. BURDUR ŞÖNİM</strong><br>
+        Phone: (0248) 234 63 66<br>
+        Address: Burç District Dereboyu Street No: 9 Center, Burdur</p>
+
+        <p><strong>20. BURSA ŞÖNİM</strong><br>
+        Phone: (0224) 716 37 78 – 716 39 97<br>
+        Address: Hürriyet District 135th Street No: 3/5 Nilüfer, Bursa</p>
+
+        <p class="p1"><b>22. ÇANAKKALE ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0286) 218 09 82 – 218 07 05&nbsp;<b>Adres:</b>&nbsp;Barbaros Mahallesi Atatürk Caddesi No: 209/5, Çanakkale</p>
+<p class="p1"><b>23. ÇANKIRI ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0376) 213 26 89&nbsp;<b>Adres:</b>&nbsp;İl Müdürlüğü Cumhuriyet Mahallesi Namık Kemal Parıltı Caddesi No:22 Kat:2 Merkez, Çankırı</p>
+<p class="p1"><b>24. ÇORUM ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0364) 777 00 87&nbsp;<b>Adres:</b>&nbsp;Çepni Mahallesi İnönü Cad. No:28, Çorum</p>
+<p class="p1"><b>25. DENİZLİ ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0258) 266 41 66 – 266 41 55&nbsp;<b>Adres:</b>&nbsp;Kervansaray Mah. Barbaros Cad. No: 145, Denizli<span class="Apple-converted-space">&nbsp;</span></p>
+<p class="p1"><b>26. DİYARBAKIR ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0412) 257 21 50 – 257 18 90&nbsp;<b>Adres:</b>&nbsp;Şehitlik Mah. Fabrika Cad. No: 7/3-2 Yenişehir, Diyarbakır</p>
+<p class="p1"><b>27. DÜZCE ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0380) 524 69 96&nbsp;<b>Adres:</b>&nbsp;Uzunmustafa Mahallesi Nezih Tütüncüoğlu Caddesi No:15 Merkez, Düzce</p>
+<p class="p1"><b>28. EDİRNE ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0284) 214 34 40&nbsp;<b>Adres:&nbsp;</b>Şükrüpaşa Mah. Turan Dursun Cad. No:7 Merkez, Edirne</p>
+<p class="p1"><b>29. ELAZIĞ ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0424) 233 67 51&nbsp;<b>Adres:</b>&nbsp;Cumhuriyet Mah. Fatih Ahmet Baba Bulvarı No: 96 Merkez, Elazığ</p>
+<p class="p1"><b>30. ERZİNCAN ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0446) 226 60 68&nbsp;<b>Adres:</b>&nbsp;Fatih Mah. Hacı Bektaşi Veli Cad. No: 6, Erzincan</p>
+<p class="p1"><b>31. ERZURUM ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0442) 215 14 00 – 215 13 00&nbsp;<b>Adres:</b>&nbsp;Rabiana Mah. Atatürk Lisesi Cad. Aile ve Sosyal Politikalar İl Müdürlüğü Sitesi No:1/2 Yakutiye, Erzurum</p>
+<p class="p1"><b>32. ESKİŞEHİR ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0222) 237 80 48 – 237 72 24&nbsp;<b>Adres:</b>&nbsp;Huzur Mah. Yıldızlar Sok. No: 44/1 Odunpazarı, Eskişehir</p>
+<p class="p1"><b>33. GAZİANTEP ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0342) 220 78 01- 220 71 10&nbsp;<b>Adres:</b>&nbsp;Karagöz Mahallesi Türkocağı Sokak No:5/B</p>
+<p class="p1">Şahinbey, Gaziantep</p>
+<p class="p1"><b>34. GİRESUN ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0454) 314 41 42-44&nbsp;<b>Adres:</b>&nbsp;İhsaniye Mahallesi Fatih Caddesi No:89 Kat:1 ve 4, Giresun</p>
+<p class="p1"><b>35. GÜMÜŞHANE ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0456) 213 19 10&nbsp;<b>Adres:</b>&nbsp;Özcan Mahallesi Kalederesi Küme Evleri Mevkii No:2, Gümüşhane</p>
+<p class="p1"><b>36. HAKKARİ ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0438) 211 99 19&nbsp;<b>Adres:</b>&nbsp;Dağgöl Mah. Pegan Cad. Ali Aydın Apt. No:6/12 Merkez, Hakkari</p>
+<p class="p1"><b>37. HATAY ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0326) 216 61 33&nbsp;<b>Adres:</b>&nbsp;Akevler Mah. Ayşe Fitnat Hanım Cd. No.33/2 Antakya, Hatay</p>
+<p class="p1"><b>38. IĞDIR ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0476) 227 15 02&nbsp;<b>Adres:&nbsp;</b>Emek Mahallesi Sema Yunt Caddesi No:1 Merkez, Iğdır</p>
+<p class="p1"><b>39. ISPARTA ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0246) 223 49 00&nbsp;<b>Adres:</b>&nbsp;Piri Mehmet Mah. 107. Cad. No:21/A Merkez, Isparta<span class="Apple-converted-space">&nbsp;</span></p>
+<p class="p1"><b>40. İSTANBUL ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0212) 465 21 96 – 465 21 97 –<span class="Apple-converted-space">&nbsp;&nbsp;</span>(0549) 806 79 48&nbsp;<b>Adres:</b>&nbsp;Yeşilköy Mah. Halkalı Cad. No: 30 Bakırköy, İstanbul</p>
+<p class="p1"><b>41. İZMİR ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0232) 363 33 41&nbsp;<b>Adres:&nbsp;</b>Soğukkuyu Mah. 1847/15 Sok. No: 11 Bayraklı, İzmir</p>
+<p class="p1"><b>42. KAHRAMANMARAŞ ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0344) 215 16 26 – 215 16 10&nbsp;<b>Adres:</b>&nbsp;Mimar Sinan Mahallesi&nbsp;Alparslan Türkeş Bulvarı No:78 Onikişubat, Kahramanmaraş</p>
+<p class="p1"><b>43. KARABÜK ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0370) 412 29 04&nbsp;<b>Adres:&nbsp;</b>İl Müdürlüğü Yeşil Mahallesi Taşkent Caddesi No:3 Merkez, Karabük</p>
+<p class="p1"><b>44. KARAMAN ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0338) 213 75 16 – 212 00 22&nbsp;<b>Adres:&nbsp;</b>Ziya Gökalp Mah. Ahmet Yesevi Cad. No: 46 Merkez, Karaman<span class="Apple-converted-space">&nbsp;</span></p>
+<p class="p1"><b>45. KARS ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0474) 214 14 75 – 214 14 74&nbsp;<b>Adres:</b>&nbsp;Orta Kapı Mah. Resul Yıldız Cad. Kat:2 No:5, Kars</p>
+<p class="p1"><b>46. KASTAMONU ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0366) 214 92 17 – 214 92 18&nbsp;<b>Adres:</b>&nbsp;Saraçlar Mahallesi. Sanat Okulu Caddesi No:49 Merkez, Kastamonu</p>
+<p class="p1"><b>47. KAYSERİ ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0352) 222 29 49 – 222 29 50&nbsp;<b>Adres:</b>&nbsp;Fatih Mahallesi Oğuz Caddesi No: 27 Kocasinan, Kayseri</p>
+<p class="p1"><b>48. KIRIKKALE ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0318) 224 07 19&nbsp;<b>Adres:&nbsp;</b>Yeni Mah. Sağlık Cad. No: 52 Merkez, Kırıkkale</p>
+<p class="p1"><b>49. KIRKLARELİ ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0288) 212 18 39 – 212 39 50&nbsp;<b>Adres:&nbsp;</b>Demirtaş Mahallesi Yayla Caddesi No:9 Merkez, Kırklareli</p>
+<p class="p1"><b>50. KIRŞEHİR ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0386) 213 40 77<span class="Apple-converted-space">&nbsp;</span></p>
+<p class="p1"><b>51. KİLİS ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0348) 813 11 24&nbsp;<b>Adres:</b>&nbsp;İsmet Paşa Mahallesi Ali Metin Dirimtekin Caddesi No:48 Merkez, Kilis</p>
+<p class="p1"><b>52. KOCAELİ ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0262) 321 02 06&nbsp;<b>Adres:</b>&nbsp;Kozluk Mah. Ruşen Hakkı Cad. Dut Sokak No: 13 İzmit, Kocaeli</p>
+<p class="p1"><b>53. KONYA ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0332) 321 01 83 – 322 01 83&nbsp;<b>Adres:</b>&nbsp;Pirebi Mahallesi Larende Caddesi No: 13 Meram, Konya</p>
+<p class="p1"><b>54. KÜTAHYA ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0274) 333 24 57&nbsp;<b>Adres:&nbsp;</b>Fatih Mah. Fevzi Çakmak Cad. No: 1/A Merkez, Kütahya</p>
+<p class="p1"><b>55. MALATYA ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0422) 212 32 25 – 212 32 26&nbsp;<b>Adres:</b>&nbsp;Özalper Mahallesi Kardeşlik Sokak. No:33 Yeşilyurt, Malatya</p>
+<p class="p1"><b>56. MANİSA ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0236) 232 46 84&nbsp;<b>Adres:</b>&nbsp;Tevfikiye Mah. 3316 Sok. No: 15 Yunusemre, Manisa</p>
+<p class="p1"><b>57. MARDİN ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0482) 213 33 83 – 213 72 09&nbsp;<b>Adres:&nbsp;</b>Yenişehir Mahallesi Kardelen Sokak No:8/B Artuklu, Mardin</p>
+<p class="p1"><b>58. MERSİN ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0324) 328 66 35 – 327 18 40&nbsp;<b>Adres:</b>&nbsp;Gazi Mah. 1323 Sok. No: 5 Yenişehir, Mersin</p>
+<p class="p1"><b>59. MUĞLA ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0252) 212 11 50&nbsp;<b>Adres:&nbsp;</b>Emirbeyazıt Mah. Dr. Baki Ünlü Cad. No: 7/1 2. Kat Menteşe, Muğla</p>
+<p class="p1"><b>60. MUŞ ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0436) 216 28 07&nbsp;<b>Adres:</b>&nbsp;15 Temmuz Milli İrade Mahallesi Millet Caddesi No:20 Zemin Kat Merkez, Muş<span class="Apple-converted-space">&nbsp;</span></p>
+<p class="p1"><b>61. NEVŞEHİR ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0384) 213 38 21 – 215 20 59&nbsp;<b>Adres:&nbsp;</b>350 Evler Mahallesi Ali Dirikoç Bulvarı No:1/3 Merkez, Nevşehir</p>
+<p class="p1"><b>62. NİĞDE ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0388) 232 16 22&nbsp;<b>Adres:</b>&nbsp;Nar Mahallesi Osmanlı Sokak No:1 Merkez, Niğde</p>
+<p class="p1"><b>63. ORDU ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0452233 33 27 – 233 93 22&nbsp;<b>Adres:</b>&nbsp;Akyazı Mahallesi 795. Sokak No:32 Altınordu, Ordu</p>
+<p class="p1"><b>64. OSMANİYE ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0328) 802 07 74 – 802 07 76&nbsp;<b>Adres:</b>&nbsp;Fakı uşağı Mahallesi 45038. Sokak. No: 5 (Yeni Vali Konağı Yakını) Merkez, Osmaniye</p>
+<p class="p1"><b>65. RİZE ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0464) 216 00 12&nbsp;<b>Adres:&nbsp;</b>Paşakuyu Mahallesi Zübeydehanım Caddesi No:3 Giriş Kat Merkez, Rize</p>
+<p class="p1"><b>66. SAKARYA ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0264) 270 10 35&nbsp;<b>Adres:</b>&nbsp;Sakarya Mah. İnönü Cad. Hamam Sok. No: 1 Adapazarı, Sakarya</p>
+<p class="p1"><b>67. SAMSUN ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0362) 431 11 87 – 431 11 97&nbsp;<b>Adres:</b>&nbsp;Ulugazi Mah. Şifa Yurdu Sok. No: 10 İlkadım, Samsun</p>
+<p class="p1"><b>68. SİİRT ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0484) 223 53 56&nbsp;<b>Adres:&nbsp;</b>Yeni Mahalle Hami Efendi Caddesi No: 33 Merkez, Siirt (İl Müdürlüğü)</p>
+<p class="p1"><b>69. SİNOP ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0368) 261 96 66&nbsp;<b>Adres:&nbsp;</b>Gelincik Mah. Zübeyde Hanım Cad Kat:2 No:4, Sinop</p>
+<p class="p1"><b>70. SİVAS ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0346) 225 40 14&nbsp;<b>Adres:</b>&nbsp;Kılavuz Mahallesi 42/12 Sokak No:12, Sivas</p>
+<p class="p1"><b>71. ŞANLIURFA ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0414) 313 56 31&nbsp;<b>Adres:</b>&nbsp;Ahmet Yesevi Mah. 9821. Sok. No: 135/1 Haliliye, Şanlıurfa</p>
+<p class="p1"><b>72. ŞIRNAK ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0486) 216 29 83&nbsp;<b>Adres:</b>&nbsp;İl Müdürlüğü – Vakıfkent Mahallesi Şehit Mehmet Esin Caddesi No/32, Şırnak</p>
+<p class="p1"><b>73. TEKİRDAĞ ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0282) 261 12 88 Dahili: 1421-1425&nbsp;<b>Adres:</b>&nbsp;Gündoğdu Turgut Mah. Şehit Yüzbaşı Mayadağlı Cad. No: 38 Süleymanpaşa, Tekirdağ</p>
+<p class="p1"><b>74. TOKAT ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0356) 214 03 01&nbsp;<b>Adres:</b>&nbsp;İl Müdürlüğü – Hızarhane Cad. SHÇEK İş Hanı No:4 Merkez, Tokat</p>
+<p class="p1"><b>75. TRABZON ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0462) 231 40 12&nbsp;<b>Adres:</b>&nbsp;Soğuksu Mah. Huzur Sokak No: 6 Ortahisar, Trabzon</p>
+<p class="p1"><b>76. TUNCELİ ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0428) 212 12 77&nbsp;<b>Adres:</b>&nbsp;Atatürk Mahallesi 116. Cadde. 9/3-4 Merkez, Tunceli</p>
+<p class="p1"><b>77. UŞAK ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0276) 223 98 27&nbsp;<b>Adres:</b>&nbsp;Atatürk Mahallesi Muhsin Yazıcıoğlu Caddesi No:48&nbsp;Merkez, Uşak</p>
+<p class="p1"><b>78. VAN ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0432) 216 16 23 – 216 16 73&nbsp;<b>Adres:&nbsp;</b>Şerefiye Mahallesi Cumhuriyet Caddesi Hükümet Konağı C blok Kat:3, Van</p>
+<p class="p1"><b>79.</b>&nbsp;<b>YALOVA ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0226) 811 57 77&nbsp;<b>Adres:&nbsp;</b>Kazım Karabekir Mah. Fulya Sok. No: 8 Merkez, Yalova</p>
+<p class="p1"><b>80.</b>&nbsp;<b>YOZGAT ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0354) 212 13 47 – 212 10 47&nbsp;<b>Adres:&nbsp;</b>Yozgat Yeni Valilik Binası Giriş Kat Merkez, Yozgat</p>
+<p class="p1"><b>81. ZONGULDAK ŞÖNİM</b></p>
+<p class="p1"><b>Telefon:&nbsp;</b>(0372) 222 12 14 – 222 12 01&nbsp;<b>Adres:</b>&nbsp;Çınartepe Mahallesi Bülent Ecevit Caddesi No:98 Merkez, Zonguldak&nbsp;<span class="Apple-converted-space">&nbsp;</span></p>
+
+        <!-- Remaining cities continue similarly -->
+
+    </div>
+</div>
+            
+                    <div class="main-title">B) BAR ASSOCIATION WOMEN'S COUNSELING CENTERS AND LEGAL AID SERVICES</div>
+                    <div class="info-text">
+                        <p>You can request assistance and receive legal counseling support from women's rights units within bar associations available in many cities.<br>
+                        Bar Association Women's Rights Center Hotline: 444 26 18</p>
+
+                        <p style="font-size: 20px;color: #31384d;">INSTITUTIONS YOU CAN REACH 24/7</p>
+                        <p>ALO 183 Family, Women, Children, and Disabled Social Counseling Line</p>
+                        <p>ALO 155 Police Emergency</p>
+                        <p>ALO 156 Gendarmerie Emergency</p>
+                        <p>ALO 112 Emergency Medical Assistance Line</p>
+                        <p>ALO 157 Human Trafficking Victims Emergency and Reporting Line</p>
+                        <p>Domestic Violence Emergency Assistance Line: (0212) 656 96 96 and (0549) 656 96 96</p>
+                        <p>Ankara Metropolitan Municipality Support Line – 0312 507 37 60 and 0549 248 64 86</p>
+                        <p>Gelincik Line – Ankara Bar Association – 444 43 06 – 444 43 06</p>
+                        <p>İBB Support Line – 444 80 86</p>
+                        <p>KAMER Foundation 0530 664 44 10</p>
+                        <p>Mor Salkım Women's Solidarity Association (Bursa) 0531 033 88 44</p>
+                        <p>YaşamHak Line: 444 82 85</p>
+                        
+                        
+                    </div>
+            
+                    <div class="main-title">C) WOMEN'S SHELTERS AND REFUGES</div>
+                    <div class="info-text">
+                        <p>Shelters aim to provide refuge and protection for all women subjected to domestic violence, support women in building a new life in solidarity with other women, direct them to relevant institutions, help them gain awareness of their rights against violence, and build self-confidence. Shelters support women and their children who have been subjected to violence by providing social, psychological, and legal support, helping them establish a new life away from violence. According to the statement made by the Ministry of Family and Social Services in July 2020, there are 145 women's shelters across the country, including 110 women's shelters affiliated with the Ministry of Family and Social Services in 81 provinces, 2 women's shelters affiliated with the Directorate General of Migration Management, and 1 women's shelter affiliated with a non-governmental organization, serving with a total capacity of 3,482 beds. If you need to stay in a women's shelter, you can apply to the Violence Prevention and Monitoring Center (ŞÖNİM) in your province, the Provincial or District Directorates of the Ministry of Family and Social Services, the police station/gendarmerie command, women's counseling centers of municipalities, and/or other relevant service units and women's organizations.</p>
+                    </div>
+            
+                    <div class="main-title">D) INDEPENDENT OR MUNICIPALITY-AFFILIATED WOMEN'S COUNSELING AND SOLIDARITY CENTERS</div>
+                    
+<button class="collapsible">ADANA</button>
+<div class="content">
+    <div class="content-inner">
+        <p><strong>ADANA WOMEN'S SOLIDARITY CENTER AND SHELTER ASSOCIATION (AKDAM):</strong><br>
+        Phone: (0322) 453 53 50<br>
+        Email: akdam.adana@yahoo.com</p>
+    </div>
+</div>
+
+<button class="collapsible">ANKARA</button>
+<div class="content">
+    <div class="content-inner">
+        <p><strong>ANKARA BAR ASSOCIATION ALO GELINCIK LINE:</strong> (0312) 444 43 06</p>
+        <p><strong>ANKARA DISABLED WOMEN'S ASSOCIATION (EN-KAD):</strong> (0312) 362 31 50</p>
+        <p><strong>KADIN DAYANIŞMA VAKFI:</strong> (0312) 430 40 05 ve 432 07 82, <a href="http://www.kadindayanismavakfi.org.tr" target="_blank" rel="noopener">www.kadindayanismavakfi.org.tr</a> <strong>Email:</strong> kadindv@yahoo.com.tr</p>
+        <p><strong>YENİMAHALLE BELEDİYESİ KADIN DANIŞMA MERKEZİ:</strong> (0312) 332 08 71 ve 335 22 96</p>
+        <p><strong>ÇANKAYA BELEDİYESİ KADIN DANIŞMA MERKEZİ:</strong> (0312) 458 89 00, Dahili: 1154</p>
+    </div>
+</div>
+
+<button class="collapsible">ANTALYA</button>
+<div class="content">
+    <div class="content-inner">
+        <p><strong>ANTALYA WOMEN'S COUNSELING CENTER AND SOLIDARITY ASSOCIATION:</strong><br>
+        Phone: (0242) 248 07 66<br>
+        Email: antalyakadinmerkezi@gmail.com</p>
+        <p><strong>ANTALYA KENT KONSEYİ KADIN MECLİSİ:</strong> (0242) 243 69 92, <strong>Email:</strong> info@antalyakentkonseyi.org.tr</p>
+    </div>
+</div>
+
+<button class="collapsible">AYDIN</button>
+<div class="content">
+    <div class="content-inner">
+        <p><strong>KUŞADASI BELEDİYESİ KADIN DANIŞMA MERKEZİ:</strong> (0256) 614 58 42</p>
+    </div>
+</div>
+
+<button class="collapsible">BALIKESİR</button>
+<div class="content">
+    <div class="content-inner">
+        <p><strong>AYVALIK BELEDİYESİ KADIN DANIŞMA EVİ:</strong> (0533) 712 01 42</p>
+    </div>
+</div>
+
+<button class="collapsible">BURSA</button>
+<div class="content">
+    <div class="content-inner">
+        <p><strong>BURSA BÜYÜKŞEHİR BELEDİYESİ KADIN DANIŞMA MERKEZİ:</strong> Sosyal Hizmetler Şube Müdürlüğü Eşitlik Birimi (0224) 716 31 96</p>
+        <p><strong>NİLÜFER BELEDİYESİ KONAK KADIN DAYANIŞMA MERKEZİ:</strong> (0224) 452 82 13, <strong>Email:</strong> nilufer@nilufer.bel.tr</p>
+        <p><strong>NİLÜFER BELEDİYESİ GÖRÜKLE KADIN DAYANIŞMA MERKEZİ:</strong> (0224) 483 71 15, <strong>Email:</strong> nilufer@nilufer.bel.tr</p>
+        <p><strong>MOR SALKIM KADIN DAYANIŞMA DERNEĞİ:</strong> (0531) 033 88 44, <strong>Email:</strong> morsalkimdernegi@hotmail.com</p>
+    </div>
+</div>
+
+<button class="collapsible">ÇANAKKALE</button>
+<div class="content">
+    <div class="content-inner">
+        <p><strong>ÇANAKKALE KADIN EL EMEĞİNİ DEĞERLENDİRME DERNEĞİ-DANIŞMA MERKEZİ (ELDER):</strong> (0286) 217 06 03, <strong>Email:</strong> elderkadinmerkezi@gmail.com</p>
+    </div>
+</div>
+
+<button class="collapsible">ÇANKIRI</button>
+<div class="content">
+    <div class="content-inner">
+        <p><strong>ÇANKIRI KADIN DANIŞMA VE DAYANIŞMA DERNEĞİ:</strong> <strong>Email:</strong> iletisim@kadindayanisma.org</p>
+    </div>
+</div>
+
+<button class="collapsible">DİYARBAKIR</button>
+<div class="content">
+    <div class="content-inner">
+        <p><strong>DİYARBAKIR BAĞLAR BELEDİYESİ KARDELEN KADIN EVİ:</strong> (0412) 251 93 00</p>
+        <p><strong>DİYARBAKIR BÜYÜKŞEHİR BELEDİYESİ ACİL DESTEK HATTI:</strong> (0412) 444 79 49</p>
+        <p><strong>DİYARBAKIR BÜYÜKŞEHİR BELEDİYESİ KADIN SORUNLARI ARAŞTIRMA VE UYGULAMA MERKEZİ (DİKASUM):</strong> (0412) 226 22 98 – (0412) 229 48 80, <strong>Email:</strong> dikasum@hotmail.com</p>
+        <p><strong>KAMER VAKFI:</strong> (0412) 228 10 53 – (0530) 664 44 10, <strong>Email:</strong> d.kamervakfi@gmail.com<br>
+        <em>(KAMER Vakfı’nın 23 ilde şubesi bulunmaktadır, hangi illerde olduğuna ilişkin bilgiyi KAMER Vakfı Merkezinden veya <a href="http://www.kamer.org.tr/" target="_blank" rel="noopener">www.kamer.org.tr</a> adresinden edinebilirsiniz.)</em></p>
+        <p><strong>ROSA KADIN DERNEĞİ:</strong> (0552) 466 86 21, <strong>Email:</strong> rosakadindernegi@gmail.com</p>
+    </div>
+</div>
+
+<button class="collapsible">EDİRNE</button>
+<div class="content">
+    <div class="content-inner">
+        <p><strong>EDİRNE KADIN MERKEZİ DAYANIŞMA DERNEĞİ (EKAMEDER):</strong> <strong>Email:</strong> ekameder@hotmail.com</p>
+    </div>
+</div>
+
+<button class="collapsible">HATAY</button>
+<div class="content">
+    <div class="content-inner">
+        <p><strong>MOR DAYANIŞMA KADIN DERNEĞİ:</strong> (0539) 390 29 96</p>
+        <p><strong>DEFNE KADIN EMEĞİ DERNEĞİ:</strong> (0539) 342 03 17, <strong>Email:</strong> hulyakavuk@hotmail.com</p>
+        <p><strong>SAMANDAĞ KADIN EMEĞİ DERNEĞİ:</strong> (0538) 581 44 65, <strong>Email:</strong> sevgikurtdere@hotmail.com</p>
+    </div>
+</div>
+
+<button class="collapsible">İSTANBUL</button>
+<div class="content">
+    <div class="content-inner">
+        <p><strong>İSTANBUL BÜYÜKŞEHİR BELEDİYESİ KADIN VE AİLE HİZMETLERİ MÜDÜRLÜĞÜ İLK KABUL BİRİMİ:</strong> (0212) 449 93 24</p>
+        <p><strong>ATAŞEHİR BELEDİYESİ:</strong> (0216) 570 50 00 / Dahili: 1611/1648</p>
+        <p><strong>AVCILAR BELEDİYESİ GÜLSEVİN BUKET DEĞİRMENCİ KADIN VE AİLE DANIŞMA MERKEZİ:</strong> 444 69 89 / Dahili: 3706, <strong>Email:</strong> kadinveaile@avcilar.bel.tr</p>
+        <p><strong>BAKIRKÖY BELEDİYESİ ÖZGECAN KADIN DANIŞMA EVİ:</strong> (0212) 466 39 39</p>
+        <p><strong>BEŞİKTAŞ BELEDİYESİ KADIN DANIŞMA MERKEZİ:</strong> (0212) 319 42 42 / Dahili 5022</p>
+        <p><strong>BEYLİKDÜZÜ BELEDİYESİ KADIN DAYANIŞMA MERKEZİ:</strong> 444 09 39</p>
+        <p><strong>KADIKÖY BELEDİYESİ:</strong> (0216) 542 50 00 / Dahili: 1221/1517</p>
+        <p><strong>KADIKÖY BELEDİYESİ ALO KADINA ŞİDDET HATTI:</strong> (0216) 349 9 349</p>
+        <p><strong>KADIKÖY BELEDİYESİ RASİMPAŞA SOSYAL HİZMET MERKEZİ:</strong> (0530) 153 16 15, (0216) 349 11 89, <strong>Email:</strong> sosyalservis@kadikoy.bel.tr</p>
+        <p><strong>KAĞITHANE BELEDİYESİ:</strong> (0212) 321 40 40</p>
+        <p><strong>KARTAL BELEDİYESİ KADIN DANIŞMA MERKEZİ:</strong> (0216) 280 64 06</p>
+        <p><strong>KÜÇÜKÇEKMECE BELEDİYESİ KADIN DANIŞMA VE SIĞINMA EVİ:</strong> (0212) 411 08 35, <strong>Email:</strong> sosyalyardim@kucukcekmece.bel.tr</p>
+        <p><strong>ŞİŞLİ BELEDİYESİ KADIN DANIŞMA MERKEZİ:</strong> (0212) 708 89 90 (09.00-17.00), <strong>Email:</strong> kadindanisma@sisli.bel.tr, <strong>WhatsApp:</strong> (0549) 803 81 89</p>
+        <p><strong>ÜSKÜDAR BELEDİYESİ KADIN DANIŞMA MERKEZİ:</strong> (0216) 531 30 00 / Dahili: 3264 – 3075</p>
+        <p><strong>ÜMRANİYE BELEDİYESİ:</strong> (0216) 443 56 00</p>
+        <p><strong>PENDİK BELEDİYESİ:</strong> 441 81 81</p>
+        <p><strong>BAŞAK KÜLTÜR ve SANAT VAKFI:</strong> (0216) 420 49 68, <strong>Email:</strong> basaksanat@gmail.com</p>
+        <p><strong>CİNSEL ŞİDDETLE MÜCADELE DERNEĞİ:</strong> (0542) 585 39 90, <a href="http://www.cinselsiddetlemucadele.org/" target="_blank" rel="noopener">www.cinselsiddetlemucadele.org</a>, <strong>Email:</strong> info@cinselsiddetlemucadele.org</p>
+        <p><strong>KADININ İNSAN HAKLARI DERNEĞİ:</strong> (0212) 251 00 29, <a href="http://www.kadinininsanhaklari.org" target="_blank" rel="noopener">www.kadinininsanhaklari.org</a>, <strong>Email:</strong> infokih@wwhr.org</p>
+        <p><strong>KADINLARA HUKUKİ DESTEK MERKEZİ DERNEĞİ (KAHDEM):</strong> <a href="http://www.kahdem.org.tr" target="_blank" rel="noopener">www.kahdem.org.tr</a>, <strong>Email:</strong> kahdem@gmail.com</p>
+        <p><strong>KADINLARLA DAYANIŞMA VAKFI (KADAV):</strong> (0212) 251 58 50, <a href="http://www.kadav-ist.org" target="_blank" rel="noopener">www.kadav-ist.org</a>, <strong>Email:</strong> info@kadavist.org</p>
+        <p><strong>MOR ÇATI KADIN SIĞINAĞI VAKFI:</strong> (0212) 292 52 31 ve 32, <a href="http://www.morcati.org.tr" target="_blank" rel="noopener">www.morcati.org.tr</a>, <strong>Email:</strong> morcati@morcati.org.tr</p>
+        <p><strong>SOSYAL POLİTİKALAR, CİNSİYET KİMLİĞİ VE CİNSEL YÖNELİM ÇALIŞMALARI DERNEĞİ (SPoD) LGBT+ DANIŞMA HATTI:</strong> (0850) 888 54 28</p>
+    </div>
+</div>
+<button class="collapsible">İZMİR</button>
+<div class="content">
+    <div class="content-inner">
+        <p><strong>İZMİR KADIN DAYANIŞMA DERNEĞİ:</strong> (0553) 938 02 88</p>
+        <p><strong>İZMİR BÜYÜKŞEHİR BELEDİYESİ KADIN DANIŞMA MERKEZİ VE KADIN SIĞINMA EVİ:</strong> (0232) 293 42 93</p>
+        <p><strong>BAYRAKLI BELEDİYESİ KADIN DANIŞMA MERKEZİ:</strong> (0232) 367 73 88</p>
+        <p><strong>BERGAMA BELEDİYESİ KADIN DANIŞMA MERKEZİ:</strong> (0232) 632 80 46</p>
+        <p><strong>BORNOVA BELEDİYESİ KADIN DANIŞMA MERKEZİ:</strong> (232) 999 29 29 / Dahili 4705</p>
+        <p><strong>BUCA BELEDİYESİ ÖZGECAN ASLAN KADIN DANIŞMA MERKEZİ:</strong> (0232) 216 21 46</p>
+        <p><strong>ÇİĞLİ BELEDİYESİ KADIN DANIŞMA MERKEZİ:</strong> (0232) 329 07 34</p>
+        <p><strong>ÇİĞLİ EVKA 2 KADIN KÜLTÜR DERNEĞİ (ÇEKEV):</strong> (0232) 370 23 07, <strong>Email:</strong> cekevizmir@yahoo.com</p>
+        <p><strong>DİKİLİ BELEDİYESİ KADIN DANIŞMA MERKEZİ:</strong> (0232) 671 74 22</p>
+        <p><strong>FOÇA BELEDİYESİ KADIN DANIŞMA MERKEZİ:</strong> (0232) 812 40 42</p>
+        <p><strong>GAZİEMİR BELEDİYESİ KADIN DANIŞMA MERKEZİ:</strong> (0549 793 04 53) / (0232) 999 02 51 dahili 1820</p>
+        <p><strong>KARABAĞLAR BELEDİYESİ KADIN DANIŞMA MERKEZİ:</strong> (0232) 414 81 14</p>
+        <p><strong>KARŞIYAKA BELEDİYESİ ALAYBEY MAHALLE MERKEZİ:</strong> (0232) 364 53 10</p>
+        <p><strong>KARŞIYAKA BELEDİYESİ BOSTANLI MAHALLE MERKEZİ:</strong> (0232) 330 58 18</p>
+        <p><strong>KARŞIYAKA BELEDİYESİ NERGİZ MAHALLE MERKEZİ:</strong> (0232) 368 88 03</p>
+        <p><strong>KARŞIYAKA BELEDİYESİ YALI KADIN DANIŞMA MERKEZİ:</strong> (0232) 362 21 81</p>
+        <p><strong>KARŞIYAKA BELEDİYESİ MUSTAFA KEMAL MAHALLE MERKEZİ:</strong> (0232) 370 70 07</p>
+        <p><strong>KARŞIYAKA BELEDİYESİ İNÖNÜ MAHALLE MERKEZİ:</strong> (0232) 361 41 45</p>
+        <p><strong>KARŞIYAKA BELEDİYESİ İMBATLI MAHALLE MERKEZİ:</strong> (0232) 366 60 62</p>
+        <p><strong>KONAK BELEDİYESİ KADIN DANIŞMA MERKEZİ:</strong> (0232) 425 35 01</p>
+        <p><strong>KEMALPAŞA BELEDİYESİ KADIN DANIŞMA MERKEZİ:</strong> (0232) 878 12 22</p>
+        <p><strong>NARLIDERE BELEDİYESİ KADIN DANIŞMA MERKEZİ:</strong> (0232) 239 73 00</p>
+        <p><strong>ÖDEMİŞ BELEDİYESİ KADIN SIĞINMA EVİ:</strong> (0232) 544 36 33</p>
+        <p><strong>SEFERİHİSAR BELEDİYESİ KADIN DANIŞMA MERKEZİ:</strong> (0232) 444 77 43 / Dahili 331</p>
+        <p><strong>SELÇUK BELEDİYESİ KADIN DANIŞMA MERKEZİ:</strong> (0232) 892 73 26</p>
+        <p><strong>TİRE BELEDİYESİ KADIN DANIŞMA MERKEZİ:</strong> (0232) 500 12 07</p>
+        <p><strong>URLA BELEDİYESİ KADIN DANIŞMA MERKEZİ:</strong> (0232) 754 12 68</p>
+        <p><strong>URLA KADIN DAYANIŞMA DERNEĞİ:</strong> <strong>Email:</strong> urlakadindayanisma@gmail.com</p>
+    </div>
+</div>
+
+<button class="collapsible">KIRIKKALE</button>
+<div class="content">
+    <div class="content-inner">
+        <p><strong>KADIN DAYANIŞMA VE DESTEKLEME DERNEĞİ:</strong> (0318) 357 42 42 / Dahili: 4020, <strong>Email:</strong> kddd_tr@hotmail.com</p>
+        <p><strong>KIRIKKALE ÖNCE KADIN DERNEĞİ:</strong> <strong>Email:</strong> kap-der@hotmail.com</p>
+    </div>
+</div>
+
+<button class="collapsible">KOCAELİ</button>
+<div class="content">
+    <div class="content-inner">
+        <p><strong>KOCAELİ KADIN EMEĞİ DERNEĞİ:</strong> (0534) 569 38 20, <strong>Email:</strong> kocaelikadem@gmail.com</p>
+        <p><strong>LOTUS KADIN DAYANIŞMA VE YAŞAM DERNEĞİ:</strong> (0538) 233 55 99 – (0532) 786 10 79, <strong>Email:</strong> lotuskadindernegi@gmail.com</p>
+    </div>
+</div>
+
+<button class="collapsible">KONYA</button>
+<div class="content">
+    <div class="content-inner">
+        <p><strong>KONYA BÜYÜKŞEHİR BELEDİYESİ KADIN AİLE DESTEK MERKEZİ:</strong> (0332) 351 09 95, <strong>Email:</strong> kadem@konya.bel.tr</p>
+        <p><strong>ŞEFKAT-DER:</strong> (0535) 733 77 13 – (0332) 351 27 65, <strong>Email:</strong> sefkat-der@mynet.com</p>
+    </div>
+</div>
+
+<button class="collapsible">MARDİN</button>
+<div class="content">
+    <div class="content-inner">
+        <p><strong>MARDİN ORTAK KADIN İŞBİRLİĞİ DERNEĞİ (MOKİD):</strong> (0532) 547 30 07, <strong>Email:</strong> mokid2010@hotmail.com</p>
+    </div>
+</div>
+
+<button class="collapsible">MERSİN</button>
+<div class="content">
+    <div class="content-inner">
+        <p><strong>MERSİN BÜYÜKŞEHİR BELEDİYESİ KADIN DANIŞMA MERKEZİ:</strong> (0324) 231 77 20, <strong>Email:</strong> kadindanismamerkezi@mersin.bel.tr</p>
+        <p><strong>MERSİN BAĞIMSIZ KADIN DERNEĞİ KADIN DANIŞMA MERKEZİ:</strong> (0324) 337 20 21, <strong>Email:</strong> info@bagimsizkadindernegi.org.tr</p>
+        <p><strong>MERSİN KADIN EMEĞİ DERNEĞİ:</strong> (0551) 440 63 73, <strong>Email:</strong> kadinemegi33@gmail.com</p>
+    </div>
+</div>
+
+<button class="collapsible">MUĞLA</button>
+<div class="content">
+    <div class="content-inner">
+        <p><strong>KARYA KADIN DERNEĞİ:</strong> (0530) 691 29 87</p>
+        <p><strong>SEKİBAŞI DAYANIŞMA MERKEZİ:</strong> (0252) 212 60 18 - (0536) 877 32 59</p>
+        <p><strong>BODRUM KADIN DAYANIŞMA DERNEĞİ:</strong> 0555 291 97 67 - 0535 946 26 52</p>
+        <p><strong>MUĞLA EMEK BENİM KADIN DERNEĞİ:</strong> (0536) 877 32 59, <strong>Email:</strong> mebkad48@gmail.com</p>
+    </div>
+</div>
+
+<button class="collapsible">NEVŞEHİR</button>
+<div class="content">
+    <div class="content-inner">
+        <p><strong>KAPADOKYA KADIN DAYANIŞMA DERNEĞİ:</strong> (0384) 212 34 51, <strong>Email:</strong> kapadokyakadin@hotmail.com</p>
+        <p><strong>NEVŞEHİR BELEDİYESİ KADIN DANIŞMA MERKEZİ:</strong> (0384) 213 12 25, <strong>Email:</strong> kadinnevsehir@gmail.com</p>
+    </div>
+</div>
+
+<button class="collapsible">URFA</button>
+<div class="content">
+    <div class="content-inner">
+        <p><strong>URFA YAŞAM EVİ KADIN DAYANIŞMA DERNEĞİ:</strong> (0414) 315 17 25 – (0505) 561 71 36, <a href="http://www.yasamevidernegi.org/" target="_blank" rel="noopener">www.yasamevidernegi.org</a>, <strong>Email:</strong> yasam_evi@hotmail.com</p>
+    </div>
+</div>
+
+<button class="collapsible">VAN</button>
+<div class="content">
+    <div class="content-inner">
+        <p><strong>YAŞAM KADIN ÇEVRE KÜLTÜR VE İŞLETME KOOPERATİFİ:</strong> (0506) 354 31 91 – (0432) 215 94 33</p>
+    </div>
+</div>
+
+<button class="collapsible">NORTHERN CYPRUS</button>
+<div class="content">
+    <div class="content-inner">
+        <p><strong>FEMİNİST ATÖLYE (FEMA):</strong> <a href="http://www.feministatolye.org/" target="_blank" rel="noopener">www.feministatolye.org</a>, <strong>Email:</strong> info@feministatolye.org</p>
+        <p><strong>KADINDAN YAŞAMA DESTEK DERNEĞİ (KAYAD):</strong> (0392) 227 07 51, <strong>Email:</strong> info@kayad.net</p>
+        <p><strong>MAĞUSA KADIN MERKEZİ DERNEĞİ (MAKAMER):</strong> (0392) 366 02 78</p>
+        <p><strong>SOSYAL RİSKLERİ ÖNLEME VAKFI:</strong> (0392) 228 99 55, <strong>Email:</strong> sorov1@hotmail.com</p>
+    </div>
+</div>
+
+<div class="main-title">E) INSTITUTIONS SUPPORTING REFUGEE AND MIGRANT WOMEN</div>
+<div class="info-text">
+    <p><strong>BM Mülteciler Yüksek Komiserliği (UNHCR):</strong> 444 48 68, (0312) 409 70 00</p>
+    <p><strong>Hayata Destek Derneği (Support to Life Association):</strong> (0800) 670 10 10, <strong>Email:</strong> bilgi@hayatadestek.org</p>
+    <p><strong>İnsan Kaynağını Geliştirme Vakfı (Human Resource Development Foundation - HRDF):</strong> (0212) 562 50 62, <strong>Email:</strong> <a href="mailto:ikgv@ikgv.org">ikgv@ikgv.org</a></p>
+    <p><strong>Kadınlarla Dayanışma Vakfı (Foundation for Women's Solidarity - KADAV):</strong> (0545) 220 10 22, <strong>Email:</strong> <a href="mailto:info@kadav.org.tr">info@kadav.org.tr</a></p>
+    <p><strong>Mavi Kalem Sosyal Yardımlaşma ve Dayanışma Derneği (Blue Pencil Social Assistance and Solidarity Association):</strong> (0212) 635 38 35, <strong>Email:</strong> mavikalem@mavikalem.org</p>
+    <p><strong>Sığınmacılar ve Göçmenlerle Dayanışma Derneği (Association for Solidarity with Asylum Seekers and Migrants - SGDD-ASAM):</strong> (0312) 212 60 12, <strong>Email:</strong> <a href="mailto:info@sgdd-asam.org">info@sgdd-asam.org</a></p>
+    <p><strong>Yuva Derneği (YUVA Association):</strong> (0216) 325 00 44, <strong>Email:</strong> yuva@yuva.org.tr</p>
+</div>
+
+            </main>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+    var coll = document.getElementsByClassName("collapsible");
+    
+    for (var i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function() {
+            // Tüm içerikleri kapat
+            for (var j = 0; j < coll.length; j++) {
+                if (coll[j] !== this) {
+                    coll[j].classList.remove("active");
+                    coll[j].nextElementSibling.style.maxHeight = null;
+                }
+            }
+            
+            // Tıklanan butonun içeriğini aç/kapat
+            this.classList.toggle("active");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
+        });
+    }
+});
+            </script>
+
+    <!-- footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <!-- Footer Logo Section -->
+        <div class="footer-logo">
+            <div id="logoFooter">NOTALONE</div>
+            <div class="logo-text"><p>W♀men, Peace </p><p>and Security</p></div> 
+        </div>
+
+        <!-- Quick Links Section -->
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../html/home.html">Home</a></li>
+                <li><a href="../html/about.html">About</a></li>
+                <li><a href="../html/knowyourrights.html">Know Your Rights</a></li>
+                <li><a href="../html/stories.html">Stories</a></li>
+                <li><a href="../html/blog.html">Blog</a></li>
+                <li><a href="../html/forum.html">Forum</a></li>
+                <li><a href="../html/support.html">Support</a></li>
+                <li><a href="../html/commentPolicy.html">Comment Policy</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>
+                <i class='bx bx-map'></i>
+                Türk Hava Kurumu Üniversitesi Bahçekapı Mah.
+            </p>
+            <p>
+                <i class='bx bx-phone'></i>
+                (0212) 389 99 99
+            </p>
+            <p>
+                <i class='bx bx-envelope'></i>
+                notalone@gmail.com
+            </p>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="footer-social">
+            <h4>Social Media</h4>
+            <div class="social-icons">
+                <a href="https://www.facebook.com" target="_blank"><i class='bx bxl-facebook'></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class='bx bxl-twitter'></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class='bx bxl-instagram'></i></a>
+                <a href="https://www.linkedin.com/in" target="_blank"><i class='bx bxl-linkedin'></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="footer-bottom">
+        <p>&copy; 2024 NOTALONE</p>
+    </div>
+</footer>
+
+    <script src="owl/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1..min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="../css/support.css"></script> <!-- JavaScript dosyasını bağladık -->
+
+</body>
+</html>

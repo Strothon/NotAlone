@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribers</title>
+    <link rel="stylesheet" href="users.css"> <!-- CSS dosyasını bağla -->
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/581952776c.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="title">
+            <p>Dashboard</p>
+        </div>
+        <div class="icons">
+            <ul>
+                <li><a href="../adminPanel/adminPanel.html"><i class='bx bx-home-circle'></i><span>Home</span></a></li>
+                <li><a href="../adminPanel/users.html"><i class='bx bx-user'></i><span>Users</span></a></li>
+                <li><a href="../adminPanel/messages.html"><i class='bx bx-comment'></i><span>Messages</span></a></li>
+                <li><a href="../adminPanel/posts.html"><i class='bx bx-message-square-detail'></i><span>Posts</span></a></li>
+                <li><a href="../adminPanel/stories.html"><i class='bx bx-message-square-detail'></i><span>Stories</span></a></li>
+                <li><a href="../adminPanel/blockedusers.html"><i class='bx bx-block'></i><span>Blocked Users</span></a></li>
+                <!-- <li><a href="../adminPanel/settings.html"><i class='bx bx-cog'></i><span>Settings</span></a></li>-->
+              </ul>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <div class="table-options">
+            <input type="text" id="search" placeholder="Search..." class="search-box">
+            <select id="sort-options" class="sort-select">
+                <option value="newest">Newest</option>
+                <option value="oldest">Oldest</option>
+            </select>
+        </div>
+        
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Subject</th>
+                    <th>Message</th>
+                    <th>Date</th>
+                    <th>Action</th>
+                  </tr>
+            </thead>
+            <tbody>
+                <tr>
+                  <td>John Doe</td>
+                  <td>john@example.com</td>
+                  <td>0123456789</td>
+                  <td>Blog Feedback</td>
+                  <td>Great content! Keep it up...</td>
+                  <td>24/03/2024</td>
+                  <td>
+                    <button class="action-btn">Reply</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Jane Smith</td>
+                  <td>jane@example.com</td>
+                  <td>0987654321</td>
+                  <td>Question</td>
+                  <td>Can I contribute to the blog?</td>
+                  <td>25/04/2024</td>
+                  <td>
+                    <button class="action-btn">Reply</button>
+                  </td>
+                </tr>
+              </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('search');
+            const sortSelect = document.getElementById('sort-options');
+            const tableBody = document.getElementById('user-table-body');
+
+            // Function to filter table rows based on search input
+            function filterTable() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const rows = tableBody.querySelectorAll('tr');
+
+                rows.forEach(row => {
+                    const cells = row.querySelectorAll('td');
+                    let match = false;
+
+                    cells.forEach(cell => {
+                        if (cell.textContent.toLowerCase().includes(searchTerm)) {
+                            match = true;
+                        }
+                    });
+
+                    if (match) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+
+            // Function to sort table rows based on selected option
+            function sortTable() {
+                const rowsArray = Array.from(tableBody.querySelectorAll('tr'));
+                const sortOption = sortSelect.value;
+
+                rowsArray.sort((a, b) => {
+                    const dateA = new Date(a.cells[5].textContent);
+                    const dateB = new Date(b.cells[5].textContent);
+
+                    if (sortOption === 'newest') {
+                        return dateB - dateA;
+                    } else {
+                        return dateA - dateB;
+                    }
+                });
+
+                rowsArray.forEach(row => tableBody.appendChild(row));
+            }
+
+            // Function to add a new user row to the table
+            function addUser(firstName, lastName, username, email, phone, joinDate) {
+                const row = document.createElement('tr');
+
+                row.innerHTML = `
+                    <td>${firstName}</td>
+                    <td>${lastName}</td>
+                    <td>${username}</td>
+                    <td>${email}</td>
+                    <td>${phone}</td>
+                    <td>${joinDate}</td>
+                    <td>
+                        <button class="action-btn block-btn">
+                            <i class="fa-solid fa-ban"></i>
+                            <span class="tooltip">Block</span>
+                        </button>
+                        <button class="action-btn view-btn">
+                            <i class="fa-regular fa-eye"></i>
+                            <span class="tooltip">View</span>
+                        </button>
+                    </td>
+                `;
+
+                tableBody.appendChild(row);
+            }
+
+            // Example usage: Adding users
+            addUser('Ahmet', 'Yılmaz', 'ahmety', 'ahmet@mail.com', '1234567890', '01-01-2024');
+            addUser('örnek', 'örnek', 'örnekk', 'örnek@mail.com', '0987654321', '02-01-2024');
+            addUser('örnek', 'örnek', 'örnekk', 'örnek@mail.com', '0987654321', '01-02-2024');
+
+
+            // Event listeners for search input and sort select
+            searchInput.addEventListener('input', filterTable);
+            sortSelect.addEventListener('change', sortTable);
+
+            // Initial sort
+            sortTable();
+        });
+    </script>
+</body>
+</html>

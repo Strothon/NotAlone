@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>War, law and patriarchy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/581952776c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="makale.css">
+    <link rel="stylesheet" href="owl/owl.carousel.min.css">
+    <link rel="stylesheet" href="owl/owl.theme.default.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="owl/script.js"></script>
+
+</head>
+<body>
+
+    <!-- Sabit Üst Menü -->
+    <section id="menu">
+        <div id="logo">NOTALONE</div>
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div>
+        <nav>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="javascript:void(0);" id="userIcon"><i class="fa-regular fa-user"></i></a></li>
+        </nav>
+    </section>
+
+<!-- Sağ Menü -->
+<div id="loginPanel" class="sidenav-right">
+    <div class="sidenav__inner">
+       <!-- Giriş Paneli -->
+<div id="loginForm" class="auth-section">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <h2>Login</h2>
+    <form onsubmit="handleLogin(event)">
+        <input type="email" id="loginEmail" placeholder="Email" required class="form-control">
+        <div class="password-container">
+            <input type="password" id="loginPassword" placeholder="Password" required class="form-control">
+            <i class="fa fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+        </div>
+        <button type="submit" class="submit-button">Login</button>
+        <div class="links">
+            <a href="#" onclick="showForgotPassword(event)">Forgot Password?</a>
+            <a href="#" onclick="showSignUp(event)">Sign Up</a>
+        </div>
+    </form>
+</div>
+
+<!-- Giriş Yaptıktan Sonraki Panel -->
+<div id="userPanelContent" class="user-panel-section" style="display: none;">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <div class="user-info">
+        <div class="user-header">
+            <i class="fa-regular fa-user"></i>
+            <span id="welcomeUsername">Welcome, User</span>
+        </div>
+    </div>
+    
+    <nav class="user-nav">
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-user"></i>
+            <span>My Profile</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-paper-plane"></i>
+            <span>My Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-comment"></i>
+            <span>My Comments</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-heart"></i>
+            <span>Liked Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-bookmark"></i>
+            <span>Saved Posts</span>
+        </a>
+        
+    </nav>
+    <div class="logout-container">
+        <button id="logoutButton" onclick="handleLogout()">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+    </div>
+</div>
+
+
+        <!-- Şifremi Unuttum Paneli -->
+        <div id="forgotPasswordForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Reset Password</h2>
+            <p class="auth-description">Enter your email address and we'll send you a link to reset your password.</p>
+            <form onsubmit="handleForgotPassword(event)">
+                <input type="email" id="resetEmail" placeholder="Email" required class="form-control">
+                <button type="submit" class="submit-button">Send Reset Link</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Back to Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kaydolma Paneli -->
+        <div id="signUpForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Sign Up</h2>
+            <form onsubmit="handleSignUp(event)">
+                <div class="form-group">
+                    <input type="text" id="firstName" placeholder="First Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="lastName" placeholder="Last Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="signUpEmail" placeholder="Email" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="signUpPassword" placeholder="Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder="Phone Number" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="birthDate" placeholder="Birth Date" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <select id="gender" class="form-control" required>
+                        <option value="">Select Gender</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
+                        <option value="prefer-not">Prefer not to say</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-button">Sign Up</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Already have an account? Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kullanıcı Panel İçeriği (giriş yapıldıktan sonra) -->
+        <div id="userPanelContent" class="user-panel-section" style="display: none;">
+            <!-- Mevcut kullanıcı paneli içeriği buraya -->
+        </div>
+    </div>
+</div>
+
+
+    <!-- Sol Sütun -->
+    <div id="sol-sutun">
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div> <!-- Menü Butonu -->
+    </div>
+    
+    <!-- Menü Aç/Kapat İşlevi -->
+    <script>
+        function toggleLeftMenu() {
+            const sidenav = document.getElementById('sidenav');
+            sidenav.classList.toggle('active');
+        }
+    </script>   
+
+<!-- Sol Menü -->
+<div id="sidenav" class="sidenav">
+    <div class="sidenav__inner">
+        <div class="menu-header">
+            <div id="logo-menu">
+                <span style="color:#e7bcbc; font-size: 30px;">
+                    W♀men, Peace and Security
+                </span>
+            </div>
+            <div class="close-btn" onclick="toggleLeftMenu()">✖</div>
+        </div>
+        <nav>
+            <a href="index.html"><i class="fa-solid fa-home"></i>Home</a>
+            <a href="hakkimizda.html"><i class="fa-solid fa-info"></i>About</a>
+            <a href="yorumPolitikasi.html"><i class="fa-solid fa-comment"></i>Comment Policy</a>
+            <a href="haklarinibil.html"><i class="fa-solid fa-balance-scale"></i>Know Your Rights</a>
+            <a href="blog.html"><i class="fa-solid fa-blog"></i>Blog</a>
+            <a href="forum/forum.html"><i class="fa-solid fa-comments"></i>Forum</a>
+            <a href="#"><i class="fa-solid fa-map-marker-alt"></i>Safe Map</a>
+            <a href="#"><i class="fa-solid fa-calendar"></i>Events</a>
+        </nav>
+    </div>
+</div>
+    
+
+    
+<!-- Sidebar -->
+<div class="sidebarHAKKIMIZDA">
+    <div class="logo-boxHAKKIMIZDA">
+        <img src="img/2logo.png" alt="Logo"> <!-- Logo -->
+        <div class="logo-text">W♀men, Peace <p>and Security</p></div> <!-- Slogan -->
+    </div>
+ 
+    <div class="twitter-boxHAKKIMIZDA">
+        <h2>Follow Us</h2>
+        <div class="twitter-feed">
+            <!-- Twitter Widget -->
+            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" title="Twitter Timeline"
+                src="https://syndication.twitter.com/srv/timeline-profile/screen-name/NOT#ALONE=false&amp;embedId=twitter-widget-0&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfZm9zbnJfc29mdF9pbnRlcnZlbnRpb25zX2VuYWJsZWQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X21peGVkX21lZGlhXzE1ODk3Ijp7ImJ1Y2tldCI6InRyZWF0bWVudCIsInZlcnNpb24iOm51bGx9LCJ0ZndfZXhwZXJpbWVudHNfY29va2llX2V4cGlyYXRpb24iOnsiYnVja2V0IjoxMjA5NjAwLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3Nob3dfYmlyZHdhdGNoX3Bpdm90c19lbmFibGVkIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19kdXBsaWNhdGVfc2NyaWJlc190b19zZXR0aW5ncyI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdXNlX3Byb2ZpbGVfaW1hZ2Vfc2hhcGVfZW5hYmxlZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdmlkZW9faGxzX2R5bmFtaWNfbWFuaWZlc3RzXzE1MDgyIjp7ImJ1Y2tldCI6InRydWVfYml0cmF0ZSIsInZlcnNpb24iOm51bGx9LCJ0ZndfbGVnYWN5X3RpbWVsaW5lX3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9mcm9udGVuZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9fQ%3D%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=true&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=en&amp;maxHeight=400px&amp;origin=https%3A%2F%2Fblogs.lse.ac.uk%2Fwps%2F&amp;partner=jetpack&amp;sessionId=0c6952bf47c9281de6889593d9528bcc3401e8f5&amp;showHeader=true&amp;showReplies=false&amp;siteScreenName=NOT#ALONE&amp;theme=light&amp;transparent=false&amp;widgetsVersion=2615f7e52b7e0%3A1702314776716"
+                style="position: static; visibility: visible; width: 100%; height: 400px; display: block;">
+            </iframe>
+        </div>
+    </div>
+ </div>
+
+<!-- Ana Sayfa İçeriği (Slider Benzeri Yapı) -->
+<div id="makale">
+    <img src="../img/makale14.png" alt="OGIP" class="makale-img">
+    <div class="post-info">
+        <div class="author-date">
+            <h3 class="author">Louise Arimatsu</h3>
+            <h3>Christine Chinkin</h3>
+            <h3 class="date">April 5th, 2022</h3>
+        </div>
+        <div class="post-main-content"style="margin-left: -180px;">
+            <h1 style="margin-top: 320px;">War, law and patriarchy</h1>
+        </div>
+    </div>
+</div>
+
+
+    <main>
+        <div class="makale-box">
+            <div class="single-post__main">
+                <div class="single-post__main-content">
+                  <div class="post-content post-builder">
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>Gender systems, norms and identities saturate the war in Ukraine.</p>
+            <p>They operate in and through the figure of Putin himself who is, paradoxically, a hostage to his own toxic patriarchal narratives. &nbsp;Orchestrating a <a href="https://twitter.com/perfiliev/status/1500131156980862981">tea party</a> surrounded by female flight attendants may have been much ridiculed as an out-of-time oddity but what it tells us is something important about what is at stake when political elites cling to a social ordering founded on binaries in which <a href="https://www.washingtonpost.com/world/2021/12/23/putin-gender-russia-news-conference/">‘men are men and women are women’</a>, with women there to serve props while those who refuse to conform with prescribed ideas around ‘womanhood’ or reject the gender binary are violently <a href="https://www.economist.com/russia-film">silenced</a>.</p>
+            <p>Within Ukraine, gender systems – reinforced through domestic law – operate to determine who stays and who leaves the territory. &nbsp;By and large, gender determines who is weaponised, with what, and by whom.&nbsp; Gender defines who is the hero and who the villain; who lives, who dies, where and how; and gender shapes how anti-war protests are ‘policed’ in occupied and non-occupied spaces, including the digital. &nbsp;As in all wars, this conflict is producing and reproducing gender identities and, at times, reinventing and repackaging gender norms to be consumed globally through mainstream media and social media in the twitter feeds and videos that go viral.</p>
+            <p>Feminist scholarship has long catalogued the ways in which socially constructed identities and norms are deeply imbricated in cultures of militarism and how they normalise particular configurations of power, relationships, and beliefs through structures and systems of governance at all levels of human interaction including through law, politics and culture. &nbsp;Gender typically works with other vectors of socially constituted dichotomised difference, such as race, suturing together the logics of militarism and nationalism both of which depend on binary logics – friend/foe; insider/outsider; belonging/other – for survival.</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">As in all wars, this conflict is producing and reproducing gender identities and, at times, reinventing and repackaging gender norms to be consumed globally through mainstream media and social media in the twitter feeds and videos that go viral. </p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>Gender is always deployed to normalise the securitisation and militarisation of states and to rationalise the accumulation and use of the tools of violence including <a href="https://escholarship.org/uc/item/83k4763m">nuclear</a>.&nbsp; As an analytic tool, gender helps to identify and deconstruct the artificial divides that are essential to the construction of existing hierarchies maintained through power and different degrees of violence. Not to see gender is to leave us with an impoverished understanding of how society operates.&nbsp; If we are to make any sense of the war in Ukraine, to understand what is happening, to respond adequately and to ensure change to avoid repetition, we cannot do so without undertaking an intersectional gender analysis.</p>
+            <p>Yet it is difficult to shake the feeling that an analysis, gender or indeed legal, appears so trivial against the scale of the crimes being committed by Russia’s armed forces including the targeting of civilians and civilian objects, the litany of indiscriminate attacks, the collective punishments, and the strategy of terror unleashed on and directed at the civilian population. &nbsp;But that perhaps is the point of unmitigated sovereign violence: to extinguish and make meaningless words – and everything else that defines and binds us as humans – including law. &nbsp;Thus, as a form of resistance and in solidarity with those who will not be silenced, we write through and on the potential and promise of international law, as we have done time and again through conflicts past and present.</p>
+            <p>&nbsp;</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">Yet it is difficult to shake the feeling that an analysis, gender or indeed legal, appears so trivial against the scale of the crimes being committed by Russia’s armed forces including the targeting of civilians and civilian objects, the litany of indiscriminate attacks, the collective punishments, and the strategy of terror unleashed on and directed at the civilian population.  </p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>As with gender, international law saturates this conflict.</p>
+            <p>The turn to international law and its institutions has been a core strategy of Ukraine’s leadership and one that is yielding important political dividends.&nbsp; It is worth recalling some of the steps taken to date before reflecting on the implications thereof.</p>
+            <p>On 25th February, and within 24 hours of the full-scale military offensive launched by Putin, Ukraine filed an <a href="https://www.icj-cij.org/public/files/case-related/182/182-20220227-APP-01-00-EN.pdf">application</a> against the Russian Federation with the International Court of Justice (ICJ).&nbsp; The following day, on the back of the application it submitted an urgent <a href="https://www.icj-cij.org/public/files/case-related/182/182-20220227-WRI-01-00-EN.pdf">request for provisional measures</a> paving the way for the ICJ to consider oral arguments, pursuant to Article 74(3) of the Rules of the Court.&nbsp; &nbsp;Two days later, on 28th February, Ukraine lodged an application for urgent interim measures with the European Court of Human Rights (ECHR) citing the “massive human rights violations being committed by the Russian troops in the course of the military aggression against the sovereign territory of Ukraine”.</p>
+            <p>Meanwhile, in the Hague, the Prosecutor of the International Criminal Court (ICC) announced that he would be seeking authorisation to open an investigation on the basis of his predecessor’s <a href="https://www.icc-cpi.int/Pages/item.aspx?name=201211-otp-statement-ukraine">preliminary examination</a> founded on Ukraine’s consent pursuant to Article 12(3) of the Rome Statute. In &nbsp;New York, as <a href="https://documents-dds-ny.un.org/doc/UNDOC/GEN/N14/249/22/PDF/N1424922.pdf?OpenElement">requested</a> by Ukraine the UN General Assembly convened for a <a href="https://www.un.org/press/en/2022/ga12406.doc.htm">special session</a> under the Uniting for Peace procedure in light of the <a href="https://documents-dds-ny.un.org/doc/UNDOC/GEN/N22/271/32/PDF/N2227132.pdf?OpenElement">failure</a> on the part of the Security Council to exercise its primary responsibility under the UN Charter for the maintenance of international peace and security.</p>
+            <p>The <a href="https://documents-dds-ny.un.org/doc/UNDOC/LTD/N22/272/27/PDF/N2227227.pdf?OpenElement">resolution</a> subsequently adopted was strong and unambiguous. Entitled “Aggression against Ukraine”, it demands that Russia “immediately cease its use of force against Ukraine and to refrain from any further unlawful threat or use of force against any Member State” and “immediately, completely and unconditionally withdraw all of its military forces from the territory of Ukraine within its international recognized borders”.&nbsp; Although not legally binding, the language of the resolution, firmly grounded in international law, and its support by 141 states represented both a political and legal triumph for Ukraine.</p>
+            <p>On March 1st, the ECHR granted Ukraine’s request calling on the Russian Federation to “refrain from military attacks against civilians and civilian objects, including residential premises, emergency vehicles and other specially protected civilian objects such as schools and hospitals, and to ensure immediately the safety of the medical establishments, personnel and emergency vehicles within the territory under attack or siege by Russian troops.” On March 2nd, an <a href="https://www.icc-cpi.int/ukraine">investigation</a> was opened by the ICC Prosecutor following a referral by 39 member states, the first of its kind and no doubt undertaken with Ukraine’s full support.</p>
+            <p>On 4th March, the Human Rights Council <a href="https://documents-dds-ny.un.org/doc/UNDOC/GEN/G22/277/44/PDF/G2227744.pdf?OpenElement">voted</a> to establish a Commission of Inquiry on Ukraine “to investigate all alleged violations and abuses of human rights and violations of international humanitarian law, and related crimes in the context of the aggression against Ukraine by the Russian Federation” with a view to ensuring accountability. &nbsp;On 16th March the ICJ <a href="https://www.icj-cij.org/en/case/182">granted</a> Ukraine’s request for provisional measures, going further than requested to broaden the scope of the Order requiring Russia to “immediately suspend the military operations that it commenced on 24 February 2022 in the territory of Ukraine” and “ensure that any military or irregular armed units which may be directed or supported by it, as well as any organizations and persons which may be subject to its control or direction, take no steps in furtherance of the [said] military operations”.</p>
+            <p>To appeal to international law and its institution is a political strategy that typically aims to transcend the violence and oppression of the sovereign state.&nbsp; As a political strategy Ukraine’s response is hard to fault. &nbsp;In sharp contrast, the Russian Federation’s engagement with the law has been derisory at best. &nbsp;The decision not to participate in the oral hearings to contest the ICJ’s jurisdiction has proved hugely counter-productive.&nbsp; While non-appearance is not <a href="https://www.ejiltalk.org/russias-non-appearance-before-the-icj-against-ukraine-of-not-so-vanishing-vanishing-acts-and-their-vanishingly-thin-justification/">uncommon</a>, it is a gesture that always hints to an exceptionalist claim, intended or otherwise. &nbsp;Thus, the empty seats in the Peace Palace, reserved for Russia’s lawyers, were a symbolic reminder of the empty and <a href="https://www.humanrightspulse.com/mastercontentblog/russian-recognition-of-donetsk-and-luhansk-legal-analysis">disingenuous</a> legal <a href="https://www.icj-cij.org/public/files/case-related/182/182-20220307-OTH-01-00-EN.pdf">claims</a> proffered to justify its military operations (and a warning to guard against law becoming only a conduit through which to legitimate violence rather than standing in for violence).</p>
+            <p>More damaging has been the decision by Russia’s leadership to renounce some of its core treaty obligations and to withdraw from key international institutions that have come to shape the international order since 1945. &nbsp;&nbsp;For example, on 10th March Russia <a href="https://www.jurist.org/news/2022/03/russia-withdraws-from-council-of-europe/">announced</a> its withdrawal from the Council of Europe and intention to denounce the European Convention, pre-empting the Assembly’s decision to <a href="https://pace.coe.int/en/pages/session-20220314">expel</a> Russia <a href="https://www.coe.int/en/web/portal/-/council-of-europe-leaders-make-joint-statement-on-the-exclusion-of-the-russian-federation-from-the-council-of-europe">taken</a> five days later, followed the next day by a decision of the Committee of Ministers.&nbsp; But Russia’s acts, which increasingly point to a repudiation of international law and its institutions, have not happened in a <a href="https://www.hrw.org/world-report/2021/country-chapters/russia">vacuum nor overnight</a>.&nbsp; Rather, what we are witnessing is nothing other than the latest expression of patriarchal authoritarianism that survives and thrives on unmitigated violence.&nbsp; There is no space for law and no space for difference.&nbsp; The very terms ‘war’ and ‘peace’ can be redacted, their use criminalised.</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>The empty seats in the Peace Palace, reserved for Russia’s lawyers, were a symbolic reminder of the empty and <a href="https://www.humanrightspulse.com/mastercontentblog/russian-recognition-of-donetsk-and-luhansk-legal-analysis">disingenuous</a> legal <a href="https://www.icj-cij.org/public/files/case-related/182/182-20220307-OTH-01-00-EN.pdf">claims</a> proffered to justify its military operations (and a warning to guard against law becoming only a conduit through which to legitimate violence rather than standing in for violence).</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>Where does all this leave international law and its institutions?</p>
+            <p>On one level Putin’s war in Ukraine has strengthened both.&nbsp; But it has come at a heavy price for the people of Ukraine. &nbsp;The international legal regimes and the norms upon which they are founded are being played out on the very bodies of Ukrainians and through the destruction of the spaces and places they called home.&nbsp; And at every level – in <a href="https://www.theatlantic.com/ideas/archive/2022/02/vladimir-putin-dirty-language-cursing/622924/">words</a> and actions – gender systems are directing the course of this war.&nbsp; As with sexual and gender-based violence in conflict, the targeting of the civilian population and civilian objects is a deeply gendered strategy with no ‘military advantage’ other than to demonstrate the failure on the part of the Ukrainian state to protect and thereby to emasculate its leadership. Meanwhile, pleas to #closetheskyoverukraine have gone unanswered notwithstanding the expressions of solidarity.&nbsp; The possession of nuclear weapons – always justified through a gendered discourse by the P5 as deterring war – in reality deters intervention to protect civilians, reminding us – once again – of the <a href="https://www.publicaffairsbooks.com/titles/shannon-d-beebe/the-ultimate-weapon-is-no-weapon/9781586488611/">myth of nuclear weapons</a> which, far from preserving peace, deprive us of peace.</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">The international legal regimes and the norms upon which they are founded are being played out on the very bodies of Ukrainians and through the destruction of the spaces and places they called home.  </p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>States fully recognise that conflict prevention (as well as law compliance in war) cannot be secured without addressing the gender systems that make war and violence a rational pursuit and law compliance irrelevant: that much is demonstrated by the adoption of the <a href="https://undocs.org/Home/Mobile?FinalSymbol=S%2FRES%2F1325(2000)&amp;Language=E&amp;DeviceType=Desktop&amp;LangRequested=False">Security Council’s Women Peace and Security agenda</a>. &nbsp;And that is precisely why feminists from across the world united to oppose the draft resolution tabled by the Russian Federation in October 2020, on the 20th anniversary of the adoption of resolution 1325.&nbsp; The rejection of the draft was widely welcomed for what the text represented was an attempt to reassert a deeply patriarchal international order founded on gender binaries and control over women’s bodies, not unlike the dystopian orders often depicted in <a href="https://www.penguin.co.uk/books/103/1032806/the-handmaid-s-tale/9781784708238.html">feminist literature</a>.</p>
+            <p>Thus, to treat Putin’s war in Ukraine as a conflict driven by concerns over state security and the expansion of NATO is to miss the bigger picture.&nbsp; Moreover, the more the political class in Europe and north America act as though the war in Ukraine is one between NATO and the Russian Federation, the more they play into Putin’s narrative that relies on a strategic shift from the <a href="https://documents-dds-ny.un.org/doc/UNDOC/LTD/N22/294/07/PDF/N2229407.pdf?OpenElement">international</a> to the regional and from the language of peace to one of security.&nbsp; But by seeing this conflict through a gender prism and as the consequence of years of toxic patriarchal manoeuvres is to begin to understand what needs to be done to “<a href="https://www.un.org/en/about-us/un-charter/full-text">save succeeding generations from the scourge of war</a>” to work toward a gendered peace.</p>
+            <hr>
+            <p><em>This blog is part of a project that has received funding from the European Research Council (ERC) under the European Union’s Horizon 2020 research and innovation&nbsp;programme&nbsp;(Grant agreement No. 786494).</em></p>
+            <p><em>The views, thoughts and&nbsp;opinions expressed in this blog post are those of the author(s)&nbsp;only.</em></p>
+            <p><em>Image credit:&nbsp;<a id="yui_3_16_0_1_1649163389896_160689" class="owner-name truncate" title="Go to Sasha Maksymenko’s photostream" href="https://www.flickr.com/photos/112078056@N07/">Sasha Maksymenko</a>&nbsp;(CC BY 4.0)</em></p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                          </div>
+                        <div class="author">
+              <h3>About the author</h3>
+            
+                  <div class="author__main">
+                  <div class="author__image">
+                    <img width="96" height="96" src="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2019/07/download-1-100x100.jpg" class="avatar avatar-96 photo wp-post-image" alt="" srcset="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2019/07/download-1-100x100.jpg 100w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2019/07/download-1-150x150.jpg 150w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2019/07/download-1-66x66.jpg 66w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2019/07/download-1.jpg 200w" sizes="(max-width: 96px) 100vw, 96px">
+                    <h3>Louise Arimatsu</h3>
+                  </div>
+                          <div class="author__content">
+                      <p>Louise Arimatsu is Distinguished Policy Fellow in the Centre for Women, Peace and Security, where she works on the AHRC project 'A Feminist International Law of Peace and Security' and the ERC project 'Gendered Peace'. Her current research projects include 'A Feminist Foreign Policy' and 'Women and Weapons'. She tweets @larimatsu10</p>
+                    </div>
+                      </div>
+                  <div class="author__main">
+                  <div class="author__image">
+                    <img width="96" height="96" src="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2019/11/download-100x100.jpg" class="avatar avatar-96 photo wp-post-image" alt="" srcset="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2019/11/download-100x100.jpg 100w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2019/11/download-150x150.jpg 150w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2019/11/download.jpg 200w" sizes="(max-width: 96px) 100vw, 96px">
+                    <h3>Christine Chinkin</h3>
+                  </div>
+                          <div class="author__content">
+                      <p>Christine Chinkin is a leading expert on international law and human rights law, especially the international human rights of women. In 2000, her co-authored, ground-breaking book with Hilary Charlesworth, ‘The Boundaries of International Law: a feminist analysis’ examined the status of women in human rights and international law’. In 2005, in recognition of this and other contributions, Chinkin and Charlesworth were awarded the American Society of International Law, Goler T. Butcher Medal 'for outstanding contributions to the development or effective realization of international human rights law'.</p>
+                    </div>
+                      </div>
+        </div>
+    </main>
+ 
+    <!-- footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <!-- Footer Logo Section -->
+        <div class="footer-logo">
+            <div id="logoFooter">NOTALONE</div>
+            <div class="logo-text"><p>W♀men, Peace </p><p>and Security</p></div> 
+        </div>
+
+        <!-- Quick Links Section -->
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>
+                <i class='bx bx-map'></i>
+                Türk Hava Kurumu Üniversitesi Bahçekapı Mah.
+            </p>
+            <p>
+                <i class='bx bx-phone'></i>
+                (0212) 389 99 99
+            </p>
+            <p>
+                <i class='bx bx-envelope'></i>
+                örnek@gmail.com
+            </p>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="footer-social">
+            <h4>Social Media</h4>
+            <div class="social-icons">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-twitter'></i></a>
+                <a href="#"><i class='bx bxl-instagram'></i></a>
+                <a href="#"><i class='bx bxl-linkedin'></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="footer-bottom">
+        <p>&copy; 2024 NOTALONE</p>
+    </div>
+</footer>
+
+    <script src="owl/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1..min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="makale.js"></script> <!-- JavaScript dosyasını bağladık -->
+
+</body>
+</html>

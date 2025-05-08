@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breaking silos between Peace Research and Global Health: A review of Gender, Global Health and Violence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/581952776c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="makale.css">
+    <link rel="stylesheet" href="owl/owl.carousel.min.css">
+    <link rel="stylesheet" href="owl/owl.theme.default.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="owl/script.js"></script>
+
+</head>
+<body>
+
+    <!-- Sabit Üst Menü -->
+    <section id="menu">
+        <div id="logo">NOTALONE</div>
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div>
+        <nav>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="javascript:void(0);" id="userIcon"><i class="fa-regular fa-user"></i></a></li>
+        </nav>
+    </section>
+
+<!-- Sağ Menü -->
+<div id="loginPanel" class="sidenav-right">
+    <div class="sidenav__inner">
+       <!-- Giriş Paneli -->
+<div id="loginForm" class="auth-section">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <h2>Login</h2>
+    <form onsubmit="handleLogin(event)">
+        <input type="email" id="loginEmail" placeholder="Email" required class="form-control">
+        <div class="password-container">
+            <input type="password" id="loginPassword" placeholder="Password" required class="form-control">
+            <i class="fa fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+        </div>
+        <button type="submit" class="submit-button">Login</button>
+        <div class="links">
+            <a href="#" onclick="showForgotPassword(event)">Forgot Password?</a>
+            <a href="#" onclick="showSignUp(event)">Sign Up</a>
+        </div>
+    </form>
+</div>
+
+<!-- Giriş Yaptıktan Sonraki Panel -->
+<div id="userPanelContent" class="user-panel-section" style="display: none;">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <div class="user-info">
+        <div class="user-header">
+            <i class="fa-regular fa-user"></i>
+            <span id="welcomeUsername">Welcome, User</span>
+        </div>
+    </div>
+    
+    <nav class="user-nav">
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-user"></i>
+            <span>My Profile</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-paper-plane"></i>
+            <span>My Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-comment"></i>
+            <span>My Comments</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-heart"></i>
+            <span>Liked Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-bookmark"></i>
+            <span>Saved Posts</span>
+        </a>
+        
+    </nav>
+    <div class="logout-container">
+        <button id="logoutButton" onclick="handleLogout()">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+    </div>
+</div>
+
+
+        <!-- Şifremi Unuttum Paneli -->
+        <div id="forgotPasswordForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Reset Password</h2>
+            <p class="auth-description">Enter your email address and we'll send you a link to reset your password.</p>
+            <form onsubmit="handleForgotPassword(event)">
+                <input type="email" id="resetEmail" placeholder="Email" required class="form-control">
+                <button type="submit" class="submit-button">Send Reset Link</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Back to Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kaydolma Paneli -->
+        <div id="signUpForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Sign Up</h2>
+            <form onsubmit="handleSignUp(event)">
+                <div class="form-group">
+                    <input type="text" id="firstName" placeholder="First Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="lastName" placeholder="Last Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="signUpEmail" placeholder="Email" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="signUpPassword" placeholder="Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder="Phone Number" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="birthDate" placeholder="Birth Date" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <select id="gender" class="form-control" required>
+                        <option value="">Select Gender</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
+                        <option value="prefer-not">Prefer not to say</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-button">Sign Up</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Already have an account? Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kullanıcı Panel İçeriği (giriş yapıldıktan sonra) -->
+        <div id="userPanelContent" class="user-panel-section" style="display: none;">
+            <!-- Mevcut kullanıcı paneli içeriği buraya -->
+        </div>
+    </div>
+</div>
+
+
+    <!-- Sol Sütun -->
+    <div id="sol-sutun">
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div> <!-- Menü Butonu -->
+    </div>
+    
+    <!-- Menü Aç/Kapat İşlevi -->
+    <script>
+        function toggleLeftMenu() {
+            const sidenav = document.getElementById('sidenav');
+            sidenav.classList.toggle('active');
+        }
+    </script>   
+
+<!-- Sol Menü -->
+<div id="sidenav" class="sidenav">
+    <div class="sidenav__inner">
+        <div class="menu-header">
+            <div id="logo-menu">
+                <span style="color:#e7bcbc; font-size: 30px;">
+                    W♀men, Peace and Security
+                </span>
+            </div>
+            <div class="close-btn" onclick="toggleLeftMenu()">✖</div>
+        </div>
+        <nav>
+            <a href="index.html"><i class="fa-solid fa-home"></i>Home</a>
+            <a href="hakkimizda.html"><i class="fa-solid fa-info"></i>About</a>
+            <a href="yorumPolitikasi.html"><i class="fa-solid fa-comment"></i>Comment Policy</a>
+            <a href="haklarinibil.html"><i class="fa-solid fa-balance-scale"></i>Know Your Rights</a>
+            <a href="blog.html"><i class="fa-solid fa-blog"></i>Blog</a>
+            <a href="forum/forum.html"><i class="fa-solid fa-comments"></i>Forum</a>
+            <a href="#"><i class="fa-solid fa-map-marker-alt"></i>Safe Map</a>
+            <a href="#"><i class="fa-solid fa-calendar"></i>Events</a>
+        </nav>
+    </div>
+</div>
+    
+
+    
+<!-- Sidebar -->
+<div class="sidebarHAKKIMIZDA">
+    <div class="logo-boxHAKKIMIZDA">
+        <img src="img/2logo.png" alt="Logo"> <!-- Logo -->
+        <div class="logo-text">W♀men, Peace <p>and Security</p></div> <!-- Slogan -->
+    </div>
+ 
+    <div class="twitter-boxHAKKIMIZDA">
+        <h2>Follow Us</h2>
+        <div class="twitter-feed">
+            <!-- Twitter Widget -->
+            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" title="Twitter Timeline"
+                src="https://syndication.twitter.com/srv/timeline-profile/screen-name/NOT#ALONE=false&amp;embedId=twitter-widget-0&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfZm9zbnJfc29mdF9pbnRlcnZlbnRpb25zX2VuYWJsZWQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X21peGVkX21lZGlhXzE1ODk3Ijp7ImJ1Y2tldCI6InRyZWF0bWVudCIsInZlcnNpb24iOm51bGx9LCJ0ZndfZXhwZXJpbWVudHNfY29va2llX2V4cGlyYXRpb24iOnsiYnVja2V0IjoxMjA5NjAwLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3Nob3dfYmlyZHdhdGNoX3Bpdm90c19lbmFibGVkIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19kdXBsaWNhdGVfc2NyaWJlc190b19zZXR0aW5ncyI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdXNlX3Byb2ZpbGVfaW1hZ2Vfc2hhcGVfZW5hYmxlZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdmlkZW9faGxzX2R5bmFtaWNfbWFuaWZlc3RzXzE1MDgyIjp7ImJ1Y2tldCI6InRydWVfYml0cmF0ZSIsInZlcnNpb24iOm51bGx9LCJ0ZndfbGVnYWN5X3RpbWVsaW5lX3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9mcm9udGVuZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9fQ%3D%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=true&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=en&amp;maxHeight=400px&amp;origin=https%3A%2F%2Fblogs.lse.ac.uk%2Fwps%2F&amp;partner=jetpack&amp;sessionId=0c6952bf47c9281de6889593d9528bcc3401e8f5&amp;showHeader=true&amp;showReplies=false&amp;siteScreenName=NOT#ALONE&amp;theme=light&amp;transparent=false&amp;widgetsVersion=2615f7e52b7e0%3A1702314776716"
+                style="position: static; visibility: visible; width: 100%; height: 400px; display: block;">
+            </iframe>
+        </div>
+    </div>
+ </div>
+
+<!-- Ana Sayfa İçeriği (Slider Benzeri Yapı) -->
+<div id="makale">
+    <img src="../img/makale13.jpg" alt="OGIP" class="makale-img">
+    <div class="post-info">
+        <div class="author-date">
+            <h3 class="author">Mazeda Hossain</h3>
+            <h3>Leah Kenny</h3>
+            <h3 class="date">September 24th, 2021</h3>
+        </div>
+        <div class="post-main-content"style="margin-left: -180px;">
+            <h1 style="margin-top: 320px;">Breaking silos between Peace </h1>
+            <h1>Research and Global Health: A review </h1>
+            <h1>of Gender, Global Health and Violence</h1>
+        </div>
+    </div>
+</div>
+
+
+    <main>
+        <div class="makale-box">
+            <div class="single-post__main">
+               
+                <div class="single-post__main-content">
+                  <div class="post-content post-builder">
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>Catia Confortini and Tiina Vaittinen’s edited volume <em>Gender, Global Health and Violence: Feminist Perspectives on Peace and Disease</em> is a welcome book to the peace research and global health fields. First published in 2019, the ambitious volume successfully broadens the discourse in peace research by exploring the intertwined domains of feminist peace research and global health.</p>
+            <p>Confortini and Vaittinen are feminist peace scholars working on the intersections of peace research and global health. They hope to foster a discourse in the peace research field that is similar to what has developed between the International Relations and Global Health fields. The thesis for the volume is that Peace Research and Global Health have traditionally not engaged sufficiently with each other – Peace Research primarily considering Global Health in terms of securitisation; and Global Health failing to consider more nuanced definitions of violence – therefore, there is much to learn from cross-disciplinary and interdisciplinary conversations that bridge these two fields. To do so, the authors have engaged with a diverse group of leading scholars from Sociology, Public Health, and Political Sciences, amongst others,&nbsp;who have brought together a range of perspectives and research methods to explore the complexities of gender and sexuality in relation to peace, violence, and health.</p>
+            <p>Both Peace Research and Global Health share a common goal – the wellbeing of populations impacted by conflict and violence – but have approached it using different theories, definitions, methodologies, and priorities. The common troubling exclusionary practice between the two fields, however, continues to be the limited use of an inclusive gendered lens, where “gender” is often seen as encompassing less important “women’s issues” or added as an after-thought to programmes, policies, and laws that have normalised male health needs and priorities, and marginalised or ignored sexual minorities. The authors are motivated by the conviction that peace research should move beyond “metaphors about healthy societies and recognise concrete, embodied health as pivotal to the study of peace/violence” and include feminist approaches in peace research.</p>
+            <p>Peace research seeks to examine different forms of societal violence with the normative goal to decrease violence and increase justice. Peace Research can thus provide ways to capture a more nuanced understanding of violence, that extends beyond structural definitions typically found in Global Health. The chapters in the volume describe different and intersecting forms of violence (direct / interpersonal, structural, epistemic, and symbolic) and examine what the authors call the “messy entanglements” between violence and gendered global health issues. Finally, they present some ways forward for reducing and eliminating violence.</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">The authors are motivated by the conviction that peace research should move beyond “metaphors about healthy societies and recognise concrete, embodied health as pivotal to the study of peace/violence</p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>Across its 12 chapters, the authors present empirical case studies that unpack how a narrow definition of gender results in multiple and intersecting forms of violence in the everyday. In the first section of the book, authors examine structural violence and how it manifests through sexual and reproductive health care in crises, HIV stigma and structural violence among a transgender population in Indonesia, breast cancer detection in Uganda, and the politicisation of HIV treatment in South Africa. The second section explores the complexities of how violence impacts health outcomes and access, and how it intertwines with cultural and gender norms. They present the possibilities of using art in dementia care which they argue is a feminised and stigmatised disease. They use the real-life example of a woman in the US with dementia and the film <em>Still Alice</em> to explore stigma, suicide, and symbolic violence.</p>
+            <p>This section also looks at the criminalisation of abortion care in Mexico, where structural limitations lead health professionals to report women seeking abortions, and wartime sexual violence against men by exploring data collection in the Great Lakes Region and in Northern Ireland. The third section looks at how peace and justice can be achieved from therapeutic justice, community responses to intimate partner violence, and self-protection for carers who experience violence in Finland. The diversity of topics presented in the volume allows the reader to gain a broader perspective on the intersecting issues related to health, gender, and violence.</p>
+            <p>Taken together, the contributions demonstrate that definitions of violence used in Peace Research using a feminist perspective is particularly relevant for Global Health. The volume touches on some of the extensive work that has been developed by global health researchers who helped to push this agenda forward in the health domain. The pioneering and highly influential work of feminist global health researchers who developed <a href="https://www.who.int/reproductivehealth/publications/violence/9241593512/en/">quantitative measures and tools</a> for gender-based violence are addressed in chapters focused on public health approaches. This work contributed to violence being declared a public health concern by the <a href="https://www.who.int/violence_injury_prevention/resources/publications/en/WHA4925_eng.pdf">WHO in 1996,</a> with a specific focus on violence against women and girls.</p>
+            <p>Over the last decade health researchers and practitioners have drawn attention to the <a href="https://science.sciencemag.org/content/340/6140/1527">extent of violence against women</a> and the gendered structures and inequities that sustain it. Laura Finley, Associate Professor of Criminology and Sociology, explores the intersections of domestic violence and public health in chapter 10. Chapter eight explores how sexual violence against men is only starting to be measured in wartime as the dominant narrative is “rape as a weapon of war”; therefore, measurement is based on a conceptualisation of sexual violence against women which does not necessarily capture the forms of sexual violence that men can experience.</p>
+            <p>As noted in Chapter two, wellbeing is not purely the absence of direct forms of violence, but rather an “enabling environment” for people of all genders to exercise their bodily autonomy. Chapter three delves into some of the issues faced by individuals who do not fit into gender binary categorisations, highlighting that gender in its broadest sense, as well as intersecting social categorisations, must remain a priority in research and practice. Overall, the authors of this volume take the definition of violence further than many global health researchers by positing that structural inequalities also represent a form of epistemic violence and are attributable to <em>someone </em>by explicitly politicising structural violence, rather than analysing them as consequences of abstract systems.</p>
+            <p>Gender is a central category for analysis in this volume. The authors acknowledge that gender has been a long-term area of interest within Global Health, however, they recognise the limitations of how it is constructed within Global Health and Public Health. Despite a long history of research and limited recognition of the relationship between gender and health, <a href="https://www.thelancet.com/article/S0140-6736(20)31547-6/fulltext">only recently</a> has the global health community called for greater accountability and action around gender. This includes going beyond narrow definitions of gender to instead <a href="https://www.thelancet.com/series/gender-equality-norms-health">capture how gender norms sustain gender inequality</a> and intersect with other social inequalities.</p>
+            <p>The analysis in this volume is directly relevant to the global <a href="https://www.peacewomen.org/security-council/WPS-in-SC-Council">Women, Peace &amp; Security</a> (WPS) agenda which, to date, has <a href="https://thegenderhub.com/projects/research-methodologies-for-women-peace-security-and-health/">only addressed health to a limited extent</a>. This includes issues around sexual and reproductive health rights (SRHR), which is explored in Chapter two, as Maria Tanyag explains:</p>
+            <p style="padding-left: 60px"><em>“The absence of critical interventions in health and wellbeing, particularly SRHR that can progressively stem the root causes of gender inequality from emergency relief to long-term development assistance, reinforces the entire invisibility of the gendered bodies that end up bearing the brunt of crises</em><em>”</em></p>
+            <p>This inclusion is important, as others have argued that currently sexual and reproductive health<a href="https://blogs.lse.ac.uk/wps/2018/03/21/where-are-reproductive-rights-in-the-wps-agenda/"> is not prioritised within WPS</a> and the agenda does not address the importance of women’s agency and access to health in conflict and post-conflict settings. The volume further highlights the importance of women’s participation in public health and global health governance decision making bodies, where a lack of representation is a form of violence, especially where women make up most of the social care and public health workforce. This aligns with the feminist peace research and the WPS agenda, where structural violence is tied to power relations that inform who decides what should be prioritised and where resources should be allocated.&nbsp;Women’s participation, as the editors of this volume argue, is an important area where Peace Research and Global Health overlap.</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">Despite a long history of research and limited recognition of the relationship between gender and health, only recently has the global health community called for greater accountability and action around gender</p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>It is now over a year since the start of the global COVID-19 pandemic, which has widened structural inequities (alongside a host of other health and socio-political challenges), and has seen increases in <a href="https://www.unwomen.org/-/media/headquarters/attachments/sections/library/publications/2020/issue-brief-covid-19-and-ending-violence-against-women-and-girls-en.pdf?la=en&amp;vs=5006">gender-based violence</a>, <a href="https://www.unicef-irc.org/publications/1087-covid-19-and-children-in-the-north-and-the-south.html">violence against children</a>, and <a href="https://reliefweb.int/report/world/year-covid-19-pandemic-s-impact-global-conflict-and-demonstration-trends">political violence</a>. We have seen the rapid <a href="https://gh.bmj.com/content/6/7/e006520#ref-1">securitisation of healthcare</a> policy around the globe and the resulting <a href="https://www.sciencedirect.com/science/article/pii/S0140673620305262?via%3Dihub">gendered impacts</a> of the pandemic. Although this volume was released pre-pandemic, it remains nonetheless relevant and timely looking forward.</p>
+            <p>The contributors to this volume highlight how using a gender lens is fundamental to addressing the complicated relationship between global health and violence. As Sophie Harman states in the conclusion of this volume, exploring gender, violence and health is an opportunity to “shine a light on the silenced, marginalised, and unseen relationships and entanglements between health and different forms of violence” and offers a way to ensure that their needs are visible and addressed. The chapters in this book offer a starting point for peace researchers on how to approach health and violence, and in line with its feminist principles, indicate how this research can be used to bring about change.</p>
+            <hr>
+            <p><em>The views, thoughts and&nbsp;opinions expressed in this blog post are those of the author(s)&nbsp;only.</em></p>
+            <p><em>Image credit: <a href="https://www.flickr.com/photos/santiagosuburbano/32522158593/in/photolist-RxSyGi-4jBM1r-CQ1qZx-Rxoj74-Rh3gBa-dFGmfA-5m8rWd-2kVhZLj-nANdSt-AGv12-8vEZ2-k9jJnp-eN1ggk-eNcF1G-eNcEif-eN1fAT-eN1g6K-eN1fWg-5Av5Ej-2cRo6mx-Y3jjn-he43t-KmpPTd-P6fhPe-2a5Se1j-P6fjbc-2a5SfSf-P6ft9T-27uhvtP-P6fwAT-2a5SecS-P6frwV-KmpPWE-P6fwan-KmpQfA-KmpQbs-27uhvqx-KmpQ5W-KmpQo1-8L6p9z-2a5SeFY-P6fpqa-8QgRpX-P6fs8p-KmpQd1-P6fvM8-2a5SaW3-2a5Sbyq-KmpQjU-27uhvB4">Flickr (CC BY-NC-ND 2.0)</a></em></p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                          </div>
+                        <div class="author">
+              <h3>About the author</h3>
+            
+                  <div class="author__main">
+                  <div class="author__image">
+                    <img width="96" height="96" src="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2021/09/Hossain_Mazeda-150x150.jpg" class="avatar avatar-96 photo wp-post-image" alt="" scale="0">
+                    <h3>Mazeda Hossain</h3>
+                  </div>
+                          <div class="author__content">
+                      <p>Dr Mazeda Hossain is an Associate Professorial Research Fellow with the LSE Centre for Women, Peace and Security and a co-Director of the UKRI GCRF Gender, Justice and Security Hub for the Methodological Innovations stream. She is a social epidemiologist whose research focuses on the nexus of gender, violence, and health in fragile and conflict-affected settings. Her research applies epidemiological, economic, social science, behavioural science, and complex systems methodologies to research among populations in fragile and conflict-affected settings. On the GCRF Hub she is leading a research project to develop a new global index for violence, gender, and health; and a project exploring methodologies to improve measurement in fragile and conflict-affected settings. @MazedaHossain</p>
+                    </div>
+                      </div>
+                  <div class="author__main">
+                  <div class="author__image">
+                    <img width="96" height="96" src="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2021/09/Kenny_Leah-100x100.jpg" class="avatar avatar-96 photo wp-post-image" alt="" srcset="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2021/09/Kenny_Leah-100x100.jpg 100w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2021/09/Kenny_Leah-150x150.jpg 150w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2021/09/Kenny_Leah-300x300.jpg 300w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2021/09/Kenny_Leah-768x768.jpg 768w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2021/09/Kenny_Leah.jpg 800w" sizes="(max-width: 96px) 100vw, 96px">
+                    <h3>Leah Kenny</h3>
+                  </div>
+                          <div class="author__content">
+                      <p>Leah Kenny is a Humanitarian Affairs Assistant at Médecins Sans Frontières (MSF). Leah was a Research Officer within the LSE Centre for Women, Peace and Security where she was part of the methodological innovations research stream of the UKRI GCRF Gender, Justice and Security Hub and working on developing a new global index for violence, gender, and health. Before joining LSE, Leah worked at the London School of Hygiene &amp; Tropical Medicine (LSHTM) where she managed the Nomadic Health Project. Leah has an MSc in Sexual and Reproductive Health Research (LSHTM), and a BSc in Human Sciences (UCL).</p>
+                    </div>
+                      </div>
+    
+        </div>
+    </main>
+ 
+    <!-- footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <!-- Footer Logo Section -->
+        <div class="footer-logo">
+            <div id="logoFooter">NOTALONE</div>
+            <div class="logo-text"><p>W♀men, Peace </p><p>and Security</p></div> 
+        </div>
+
+        <!-- Quick Links Section -->
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>
+                <i class='bx bx-map'></i>
+                Türk Hava Kurumu Üniversitesi Bahçekapı Mah.
+            </p>
+            <p>
+                <i class='bx bx-phone'></i>
+                (0212) 389 99 99
+            </p>
+            <p>
+                <i class='bx bx-envelope'></i>
+                örnek@gmail.com
+            </p>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="footer-social">
+            <h4>Social Media</h4>
+            <div class="social-icons">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-twitter'></i></a>
+                <a href="#"><i class='bx bxl-instagram'></i></a>
+                <a href="#"><i class='bx bxl-linkedin'></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="footer-bottom">
+        <p>&copy; 2024 NOTALONE</p>
+    </div>
+</footer>
+
+    <script src="owl/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1..min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="makale.js"></script> <!-- JavaScript dosyasını bağladık -->
+
+</body>
+</html>

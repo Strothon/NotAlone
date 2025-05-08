@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Saturday Mothers movement in Turkey: 26-year quest for justice and truth</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/581952776c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="makale.css">
+    <link rel="stylesheet" href="owl/owl.carousel.min.css">
+    <link rel="stylesheet" href="owl/owl.theme.default.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="owl/script.js"></script>
+
+</head>
+<body>
+
+    <!-- Sabit Üst Menü -->
+    <section id="menu">
+        <div id="logo">NOTALONE</div>
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div>
+        <nav>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="javascript:void(0);" id="userIcon"><i class="fa-regular fa-user"></i></a></li>
+        </nav>
+    </section>
+
+<!-- Sağ Menü -->
+<div id="loginPanel" class="sidenav-right">
+    <div class="sidenav__inner">
+       <!-- Giriş Paneli -->
+<div id="loginForm" class="auth-section">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <h2>Login</h2>
+    <form onsubmit="handleLogin(event)">
+        <input type="email" id="loginEmail" placeholder="Email" required class="form-control">
+        <div class="password-container">
+            <input type="password" id="loginPassword" placeholder="Password" required class="form-control">
+            <i class="fa fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+        </div>
+        <button type="submit" class="submit-button">Login</button>
+        <div class="links">
+            <a href="#" onclick="showForgotPassword(event)">Forgot Password?</a>
+            <a href="#" onclick="showSignUp(event)">Sign Up</a>
+        </div>
+    </form>
+</div>
+
+<!-- Giriş Yaptıktan Sonraki Panel -->
+<div id="userPanelContent" class="user-panel-section" style="display: none;">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <div class="user-info">
+        <div class="user-header">
+            <i class="fa-regular fa-user"></i>
+            <span id="welcomeUsername">Welcome, User</span>
+        </div>
+    </div>
+    
+    <nav class="user-nav">
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-user"></i>
+            <span>My Profile</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-paper-plane"></i>
+            <span>My Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-comment"></i>
+            <span>My Comments</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-heart"></i>
+            <span>Liked Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-bookmark"></i>
+            <span>Saved Posts</span>
+        </a>
+        
+    </nav>
+    <div class="logout-container">
+        <button id="logoutButton" onclick="handleLogout()">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+    </div>
+</div>
+
+
+        <!-- Şifremi Unuttum Paneli -->
+        <div id="forgotPasswordForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Reset Password</h2>
+            <p class="auth-description">Enter your email address and we'll send you a link to reset your password.</p>
+            <form onsubmit="handleForgotPassword(event)">
+                <input type="email" id="resetEmail" placeholder="Email" required class="form-control">
+                <button type="submit" class="submit-button">Send Reset Link</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Back to Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kaydolma Paneli -->
+        <div id="signUpForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Sign Up</h2>
+            <form onsubmit="handleSignUp(event)">
+                <div class="form-group">
+                    <input type="text" id="firstName" placeholder="First Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="lastName" placeholder="Last Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="signUpEmail" placeholder="Email" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="signUpPassword" placeholder="Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder="Phone Number" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="birthDate" placeholder="Birth Date" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <select id="gender" class="form-control" required>
+                        <option value="">Select Gender</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
+                        <option value="prefer-not">Prefer not to say</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-button">Sign Up</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Already have an account? Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kullanıcı Panel İçeriği (giriş yapıldıktan sonra) -->
+        <div id="userPanelContent" class="user-panel-section" style="display: none;">
+            <!-- Mevcut kullanıcı paneli içeriği buraya -->
+        </div>
+    </div>
+</div>
+
+
+    <!-- Sol Sütun -->
+    <div id="sol-sutun">
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div> <!-- Menü Butonu -->
+    </div>
+    
+    <!-- Menü Aç/Kapat İşlevi -->
+    <script>
+        function toggleLeftMenu() {
+            const sidenav = document.getElementById('sidenav');
+            sidenav.classList.toggle('active');
+        }
+    </script>   
+
+<!-- Sol Menü -->
+<div id="sidenav" class="sidenav">
+    <div class="sidenav__inner">
+        <div class="menu-header">
+            <div id="logo-menu">
+                <span style="color:#e7bcbc; font-size: 30px;">
+                    W♀men, Peace and Security
+                </span>
+            </div>
+            <div class="close-btn" onclick="toggleLeftMenu()">✖</div>
+        </div>
+        <nav>
+            <a href="index.html"><i class="fa-solid fa-home"></i>Home</a>
+            <a href="hakkimizda.html"><i class="fa-solid fa-info"></i>About</a>
+            <a href="yorumPolitikasi.html"><i class="fa-solid fa-comment"></i>Comment Policy</a>
+            <a href="haklarinibil.html"><i class="fa-solid fa-balance-scale"></i>Know Your Rights</a>
+            <a href="blog.html"><i class="fa-solid fa-blog"></i>Blog</a>
+            <a href="forum/forum.html"><i class="fa-solid fa-comments"></i>Forum</a>
+            <a href="#"><i class="fa-solid fa-map-marker-alt"></i>Safe Map</a>
+            <a href="#"><i class="fa-solid fa-calendar"></i>Events</a>
+        </nav>
+    </div>
+</div>
+    
+
+    
+<!-- Sidebar -->
+<div class="sidebarHAKKIMIZDA">
+    <div class="logo-boxHAKKIMIZDA">
+        <img src="img/2logo.png" alt="Logo"> <!-- Logo -->
+        <div class="logo-text">W♀men, Peace <p>and Security</p></div> <!-- Slogan -->
+    </div>
+ 
+    <div class="twitter-boxHAKKIMIZDA">
+        <h2>Follow Us</h2>
+        <div class="twitter-feed">
+            <!-- Twitter Widget -->
+            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" title="Twitter Timeline"
+                src="https://syndication.twitter.com/srv/timeline-profile/screen-name/NOT#ALONE=false&amp;embedId=twitter-widget-0&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfZm9zbnJfc29mdF9pbnRlcnZlbnRpb25zX2VuYWJsZWQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X21peGVkX21lZGlhXzE1ODk3Ijp7ImJ1Y2tldCI6InRyZWF0bWVudCIsInZlcnNpb24iOm51bGx9LCJ0ZndfZXhwZXJpbWVudHNfY29va2llX2V4cGlyYXRpb24iOnsiYnVja2V0IjoxMjA5NjAwLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3Nob3dfYmlyZHdhdGNoX3Bpdm90c19lbmFibGVkIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19kdXBsaWNhdGVfc2NyaWJlc190b19zZXR0aW5ncyI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdXNlX3Byb2ZpbGVfaW1hZ2Vfc2hhcGVfZW5hYmxlZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdmlkZW9faGxzX2R5bmFtaWNfbWFuaWZlc3RzXzE1MDgyIjp7ImJ1Y2tldCI6InRydWVfYml0cmF0ZSIsInZlcnNpb24iOm51bGx9LCJ0ZndfbGVnYWN5X3RpbWVsaW5lX3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9mcm9udGVuZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9fQ%3D%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=true&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=en&amp;maxHeight=400px&amp;origin=https%3A%2F%2Fblogs.lse.ac.uk%2Fwps%2F&amp;partner=jetpack&amp;sessionId=0c6952bf47c9281de6889593d9528bcc3401e8f5&amp;showHeader=true&amp;showReplies=false&amp;siteScreenName=NOT#ALONE&amp;theme=light&amp;transparent=false&amp;widgetsVersion=2615f7e52b7e0%3A1702314776716"
+                style="position: static; visibility: visible; width: 100%; height: 400px; display: block;">
+            </iframe>
+        </div>
+    </div>
+ </div>
+
+<!-- Ana Sayfa İçeriği (Slider Benzeri Yapı) -->
+<div id="makale">
+    <img src="../img/makale11.jpg" alt="OGIP" class="makale-img">
+    <div class="post-info">
+        <div class="author-date">
+            <h3 class="author">Nisan Alıc</h3>
+            <h3 class="date">September 9th, 2021</h3>
+        </div>
+        <div class="post-main-content"style="margin-left: -180px;">
+            <h1 style="margin-top: 320px;">The Saturday Mothers movement in </h1>
+            <h1>Turkey: 26-year quest for justice and </h1>
+            <h1>truth</h1>
+        </div>
+    </div>
+</div>
+
+
+    <main>
+        <div class="makale-box">
+            <div class="single-post__main">
+                <div class="single-post__main-content">
+                  <div class="post-content post-builder">
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p><em>Organised victims’ movements can play a huge role in advancing the goals of transitional justice, even when the conflict is ongoing. In this blog, <a href="https://twitter.com/NisanAlici">Nisan Alici</a> discusses the Saturday Mothers movement, who </em><em>have been mobilising since 1995 to demand truth, justice and accountability for enforced disappearances by </em><em>Turkish state forces and paramilitaries during the 1990s</em><em>. </em></p>
+            <p>Following the 1980 military coup, Turkish state forces and paramilitaries committed enforced disappearances as a widespread practice, most intensely in the 1990s in the Kurdish region under the State of Emergency <a href="https://hakikatadalethafiza.org/en/kaynak/unspoken-truth-enforced-disappearances/">rule</a>. The exact numbers are <a href="https://www.opendemocracy.net/en/saturday-mothers/">unknown</a>, but, in a Truth, Justice and Memory Centre <a href="https://hakikatadalethafiza.org/en/kaynak/unspoken-truth-enforced-disappearances/">report</a>, the number of the disappeared between&nbsp;the 1980&nbsp;military coup and 2013 is estimated to be 1,353.</p>
+            <p>On 27 May 1995, human rights activists and the relatives of the disappeared in Turkey started their silent actions at the Galatasaray Square – bringing the issue of the disappearances to the forefront of public interest. It was the beginning of a decades-long process of demanding truth, justice, and accountability for the enforced disappearance in Turkey and commemorating the disappeared – 17 years after the <a href="https://www.opendemocracy.net/en/mothers-plaza-de-mayo/">first public gathering</a> in Plaza de Mayo in April 1977 of 14 Argentinean mothers, which inspired the Turkish movement now known as the Saturday Mothers.</p>
+            <p>Around thirty people attended the first gathering, including the families who claimed their loved ones were detained through extrajudicial procedures and disappeared. The call was to gather regularly in silent sit-ins for the missing persons to be <a href="https://m.bianet.org/english/human-rights/224832-saturday-mothers-people-demand-justice-for-25-years-we-will-never-give-up">found</a>. The gatherings expanded each week as more families and human rights activists found out about Saturday Mothers.</p>
+            <p>The participants consisted of various community members. There were female and male relatives of the disappeared from different generations, lawyers, human rights advocates, politicians and activists from diverse backgrounds. The press attributed the name Saturday Mothers, and it was quickly accepted by many people. However, in recent years, the term Saturday People seems to be used more often thanks to the increased support from different groups, such as the oppositional political parties and civil society organisations. As the heterogeneity of the participants became more visible over the years, the name Saturday People increased in popularity referring to the broader network of other family members, activists, and supporters, with the name Saturday Mothers usually referring to the mothers as the core of the movement.</p>
+            <p>Every Saturday, the sit-in starts at 12 pm. Each week is dedicated to the memory of one forcibly disappeared person. The family members of that person share their testimonies of the disappearance. Information is provided about the legal developments on the case. The gathering is concluded with a press statement to highlight the demands for truth and justice. Finally, the group leaves in silence.</p>
+            <p>During the sit-in, the Saturday Mothers hold the photographs of the disappeared in silence without using any slogans or applause. In front of the mothers, a banner on the floor reads “Perpetrators Are Known Where Are the Disappeared? (<em>Failler Belli Kayıplar Nerede</em>)”. The whole process takes around thirty minutes. The use of silence stands out as an essential strategy to prevent potential police violence or any type of attack.</p>
+            <p>Despite this, from the very first sit-in the Saturday Mothers faced police violence. In 1998-1999, most mothers were systematically attacked by police and taken into custody, despite some having severe health conditions. After gathering for two hundred weeks in a row, Saturday Mothers decided to halt the protests. The gatherings resumed a decade later, on 31 January 2009, as a response to the Ergenekon <a href="https://m.bianet.org/bianet/crisis/112270-saturday-mothers-urge-for-renewed-action-for-the-disappeared">trials</a>, which were presented by the government as an important step to <a href="https://world.time.com/2013/08/05/how-the-ergenekon-verdicts-may-deepen-turkeys-political-divide/">end the military’s domination of political life</a>. Among the&nbsp;defendants, there were those associated with enforced disappearances in the 1990s, which <a href="https://dergipark.org.tr/tr/pub/federgi/issue/54652/745795">motivated</a> the mothers to restart protesting.</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">The use of silence stands out as an essential strategy to prevent potential police violence or any type of attack.</p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>This post-2009 phase has been the period where the hopes to find the disappeared alive ceased. The sit-ins began to focus on <a href="https://hakikatadalethafiza.org/wp-content/uploads/2019/01/Zorla-Kaybetmeler-rapor.pdf">more tangible demands</a> around accountability and justice, finding the remains of the dead, and ensuring the prosecution of the <a href="https://dergipark.org.tr/tr/pub/uicd/issue/41464/458095">perpetrators</a>. In the same period, the sit-ins moved beyond Istanbul and spread to Batman, Diyarbakır, Cizre, and Yüksekova in the Kurdish region, under the Kurdish name <em>Dayikên Şemiyê</em> which translates to Saturday Mothers. During the 2015-2016 curfews following <a href="https://blogs.lse.ac.uk/wps/2020/05/28/turkeys-missing-wps-agenda-and-implications-for-the-covid-19-pandemic/">the escalation of the Kurdish Conflict</a>, the sit-ins in the Kurdish region were suspended. Now, weekly protests only continue in Istanbul, Diyarbakır, and Batman.</p>
+            <p>The success and effectiveness of organised victims in transitional processes are usually assessed by the extent to which truth, justice, and accountability were achieved. Yet, Turkey is one of those countries where there has been a lack of official will to account for past <a href="https://www.opendemocracy.net/en/missing-from-turkeys-peace-process-memory-truth-and-justice/">crimes</a>. There has never been an overarching transitional justice agenda despite the existence of grassroots initiatives. Therefore, in countries like Turkey, where the conflict and repressive regime are ongoing, the mere presence and persistence of organised victims should be considered a major success.</p>
+            <p>Saturday Mothers built a public space where the notions of truth, justice, memory, and accountability have gained visibility and support from a broad network of actors. Most importantly, they made enforced disappearances, one of the most systematic human rights violations of the 1990s, known to a wider audience and mobilised a vast network of activists, politicians, journalists, human rights defenders, and lawyers for accountability and justice.</p>
+            <p>Through a persistent struggle that has been expanding since 1995, Saturday Mothers worked towards a country where enforced disappearances do not happen again, and the perpetrators are prosecuted.&nbsp;&nbsp;One of the most significant achievements of Saturday Mothers is that they created one of the most sustainable and visible movements in Turkey despite the continuous police violence and the State’s criminalisation efforts.</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">Saturday Mothers built a public space where the notions of truth, justice, memory, and accountability have gained visibility… most importantly, they made enforced disappearances, one of the most systematic human rights violations of the 1990s, known to a wider audience and mobilised a vast network of activists, politicians, journalists, human rights defenders, and lawyers for accountability and justice.</p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>Victim movements around the world, such as the Plaza da Mayo Mothers in Argentina and the&nbsp;Khulumani&nbsp;Support Group in South Africa, <a href="https://nefad.wordpress.com/2012/06/12/from-victims-to-actors-mobilising-victims-to-drive-transitional-justice-process/">have been key</a> to the creation of the transitional justice discourse. The Saturday Mothers movement is also an inspirational example of how organised victim groups mobilise the demands for truth, justice, and accountability and contribute to transitional justice goals.</p>
+            <p>Although there is no official willingness by the State towards transitional justice currently, Saturday Mothers should hold a central&nbsp;place in&nbsp;designing and implementing transitional justice measures when the political opportunity arises. It is the only way a transitional justice process can be victim-centred and create a sustainable peace.</p>
+            <hr>
+            <p><em>The views, thoughts and&nbsp;opinions expressed in this blog post are those of the author(s)&nbsp;only,.</em></p>
+            <p><em>Image Credit:&nbsp;<a class="owner-name truncate" title="Go to Hossam el-Hamalawy's photostream" href="https://www.flickr.com/photos/elhamalawy/">Hossam el-Hamalawy</a>&nbsp;(CC BY 4.0)</em></p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                          </div>
+                        <div class="author">
+              <h3>About the author</h3>
+            
+                  <div class="author__main">
+                  <div class="author__image">
+                    <img width="96" height="96" src="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2020/05/thumbnail_Nisan-Alıcı-150x150.jpg" class="avatar avatar-96 photo wp-post-image" alt="" scale="0">
+                    <h3>Nisan Alıcı</h3>
+                  </div>
+                          <div class="author__content">
+                      <p>Nisan Alıcı is a PhD researcher at the Transitional Justice Institute, Ulster University. She also works as a researcher at the Ankara-based DEMOS Research Center. Her research engages with questions around critical peace, gender, victimhood, and transitional justice. Nisan tweets @NisanAlici</p>
+                    </div>
+                      </div>
+ 
+        </div>
+    </main>
+ 
+    <!-- footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <!-- Footer Logo Section -->
+        <div class="footer-logo">
+            <div id="logoFooter">NOTALONE</div>
+            <div class="logo-text"><p>W♀men, Peace </p><p>and Security</p></div> 
+        </div>
+
+        <!-- Quick Links Section -->
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>
+                <i class='bx bx-map'></i>
+                Türk Hava Kurumu Üniversitesi Bahçekapı Mah.
+            </p>
+            <p>
+                <i class='bx bx-phone'></i>
+                (0212) 389 99 99
+            </p>
+            <p>
+                <i class='bx bx-envelope'></i>
+                örnek@gmail.com
+            </p>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="footer-social">
+            <h4>Social Media</h4>
+            <div class="social-icons">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-twitter'></i></a>
+                <a href="#"><i class='bx bxl-instagram'></i></a>
+                <a href="#"><i class='bx bxl-linkedin'></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="footer-bottom">
+        <p>&copy; 2024 NOTALONE</p>
+    </div>
+</footer>
+
+    <script src="owl/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1..min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="makale.js"></script> <!-- JavaScript dosyasını bağladık -->
+
+</body>
+</html>

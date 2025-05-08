@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+  <link rel="stylesheet" href="../adminPanel/adminPanel.css"> <!-- CSS dosyasını bağladık -->
+  <title></title>
+  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+
+</head>
+<body>
+  <div class="container">
+    <div class="sidebar">
+      <div class="title">
+        <p>Dashboard</p>
+      </div>
+      <div class="icons">
+        <ul>
+          <li><a href="../adminPanel/adminPanel.html"><i class='bx bx-home-circle'></i><span>Home</span></a></li>
+          <li><a href="../adminPanel/users.html"><i class='bx bx-user'></i><span>Users</span></a></li>
+          <li><a href="../adminPanel/messages.html"><i class='bx bx-comment'></i><span>Messages</span></a></li>
+          <li><a href="../adminPanel/posts.html"><i class='bx bx-message-square-detail'></i><span>Posts</span></a></li>
+          <li><a href="../adminPanel/stories.html"><i class='bx bx-message-square-detail'></i><span>Stories</span></a></li>
+          <li><a href="../adminPanel/blockedusers.html"><i class='bx bx-block'></i><span>Blocked Users</span></a></li>
+          <!-- <li><a href="../adminPanel/settings.html"><i class='bx bx-cog'></i><span>Settings</span></a></li>-->
+        </ul>
+      </div>
+    </div>
+    
+    
+
+   <main>
+      <div class="board-container">
+        <div class="board">
+          <div class="board-icons">
+            <i class='bx bx-user-circle'></i>
+            <i class='bx bx-dots-vertical-rounded'></i>
+          </div>
+          <div class="board-content">
+            <p>0</p>
+            <span>Total<br>Subscribers</span>
+          </div>
+        </div>
+
+        <div class="board">
+          <div class="board-icons">
+            <i class='bx bx-message-square-detail'></i>
+            <i class='bx bx-dots-vertical-rounded'></i>
+          </div>
+          <div class="board-content">
+            <p>0</p>
+            <span>Total<br>Posts</span>
+          </div>
+        </div>
+
+        <div class="board">
+          <div class="board-icons">
+            <i class='bx bx-block'></i>
+            <i class='bx bx-dots-vertical-rounded'></i>
+          </div>
+          <div class="board-content">
+            <p>0</p>
+            <span>Blocked<br>Users</span>
+          </div>
+        </div>
+
+        <div class="board">
+          <div class="board-icons">
+            <i class='bx bx-envelope'></i>
+            <i class='bx bx-dots-vertical-rounded'></i>
+          </div>
+          <div class="board-content">
+            <p>0</p>
+            <span>New<br>Messages</span>
+          </div>
+        </div>
+      </div>
+      
+
+      
+
+      <!-- Yeni kutular ve chartın aynı satırda yer alması -->
+      <div class="chart-and-stats">
+        <div class="stats-container">
+          <div class="board">
+            <div class="board-icons">
+              <i class='bx bx-user-plus'></i>
+            </div>
+            <div class="board-content">
+              <p>0</p>
+              <span>New<br>Subscribers (Last 7 Days)</span>
+            </div>
+          </div>
+
+          <div class="board">
+            <div class="board-icons">
+              <i class='bx bx-envelope-open'></i>
+            </div>
+            <div class="board-content">
+              <p>0</p>
+              <span>New<br>Posts (Last 7 Days)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Chart section -->
+        <div class="chart">
+          <div class="table">
+            <div class="title">
+              <p>Revenue</p>
+              <span>Last 7 days VS prior week</span>
+            </div>
+            <canvas id="myChart"></canvas>
+          </div>
+        </div>
+      </div> 
+      
+
+      <!-- Messages table section -->
+      <div class="messages-table">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Subject</th>
+              <th>Message</th>
+              <th>Date</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>John Doe</td>
+              <td>john@example.com</td>
+              <td>0123456789</td>
+              <td>Blog Feedback</td>
+              <td>Great content! Keep it up...</td>
+              <td>24/03/2024</td>
+              <td>
+                <button class="action-btn">Reply</button>
+              </td>
+            </tr>
+            <tr>
+              <td>Jane Smith</td>
+              <td>jane@example.com</td>
+              <td>0987654321</td>
+              <td>Question</td>
+              <td>Can I contribute to the blog?</td>
+              <td>25/04/2024</td>
+              <td>
+                <button class="action-btn">Reply</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+      
+    </main>
+
+
+  </div>
+
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+  <script src="../adminPanel/adminPanel.js"></script> <!-- JavaScript dosyasını bağladık -->
+</body>
+</html>

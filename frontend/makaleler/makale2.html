@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The radical potential of feminist
+      approaches to relief and recovery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/581952776c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="makale.css">
+    <link rel="stylesheet" href="owl/owl.carousel.min.css">
+    <link rel="stylesheet" href="owl/owl.theme.default.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="owl/script.js"></script>
+
+</head>
+<body>
+
+    <!-- Sabit Üst Menü -->
+    <section id="menu">
+        <div id="logo">NOTALONE</div>
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div>
+        <nav>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="javascript:void(0);" id="userIcon"><i class="fa-regular fa-user"></i></a></li>
+        </nav>
+    </section>
+
+<!-- Sağ Menü -->
+<div id="loginPanel" class="sidenav-right">
+    <div class="sidenav__inner">
+       <!-- Giriş Paneli -->
+<div id="loginForm" class="auth-section">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <h2>Login</h2>
+    <form onsubmit="handleLogin(event)">
+        <input type="email" id="loginEmail" placeholder="Email" required class="form-control">
+        <div class="password-container">
+            <input type="password" id="loginPassword" placeholder="Password" required class="form-control">
+            <i class="fa fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+        </div>
+        <button type="submit" class="submit-button">Login</button>
+        <div class="links">
+            <a href="#" onclick="showForgotPassword(event)">Forgot Password?</a>
+            <a href="#" onclick="showSignUp(event)">Sign Up</a>
+        </div>
+    </form>
+</div>
+
+<!-- Giriş Yaptıktan Sonraki Panel -->
+<div id="userPanelContent" class="user-panel-section" style="display: none;">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <div class="user-info">
+        <div class="user-header">
+            <i class="fa-regular fa-user"></i>
+            <span id="welcomeUsername">Welcome, User</span>
+        </div>
+    </div>
+    
+    <nav class="user-nav">
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-user"></i>
+            <span>My Profile</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-paper-plane"></i>
+            <span>My Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-comment"></i>
+            <span>My Comments</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-heart"></i>
+            <span>Liked Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-bookmark"></i>
+            <span>Saved Posts</span>
+        </a>
+        
+    </nav>
+    <div class="logout-container">
+        <button id="logoutButton" onclick="handleLogout()">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+    </div>
+</div>
+
+
+        <!-- Şifremi Unuttum Paneli -->
+        <div id="forgotPasswordForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Reset Password</h2>
+            <p class="auth-description">Enter your email address and we'll send you a link to reset your password.</p>
+            <form onsubmit="handleForgotPassword(event)">
+                <input type="email" id="resetEmail" placeholder="Email" required class="form-control">
+                <button type="submit" class="submit-button">Send Reset Link</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Back to Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kaydolma Paneli -->
+        <div id="signUpForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Sign Up</h2>
+            <form onsubmit="handleSignUp(event)">
+                <div class="form-group">
+                    <input type="text" id="firstName" placeholder="First Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="lastName" placeholder="Last Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="signUpEmail" placeholder="Email" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="signUpPassword" placeholder="Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder="Phone Number" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="birthDate" placeholder="Birth Date" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <select id="gender" class="form-control" required>
+                        <option value="">Select Gender</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
+                        <option value="prefer-not">Prefer not to say</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-button">Sign Up</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Already have an account? Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kullanıcı Panel İçeriği (giriş yapıldıktan sonra) -->
+        <div id="userPanelContent" class="user-panel-section" style="display: none;">
+            <!-- Mevcut kullanıcı paneli içeriği buraya -->
+        </div>
+    </div>
+</div>
+
+
+    <!-- Sol Sütun -->
+    <div id="sol-sutun">
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div> <!-- Menü Butonu -->
+    </div>
+    
+    <!-- Menü Aç/Kapat İşlevi -->
+    <script>
+        function toggleLeftMenu() {
+            const sidenav = document.getElementById('sidenav');
+            sidenav.classList.toggle('active');
+        }
+    </script>   
+
+<!-- Sol Menü -->
+<div id="sidenav" class="sidenav">
+    <div class="sidenav__inner">
+        <div class="menu-header">
+            <div id="logo-menu">
+                <span style="color:#e7bcbc; font-size: 30px;">
+                    W♀men, Peace and Security
+                </span>
+            </div>
+            <div class="close-btn" onclick="toggleLeftMenu()">✖</div>
+        </div>
+        <nav>
+            <a href="index.html"><i class="fa-solid fa-home"></i>Home</a>
+            <a href="hakkimizda.html"><i class="fa-solid fa-info"></i>About</a>
+            <a href="yorumPolitikasi.html"><i class="fa-solid fa-comment"></i>Comment Policy</a>
+            <a href="haklarinibil.html"><i class="fa-solid fa-balance-scale"></i>Know Your Rights</a>
+            <a href="blog.html"><i class="fa-solid fa-blog"></i>Blog</a>
+            <a href="forum/forum.html"><i class="fa-solid fa-comments"></i>Forum</a>
+            <a href="#"><i class="fa-solid fa-map-marker-alt"></i>Safe Map</a>
+            <a href="#"><i class="fa-solid fa-calendar"></i>Events</a>
+        </nav>
+    </div>
+</div>
+    
+
+    
+<!-- Sidebar -->
+<div class="sidebarHAKKIMIZDA">
+    <div class="logo-boxHAKKIMIZDA">
+        <img src="img/2logo.png" alt="Logo"> <!-- Logo -->
+        <div class="logo-text">W♀men, Peace <p>and Security</p></div> <!-- Slogan -->
+    </div>
+ 
+    <div class="twitter-boxHAKKIMIZDA">
+        <h2>Follow Us</h2>
+        <div class="twitter-feed">
+            <!-- Twitter Widget -->
+            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" title="Twitter Timeline"
+                src="https://syndication.twitter.com/srv/timeline-profile/screen-name/NOT#ALONE=false&amp;embedId=twitter-widget-0&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfZm9zbnJfc29mdF9pbnRlcnZlbnRpb25zX2VuYWJsZWQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X21peGVkX21lZGlhXzE1ODk3Ijp7ImJ1Y2tldCI6InRyZWF0bWVudCIsInZlcnNpb24iOm51bGx9LCJ0ZndfZXhwZXJpbWVudHNfY29va2llX2V4cGlyYXRpb24iOnsiYnVja2V0IjoxMjA5NjAwLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3Nob3dfYmlyZHdhdGNoX3Bpdm90c19lbmFibGVkIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19kdXBsaWNhdGVfc2NyaWJlc190b19zZXR0aW5ncyI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdXNlX3Byb2ZpbGVfaW1hZ2Vfc2hhcGVfZW5hYmxlZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdmlkZW9faGxzX2R5bmFtaWNfbWFuaWZlc3RzXzE1MDgyIjp7ImJ1Y2tldCI6InRydWVfYml0cmF0ZSIsInZlcnNpb24iOm51bGx9LCJ0ZndfbGVnYWN5X3RpbWVsaW5lX3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9mcm9udGVuZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9fQ%3D%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=true&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=en&amp;maxHeight=400px&amp;origin=https%3A%2F%2Fblogs.lse.ac.uk%2Fwps%2F&amp;partner=jetpack&amp;sessionId=0c6952bf47c9281de6889593d9528bcc3401e8f5&amp;showHeader=true&amp;showReplies=false&amp;siteScreenName=NOT#ALONE&amp;theme=light&amp;transparent=false&amp;widgetsVersion=2615f7e52b7e0%3A1702314776716"
+                style="position: static; visibility: visible; width: 100%; height: 400px; display: block;">
+            </iframe>
+        </div>
+    </div>
+ </div>
+
+<!-- Ana Sayfa İçeriği (Slider Benzeri Yapı) -->
+<div id="makale">
+    <img src="img/makale2.jpg" alt="OGIP" class="makale-img">
+    <div class="post-info">
+        <div class="author-date">
+            <h3 class="author">Nikita Yasmin Shah,</h3>
+            <h3>Florence Waller-Carr</h3>
+            <h3 class="date">June 27th, 2022</h3>
+        </div>
+        <div class="post-main-content"style="margin-left: -180px;">
+            <h1>The radical potential of feminist</h1>
+            <h1>approaches to relief and recovery</h1>
+        </div>
+    </div>
+</div>
+
+
+    <main>
+        <div class="makale-box">
+
+            <div class="single-post__main">
+                <div class="single-post__main-sidebar">
+                  <div class="social-share static" data-post="4992" style="top: 0px;">
+             
+            </svg>
+            </a>
+             
+            </svg>
+            </a>
+            
+            </svg>
+            </a>
+                  
+              </div>
+                </div>
+                <div class="single-post__main-content">
+                  <div class="post-content post-builder">
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p><em><a class="Hyperlink SCXW73489809 BCX0" href="https://ourgenpeace.com/" target="_blank" rel="noreferrer noopener"><span class="TextRun Underlined SCXW73489809 BCX0" lang="EN-GB" xml:lang="EN-GB"><span class="NormalTextRun SCXW73489809 BCX0">Our Generation for Inclusive Peace</span></span></a><span class="TextRun SCXW73489809 BCX0" lang="EN-GB" xml:lang="EN-GB"><span class="NormalTextRun SCXW73489809 BCX0"> (OGIP) – is a youth-led organisation aiming to make peace and security proc</span><span class="NormalTextRun SCXW73489809 BCX0">esses more inclusive, intersectional, and decolonised through advancing young voices and experiences.</span> <span class="NormalTextRun SCXW73489809 BCX0">OGIP challenges the dominant frameworks for relief and recovery by exploring </span><span class="NormalTextRun SCXW73489809 BCX0">different contexts, perspectives, identities and experiences on relief and recovery and by demonstrating collaborative and transformative solutions based on their recent </span></span><a class="Hyperlink SCXW73489809 BCX0" href="https://ourgenpeace.com/research/feminist-recovery-and-rebuilding-perspectives-from-our-research-group/" target="_blank" rel="noreferrer noopener"><span class="TextRun Underlined SCXW73489809 BCX0" lang="EN-GB" xml:lang="EN-GB"><span class="NormalTextRun SCXW73489809 BCX0">research series on feminist recovery</span></span></a><span class="TextRun SCXW73489809 BCX0" lang="EN-GB" xml:lang="EN-GB"><span class="NormalTextRun SCXW73489809 BCX0">.&nbsp;</span></span><span class="EOP SCXW73489809 BCX0">&nbsp;</span></em></p>
+            <p>Relief and recovery, conceptualised under the Women Peace and Security (WPS) Agenda, is generally associated with humanitarian response, post-conflict reconstruction, and the provision of support for the victims of conflict. If, however, conceptualisations of relief and recovery are extended, and power holders working on relief and recovery processes transform their approaches, the pillar of relief and recovery holds the potential to work towards a just and sustainable peace.</p>
+            <p>In the current global context, societies are seeking to recover from the impacts of the COVID-19 pandemic, mitigate the disastrous effects of the climate emergency and recover from conflict and instability. Communities directly affected by crises are working collectively to find and deliver solutions. To be both effective and transformative, relief and recovery processes must respond to crises beyond traditional understandings of conflict, and centre affected communities in their responses.</p>
+            <p>Recovery strategies that are inclusive, intersectional, feminist, and anti-racist hold great potential for a just and sustainable peace that facilitates people-centred security, challenges structural inequality and radically transforms structures of power. It is imperative to transform institutional actors’ approaches to relief and recovery to achieve a version of security that focuses on the lives and wellbeing of people and communities. Processes of recovering and rebuilding from crises, such as the current pandemic, come with significant financial investment and attention from international actors; inherently, they also provide a window of opportunity to dramatically rethink and reshape the status quo and therefore, do things differently.</p>
+            <p>&nbsp;</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">Recovery strategies that are inclusive, intersectional, feminist, and anti-racist hold great potential for a just and sustainable peace that facilitates people-centred security, challenges structural inequality and radically transforms structures of power.  </p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>Below, we argue that a feminist approach that works to redress can help unlock the potential of recovery and rebuilding. To facilitate this process, we explore three actions required to redress inequalities in relief and recovery processes; challenge conceptualisations of legitimate knowledge, move away from homogeneous approaches and centre a feminist approach to care and how it impacts participation in relief and recovery.</p>
+            <p><b>Legitimacy, knowledge, and power in decision-making</b></p>
+            <p>Western concepts of knowledge have been homogenised as ‘truth’ subverting the global balance. Knowledge types of those in the Global South, who form the global majority, are devalued, de-prioritised and in some cases co-opted by the Global North. Practitioners in the Global North have been deemed as “knowers of ideas” whereas those in the Global South are positioned as the ‘beneficiaries of programmes’ or are often erased from the narrative completely, for instance the continued erasure of Indigenous communities’ knowledge and practices. For a feminist relief and recovery process, it is imperative to shift the power dynamic and to instil transformational change, addressing histories of inequality and exploitation. It is important to fund and support research and solutions that are created in the Global South led by communities and individuals who are the real experts on their needs and solutions.</p>
+            <p>Further, it is integral to utilise methods to get to these solutions that are participatory, inclusive and accessible.</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">Practitioners and institutions should seriously consider ways in which they can close the ‘feedback loop’ offering ways to shift from extractive research and top-down implementation to more meaningful engagement and collaboration with local partners and contributors.</p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>Often the most marginalised groups are affected by multiple global issues. Thus, paying close attention to gender, sexual orientation, age, disability, race, neurodiversity, class, and caste enables an understanding of how different factors and characteristics impact individuals and communities differently. Relief and recovery processes must engage those disproportionately affected by crises as co-creators and owners of knowledge and solutions from the very start of response processes.</p>
+            <p><b>Challenging homogeneity and championing context-specific responses</b></p>
+            <p>Often relief and recovery processes are imported from one context, or generalised approaches defined by institutional actors in the Global North, directly into other crises, meaning actions often do not respond to the specific needs of communities or identify how marginalised groups may experience crises differently. When contextual information is sought, institutional bias, a lack of adequate funding, and a hesitancy to work with local partners can often lead to a homogenisation of communities and lived experiences and result in policy interventions and programming actions that are too narrow and therefore insufficient.</p>
+            <p>Feminist approaches to relief and recovery require a curiosity to go beyond one-size-fits-all solutions and take context into account. Decision making in crises contexts, therefore, needs to take a long-term and holistic view, take seriously the diverse experiences of actors and communities in that context, and challenge the problematic binary between the so-called “local” and “global”. ￼Feminists’ insistence to look at power structures – who holds power, why, and to what effect – is vital, therefore, for achieving lasting meaningful impact and ensuring context-specific responses are developed by affected communities. This approach also requires a shift in material terms, ensuring that financial and material power is redirected to local actors, familiar with the contexts the communities recovery and rebuilding is taking place in.</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">Feminists’ insistence to look at power structures – who holds power, why, and to what effect – is vital, therefore, for achieving lasting meaningful impact and ensuring context-specific responses are developed by affected communities. </p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p><b>Care&nbsp;</b></p>
+            <p>Underpinning relief and recovery is labour; paid and unpaid, within systems of care to holistically provide for people’s wellbeing. The COVID-19 pandemic has brought care to centre stage more than ever before. Caring for friends and family, caring for the community and caring for ourselves. Whilst the burden of care materialised through unpaid labour continues to be disproportionately placed and felt by self-identifying women, it is more so for women with marginalised identities.</p>
+            <p>Our society has created a culture that places the onus of responsibility for ‘self-care’ and wellbeing on the individual by promoting materialistic solutions. Whilst also placing expectations of unrealistic productivity on individuals, further entrenching neoliberal capitalist structures. This culture is designed to lack space and time for rest, recovery and healing. In doing so, the additional burdens on marginalised communities create barriers for those most affected by crises to participate in relief and recovery processes in a way that protects their wellbeing.</p>
+            <p>Understanding the complexities of care, the role it plays in creating burdens and inequality, and the structural factors that lead to this must be centred for relief and recovery processes not to exploit those already burdened with care and to place individual and collective care as central in creating a feminist and just peace. The WPS community needs to redress the burden of care placed on self-identifying women and more broadly marginalised and racialised communities,&nbsp; as well as recognise and redistribute this by prompting long-needed discussions around racism, oppression, inequity, privilege and inclusion in the peace, security and humanitarian sectors. Further, calling these sectors to reflect inward and recognise their colonial roots.</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">Our society has created a culture that places the onus of responsibility for ‘self-care’ and wellbeing on the individual by promoting materialistic solutions. Whilst also placing expectations of unrealistic productivity on individuals, further entrenching neoliberal capitalist structures. This culture is designed to lack space and time for rest, recovery and healing.</p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>The organisations and institutions currently leading relief and recovery processes bear the responsibility to create structural and organisational change that redistributes the burden of care. Acknowledging the role of care and responding to the disproportionate burdens it holds is central to undertaking relief and recovery that addresses the structural factors leading to these burdens and ensuring care and wellbeing are centred in recovery processes.</p>
+            <p><b>The Future of relief and recovery</b></p>
+            <p>Recovery and rebuilding is a complex and layered process that requires a commitment to centring inclusivity, intersectionality, feminist approaches and anti-racist commitments. The actors that currently hold power in these processes namely UN Agencies, National Governments and INGOs should reflect on the structure and systems of power they engage in and reproduce through recovery and rebuilding. The OGIP policy paper on feminist recovery and rebuilding provides these actors with concrete recommendations on how to redress these inequalities through challenging conceptualisations of legitimate knowledge, moving away from homogeneous approaches and centring a feminist approach to care. In addressing these issues, there is the potential for recovery and rebuilding to provide an opportunity to move towards a just and sustainable peace.</p>
+            <p><em>This blog is based on the Policy Brief “<a href="https://www.lse.ac.uk/women-peace-security/assets/documents/An-inclusive-and-sustainable-approach-to-relief-and-recovery-policy-brief-05.pdf">An inclusive and sustainable approach to relief and recovery</a>” which&nbsp;provides tangible recommendations to power holders, including multilateral organisations, governments and INGOs, with the goal of generating radically transformative and truly inclusive policy interventions to ensure that relief and recovery is meaningful, just and sustainable.&nbsp;</em></p>
+            <hr>
+            <p style="margin-bottom: 20px;"><b>Contributors: </b>The OGIP research series and policy paper on Feminist Recovery and Rebuilding was developed collaboratively by OGIP’s Research Group. Research Group Members were involved in the concept development and editorial process. With thanks and acknowledgement to Research Group Members Nikita Yasmin Shah, Alamgir, The Institute for Young Women’s Development, Alexandria Kazmerik, Rita Trias Prats, Kendall Trelegan, Hannah Edwards, Ambika Varma, Quamar Jafri, Lorna Wightman, Sarah Dickens, Genevieve Riccoboni and Alia Soliman for their contributions.</p>
+            <p style="margin-bottom: 20px;"><b>Our Generation for Inclusive Peace (OGIP):</b> OGIP is a feminist organisation that aims to advance, shape, and influence the Women, Peace, &amp; Security (WPS) and Youth, Peace, &amp; Security (YPS) agendas to be more inclusive, intersectional, and decolonised through advancing young voices and experiences.</p>
+            <p><em>Image credit: <a href="https://www.flickr.com/photos/unwomeneuropecentralasia/33130421528/in/album-72157706433441405/">UN women</a> (CC BY-NC 2.0)&nbsp;</em></p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                          </div>
+                        <div class="author">
+              <h3>About the author</h3>
+            
+                  <div class="author__main">
+                  <div class="author__image">
+                    <img width="96" height="96" src="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/06/Headshot-100x100.jpeg" class="avatar avatar-96 photo wp-post-image" alt="" srcset="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/06/Headshot-100x100.jpeg 100w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/06/Headshot-150x150.jpeg 150w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/06/Headshot-300x300.jpeg 300w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/06/Headshot-768x764.jpeg 768w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/06/Headshot-1024x1019.jpeg 1024w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/06/Headshot.jpeg 1241w" sizes="(max-width: 96px) 100vw, 96px">
+                    <h3>Nikita Yasmin Shah</h3>
+                  </div>
+                          <div class="author__content">
+                      <p>Nikita Yasmin Shah (@Shahdot) is the Founder of Hyphen Poetry and an independent researcher and consultant working on a range of social justice issues. Nikita has bridged her practice of art and professional work in the international development sector to develop a performative decolonial lens. She has a background in decoloniality, anti-racism, migration, modern slavery, climate and gender-related issues. Nikita holds an MA in Global Governance from the University of Waterloo, Balsillie School of International Affairs and is a member of the OGIP Research Group</p>
+                    </div>
+                      </div>
+                  <div class="author__main">
+                  <div class="author__image">
+                    <img width="96" height="96" src="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/06/Florence-headshot-100x100.jpg" class="avatar avatar-96 photo wp-post-image" alt="" srcset="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/06/Florence-headshot-100x100.jpg 100w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/06/Florence-headshot-150x150.jpg 150w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/06/Florence-headshot-300x300.jpg 300w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/06/Florence-headshot.jpg 400w" sizes="(max-width: 96px) 100vw, 96px">
+                    <h3>Florence Waller-Carr</h3>
+                  </div>
+                          <div class="author__content">
+                      <p>Florence Waller-Carr (@florencewallerc) is a Co-founder of Our Generation for Inclusive Peace where she works on research and advocacy. She is also a PhD student at the London School of Economics where her research focuses on the role of civil society in the production of Women, Peace and Security.  
+            
+             
+            
+             </p>
+                    </div>
+                      </div>
+              
+                  
+                <div class="author__categories">
+                  <span>Posted In: </span>
+                          Featured
+                     |                       WPS in Practice
+                                      </div>
+              </div>
+                  <section id="comments" class="comments">
+                  <div class="no-comments">
+                      </div>
+              
+              
+            </section>
+                      </div>
+              </div>
+ 
+        </div>
+    </main>
+ 
+    <!-- footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <!-- Footer Logo Section -->
+        <div class="footer-logo">
+            <div id="logoFooter">NOTALONE</div>
+            <div class="logo-text"><p>W♀men, Peace </p><p>and Security</p></div> 
+        </div>
+
+        <!-- Quick Links Section -->
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>
+                <i class='bx bx-map'></i>
+                Türk Hava Kurumu Üniversitesi Bahçekapı Mah.
+            </p>
+            <p>
+                <i class='bx bx-phone'></i>
+                (0212) 389 99 99
+            </p>
+            <p>
+                <i class='bx bx-envelope'></i>
+                örnek@gmail.com
+            </p>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="footer-social">
+            <h4>Social Media</h4>
+            <div class="social-icons">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-twitter'></i></a>
+                <a href="#"><i class='bx bxl-instagram'></i></a>
+                <a href="#"><i class='bx bxl-linkedin'></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="footer-bottom">
+        <p>&copy; 2024 NOTALONE</p>
+    </div>
+</footer>
+
+    <script src="owl/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1..min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="makale.js"></script> <!-- JavaScript dosyasını bağladık -->
+
+</body>
+</html>

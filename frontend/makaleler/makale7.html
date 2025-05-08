@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The political economy of Women, Peace, and Security funding in Canada</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/581952776c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="makale.css">
+    <link rel="stylesheet" href="owl/owl.carousel.min.css">
+    <link rel="stylesheet" href="owl/owl.theme.default.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="owl/script.js"></script>
+
+</head>
+<body>
+
+    <!-- Sabit Üst Menü -->
+    <section id="menu">
+        <div id="logo">NOTALONE</div>
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div>
+        <nav>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="javascript:void(0);" id="userIcon"><i class="fa-regular fa-user"></i></a></li>
+        </nav>
+    </section>
+
+<!-- Sağ Menü -->
+<div id="loginPanel" class="sidenav-right">
+    <div class="sidenav__inner">
+       <!-- Giriş Paneli -->
+<div id="loginForm" class="auth-section">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <h2>Login</h2>
+    <form onsubmit="handleLogin(event)">
+        <input type="email" id="loginEmail" placeholder="Email" required class="form-control">
+        <div class="password-container">
+            <input type="password" id="loginPassword" placeholder="Password" required class="form-control">
+            <i class="fa fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+        </div>
+        <button type="submit" class="submit-button">Login</button>
+        <div class="links">
+            <a href="#" onclick="showForgotPassword(event)">Forgot Password?</a>
+            <a href="#" onclick="showSignUp(event)">Sign Up</a>
+        </div>
+    </form>
+</div>
+
+<!-- Giriş Yaptıktan Sonraki Panel -->
+<div id="userPanelContent" class="user-panel-section" style="display: none;">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <div class="user-info">
+        <div class="user-header">
+            <i class="fa-regular fa-user"></i>
+            <span id="welcomeUsername">Welcome, User</span>
+        </div>
+    </div>
+    
+    <nav class="user-nav">
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-user"></i>
+            <span>My Profile</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-paper-plane"></i>
+            <span>My Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-comment"></i>
+            <span>My Comments</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-heart"></i>
+            <span>Liked Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-bookmark"></i>
+            <span>Saved Posts</span>
+        </a>
+        
+    </nav>
+    <div class="logout-container">
+        <button id="logoutButton" onclick="handleLogout()">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+    </div>
+</div>
+
+
+        <!-- Şifremi Unuttum Paneli -->
+        <div id="forgotPasswordForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Reset Password</h2>
+            <p class="auth-description">Enter your email address and we'll send you a link to reset your password.</p>
+            <form onsubmit="handleForgotPassword(event)">
+                <input type="email" id="resetEmail" placeholder="Email" required class="form-control">
+                <button type="submit" class="submit-button">Send Reset Link</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Back to Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kaydolma Paneli -->
+        <div id="signUpForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Sign Up</h2>
+            <form onsubmit="handleSignUp(event)">
+                <div class="form-group">
+                    <input type="text" id="firstName" placeholder="First Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="lastName" placeholder="Last Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="signUpEmail" placeholder="Email" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="signUpPassword" placeholder="Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder="Phone Number" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="birthDate" placeholder="Birth Date" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <select id="gender" class="form-control" required>
+                        <option value="">Select Gender</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
+                        <option value="prefer-not">Prefer not to say</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-button">Sign Up</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Already have an account? Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kullanıcı Panel İçeriği (giriş yapıldıktan sonra) -->
+        <div id="userPanelContent" class="user-panel-section" style="display: none;">
+            <!-- Mevcut kullanıcı paneli içeriği buraya -->
+        </div>
+    </div>
+</div>
+
+
+    <!-- Sol Sütun -->
+    <div id="sol-sutun">
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div> <!-- Menü Butonu -->
+    </div>
+    
+    <!-- Menü Aç/Kapat İşlevi -->
+    <script>
+        function toggleLeftMenu() {
+            const sidenav = document.getElementById('sidenav');
+            sidenav.classList.toggle('active');
+        }
+    </script>   
+
+<!-- Sol Menü -->
+<div id="sidenav" class="sidenav">
+    <div class="sidenav__inner">
+        <div class="menu-header">
+            <div id="logo-menu">
+                <span style="color:#e7bcbc; font-size: 30px;">
+                    W♀men, Peace and Security
+                </span>
+            </div>
+            <div class="close-btn" onclick="toggleLeftMenu()">✖</div>
+        </div>
+        <nav>
+            <a href="index.html"><i class="fa-solid fa-home"></i>Home</a>
+            <a href="hakkimizda.html"><i class="fa-solid fa-info"></i>About</a>
+            <a href="yorumPolitikasi.html"><i class="fa-solid fa-comment"></i>Comment Policy</a>
+            <a href="haklarinibil.html"><i class="fa-solid fa-balance-scale"></i>Know Your Rights</a>
+            <a href="blog.html"><i class="fa-solid fa-blog"></i>Blog</a>
+            <a href="forum/forum.html"><i class="fa-solid fa-comments"></i>Forum</a>
+            <a href="#"><i class="fa-solid fa-map-marker-alt"></i>Safe Map</a>
+            <a href="#"><i class="fa-solid fa-calendar"></i>Events</a>
+        </nav>
+    </div>
+</div>
+    
+
+    
+<!-- Sidebar -->
+<div class="sidebarHAKKIMIZDA">
+    <div class="logo-boxHAKKIMIZDA">
+        <img src="img/2logo.png" alt="Logo"> <!-- Logo -->
+        <div class="logo-text">W♀men, Peace <p>and Security</p></div> <!-- Slogan -->
+    </div>
+ 
+    <div class="twitter-boxHAKKIMIZDA">
+        <h2>Follow Us</h2>
+        <div class="twitter-feed">
+            <!-- Twitter Widget -->
+            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" title="Twitter Timeline"
+                src="https://syndication.twitter.com/srv/timeline-profile/screen-name/NOT#ALONE=false&amp;embedId=twitter-widget-0&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfZm9zbnJfc29mdF9pbnRlcnZlbnRpb25zX2VuYWJsZWQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X21peGVkX21lZGlhXzE1ODk3Ijp7ImJ1Y2tldCI6InRyZWF0bWVudCIsInZlcnNpb24iOm51bGx9LCJ0ZndfZXhwZXJpbWVudHNfY29va2llX2V4cGlyYXRpb24iOnsiYnVja2V0IjoxMjA5NjAwLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3Nob3dfYmlyZHdhdGNoX3Bpdm90c19lbmFibGVkIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19kdXBsaWNhdGVfc2NyaWJlc190b19zZXR0aW5ncyI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdXNlX3Byb2ZpbGVfaW1hZ2Vfc2hhcGVfZW5hYmxlZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdmlkZW9faGxzX2R5bmFtaWNfbWFuaWZlc3RzXzE1MDgyIjp7ImJ1Y2tldCI6InRydWVfYml0cmF0ZSIsInZlcnNpb24iOm51bGx9LCJ0ZndfbGVnYWN5X3RpbWVsaW5lX3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9mcm9udGVuZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9fQ%3D%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=true&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=en&amp;maxHeight=400px&amp;origin=https%3A%2F%2Fblogs.lse.ac.uk%2Fwps%2F&amp;partner=jetpack&amp;sessionId=0c6952bf47c9281de6889593d9528bcc3401e8f5&amp;showHeader=true&amp;showReplies=false&amp;siteScreenName=NOT#ALONE&amp;theme=light&amp;transparent=false&amp;widgetsVersion=2615f7e52b7e0%3A1702314776716"
+                style="position: static; visibility: visible; width: 100%; height: 400px; display: block;">
+            </iframe>
+        </div>
+    </div>
+ </div>
+
+<!-- Ana Sayfa İçeriği (Slider Benzeri Yapı) -->
+<div id="makale">
+    <img src="../img/makale7.jpg" alt="OGIP" class="makale-img">
+    <div class="post-info">
+        <div class="author-date">
+            <h3 class="author">Bibi Imre-Millei</h3>
+            <h3>Maddy Godin</h3>
+            <h3>Melika Khajeh Hosseiny</h3>
+            <h3 style="margin-top: 15px;" class="date">April 14th, 2022</h3>
+        </div>
+        <div class="post-main-content"style="margin-left: -190px;">
+            <h1 style="margin-top: 320px;">The political economy of Women,</h1>
+            <h1>Peace, and Security funding in Canada</h1>
+        </div>
+    </div>
+</div>
+
+
+    <main>
+        <div class="makale-box">
+            <div class="single-post__main">
+                <div class="single-post__main-sidebar">
+                  <div class="social-share static" data-post="4956" style="top: 0px;">
+                <div class="single-post__main-content">
+                  <div class="post-content post-builder">
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p><em>&nbsp;</em></p>
+            <p><em><a href="https://twitter.com/BiboraRoza">Bibi Imre-Millei</a>, <a href="https://twitter.com/godinnmadison">Maddy Godin</a> and <a href="https://twitter.com/melikakhajeh">Melika Khajeh Hosseiny</a> look at Canada’s funding structures for Women, Peace and Security work and research, and highlight some of the feminist tensions that researchers often find themselves navigating. </em></p>
+            <p>In the summer of 2021 we interviewed 30 researchers, mostly academics, who worked on topics related to the Women, Peace and Security (WPS) agenda in Canada. We were drawn to this topic because as junior researchers who touch on WPS, we became interested in how the research community around us functioned, and how we could make it better. To begin, we asked where WPS researchers were located in Canada, and used university websites to search for them. But we soon realised we would have to talk to researchers themselves and ask more complicated questions around the types of support researchers felt they received and where support came from.</p>
+            <p>We were inspired by Taylor and Lahad’s <a href="https://link.springer.com/book/10.1007/978-3-319-64224-6"><em>Feeling Academic in the Neoliberal University</em></a>, and the importance it places on “stories” to uncover the precarity and casualisation of the neoliberal university, as faced by feminist researchers in particular. Like the authors of <em>Feeling Academic</em>, we aimed to understand how researchers who focus on WPS in Canada understood their work as part of the broader political economy of academia.</p>
+            <p>In this blog we focus on feminist tensions that WPS researchers experienced in our study, and how they relate to the funding structures they had access to. The Canadian field, like the international one, <a href="https://blogs.lse.ac.uk/wps/2020/09/28/wps-as-evolving-and-contested-terrain-a-review-of-new-directions/">is engaged in debates</a> about how to define the field, where funding should come from, and who is represented as a WPS scholar. Our participants were in constant negotiation between the demands of academia and the demands of funding institutions, which make the demands of academia achievable.</p>
+            <p>We found that the WPS related research in Canada is driven by a geographically bounded political economy, centred in Ottawa (and Southern Ontario more broadly) and the government agencies that reside there. Most researchers working on WPS were either based in Southern Ontario or felt that they often had to visit or collaborate with those in Ontario (and Ottawa specifically), to connect with practitioners, funding agencies, and broader networks of support. As the host of Canada’s capital city and a population centre, Ontario seems an intuitive centre for research. In the Canadian context—a large country with dispersed universities and expensive flights—this geographic concentration introduced constraints on our participants when it came to the types of research and breadth of research that could be undertaken outside of Ontario.</p>
+            <p>The political economy of the WPS space in Canada is centred around two interlinked government poles in Ottawa: Global Affairs Canada (GAC) and the Department of National Defence (DND). Though the funding agency most mentioned was the Social Sciences and Humanities Research Council (the primary funder of all Canadian social science research), it seemed that opportunities for specialised WPS funding and WPS community building came primarily from GAC and DND. While these poles were not necessarily mutually exclusive, researchers did feel separated (or at the very least, had diverging views) from each other based on where they envisioned financial support would come from.</p>
+            <p>In Canada, there has been a push for defence research on WPS-related topics, for at least the past seven years. The push has come both from researchers who are interested in WPS, who used Canada’s WPS National Action Plan as leverage, and from the government agencies mentioned above who sought to leverage WPS research to aid in the implementation of their own agendas. However, as the funding provided aligns with government objectives on WPS, those whose research topics the government does not deem useful are left out of funding calls and calls for consultation and expertise.</p>
+            <p>The departmental implementation plans of <a href="https://www.international.gc.ca/gac-amc/publications/cnap-pnac/implementation_plans-plans_mise_ceuvre-2017-2022-gac-amc.aspx?lang=eng">GAC</a> and <a href="https://www.international.gc.ca/gac-amc/publications/cnap-pnac/implementation_plans-plans_mise_ceuvre-2017-2022-dnd.aspx?lang=eng">DND</a>, in line with Canada’s 2017-2022 &nbsp;<a href="https://www.international.gc.ca/world-monde/issues_development-enjeux_developpement/gender_equality-egalite_des_genres/cnap_wps-pnac_fps.aspx?lang=eng">National Action Plan on WPS</a>, both made links between the success of their implementation plan and harnessing of researcher expertise on WPS. In combination with this support in implementation plans, DND has struggled with multiple <a href="https://globalnews.ca/news/7883717/canadian-forces-sexual-misconduct-timeline/">recent crises</a> (with further crises <a href="https://www.cbc.ca/news/canada/maclean-s-alleges-disturbing-levels-of-sexual-assault-in-canadian-military-1.2621333">starting in 2014</a> and the <a href="https://www.macleans.ca/news/canada/rape-in-the-military/">1990s</a>) of sexual misconduct and calls for better integration of women and gender perspectives in the military. Part of DND’s strategy towards a more inclusive military culture has included adding topics related to women, peace, and security to their main funding calls, such as the Mobilizing Insights in Defence and Security (MINDS) Targeted Engagement Grants (TEG). As can be seen in the <a href="https://www.canada.ca/en/department-national-defence/programs/minds/funding-results.html">funding results</a> of the MINDS programme and <a href="https://www.canada.ca/en/department-national-defence/corporate/reports-publications/sexual-misbehaviour/external-review-2015.html">multiple</a> <a href="https://www.oag-bvg.gc.ca/internet/English/parl_oag_201811_05_e_43203.html">external</a> <a href="https://www.ourcommons.ca/DocumentViewer/en/43-2/FEWO/report-10">interventions</a> on military culture, there has been growth in the engagement between academia and government on WPS-related topics.</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">as the funding provided aligns with government objectives on WPS, those whose research topics the government does not deem useful are left out of funding calls and calls for consultation and expertise. </p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>Networks of researchers, both formal and informal, were one way that participants accessed funding and opportunities. <a href="https://www.mcgill.ca/rnwps/">The Research Network on WPS (RN-WPS),</a> <a href="https://wpsn-canada.org/">The Women, Peace and Security Network Canada</a> (WPSN), <a href="https://www.wcaps.org/">Women of Colour Advancing Peace and Security Canada</a>, and <a href="https://wiiscanada.org/">Women in International Security Canada</a> were all important sources of community and support for our participants. However, networks tended to be concentrated in Southern Ontario, and connected to the Ottawa-centric poles of funding from GAC and DND. It was difficult for those in provinces other than Ontario to access such networks, and we found that those from more remote areas of the country tended to move to Ontario to engage in such opportunities.</p>
+            <p>Though there was much problematisation of defence related funding in the Canadian WPS space by participants, there was little problematisation of how GAC could also be seen as a neocolonial agent of a Global North, settler colonial state. The debates our participants had are in line with broader, <a href="https://wps.unwomen.org/keeping-peace/">international debates</a> on the <a href="https://www.e-ir.info/2021/01/12/women-peace-and-continued-militarism-revisiting-unscr-1325-and-its-african-roots/">militarisation of the WPS field</a> and its drift from the<a href="https://academic.oup.com/isagsq/article/1/3/ksab017/6374665"> radical vision of its progenitors</a>. As one small example, some feminist organisations who worked with GAC, declined our interview request due to our DND funding, claiming our association with DND only furthered the militarisation they were working against. While this critique of our work is valid, some of our participants discussed that they felt they could not publicly voice similar critiques against GAC, which was viewed as a softer entity.</p>
+            <p>Funding often felt out of reach for those who could not directly connect with defence-related funding calls, early career researchers, and those who felt isolated within the broader field. As one participant remarked when asked about how funding was distributed: “The people sitting on committees don’t represent me […] they don’t represent my work.” Moreover, those who framed their work around peace did not often pull from DND sources of funding and did not benefit from the recent push for defence related funding. These researchers continued to rely on some GAC collaborations (if they were in the right circles to have access to such collaborations) and on international partnerships. These participants also tended to be less embedded in Canadian networks (as many rely on DND funding) and instead interacted more internationally in general and interacted with activist circles linked to GAC domestically.</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">The debates our participants had are in line with broader, international debates on the militarisation of the WPS field and its drift from the radical vision of its progenitors.</p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>The militarisation of the WPS agenda and of academic research in general is not new. To continue to do research in academia, researchers often must weigh what they are willing to compromise in order to continue in their work, but also, in order to stay afloat amidst the demands of academia. Those who were able to leverage defence funding and engage with networks in Ontario were at an advantage in this regard. However, our participants also had to contend with a lack of acceptance of feminist research in the defence space, and a lack of acceptance of those who engaged with defence in the feminist space. As Taylor and Lahad note in <em>Feeling Academic </em>academics must continuously display and build their own value, not only to their university, but their peers and their funding agencies.</p>
+            <p style="margin-bottom: 20px;">The geographically bound political economy of the WPS field in Canada is changing, as researchers take the initiative to share knowledge and create networks of support. In particular, the recently created RN-WPS is pushing the geographical boundaries of the field and engaging those from British Columbia and Quebec to share in a political economy historically centred in Ontario.</p>
+            <hr>
+            <p style="margin-top: 15px;"><em>This blog was published with the support of a European Research Council (ERC) grant under the European Union’s Horizon 2020 research and innovation programme (Grant agreement No. 786494), whose funds in part support this space.</em></p>
+            <p><em>Image credit: <a href="https://www.flickr.com/photos/nato/38134128394/in/photostream/">Flickr</a> (CC BY-NC-ND 2.0)</em></p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                          </div>
+                        <div class="author">
+              <h3>About the author</h3>
+            
+                  <div class="author__main">
+                  <div class="author__image">
+                    <img width="96" height="96" src="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/04/Bibi-150x150.jpg" class="avatar avatar-96 photo wp-post-image" alt="" scale="0">
+                    <h3>Bibi Imre-Millei</h3>
+                  </div>
+                          <div class="author__content">
+                      <p>Bibi Imre-Millei holds two master’s degrees, one in Political Studies and one in Sociology, from Queen’s University in Canada. Bibi works at the Centre for International and Defence Policy (CIDP) as the Project Coordinator for the CIDP’s Gender Lab and is a researcher at McMaster University’s Trauma and Recovery Lab. She can be reached at 14bim1@queensu.ca or @biboraroza on Twitter and her more detailed biography can be found here: https://www.linkedin.com/in/biboraroza/. Bibi was the principal investigator on the Mobilizing Insights in Defence and Security Targeted Engagement grant which funded this project, as well as the contract with the Dallaire Centre of Excellence for Peace and Security that mapped some of the initial WPS research in Canada. </p>
+                    </div>
+                      </div>
+                  <div class="author__main">
+                  <div class="author__image">
+                    <img width="96" height="96" src="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/04/Maddy-100x100.jpg" class="avatar avatar-96 photo wp-post-image" alt="" srcset="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/04/Maddy-100x100.jpg 100w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/04/Maddy-150x150.jpg 150w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/04/Maddy-300x300.jpg 300w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/04/Maddy.jpg 374w" sizes="(max-width: 96px) 100vw, 96px">
+                    <h3>Maddy Godin</h3>
+                  </div>
+                          <div class="author__content">
+                      <p>Maddy Godin is currently undertaking a master’s at the London School of Economics in International, Social, and Public Policy, while working as a Policy and Advocacy Intern with The Advocacy Team. In 2021, Maddy completed a Bachelor of Arts (honours) from Queen’s University in Global Development Studies and Political Studies. She worked as a research assistant for the Centre for International and Defence Policy (CIDP) between 2020 and 2021. Maddy can be found @godinnmadison on Twitter. Her more detailed resume can be found here: https://www.linkedin.com/in/maddygodin/.   </p>
+                    </div>
+                      </div>
+                  <div class="author__main">
+                  <div class="author__image">
+                    <img width="96" height="96" src="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/04/Melika-100x100.jpg" class="avatar avatar-96 photo wp-post-image" alt="" srcset="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/04/Melika-100x100.jpg 100w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/04/Melika-150x150.jpg 150w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/04/Melika.jpg 232w" sizes="(max-width: 96px) 100vw, 96px">
+                    <h3>Melika Khajeh Hosseiny</h3>
+                  </div>
+                          <div class="author__content">
+                      <p>Melika Khajeh Hosseiny is currently undertaking a master’s of Political Science at the University of British Columbia funded by a Social Sciences and Humanities Research Council Canada Graduate Scholarship. In 2021, Melika completed a Bachelor of Arts (honours) from Queen’s University in Political Studies and Global Development Studies. She worked as a research assistant for the Centre for International and Defence Policy (CIDP) between 2020 and 2021. Melika can be followed on Twitter, @melikakhajeh and her more detailed biography can be found at: www.linkedin.com/in/melika-khajeh. </p>
+                    </div>
+                      </div>
+
+            
+ 
+        </div>
+    </main>
+ 
+    <!-- footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <!-- Footer Logo Section -->
+        <div class="footer-logo">
+            <div id="logoFooter">NOTALONE</div>
+            <div class="logo-text"><p>W♀men, Peace </p><p>and Security</p></div> 
+        </div>
+
+        <!-- Quick Links Section -->
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>
+                <i class='bx bx-map'></i>
+                Türk Hava Kurumu Üniversitesi Bahçekapı Mah.
+            </p>
+            <p>
+                <i class='bx bx-phone'></i>
+                (0212) 389 99 99
+            </p>
+            <p>
+                <i class='bx bx-envelope'></i>
+                örnek@gmail.com
+            </p>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="footer-social">
+            <h4>Social Media</h4>
+            <div class="social-icons">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-twitter'></i></a>
+                <a href="#"><i class='bx bxl-instagram'></i></a>
+                <a href="#"><i class='bx bxl-linkedin'></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="footer-bottom">
+        <p>&copy; 2024 NOTALONE</p>
+    </div>
+</footer>
+
+    <script src="owl/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1..min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="makale.js"></script> <!-- JavaScript dosyasını bağladık -->
+
+</body>
+</html>

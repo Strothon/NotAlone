@@ -1,0 +1,563 @@
+/* Genel Ayarlar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: linear-gradient(to right, #f9fafb, #e7bcbc);
+    margin-top: 100px;
+}
+
+.top-nav {
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 1rem;
+    margin-bottom: 2rem;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-grid {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    gap: 2rem;
+}
+
+.profile-card {
+    background: white;
+    border-radius: px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e5e7eb;
+}
+
+.profile-image {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    margin: 0 auto 1rem;
+    position: relative;
+    display: block;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e7bcbc; /* Çerçeve kalınlığını 2px yaptım */
+}
+
+.edit-button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: #fce7f3;
+    color: #dd6da0;
+    border: none;
+    border-radius: 50%;
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit-button i {
+    font-size: 1rem;
+}
+
+.profile-info {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.text-gray {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+.follow-button {
+    width: 100%;
+    padding: 0.75rem;
+    background: #e7bcbc;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.follow-button:hover {
+    background: #d6a5a5;
+}
+
+.user-details {
+    margin-top: 1.5rem;
+}
+
+.user-details div {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    color: #4b5563;
+}
+
+.user-details i {
+    margin-right: 0.5rem;
+    width: 16px;
+}
+
+.content-tabs {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.tabs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.tab {
+    padding: 0.75rem;
+    text-align: center;
+    background: #f3f4f6;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab.active {
+    background: #e7bcbc;
+    color: white;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.post {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-title {
+    font-size: 1.25rem;
+    color: #333;
+}
+
+.post-content {
+    color: #555;
+}
+
+.post-stats {
+    display: flex;
+    gap: 1rem;
+    color: #6b7280;
+    margin-top: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .tabs {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Logo */
+#logo {
+    font-size: 30px;
+    color: #e7bcbc;
+    font-weight: bold;
+    padding-left: 0px;
+    padding-right: 500px;
+    flex-grow: 1;
+    text-align: left;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+#logo:hover {
+    transform: scale(1.07);
+    color: #e7bcbc;
+}
+
+/* Sol Sütun */
+#sol-sutun {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 60px;
+    height: 100%;
+    background-color: #c0bfbf;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1100;
+}
+
+.menu-logo {
+    color: white;
+    font-size: 18px;
+    margin: 20px 0;
+}
+
+.menu-icon {
+    color: white;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Sol Yandan Açılan Menü */
+.sidenav {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #adacac;
+    z-index: 9999;
+    transition: left 0.3s ease;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.5);
+}
+
+.sidenav.active {
+    left: 0;
+}
+
+.sidenav .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 25px;
+    cursor: pointer;
+    color: white;
+}
+
+.sidenav__inner {
+    padding: 0;
+}
+
+/* Menü başlığı ve logo alanı */
+.menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 10px;
+}
+
+#logo-menu {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Navigasyon menüsü */
+.sidenav nav {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.sidenav nav a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.sidenav nav a i {
+    width: 20px;
+}
+
+.sidenav nav a:hover {
+    background-color: #e7bcbc;
+    color: white;
+}
+
+/* Menü toggle butonu */
+#menu-toggle {
+    font-size: 30px;
+    cursor: pointer;
+    color: #ffffff;
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    z-index: 1001;
+}
+
+/* Üst menü */
+#menu {
+    background-color: #ffffff;
+    padding: 8px 0px; /* Sol ve sağdan boşluk bırakıldı */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    margin-left: 60px;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Menü elemanlarını blok haline getirme, padding ve çizgi ekleme */
+/* Menü elemanları arasına 10px mesafe ekler */
+#menu a {
+    font-family: 'Roboto Flex', sans-serif;
+    font-weight: 250;
+    text-decoration: none;
+    font-size: 15px;
+    color: #464646;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 10px;
+    margin-right: 0px; /* Başlıklar arasına 10px mesafe */
+    border-left: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Son başlık olan 'Events' ile user iconu arasına 30px mesafe ekler */
+#menu a:last-child {
+    margin-right: 30px; /* Son başlık ile user ikon arasına 30px mesafe */
+}
+
+
+/* İlk menü elemanındaki sol çizgiyi kaldır */
+#menu a:first-child {
+    border-left: none; /* İlk elemanda çizgi olmasın */
+    margin-left: 0; /* İlk elemanda sola kaydırma olmasın */
+}
+
+/* Son menü elemanındaki sağ çizgiyi kaldır */
+#menu a:last-child {
+    border-right: none; /* Son elemanda çizgi olmasın */
+}
+
+#menu a:hover {
+    background-color: #f3f3f3;
+}
+
+
+nav li {
+    list-style-type: none;
+}
+
+
+#logo {
+    font-size: 30px;
+    color: #e7bcbc;
+    font-weight: bold;
+    padding-left: 20px;
+    flex-grow: 1;  /* Logo ortalanacak şekilde ayarlandı */
+    text-align: left; /* Sol tarafta hizalama */
+    transition: transform 0.3s ease, color 0.3s ease; /* Yumuşak geçiş ekleniyor */
+}
+
+/* Üst logo hover efekti */
+#logo:hover {
+    transform: scale(1.07); /* Boyut büyüme */
+    color: #e7bcbc; /* Renk değişimi */
+}
+
+nav {
+    display: flex;
+    justify-content: flex-end;
+    flex-grow: 1; /* Menü sağda ortalanacak */
+}
+
+nav a {
+    text-decoration: none;
+    color: #e7bcbc;
+    margin-right: 25px;
+    font-size: 1.4rem; 
+    font-weight: 250;
+}
+
+nav a:hover {
+    border-bottom: 2px solid #e7bcbc;
+}
+
+
+/* Footer Styles */
+.footer {
+    background-color: rgb(126, 126, 126);
+    color: #fff;
+    padding: 30px 0 30px;
+    width: 100%;
+    padding-left: 60px;
+    margin-top: 10%;
+}
+
+.footer-content {
+    max-width: calc(100% - 20px);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 50px;
+    padding: 0 10px;
+}
+
+/* Logo Section */
+#logoFooter {
+    font-size: 40px;
+    color: #e7bcbc;
+    font-weight: bold;
+    padding-left: 20px;
+    flex-grow: 1;
+    text-align: left;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+#logoFooter:hover {
+    transform: scale(1.2);
+    color: #e7bcbc;
+}
+
+.footer .logo-text {
+    margin-top: 10px;
+    margin-left: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #e7bcbc;
+}
+
+.footer .logo-text p {
+    margin: 0;
+    font-size: px;
+    font-weight: bold;
+    color: #e7bcbc;
+}
+
+/* Quick Links Section */
+.footer-links ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-links ul li {
+    margin-bottom: 10px;
+}
+
+.footer-links ul li a {
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links ul li a:hover {
+    color: #e7bcbc;
+}
+
+/* Contact Section */
+.footer-contact p {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.footer-contact i {
+    margin-right: 10px;
+    font-size: 18px;
+    color: #e7bcbc;
+}
+
+/* Social Media Section */
+.footer-social .social-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.footer-social .social-icons a {
+    color: #fff;
+    font-size: 24px;
+    transition: color 0.3s ease;
+}
+
+.footer-social .social-icons a:hover {
+    color: #e7bcbc;
+}
+
+/* Copyright Section */
+.footer-bottom {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Section Headers */
+.footer h4 {
+    color: #e7bcbc;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .footer-content {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+}
+
+.profile-image img {
+    transition: transform 0.3s ease;
+}
+
+.profile-image img:hover {
+    transform: scale(1.1);
+}

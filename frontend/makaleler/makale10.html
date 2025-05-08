@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>On feminist anger and imagining peace otherwise</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/581952776c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="makale.css">
+    <link rel="stylesheet" href="owl/owl.carousel.min.css">
+    <link rel="stylesheet" href="owl/owl.theme.default.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="owl/script.js"></script>
+
+</head>
+<body>
+
+    <!-- Sabit Üst Menü -->
+    <section id="menu">
+        <div id="logo">NOTALONE</div>
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div>
+        <nav>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="javascript:void(0);" id="userIcon"><i class="fa-regular fa-user"></i></a></li>
+        </nav>
+    </section>
+
+<!-- Sağ Menü -->
+<div id="loginPanel" class="sidenav-right">
+    <div class="sidenav__inner">
+       <!-- Giriş Paneli -->
+<div id="loginForm" class="auth-section">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <h2>Login</h2>
+    <form onsubmit="handleLogin(event)">
+        <input type="email" id="loginEmail" placeholder="Email" required class="form-control">
+        <div class="password-container">
+            <input type="password" id="loginPassword" placeholder="Password" required class="form-control">
+            <i class="fa fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+        </div>
+        <button type="submit" class="submit-button">Login</button>
+        <div class="links">
+            <a href="#" onclick="showForgotPassword(event)">Forgot Password?</a>
+            <a href="#" onclick="showSignUp(event)">Sign Up</a>
+        </div>
+    </form>
+</div>
+
+<!-- Giriş Yaptıktan Sonraki Panel -->
+<div id="userPanelContent" class="user-panel-section" style="display: none;">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <div class="user-info">
+        <div class="user-header">
+            <i class="fa-regular fa-user"></i>
+            <span id="welcomeUsername">Welcome, User</span>
+        </div>
+    </div>
+    
+    <nav class="user-nav">
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-user"></i>
+            <span>My Profile</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-paper-plane"></i>
+            <span>My Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-comment"></i>
+            <span>My Comments</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-heart"></i>
+            <span>Liked Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-bookmark"></i>
+            <span>Saved Posts</span>
+        </a>
+        
+    </nav>
+    <div class="logout-container">
+        <button id="logoutButton" onclick="handleLogout()">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+    </div>
+</div>
+
+
+        <!-- Şifremi Unuttum Paneli -->
+        <div id="forgotPasswordForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Reset Password</h2>
+            <p class="auth-description">Enter your email address and we'll send you a link to reset your password.</p>
+            <form onsubmit="handleForgotPassword(event)">
+                <input type="email" id="resetEmail" placeholder="Email" required class="form-control">
+                <button type="submit" class="submit-button">Send Reset Link</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Back to Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kaydolma Paneli -->
+        <div id="signUpForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Sign Up</h2>
+            <form onsubmit="handleSignUp(event)">
+                <div class="form-group">
+                    <input type="text" id="firstName" placeholder="First Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="lastName" placeholder="Last Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="signUpEmail" placeholder="Email" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="signUpPassword" placeholder="Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder="Phone Number" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="birthDate" placeholder="Birth Date" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <select id="gender" class="form-control" required>
+                        <option value="">Select Gender</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
+                        <option value="prefer-not">Prefer not to say</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-button">Sign Up</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Already have an account? Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kullanıcı Panel İçeriği (giriş yapıldıktan sonra) -->
+        <div id="userPanelContent" class="user-panel-section" style="display: none;">
+            <!-- Mevcut kullanıcı paneli içeriği buraya -->
+        </div>
+    </div>
+</div>
+
+
+    <!-- Sol Sütun -->
+    <div id="sol-sutun">
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div> <!-- Menü Butonu -->
+    </div>
+    
+    <!-- Menü Aç/Kapat İşlevi -->
+    <script>
+        function toggleLeftMenu() {
+            const sidenav = document.getElementById('sidenav');
+            sidenav.classList.toggle('active');
+        }
+    </script>   
+
+<!-- Sol Menü -->
+<div id="sidenav" class="sidenav">
+    <div class="sidenav__inner">
+        <div class="menu-header">
+            <div id="logo-menu">
+                <span style="color:#e7bcbc; font-size: 30px;">
+                    W♀men, Peace and Security
+                </span>
+            </div>
+            <div class="close-btn" onclick="toggleLeftMenu()">✖</div>
+        </div>
+        <nav>
+            <a href="index.html"><i class="fa-solid fa-home"></i>Home</a>
+            <a href="hakkimizda.html"><i class="fa-solid fa-info"></i>About</a>
+            <a href="yorumPolitikasi.html"><i class="fa-solid fa-comment"></i>Comment Policy</a>
+            <a href="haklarinibil.html"><i class="fa-solid fa-balance-scale"></i>Know Your Rights</a>
+            <a href="blog.html"><i class="fa-solid fa-blog"></i>Blog</a>
+            <a href="forum/forum.html"><i class="fa-solid fa-comments"></i>Forum</a>
+            <a href="#"><i class="fa-solid fa-map-marker-alt"></i>Safe Map</a>
+            <a href="#"><i class="fa-solid fa-calendar"></i>Events</a>
+        </nav>
+    </div>
+</div>
+    
+
+    
+<!-- Sidebar -->
+<div class="sidebarHAKKIMIZDA">
+    <div class="logo-boxHAKKIMIZDA">
+        <img src="img/2logo.png" alt="Logo"> <!-- Logo -->
+        <div class="logo-text">W♀men, Peace <p>and Security</p></div> <!-- Slogan -->
+    </div>
+ 
+    <div class="twitter-boxHAKKIMIZDA">
+        <h2>Follow Us</h2>
+        <div class="twitter-feed">
+            <!-- Twitter Widget -->
+            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" title="Twitter Timeline"
+                src="https://syndication.twitter.com/srv/timeline-profile/screen-name/NOT#ALONE=false&amp;embedId=twitter-widget-0&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfZm9zbnJfc29mdF9pbnRlcnZlbnRpb25zX2VuYWJsZWQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X21peGVkX21lZGlhXzE1ODk3Ijp7ImJ1Y2tldCI6InRyZWF0bWVudCIsInZlcnNpb24iOm51bGx9LCJ0ZndfZXhwZXJpbWVudHNfY29va2llX2V4cGlyYXRpb24iOnsiYnVja2V0IjoxMjA5NjAwLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3Nob3dfYmlyZHdhdGNoX3Bpdm90c19lbmFibGVkIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19kdXBsaWNhdGVfc2NyaWJlc190b19zZXR0aW5ncyI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdXNlX3Byb2ZpbGVfaW1hZ2Vfc2hhcGVfZW5hYmxlZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdmlkZW9faGxzX2R5bmFtaWNfbWFuaWZlc3RzXzE1MDgyIjp7ImJ1Y2tldCI6InRydWVfYml0cmF0ZSIsInZlcnNpb24iOm51bGx9LCJ0ZndfbGVnYWN5X3RpbWVsaW5lX3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9mcm9udGVuZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9fQ%3D%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=true&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=en&amp;maxHeight=400px&amp;origin=https%3A%2F%2Fblogs.lse.ac.uk%2Fwps%2F&amp;partner=jetpack&amp;sessionId=0c6952bf47c9281de6889593d9528bcc3401e8f5&amp;showHeader=true&amp;showReplies=false&amp;siteScreenName=NOT#ALONE&amp;theme=light&amp;transparent=false&amp;widgetsVersion=2615f7e52b7e0%3A1702314776716"
+                style="position: static; visibility: visible; width: 100%; height: 400px; display: block;">
+            </iframe>
+        </div>
+    </div>
+ </div>
+
+<!-- Ana Sayfa İçeriği (Slider Benzeri Yapı) -->
+<div id="makale">
+    <img src="../img/makale10.jpg" alt="OGIP" class="makale-img">
+    <div class="post-info">
+        <div class="author-date">
+            <h3 class="author">Elena B. Stavrevska</h3>
+            <h3 class="date">November 10th, 2021</h3>
+        </div>
+        <div class="post-main-content"style="margin-left: -180px;">
+            <h1 style="margin-top: 320px;">On feminist anger and imagining peace </h1>
+            <h1>otherwise</h1>
+        </div>
+    </div>
+</div>
+
+
+    <main>
+        <div class="makale-box">
+            <div class="single-post__main">
+                <div class="single-post__main-content">
+                  <div class="post-content post-builder">
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p><em><a href="https://twitter.com/EBStavrevska">Elena B. Stavrevska</a> on why&nbsp;</em><em>we need a feminist political economy analysis in our understanding of peace and violence. </em></p>
+            <p>What is your earliest political memory? One of my first ones is of politicians, domestic and foreign alike, calling my motherland “an oasis of peace” in the early 1990s, having at that time been the only former republic of Yugoslavia to have seceded without an armed conflict. At the same time, I remember my dad and friends’ parents losing their jobs in the getting-ready-to-privatise or closed formerly state-owned companies, I remember how that redefined gender relations in many families, I remember hearing of men in the country committing suicide, I remember many people starting to get involved in what some have called the informal economy in order to survive, I remember ‘transition’ being on everyone’s lips as something we had to endure, I don’t remember anyone mentioning that ‘transition’ meant perpetual waiting … I remember thinking if that was peace, then what must the non-oases of peace have looked like. My generation learned then and there that, in <a href="https://www.youtube.com/watch?v=lI1c-Lbd4Bw">the words of Amanda Gorman</a>, “quiet isn’t always peace, and the norms and notions of what ‘just is’ isn’t always justice.”</p>
+            <p>It is possible that I have been angry ever since. That certainly is what it feels like most days when reading the news – the economic fallout from the COVID-19 crisis having a much harsher impact on women, domestic violence rising globally and yet there being no gender advisors on the pandemic task forces of so many countries, stark global vaccine inequality, a COP26 conversation dominated by Western, market-driven ‘solutions’, with those affected the hardest by the climate crisis being underrepresented, their knowledge and experience side-lined, the proposed paid family and medical leave of four weeks in the US being called transformational… it goes on and on.</p>
+            <p>The policy responses to the multiple unfolding crises have both highlighted the continuity of gendered, classed, racialised, and colonial inequalities and have also, hopefully, challenged our understandings of peace. In that way, the current moment reminds us yet again of the role political economy plays in our visions of peace and violence, our understandings of beginnings and ends, of linearity of time, of historical context, of the public and the personal. Or <a href="https://stthomas.edu/media/luanndummercenterforwomen/pdf/Diaz_Postcolonial_Love_Poem_Selections.pdf">as Natalie Diaz has eloquently put it</a>:</p>
+            <p style="text-align: center"><em>The war ended<br>
+            </em><em>depending on which war you mean: those we started,<br>
+            </em><em>before those, millennia ago and onward,<br>
+            </em><em>those which started me, which I lost and won—<br>
+            </em><em>these ever-blooming wounds.</em></p>
+            <p>It is precisely the discomfort of the present moment that, once again, reminds us of the value of feminist analysis. One of the most critical insights from feminist inquiry is that social difference as well as the meanings attached to practices and outcomes considered ‘valuable’ organise the world in specific ways. This ordering is both gendered and gendering, among other things, by attaching value to practices seen as profit-making and devaluing practices that constitute social reproduction. Feminist inquiry in general and <a href="https://www.wilpf.org/wp-content/uploads/2019/07/WILPF_Feminist-Political-Economy-Guide.pdf">feminist political economy</a> analysis in particular is especially useful in our understanding of peace broadly conceived and the “<a href="https://www.tandfonline.com/doi/full/10.1080/09692290.2020.1732443">gendered circuits of violence</a>” in at least three regards.</p>
+            <p>First, feminist political economy analysis problematises dichotomies, including those of <a href="https://books.thecommonwealth.org/mainstreaming-gender-social-protection-informal-economy-paperback">formal–informal economy,</a> visible–invisible (<a href="https://thecommoner.org/wp-content/uploads/2019/10/04-federici.pdf">or paid and unpaid</a>) labour, <a href="https://www.tandfonline.com/doi/full/10.1080/09692290.2020.1830834">public–private sphere</a>, <a href="https://www.google.co.uk/books/edition/A_Critical_Rewriting_of_Global_Political/cADWvchT1gAC?hl=en&amp;gbpv=0">production–reproduction</a>, <a href="https://books.google.co.uk/books/about/The_End_of_Capitalism_as_We_Knew_It.html?id=Ei-8RHkKIxUC&amp;redir_esc=y">capitalist–pre-capitalist</a>, and <a href="http://dspace.ucuenca.edu.ec/bitstream/123456789/27831/1/feminismo%20y%20buen%20vivir%20pdf%20PARA%20IMPRESION%20(1).pdf">human–nature</a>. In doing so, a feminist political economy analysis reveals the connections between aspects of life that are often presented as separate and separable, even though they are one, and that it is usually the valued and visible aspect, that depends on the other, the often undervalued and invisible aspect. Just think of the virtually non-existent parental leave in the US I mentioned before – what assumptions is the expectation for new parents to return to work within four weeks of having a new-born based on? Or <a href="https://www.tandfonline.com/doi/full/10.1080/09692290.2019.1677743">International Financial Institutions’ prescriptions for recovery</a> of the economic system in conflict-affected societies without considering the social infrastructure, as if the two are not closely linked?</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">The current moment reminds us yet again of the role political economy plays in our visions of peace and violence, our understandings of beginnings and ends, of linearity of time, of historical context, of the public and the personal.</p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>Second, feminist political economy spotlights historical continuity, which is especially valuable in understanding peace as a process. Specifically, feminist political economy emphasises the relationships between the material details of everyday life and broader geopolitical and socio-economic structures, including structures built and sustained by colonial legacies, neo-imperial projects, and histories of inequality and extraction. In that sense, using a feminist political economy lens in the analysis of gendered peace and violence does not only help us account for lived experiences informed by the intersection of various structures, but also urges us to examine peace and violence in a broader space-time continuum.</p>
+            <p>Feminist scholars of conflict-affected societies, for instance, <a href="https://www.cambridge.org/core/journals/politics-and-gender/article/abs/everyday-gendered-political-economy-of-violence/161736B7E5B31833918D8E419B44CE42">have argued</a> that by centring the lived experiences of people on the ground we get invaluable insights into the ways that everyday acts and forms of violence connect to global political economic structures and systems, which are translated into post-war reconstruction policies, to name but one set of policies. Those policies determine if “<a href="https://www.cambridge.org/core/journals/politics-and-gender/article/abs/rebuilding-bridges-toward-a-feminist-research-agenda-for-postwar-reconstruction/C9D7FA946B895C4834F657A6C3BC0945">the potential for sustainable, inclusive, gender-equitable peace and security will be realized or jeopardized</a>.”</p>
+            <p>Third and equally important, feminist political economy analysis adds urgency to considering the links between the economic and the political and their gendered and intersectional impacts. Questions of equity, as well as recovery are all too often placed on the backburner, left to be dealt with ‘later,’ which Cynthia Enloe has accurately called “<a href="https://www.ucpress.edu/book/9780520243811/the-curious-feminist">the patriarchal time zone</a>”. This we have witnessed not only in the near invisibility of equality or equity considerations in post-war processes and the underdevelopment of the “relief and recovery” pillar in the Women, Peace and Security agenda, but we continue witnessing it daily in the COVID-19 government responses across the globe.</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">feminist political economy analysis adds urgency to considering the links between the economic and the political and their gendered and intersectional impacts. </p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>It is with these three aspects in mind and a feminist anger in our hearts that we are inviting contributions to <a href="https://www.lse.ac.uk/women-peace-security/News/Call-for-Abstracts">an interdisciplinary workshop</a> that focuses on feminist political economy and peace. They <a href="https://twitter.com/Tin_House/status/1286048460660064257">say</a> that anger might be the other side of grief, it might be born out of us mourning something we have lost. Is it possible that this anger comes from mourning the alternative, inclusive, equitable, feminist futures slipping away? Can we imagine those futures and peace otherwise? Perhaps the possibility of imagining peace otherwise is the only way to continue surviving, hoping, caring? In lieu of an answer, I return to the powerful words of Natalie Diaz in <a href="https://www.google.co.uk/books/edition/Postcolonial_Love_Poem/diyZDwAAQBAJ?hl=en&amp;gbpv=1&amp;dq=inauthor:%22Natalie+Diaz%22&amp;printsec=frontcover"><em>Postcolonial Love Poem</em></a>:</p>
+            <p>I have been angry this week. Christian said,<br>
+            <em>Trust your anger. It is a demand for love.</em></p>
+            <p>&nbsp;</p>
+            <hr>
+            <p style="margin-top: 15px;"><em>The interdisciplinary workshop “Feminist Political Economy and Peace” will take place from 15-17 March 2022. We are currently accepting abstracts for the workshop, deadline 5 December. <a href="https://www.lse.ac.uk/women-peace-security/News/Call-for-Abstracts">Find our more about the workshop and how to submit here</a>.&nbsp;</em></p>
+            <p><em>This blog was published with the support of a European Research Council (ERC) grant under the European Union’s Horizon 2020 research and innovation programme (Grant agreement No. 786494), whose funds in part support this space.</em></p>
+            <p><em>The views, thoughts and&nbsp;opinions expressed in this blog post are those of the author(s)&nbsp;only.</em></p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                          </div>
+                        <div class="author">
+              <h3>About the author</h3>
+            
+                  <div class="author__main">
+                  <div class="author__image">
+                    <img width="96" height="96" src="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2019/12/Elena-B.-Stavrevska-200-x-200-100x100.jpg" class="avatar avatar-96 photo wp-post-image" alt="" srcset="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2019/12/Elena-B.-Stavrevska-200-x-200-100x100.jpg 100w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2019/12/Elena-B.-Stavrevska-200-x-200-150x150.jpg 150w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2019/12/Elena-B.-Stavrevska-200-x-200.jpg 200w" sizes="(max-width: 96px) 100vw, 96px">
+                    <h3>Elena B. Stavrevska</h3>
+                  </div>
+                          <div class="author__content">
+                      <p>Elena B. Stavrevska is a Research Officer at the LSE Centre for Women, Peace and Security, working on the ‘Gendered Peace’ project. Her research has explored issues of gender, intersectionality, transitional justice, and political economy in post-war societies, with a particular focus on Bosnia and Herzegovina and Colombia. Elena tweets at @EBStavrevska
+            </p>
+                    </div>
+                      </div>
+
+            
+ 
+        </div>
+    </main>
+ 
+    <!-- footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <!-- Footer Logo Section -->
+        <div class="footer-logo">
+            <div id="logoFooter">NOTALONE</div>
+            <div class="logo-text"><p>W♀men, Peace </p><p>and Security</p></div> 
+        </div>
+
+        <!-- Quick Links Section -->
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>
+                <i class='bx bx-map'></i>
+                Türk Hava Kurumu Üniversitesi Bahçekapı Mah.
+            </p>
+            <p>
+                <i class='bx bx-phone'></i>
+                (0212) 389 99 99
+            </p>
+            <p>
+                <i class='bx bx-envelope'></i>
+                örnek@gmail.com
+            </p>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="footer-social">
+            <h4>Social Media</h4>
+            <div class="social-icons">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-twitter'></i></a>
+                <a href="#"><i class='bx bxl-instagram'></i></a>
+                <a href="#"><i class='bx bxl-linkedin'></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="footer-bottom">
+        <p>&copy; 2024 NOTALONE</p>
+    </div>
+</footer>
+
+    <script src="owl/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1..min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="makale.js"></script> <!-- JavaScript dosyasını bağladık -->
+
+</body>
+</html>

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Male Victims and Female Perpetrators of International Crimes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/581952776c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="makale.css">
+    <link rel="stylesheet" href="owl/owl.carousel.min.css">
+    <link rel="stylesheet" href="owl/owl.theme.default.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="owl/script.js"></script>
+
+</head>
+<body>
+
+    <!-- Sabit Üst Menü -->
+    <section id="menu">
+        <div id="logo">NOTALONE</div>
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div>
+        <nav>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="javascript:void(0);" id="userIcon"><i class="fa-regular fa-user"></i></a></li>
+        </nav>
+    </section>
+
+<!-- Sağ Menü -->
+<div id="loginPanel" class="sidenav-right">
+    <div class="sidenav__inner">
+       <!-- Giriş Paneli -->
+<div id="loginForm" class="auth-section">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <h2>Login</h2>
+    <form onsubmit="handleLogin(event)">
+        <input type="email" id="loginEmail" placeholder="Email" required class="form-control">
+        <div class="password-container">
+            <input type="password" id="loginPassword" placeholder="Password" required class="form-control">
+            <i class="fa fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+        </div>
+        <button type="submit" class="submit-button">Login</button>
+        <div class="links">
+            <a href="#" onclick="showForgotPassword(event)">Forgot Password?</a>
+            <a href="#" onclick="showSignUp(event)">Sign Up</a>
+        </div>
+    </form>
+</div>
+
+<!-- Giriş Yaptıktan Sonraki Panel -->
+<div id="userPanelContent" class="user-panel-section" style="display: none;">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <div class="user-info">
+        <div class="user-header">
+            <i class="fa-regular fa-user"></i>
+            <span id="welcomeUsername">Welcome, User</span>
+        </div>
+    </div>
+    
+    <nav class="user-nav">
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-user"></i>
+            <span>My Profile</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-paper-plane"></i>
+            <span>My Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-comment"></i>
+            <span>My Comments</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-heart"></i>
+            <span>Liked Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-bookmark"></i>
+            <span>Saved Posts</span>
+        </a>
+        
+    </nav>
+    <div class="logout-container">
+        <button id="logoutButton" onclick="handleLogout()">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+    </div>
+</div>
+
+
+        <!-- Şifremi Unuttum Paneli -->
+        <div id="forgotPasswordForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Reset Password</h2>
+            <p class="auth-description">Enter your email address and we'll send you a link to reset your password.</p>
+            <form onsubmit="handleForgotPassword(event)">
+                <input type="email" id="resetEmail" placeholder="Email" required class="form-control">
+                <button type="submit" class="submit-button">Send Reset Link</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Back to Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kaydolma Paneli -->
+        <div id="signUpForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Sign Up</h2>
+            <form onsubmit="handleSignUp(event)">
+                <div class="form-group">
+                    <input type="text" id="firstName" placeholder="First Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="lastName" placeholder="Last Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="signUpEmail" placeholder="Email" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="signUpPassword" placeholder="Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder="Phone Number" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="birthDate" placeholder="Birth Date" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <select id="gender" class="form-control" required>
+                        <option value="">Select Gender</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
+                        <option value="prefer-not">Prefer not to say</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-button">Sign Up</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Already have an account? Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kullanıcı Panel İçeriği (giriş yapıldıktan sonra) -->
+        <div id="userPanelContent" class="user-panel-section" style="display: none;">
+            <!-- Mevcut kullanıcı paneli içeriği buraya -->
+        </div>
+    </div>
+</div>
+
+
+    <!-- Sol Sütun -->
+    <div id="sol-sutun">
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div> <!-- Menü Butonu -->
+    </div>
+    
+    <!-- Menü Aç/Kapat İşlevi -->
+    <script>
+        function toggleLeftMenu() {
+            const sidenav = document.getElementById('sidenav');
+            sidenav.classList.toggle('active');
+        }
+    </script>   
+
+<!-- Sol Menü -->
+<div id="sidenav" class="sidenav">
+    <div class="sidenav__inner">
+        <div class="menu-header">
+            <div id="logo-menu">
+                <span style="color:#e7bcbc; font-size: 30px;">
+                    W♀men, Peace and Security
+                </span>
+            </div>
+            <div class="close-btn" onclick="toggleLeftMenu()">✖</div>
+        </div>
+        <nav>
+            <a href="index.html"><i class="fa-solid fa-home"></i>Home</a>
+            <a href="hakkimizda.html"><i class="fa-solid fa-info"></i>About</a>
+            <a href="yorumPolitikasi.html"><i class="fa-solid fa-comment"></i>Comment Policy</a>
+            <a href="haklarinibil.html"><i class="fa-solid fa-balance-scale"></i>Know Your Rights</a>
+            <a href="blog.html"><i class="fa-solid fa-blog"></i>Blog</a>
+            <a href="forum/forum.html"><i class="fa-solid fa-comments"></i>Forum</a>
+            <a href="#"><i class="fa-solid fa-map-marker-alt"></i>Safe Map</a>
+            <a href="#"><i class="fa-solid fa-calendar"></i>Events</a>
+        </nav>
+    </div>
+</div>
+    
+
+    
+<!-- Sidebar -->
+<div class="sidebarHAKKIMIZDA">
+    <div class="logo-boxHAKKIMIZDA">
+        <img src="img/2logo.png" alt="Logo"> <!-- Logo -->
+        <div class="logo-text">W♀men, Peace <p>and Security</p></div> <!-- Slogan -->
+    </div>
+ 
+    <div class="twitter-boxHAKKIMIZDA">
+        <h2>Follow Us</h2>
+        <div class="twitter-feed">
+            <!-- Twitter Widget -->
+            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" title="Twitter Timeline"
+                src="https://syndication.twitter.com/srv/timeline-profile/screen-name/NOT#ALONE=false&amp;embedId=twitter-widget-0&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfZm9zbnJfc29mdF9pbnRlcnZlbnRpb25zX2VuYWJsZWQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X21peGVkX21lZGlhXzE1ODk3Ijp7ImJ1Y2tldCI6InRyZWF0bWVudCIsInZlcnNpb24iOm51bGx9LCJ0ZndfZXhwZXJpbWVudHNfY29va2llX2V4cGlyYXRpb24iOnsiYnVja2V0IjoxMjA5NjAwLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3Nob3dfYmlyZHdhdGNoX3Bpdm90c19lbmFibGVkIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19kdXBsaWNhdGVfc2NyaWJlc190b19zZXR0aW5ncyI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdXNlX3Byb2ZpbGVfaW1hZ2Vfc2hhcGVfZW5hYmxlZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdmlkZW9faGxzX2R5bmFtaWNfbWFuaWZlc3RzXzE1MDgyIjp7ImJ1Y2tldCI6InRydWVfYml0cmF0ZSIsInZlcnNpb24iOm51bGx9LCJ0ZndfbGVnYWN5X3RpbWVsaW5lX3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9mcm9udGVuZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9fQ%3D%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=true&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=en&amp;maxHeight=400px&amp;origin=https%3A%2F%2Fblogs.lse.ac.uk%2Fwps%2F&amp;partner=jetpack&amp;sessionId=0c6952bf47c9281de6889593d9528bcc3401e8f5&amp;showHeader=true&amp;showReplies=false&amp;siteScreenName=NOT#ALONE&amp;theme=light&amp;transparent=false&amp;widgetsVersion=2615f7e52b7e0%3A1702314776716"
+                style="position: static; visibility: visible; width: 100%; height: 400px; display: block;">
+            </iframe>
+        </div>
+    </div>
+ </div>
+
+<!-- Ana Sayfa İçeriği (Slider Benzeri Yapı) -->
+<div id="makale">
+    <img src="../img/makale8.jpg" alt="OGIP" class="makale-img">
+    <div class="post-info">
+        <div class="author-date">
+            <h3 class="author">Rose Khan</h3>
+            <h3 class="date">July 20th, 2022</h3>
+        </div>
+        <div class="post-main-content"style="margin-left: -150px;">
+            <h1 style="margin-top: 320px;">Male Victims and Female Perpetrators</h1>
+            <h1>of International Crimes</h1>
+        </div>
+    </div>
+</div>
+
+
+    <main>
+        <div class="makale-box">
+            <div class="single-post__main">
+                <div class="single-post__main-sidebar">
+                  <div class="social-share static" data-post="5012" style="top: 0px;">
+                <div class="single-post__main-content">
+                  <div class="post-content post-builder">
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p><em><span class="EOP SCXW259227366 BCX0"><span class="TextRun SCXW29381829 BCX0" lang="EN-GB" xml:lang="EN-GB"><span class="NormalTextRun SCXW29381829 BCX0">Rose Khan looks at how the law interprets and defends sexual violence crimes committed by female perpetrators and against male victims.&nbsp;&nbsp;</span><span class="NormalTextRun SCXW29381829 BCX0">She </span><span class="NormalTextRun SCXW29381829 BCX0">draws attention to g</span><span class="NormalTextRun SCXW29381829 BCX0">ender as an instrumental component in understanding the prosecution of male and female perpetrators of </span><span class="NormalTextRun SCXW29381829 BCX0">conflict-related sexual violence. </span></span><span class="EOP SCXW29381829 BCX0">&nbsp;</span></span></em></p>
+            <p>Sexual violence has long been considered and generally prosecuted as a crime committed by men against women. However, the international community is becoming increasingly aware of the sexual violence crimes perpetrated against <a href="https://academic.oup.com/ia/article/96/5/1151/5901399">men and boys</a>, and the prevalence of <a href="https://nyupress.org/9780814771402/women-as-wartime-rapists/">female perpetrators</a> of conflict-related sexual violence.</p>
+            <p><b><i>Conflict-related sexual violence in international law&nbsp;</i></b></p>
+            <p>All forms of sexual violence are prohibited in international humanitarian law and human rights law, while international criminal law prosecutes individual perpetrators of sexual violence crimes. Since the 1990s, the international legal framework has seen significant improvements through the case law of the International Criminal Tribunal of Yugoslavia <a href="https://www.icty.org/">(ICTY)</a> and the International Criminal Tribunal of Rwanda <a href="https://unictr.irmct.org/">(ICTR).</a></p>
+            <p>The jurisprudence in the ICTR was the most progressive on sexual violence in war and conflict within international law, particularly the decision in the case against Jean-Paul Akayesu. The <a href="https://unictr.irmct.org/sites/unictr.org/files/case-documents/ictr-96-4/trial-judgements/en/980902.pdf"><i>Akeyesu</i></a> case was <a href="https://www.womenslinkworldwide.org/files/gjo_analysis_caseProsecutorvJeanPaulAkayesu_en.pdf">the first to establish the conceptual definition of rape under international law and to convict a defendant of rape as both a crime against humanity and an act of genocide.</a></p>
+            <p>It set an <a href="https://casebook.icrc.org/case-study/ictr-prosecutor-v-jean-paul-akayesu">important precedent</a> for future criminal tribunals and paved the way for other acts of sexual violence to be prosecuted as crimes of genocide. Based on the aforementioned case law, the Rome Statute of the International Criminal Court (ICC) also included an extensive list of conflict-related sexual violence crimes within its mandate.</p>
+            <p>Despite this progress, the legal prohibitions against conflict-related sexual violence rarely result in prosecutions, and both formal and informal legal prohibitions appear to have little effect in dissuading <a href="https://www.jstor.org/stable/10.1163/j.ctt1w76w29">sexual violence in conflict</a>.</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">Furthermore, there exists an implicit gender bias within international law, which solidifies the widely held belief that men are perpetrators and women are victims, which prevent it from providing justice to all victims of conflict-related sexual violence.  </p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p><b><i>Male victims of </i></b><b><i>conflict-related sexual violence</i></b></p>
+            <p>Men are often perceived as the perpetrator class, limiting them from being seen as a group having rights claims as <a href="https://international-review.icrc.org/sites/default/files/irrc-894-dolan.pdf">sexual violence victims</a>. This is buttressed by gender norms that define men as strong combatants able to exert power over others, particularly through the use of force. <a href="http://www.ejil.org/pdfs/18/2/224.pdf">Male sexual victimisation</a> can take many forms, including, but not limited to, rape, sexual slavery, enforced masturbation, mutilation or other forms of trauma to the <a href="https://academic.oup.com/ejil/article/18/2/253/361968">genitals.</a></p>
+            <p>Despite male victimisation being documented in nearly all contemporary conflicts, including the <a href="https://globalvoices.org/2021/10/13/combatting-stereotypes-the-need-to-recognize-male-victims-of-wartime-sexual-violence-in-bosnia/">Balkans</a>, <a href="https://allsurvivorsproject.org/wp-content/uploads/2018/03/ASP-Central-African-Republic.pdf">Central Africa</a>, <a href="https://allsurvivorsproject.org/wp-content/uploads/2020/12/Briefing-on-Conflict-related-Sexual-Violence-against-Men-and-Boys-to-Colombias-Truth-Coexistence-and-Non-Repetition-Commission.pdf">Colombia</a>, <a href="https://www.acaps.org/sites/acaps/files/key-documents/files/libya-italy-report-03-2019.pdf">Libya</a>, and <a href="https://aljumhuriya.net/en/2019/03/11/sexual-violence-against-males-syria/">Syria,</a> there continues to be an almost exclusive focus in international legal cases on the effect of conflict-related sexual violence on women and girls.</p>
+            <p>Most recently, during conflict in Ukraine, men and boys have been identified as victims of sexual violence by Russian soldiers. Pramila Patten, the UN special representative on sexual violence in war, urged survivors to come forward, insisting that ‘todays documentation will be tomorrows <a href="https://www.theguardian.com/world/2022/may/03/men-and-boys-among-alleged-victims-by-russian-soldiers-in-ukraine">prosecution.’</a> However, to date, sexual violence against men and boys has received scant recognition in international courts, as evidenced by the inconsistent charging of these<a href="https://philpapers.org/rec/GORIVW"> crimes</a>.</p>
+            <p>Despite the fact that international criminal jurisprudence does not create a distinction based on the victim’s sex, international instruments, and customary international law still exclude men as victims of conflict-related sexual violence. Gender neutrality in the definition of wartime rape does not protect against the pervasive and symbolic constructions of male and female sexuality. Sexual assault against males has been charged under a number of treaty provisions that minimize the sexual aspect of the crime, instead characterising sexual violence against men under crimes such as <a href="https://philpapers.org/rec/GORIVW">torture.</a></p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">Sexual violence against men accounted for 40 per cent of sexual violence cases considered at the ICTY, yet the focus remained on female victims in the majority of judgements addressing sexual violence. </p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>At the ICC, in the <a href="https://www.icc-cpi.int/kenya/kenyatta"><i>Muthaura and Kenyatta</i></a> case, following post-election violence in Kenya, defendants were charged with rape of men and other forms of sexual violence, such as forced circumcision and penile amputation. However, the Pre-Trial Chamber accepted the charge of rape but failed to recognise other forms of sexual violence. The judges insisted that not every act that targeted a part of the body generally associated with sexuality constituted an act of <a href="https://www.icc-cpi.int/fr/court-record/icc-01/09-02/11-382-red">sexual violence.</a></p>
+            <p>In the <a href="https://www.icc-cpi.int/fr/drc/lubanga"><i>Lubanga</i></a> case, the Congolese militia leader Thomas Lubanga was convicted in March 2012 of war crimes for enlisting and conscripting children under the age of fifteen and using them in hostilities in the eastern provinces of Democratic Republic of Congo. Men and women were identified as victims of sexual violence, however the judgement did not include any reference to men or women, instead the emphasis was placed on the sexual violence committed against girls. The only mention of boys as victims of sexual violence was in a footnote of the <a href="https://www.icc-cpi.int/sites/default/files/CaseInformationSheets/LubangaEng.pdf">judgement</a>.</p>
+            <p>The <a href="https://www.icc-cpi.int/court-record/icc-01/05-01/08-3636-red"><i>Bemba</i></a> case signalled hope where sex crimes against men, women and children were reportedly used to terrorise the civilian population during the conflict in the Central African Republic; it was the first case to heavily focus on sex crimes, rape as a war crime and a crime against humanity, as well as the sexual violence perpetrated against men. The language used in the judgement specifically stated that <i>civilian men and women were raped</i>, demonstrating salient progress in the characterization of sexual violence crimes. However, though Bemba was charged with the rape of men, women and children, these charges were later <a href="https://www.icc-cpi.int/court-record/icc-01/05-01/08-3636-red">dropped.</a></p>
+            <p><b><i>Female perpetrators of conflict-related sexual violence&nbsp;</i></b></p>
+            <p>Conversely, women’s experience of war has been viewed through their perceived victimisation, limiting recognition of them as perpetrators of violence. However, women and girls are capable of committing acts of violence in times of conflict, including sexual violence against male and female victims. Several <a href="https://www.cambridge.org/core/books/gender-and-war/male-victims-and-female-perpetrators-of-sexual-violence-in-conflict/EEFE8FF07174E2674D7CBE3D96F2FE9B">studies</a> have identified girls and women as the <a href="https://www.researchgate.net/publication/330347163_Chapter_12_Evidence-Based_Documentation_of_Gender-Based_Violence">perpetrators</a> and <a href="https://pure.uvt.nl/ws/portalfiles/portal/1546084/The_legacy_of_the_Gacaca_courts_in_Rwanda.pdf">co-perpetrators</a> of such violence.</p>
+            <p>Sexual violence perpetrated by women and girls has been documented in a number of countries including <a href="https://www.newsecuritybeat.org/2011/01/gender-based-violence-in-the-drc/">DRC</a>, <a href="https://digitalrepository.trincoll.edu/cgi/viewcontent.cgi?article=1536&amp;context=theses">Germany</a>, <a href="https://pubmed.ncbi.nlm.nih.gov/18698066/">Liberia</a>, <a href="https://brill.com/view/journals/icla/15/2/article-p207_1.xml">Poland</a>, <a href="https://www.jstor.org/stable/10.7591/j.ctt7z60f">Sierra Leone</a>, <a href="https://jpr.winchesteruniversitypress.org/articles/10.21039/jpr.3.1.34/galley/76/download/">Rwanda</a>, and the <a href="https://journals.openedition.org/rccsar/469">former Yugoslavia</a>. A 2010 population-based survey in the DRC indicated that <a href="https://international-review.icrc.org/sites/default/files/irrc-877-hogg.pdf">41 per cent of female victims and 10 per cent of male victims</a> reported that they had been sexually victimised by female perpetrators. Moreover, research conducted on patterns of sexual violence in Sierra Leone found that women participated in 19 per cent of rapes, and 25 per cent of <a href="https://wappp.hks.harvard.edu/files/wappp/files/female_combatants_and_the_perpetration_of_violence-_wartime_rape_in_sierra_leone_civil_war_0.pdf">gang rapes</a>.</p>
+            <p>However, there is a distinct gender bias in the perception of female perpetrators as either an exception to the rule, as lacking agency, or somehow abnormal. Research has shown that post-war trials and tribunals of female perpetrators present a greater tendency to psychologise defendants and their motives, in comparison to their male counterparts, shifting the discourse from <a href="http://www.ejil.org/pdfs/31/2/3060.pdf">criminality to femininity</a>.</p>
+            <p>Legal researcher Natalie Hodgson conducted research into criminal proceedings against six female defendants prosecuted before international tribunals and found that gender significantly shaped legal discourses of their offending behavior. Three gender narratives emerged: <a href="https://philpapers.org/rec/HODGJO">monster narratives, mother narratives and wife narratives. </a></p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">The behaviour of some female perpetrators of international crimes is considered such a deviation from femininity that their behaviour is framed as ‘other’ to femininity and what it means to be a woman; instead they are characterised as monsters and as psychologically disturbed</p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>One such example, Dr Herta Oberheuser was reported to have committed a number of crimes of torture against female prisoners in Auschwitz, including rubbing glass into wounds, and removing vital organs. She is often depicted as a mentally unstable monster, not human, nor woman. In these cases, defendants are treated more harshly because of their willing transgression from feminine norms. However, courts have also recognised the role of gender in establishing criminal responsibility and in sentencing decisions, whereby defence strategies have occasionally focused on gender stereotypes to deny charges or even elicit lighter sentences.</p>
+            <p>Existing literature suggests that the crimes committed by female perpetrators are frequently attributed to outside factors rather than to female agency. Pauline Nyiramasuhuko, formerly the Rwandan Minister for Family Welfare and the Advancement of Women was sentenced to life imprisonment by the ICTR for her leading role in the <a href="https://repository.law.umich.edu/mjil/vol34/iss3/2/">genocide</a>. The Trial Chamber found Nyiramasuhuko guilty of several sexual violence offences, including rape as a crime against humanity.</p>
+            <p>The ICC did convict her of rape as a crime against humanity but only for her command role in inciting male troops and militia to carry out <a href="https://www.jstor.org/stable/j.ctt1bj4r7q">the rape of women</a>, therefore leaving traditional gender structures, of who is the victim and perpetrator, in place. She later claimed in a BBC interview that she was unable to commit such crimes because she was a woman, a mother, incapable of <a href="https://www.nytimes.com/2002/09/15/magazine/a-woman-s-work.html">harming a chicken</a> and powerless in a male dominated <a href="https://international-review.icrc.org/sites/default/files/irrc-877-hogg.pdf">government</a>.</p>
+            <p>Before the ICC, Simone Gbagbo and her husband the former President of Ivory Coast, Laurent Gbagbo were both charged with international crimes committed during the post-election crisis, including sexual violence. Simone Gbagbo was charged with four counts of crimes against humanity, including one count involving rape and other forms of sexual violence. She is often referred to as the <a href="https://www.theatlantic.com/international/archive/2012/12/a-wife-accused-of-war-crimes-the-unprecedented-case-of-simone-gbagbo/265828/">alter ego of her husband</a> <a href="https://www.justiceinfo.net/en/32412-the-rise-and-fall-of-ivorian-ex-first-lady-simone-gbagbo.html">and called <i>Mrs Gbagbo</i></a>. This is a way of reinforcing gender stereotypes about her secondary role, as the wife of a powerful man perpetrating violence, rather than as an <a href="https://books.google.fr/books?id=HW6MDwAAQBAJ&amp;pg=PA232&amp;lpg=PA232&amp;dq=R.+Grey+and+L.+Chappell,+%E2%80%98Simone+Gbagbo+%26+the+International+Criminal+Court:+The+Unsettling+Spectre+of+the+Female+War+Criminal%E2%80%99+IntLaw&amp;source=bl&amp;ots=uVhPmJPFmu&amp;sig=ACfU3U21dr4OxVf1ipNmtV3i0PwBnQ_Dkw&amp;hl=fr&amp;sa=X&amp;ved=2ahUKEwjGyv3O-Jj4AhVCxYUKHe3wAUwQ6AF6BAgCEAM#v=onepage&amp;q=R.%20Grey%20and%20L.%20Chappell%2C%20%E2%80%98Simone%20Gbagbo%20%26%20the%20International%20Criminal%20Court%3A%20The%20Unsettling%20Spectre%20of%20the%20Female%20War%20Criminal%E2%80%99%20IntLaw&amp;f=false">independent actor.</a></p>
+            <p><b><i>The role of gender in prosecutorial cases addressing conflict-related sexual violence&nbsp;</i></b></p>
+            <p>When a woman is charged with international crimes it raises gender considerations that are rarely asked when the accused is a man. It exposes long held legal and societal misconceptions about who is capable of perpetrating such crimes.</p>
+            <p>It challenges the idea of men as agents and women as victims of crime, deconstructing the binary understanding of men, masculinity and violence on the one hand, and women, femininity and vulnerability on the other. It undermines gender norms that cast women as fragile, powerless and incapable of violence.</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">Gender is an instrumental component in understanding the prosecution of male and female perpetrators of sexual violence. The heavy focus on women as victims has tended to overlook male victims of sexual violence crimes. Although sexual violence against men can be prosecuted under the current legal frameworks, justice for male victims remains inadequate.  </p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>The aim of drawing attention to female perpetrators and male victims of conflict-related sexual violence is not to underestimate the importance of recognising and protecting female victims of these crimes, rather it is to highlight how the law interprets and defends sexual violence crimes committed by female perpetrators and against male victims.</p>
+            <p>The legal characterisation and sentencing of a crime should be contingent upon the crime committed and not the sex/gender of the victim or perpetrator.</p>
+            <hr>
+            <p><i>The views, thoughts and&nbsp;opinions expressed in this blog post are those of the author(s)&nbsp;only.</i></p>
+            <p>Image credit:&nbsp;<i><span class="TextRun SCXW139362141 BCX0" lang="EN-GB" xml:lang="EN-GB"><a href="https://www.flickr.com/photos/ukincanada/14404957774/"><span class="NormalTextRun SCXW139362141 BCX0">British High Commission in Ottawa </span></a><span class="NormalTextRun SCXW139362141 BCX0">(CC BY-NC 2.0)</span></span><span class="EOP SCXW139362141 BCX0">&nbsp;</span></i></p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                          </div>
+                        <div class="author">
+              <h3>About the author</h3>
+            
+                  <div class="author__main">
+                  <div class="author__image">
+                    <img width="96" height="96" src="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/02/Rose-Khan-100x100.jpg" class="avatar avatar-96 photo wp-post-image" alt="" srcset="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/02/Rose-Khan-100x100.jpg 100w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/02/Rose-Khan-150x150.jpg 150w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/02/Rose-Khan-300x300.jpg 300w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/02/Rose-Khan.jpg 390w" sizes="(max-width: 96px) 100vw, 96px">
+                    <h3>Rose Khan</h3>
+                  </div>
+                          <div class="author__content">
+                      <p>Rose Khan has a Masters degree in Political Science specialising in human rights and humanitarian action from Sciences Po Paris. Rose has worked on UN policy development assignments on women's access to justice and GBV and is currently conducting research on child soldiers, conflict-related sexual violence and issues of gender identity. </p>
+                    </div>
+                      </div>
+        </div>
+    </main>
+ 
+    <!-- footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <!-- Footer Logo Section -->
+        <div class="footer-logo">
+            <div id="logoFooter">NOTALONE</div>
+            <div class="logo-text"><p>W♀men, Peace </p><p>and Security</p></div> 
+        </div>
+
+        <!-- Quick Links Section -->
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>
+                <i class='bx bx-map'></i>
+                Türk Hava Kurumu Üniversitesi Bahçekapı Mah.
+            </p>
+            <p>
+                <i class='bx bx-phone'></i>
+                (0212) 389 99 99
+            </p>
+            <p>
+                <i class='bx bx-envelope'></i>
+                örnek@gmail.com
+            </p>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="footer-social">
+            <h4>Social Media</h4>
+            <div class="social-icons">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-twitter'></i></a>
+                <a href="#"><i class='bx bxl-instagram'></i></a>
+                <a href="#"><i class='bx bxl-linkedin'></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="footer-bottom">
+        <p>&copy; 2024 NOTALONE</p>
+    </div>
+</footer>
+
+    <script src="owl/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1..min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="makale.js"></script> <!-- JavaScript dosyasını bağladık -->
+
+</body>
+</html>

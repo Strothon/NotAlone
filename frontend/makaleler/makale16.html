@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Women with No Women’s Rights in Turkey</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/581952776c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="makale.css">
+    <link rel="stylesheet" href="owl/owl.carousel.min.css">
+    <link rel="stylesheet" href="owl/owl.theme.default.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="owl/script.js"></script>
+
+</head>
+<body>
+
+    <!-- Sabit Üst Menü -->
+    <section id="menu">
+        <div id="logo">NOTALONE</div>
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div>
+        <nav>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="javascript:void(0);" id="userIcon"><i class="fa-regular fa-user"></i></a></li>
+        </nav>
+    </section>
+
+<!-- Sağ Menü -->
+<div id="loginPanel" class="sidenav-right">
+    <div class="sidenav__inner">
+       <!-- Giriş Paneli -->
+<div id="loginForm" class="auth-section">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <h2>Login</h2>
+    <form onsubmit="handleLogin(event)">
+        <input type="email" id="loginEmail" placeholder="Email" required class="form-control">
+        <div class="password-container">
+            <input type="password" id="loginPassword" placeholder="Password" required class="form-control">
+            <i class="fa fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+        </div>
+        <button type="submit" class="submit-button">Login</button>
+        <div class="links">
+            <a href="#" onclick="showForgotPassword(event)">Forgot Password?</a>
+            <a href="#" onclick="showSignUp(event)">Sign Up</a>
+        </div>
+    </form>
+</div>
+
+<!-- Giriş Yaptıktan Sonraki Panel -->
+<div id="userPanelContent" class="user-panel-section" style="display: none;">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <div class="user-info">
+        <div class="user-header">
+            <i class="fa-regular fa-user"></i>
+            <span id="welcomeUsername">Welcome, User</span>
+        </div>
+    </div>
+    
+    <nav class="user-nav">
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-user"></i>
+            <span>My Profile</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-paper-plane"></i>
+            <span>My Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-comment"></i>
+            <span>My Comments</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-heart"></i>
+            <span>Liked Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-bookmark"></i>
+            <span>Saved Posts</span>
+        </a>
+        
+    </nav>
+    <div class="logout-container">
+        <button id="logoutButton" onclick="handleLogout()">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+    </div>
+</div>
+
+
+        <!-- Şifremi Unuttum Paneli -->
+        <div id="forgotPasswordForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Reset Password</h2>
+            <p class="auth-description">Enter your email address and we'll send you a link to reset your password.</p>
+            <form onsubmit="handleForgotPassword(event)">
+                <input type="email" id="resetEmail" placeholder="Email" required class="form-control">
+                <button type="submit" class="submit-button">Send Reset Link</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Back to Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kaydolma Paneli -->
+        <div id="signUpForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Sign Up</h2>
+            <form onsubmit="handleSignUp(event)">
+                <div class="form-group">
+                    <input type="text" id="firstName" placeholder="First Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="lastName" placeholder="Last Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="signUpEmail" placeholder="Email" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="signUpPassword" placeholder="Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder="Phone Number" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="birthDate" placeholder="Birth Date" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <select id="gender" class="form-control" required>
+                        <option value="">Select Gender</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
+                        <option value="prefer-not">Prefer not to say</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-button">Sign Up</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Already have an account? Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kullanıcı Panel İçeriği (giriş yapıldıktan sonra) -->
+        <div id="userPanelContent" class="user-panel-section" style="display: none;">
+            <!-- Mevcut kullanıcı paneli içeriği buraya -->
+        </div>
+    </div>
+</div>
+
+
+    <!-- Sol Sütun -->
+    <div id="sol-sutun">
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div> <!-- Menü Butonu -->
+    </div>
+    
+    <!-- Menü Aç/Kapat İşlevi -->
+    <script>
+        function toggleLeftMenu() {
+            const sidenav = document.getElementById('sidenav');
+            sidenav.classList.toggle('active');
+        }
+    </script>   
+
+<!-- Sol Menü -->
+<div id="sidenav" class="sidenav">
+    <div class="sidenav__inner">
+        <div class="menu-header">
+            <div id="logo-menu">
+                <span style="color:#e7bcbc; font-size: 30px;">
+                    W♀men, Peace and Security
+                </span>
+            </div>
+            <div class="close-btn" onclick="toggleLeftMenu()">✖</div>
+        </div>
+        <nav>
+            <a href="index.html"><i class="fa-solid fa-home"></i>Home</a>
+            <a href="hakkimizda.html"><i class="fa-solid fa-info"></i>About</a>
+            <a href="yorumPolitikasi.html"><i class="fa-solid fa-comment"></i>Comment Policy</a>
+            <a href="haklarinibil.html"><i class="fa-solid fa-balance-scale"></i>Know Your Rights</a>
+            <a href="blog.html"><i class="fa-solid fa-blog"></i>Blog</a>
+            <a href="forum/forum.html"><i class="fa-solid fa-comments"></i>Forum</a>
+            <a href="#"><i class="fa-solid fa-map-marker-alt"></i>Safe Map</a>
+            <a href="#"><i class="fa-solid fa-calendar"></i>Events</a>
+        </nav>
+    </div>
+</div>
+    
+
+    
+<!-- Sidebar -->
+<div class="sidebarHAKKIMIZDA">
+    <div class="logo-boxHAKKIMIZDA">
+        <img src="img/2logo.png" alt="Logo"> <!-- Logo -->
+        <div class="logo-text">W♀men, Peace <p>and Security</p></div> <!-- Slogan -->
+    </div>
+ 
+    <div class="twitter-boxHAKKIMIZDA">
+        <h2>Follow Us</h2>
+        <div class="twitter-feed">
+            <!-- Twitter Widget -->
+            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" title="Twitter Timeline"
+                src="https://syndication.twitter.com/srv/timeline-profile/screen-name/NOT#ALONE=false&amp;embedId=twitter-widget-0&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfZm9zbnJfc29mdF9pbnRlcnZlbnRpb25zX2VuYWJsZWQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X21peGVkX21lZGlhXzE1ODk3Ijp7ImJ1Y2tldCI6InRyZWF0bWVudCIsInZlcnNpb24iOm51bGx9LCJ0ZndfZXhwZXJpbWVudHNfY29va2llX2V4cGlyYXRpb24iOnsiYnVja2V0IjoxMjA5NjAwLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3Nob3dfYmlyZHdhdGNoX3Bpdm90c19lbmFibGVkIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19kdXBsaWNhdGVfc2NyaWJlc190b19zZXR0aW5ncyI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdXNlX3Byb2ZpbGVfaW1hZ2Vfc2hhcGVfZW5hYmxlZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdmlkZW9faGxzX2R5bmFtaWNfbWFuaWZlc3RzXzE1MDgyIjp7ImJ1Y2tldCI6InRydWVfYml0cmF0ZSIsInZlcnNpb24iOm51bGx9LCJ0ZndfbGVnYWN5X3RpbWVsaW5lX3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9mcm9udGVuZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9fQ%3D%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=true&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=en&amp;maxHeight=400px&amp;origin=https%3A%2F%2Fblogs.lse.ac.uk%2Fwps%2F&amp;partner=jetpack&amp;sessionId=0c6952bf47c9281de6889593d9528bcc3401e8f5&amp;showHeader=true&amp;showReplies=false&amp;siteScreenName=NOT#ALONE&amp;theme=light&amp;transparent=false&amp;widgetsVersion=2615f7e52b7e0%3A1702314776716"
+                style="position: static; visibility: visible; width: 100%; height: 400px; display: block;">
+            </iframe>
+        </div>
+    </div>
+ </div>
+
+<!-- Ana Sayfa İçeriği (Slider Benzeri Yapı) -->
+<div id="makale">
+    <img src="../img/makale16.jpg" alt="OGIP" class="makale-img">
+    <div class="post-info">
+        <div class="author-date">
+            <h3 class="author">Gursimran Kaur Bakshi</h3>
+            <h3 class="date">September 17th, 2020</h3>
+        </div>
+        <div class="post-main-content"style="margin-left: -180px;">
+            <h1 style="margin-top: 320px;">Women with No Women’s Rights in </h1>
+            <h1>Turkey</h1>
+        </div>
+    </div>
+</div>
+
+
+    <main>
+        <div class="makale-box">
+            <div class="single-post__main">
+                <div class="single-post__main-content">
+                  <div class="post-content post-builder">
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p><strong><em>As Turkey plans to withdraw from the&nbsp;</em></strong><a href="https://rm.coe.int/CoERMPublicCommonSearchServices/DisplayDCTMContent?documentId=090000168046031c"><strong><em>Council of Europe Convention on preventing and combating violence against women and domestic violence</em></strong></a><strong><em>&nbsp;(the ‘</em></strong><a href="https://blogs.lse.ac.uk/vaw/regional/europe/istanbul-convention/"><strong><em>Istanbul Convention’</em></strong></a><strong><em>), Gursimran Bakshi details the current climate in which women are fighting for their rights, faced by a state unwillingness to protest against and prevent gender-based violence. </em></strong></p>
+            <p>Recently, women around the world took to Instagram to share their white and black photos with the hashtag <a href="https://www.theguardian.com/world/2020/jul/31/challenge-accepted-turkish-feminists-spell-out-real-meaning-of-hashtag">‘#ChallengeAccepted’</a> to show solidarity with their counterparts in Turkey who are or have been a victim/survivor of domestic violence. Last year, a powerful yet haunting <a href="https://www.weforum.org/agenda/2019/10/women-domestic-violence-deaths-turkey/">memorial</a> of 440 pairs of black high heels was installed by a Turkish artist Vahit Tuna on an enormous wall. In Turkey, there is a <a href="https://www.deccanchronicle.com/lifestyle/books-and-art/250919/turkish-artist-uses-heels-to-create-awareness-on-domestic-violence.html">funeral tradition</a> of placing the shoes of the deceased person outside their house, and hence each pair of high heels symbolises the number of women <a href="https://www.firstpost.com/world/artist-displays-440-pairs-of-high-heels-for-women-murdered-in-turkey-in-2018-7397001.html#:~:text=14%3A36%20IST-,ISTANBUL%20(Reuters)%20%2D%20Turkish%20artist%20Vahit%20Tuna%20has%20mounted%20440,violence%20in%20Turkey%20in%">killed in domestic or sexual violence</a> in the year 2018.</p>
+            <p>In Turkey, women and girls face gender-based <a href="https://en.qantara.de/content/violence-against-women-femicide-on-the-rise-in-turkey">domestic and sexual violence</a> including <a href="https://law.hofstra.edu/pdf/academics/journals/lawreview/lrv_issues_v35n02_ee1_boon_final.pdf">honour-killings</a> every day. So far, more than 205 women have been <a href="http://www.xinhuanet.com/english/2020-08/06/c_139268061.htm">killed</a> this year by their partners, families, and relatives in Turkey. But Femicide is a global challenge. Last year, women in <a href="https://foreignpolicy.com/2020/07/30/coronavirus-lockdown-femicide-rises-south-africa/">South Africa</a> took to the streets to protest against the rise of unexceptional violence against women followed by <a href="https://www.thenationalherald.com/archive_general_news_greece/arthro/more_people_taking_beatings_across_greece_domestic_violence_up-51448/">Greece</a> and <a href="https://www.nytimes.com/2019/12/26/world/americas/mexico-women-domestic-violence-femicide.html">Mexico</a>.</p>
+            <p>According to Human Rights Watch, more than <a title="https://www.hrw.org/report/2011/05/04/he-loves-you-he-beats-you/family-violence-turkey-and-access-protection" href="https://www.hrw.org/report/2011/05/04/he-loves-you-he-beats-you/family-violence-turkey-and-access-protection" target="_blank" rel="noopener noreferrer">eleven million</a> women have faced sexual or domestic violence in Turkey, and the first-ever <a href="http://www.hips.hacettepe.edu.tr/eng/dokumanlar/2008-TDVAW_Main_Report.pdf">national survey</a> published by the Turkish Hacettepe University in 2009 found 19.5% of married women of age group 15-24 years have a lifetime prevalence of injuries, this rises to 26.8%&nbsp;for the age group of 45-59 years(page 71). Heart-wrenching incidents such as a woman being <a href="https://www.bbc.com/news/world-europe-49446389">murdered</a> by her former husband in a café in front of her daughter, a 27-years old being <a href="https://www.theguardian.com/world/2020/jul/23/turkey-outrage-rising-violence-against-women/">strangled</a> to death by her boyfriend, and a 16 years-old <a href="https://www.voanews.com/europe/brutal-death-16-year-old-reopens-debate-over-honor-killings-turkey">buried alive</a> by her father and grandfather because she was talking to boys, reflects the dire condition of women’s rights in Turkey. Disturbingly, the state <a href="https://www.independent.co.uk/independentpremium/voices/turkey-istanbul-convention-women-domestic-abuse-violence-a9672176.html">currently plans to withdraw from the Istanbul Convention</a>; an international treaty on domestic violence.</p>
+            <p>It is not the ‘<em>inability’</em> of the state but rather an ‘<em>unwillingness’</em> to protect against and prevent gender-based violence against women in Turkey. This unwillingness helps the state to control the behavioural standards of women in society through violence perpetrated by men. The state undoubtedly lets the perpetrator enjoy a sense of impunity when it comes to preventing gender-based violence to preserve the centralisation of power. Filiz Akgul in her book ‘<a href="https://b-ok.asia/book/2940930/7d51f8">Patriarchal Theory Reconsidered: Torture and Gender-Based Violence in Turkey’</a> observes: “State prefer men subjects to oppress women in Turkey because the male is oppressed by the state and this is a form of compensation on behalf of the state to conceal their male subjects’ oppression to the female” (pg.3)</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">It is not the ‘inability’ of the state but rather an ‘unwillingness’ to protect against and prevent gender-based violence against women in Turkey.</p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p><span style="color: #ff0000"><strong>Systematic failures of law reforms to prevent Domestic Violence </strong></span></p>
+            <p>The state has national laws and international commitments including the<a href="https://www.refworld.org/publisher,CEDAW,STATEPARTIESREP,TUR,,,0.html"> Convention on the Elimination of all forms of Discrimination against Women</a> (CEDAW) for the protection of women’s rights but the greater failing lies in the implementation of these laws.</p>
+            <p>The government took significant measures for the protection of women against domestic violence for the first time in 1998 with the enactment of the <a href="https://jpia.princeton.edu/sites/jpia/files/2009-2.pdf">Prevention of Domestic Violence Law No.4320</a>. It was <a href="https://www.hrw.org/sites/default/files/reports/turkey0511webwcover.pdf">amended</a> in 2007 (Law No. 5636) to establish a system of protection orders whereby, a family court could issue protection orders to a spouse, child or other family member if they share the same roof as the offender to refrain from any form of violence or threat for a period of six months. The offender could also be restrained from sharing the same house or being in communication with the victim/survivor.</p>
+            <p>However, the law has gaps as it does not extend the same protection to unmarried and divorced women. Moreover, it does not recognise marriages that are not governed by the civil code. Surprisingly, the <a href="https://www.legislationline.org/download/id/6453/file/Turkey_CC_2004_am2016_en.pdf">Criminal Code of Turkey (Law Nr. 5237)</a> does not offer any specific legal remedies on gender-based violence and only provides punishment against offences related to sexual immunity. The Criminal Code was amended in 2014 but the Parliament did not recognise amendments such as the inclusion of the word ‘honour-killing’ and ‘incest’ as suggested by various <a href="https://tbinternet.ohchr.org/Treaties/CEDAW/Shared%20Documents/TUR/INT_CEDAW_NGO_TUR_24253_E.pdf">women rights organisations</a>.</p>
+            <p>A report titled ‘<a href="https://www.hrw.org/sites/default/files/reports/turkey0511webwcover.pdf">He Loves You, He Beats You</a>’ published by Human Rights Watch reveals that Turkish Law enforcement lack expertise, women’s shelters are more like prisons, and these shelters are not equipped to handle women with disabilities (Turkey <a href="https://www.ohchr.org/Documents/Issues/Disability/DecisionMaking/States/PM%20-%20Turkey_ENG.docx#:~:text=United%20Nations%20(UN)%20Convention%20on,ratified%20on%2028%20September%202009.">ratified</a> the <a href="https://www.un.org/disabilities/documents/convention/convoptprot-e.pdf">Convention on the Rights of Persons with Disabilities</a> in 2008). Moreover, these shelters do not accept women asylum-seekers.</p>
+            <p>Further, the state in 2016 proposed the controversial <a href="https://www.bbc.com/news/world-europe-38061785">Marriage Bill of 2016</a> that guaranteed impunity to men who rape an underage girl (below 18 years) from any punishment if he decides to marry the victim. Notably, Turkey became the <a href="https://www.hurriyetdailynews.com/turkey-first-to-ratify-coe-convention-on-domestic-violence-7889">first state to ratify</a> the <a href="https://rm.coe.int/168008482e">Istanbul Convention</a> as <a href="http://www.lawsturkey.com/law/law-to-protect-family-and-prevent-violence-against-woman-6284">Law To Protect Family And Prevent Violence Against Women (Law No. 6284)</a> in 2011.</p>
+            <p>However, this was in response to the landmark judgment by the <a href="https://blogs.lse.ac.uk/vaw/regional/europe/european-court-of-human-rights/">European Court of Human Rights</a> (<strong>ECHR</strong>) in <a href="https://hudoc.echr.coe.int/eng#{%22itemid%22:[%22001-92945%22]}"><strong><em>Opuz v. Turkey</em></strong></a> (2009) wherein, the court observed that there is a gross and systematic failure &nbsp;of the state to take prevention measures against domestic violence. According to the brief facts of the case, the victim/survivor was constantly harassed with death threats from her husband who also threatened to kill her mother over a period of four years. The victim and her mother filed a complaint in Diyarbakir Public Prosecutor’s Office for bodily harm but the court acquitted the accused on the lack of evidence.</p>
+            <p>The assault and death threats continued till the victim/survivor went to the prosecutors’ office for the fourth time requesting protective measures against the accused. However, when the proceedings initiated, the victim/survivor along with her mother withdrew their complaint as they succumbed to pressure. It was only after the offender shot her mother that the criminal proceedings of intentional murder were properly initiated against him only to be released later on the first hearing.</p>
+            <p>The ECHR held that Turkey was in violation of the <a href="https://www.echr.coe.int/Documents/Convention_ENG.pdf">European Convention on Human Rights</a>. The state failed its obligation to guarantee right to life (Article 2) without torture and degrading treatment (Article 3), and without any discrimination (Article 14) under the Convention. This was due to the lack of implementation of effective criminal-law provisions and preventive measures for the protection of the victim/survivor and her family members on the existence of a real and immediate risk.</p>
+            <p>Moreover, the court referred to the landmark judgment of the Inter-American court in <a href="https://www.corteidh.or.cr/docs/casos/articulos/seriec_04_ing.pdf"><strong><em>Velazquez-Rodriguez v. Honduras</em></strong></a> and held that any private act that is illegal in nature could attribute to &nbsp;international state responsibility if it violates human rights and the state lacks due diligence to prevent it (Para. 164). The same position has been reiterated in <a href="https://hudoc.echr.coe.int/eng#{%22appno%22:[%2271127/01%22]}"><strong><em>Bevacqua and S. v. Bulgaria</em></strong></a> and <a href="https://hudoc.echr.coe.int/eng#{%22appno%22:[%2242758/98%22]}"><strong><em>K.A. and A.D. v. Belgium</em></strong></a><em>.</em></p>
+            <p>Turkey has not only failed to <a href="https://www.ohchr.org/EN/HRBodies/HRC/RegularSessions/Session25/Documents/A-HRC-25-60_en.doc">prevent torture, cruel, and degrading treatment</a>, it has also violated the <a href="http://www.ejil.org/pdfs/19/3/1625.pdf">non-discrimination principle</a> on the failure to recognise domestic violence and honour-killing as a gender-based violence that affects women disproportionally as per Article 3(a) of the Istanbul Convention. Both the two obligations cannot be waived under international human rights law.</p>
+            <p>Another point of concern is the tolerance of violence by police officers and judges. In paragraph 91 of the <em>Opuz v. Turkey &nbsp;</em>judgement, the court referred to the report by the <a href="https://morcati.org.tr/yayinlarimiz/raporlar/">Purple Roof Women’s Shelter Foundation</a> to point out that family courts take up the case of domestic violence as divorce cases by setting up dates two-three months ahead.</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">“Turkey has not only failed to prevent torture, cruel, and degrading treatment, it also violated the non-discrimination principle on the failure to recognise domestic violence and honour-killing as a gender-based violence that affects women disproportionally as per Article 3(a) of the Istanbul Convention.”</p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>With the <a href="https://www.dw.com/en/domestic-violence-rises-in-turkey-during-covid-19-pandemic/a-53082333">exponential rise</a> in the domestic violence cases in Turkey during COVID-19, there is a disturbing domino effect that initiated with Hungary <a href="https://www.neweurope.eu/article/hungary-refuses-to-ratify-istanbul-convention-on-violence-against-women/">refusing </a>to ratify the Convention, followed by the <a href="https://www.bbc.com/news/world-europe-53538205">withdrawal of Poland</a>, and now Turkey.</p>
+            <p>Both the three states share something in common; they unabashedly fail to guarantee basic rights to women, transgender persons, and asylum-seekers. The President of Poland referred to the rights of LBGTQI persons as an ideology <a href="https://www.bbc.com/news/world-europe-53039864">more destructive than communism</a>, whereas, Hungary <a href="https://www.hrw.org/news/2020/05/21/hungary-ends-legal-recognition-transgender-and-intersex-people">ended</a> the legal recognition of transgender persons recently.</p>
+            <p>Withdrawing from the Istanbul Convention could not only risks women and girls becoming even more vulnerable to gender-based violence but would unleash a strong sense of impunity in the minds of perpetrators who would never be held accountable for their heinous acts.</p>
+            <p>Turkey currently ranks 130 out of 153 states in the <a href="http://www3.weforum.org/docs/WEF_GGGR_2020.pdf">Global Gender Gap Index ranking of 2020</a>. This gap and the patriarchal structure need to be broken. Women in Turkey must continue to fight against oppression not just because they have a chance to win; but because it’s oppression. This must begin with tackling institutional inequalities-by including a range of voices in policy-making and introducing a Constitution that responds to the needs of women and gender-diverse people.</p>
+            <hr>
+            <p><em>The views, thoughts and&nbsp;opinions expressed in this blog post are those of the author(s)&nbsp;only.</em></p>
+            <p><em>Image credit:&nbsp;<a href="https://unsplash.com/@ynsplt">yns plt</a>&nbsp;</em></p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                          </div>
+                        <div class="author">
+              <h3>About the author</h3>
+            
+                  <div class="author__main">
+                  <div class="author__image">
+                    <img width="96" height="96" src="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2020/09/IMG_20200901_091853-150x150.jpg" class="avatar avatar-96 photo wp-post-image" alt="" scale="0">
+                    <h3>Gursimran Kaur Bakshi</h3>
+                  </div>
+                          <div class="author__content">
+                      <p>Gursimran is a final year student at the National University of Study and Research in Law Ranchi. She has previously written for LSE Social Policy blog and SOAS Refugee Law Initiative. She is currently interning at the South Asian Human Rights Documentation Centre. </p>
+                    </div>
+                      </div>
+            
+        </div>
+    </main>
+ 
+    <!-- footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <!-- Footer Logo Section -->
+        <div class="footer-logo">
+            <div id="logoFooter">NOTALONE</div>
+            <div class="logo-text"><p>W♀men, Peace </p><p>and Security</p></div> 
+        </div>
+
+        <!-- Quick Links Section -->
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>
+                <i class='bx bx-map'></i>
+                Türk Hava Kurumu Üniversitesi Bahçekapı Mah.
+            </p>
+            <p>
+                <i class='bx bx-phone'></i>
+                (0212) 389 99 99
+            </p>
+            <p>
+                <i class='bx bx-envelope'></i>
+                örnek@gmail.com
+            </p>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="footer-social">
+            <h4>Social Media</h4>
+            <div class="social-icons">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-twitter'></i></a>
+                <a href="#"><i class='bx bxl-instagram'></i></a>
+                <a href="#"><i class='bx bxl-linkedin'></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="footer-bottom">
+        <p>&copy; 2024 NOTALONE</p>
+    </div>
+</footer>
+
+    <script src="owl/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1..min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="makale.js"></script> <!-- JavaScript dosyasını bağladık -->
+
+</body>
+</html>

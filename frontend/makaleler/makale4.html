@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reimagining the aftermath of war, now</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/581952776c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="makale.css">
+    <link rel="stylesheet" href="owl/owl.carousel.min.css">
+    <link rel="stylesheet" href="owl/owl.theme.default.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="owl/script.js"></script>
+
+</head>
+<body>
+
+    <!-- Sabit Üst Menü -->
+    <section id="menu">
+        <div id="logo">NOTALONE</div>
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div>
+        <nav>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="javascript:void(0);" id="userIcon"><i class="fa-regular fa-user"></i></a></li>
+        </nav>
+    </section>
+
+<!-- Sağ Menü -->
+<div id="loginPanel" class="sidenav-right">
+    <div class="sidenav__inner">
+       <!-- Giriş Paneli -->
+<div id="loginForm" class="auth-section">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <h2>Login</h2>
+    <form onsubmit="handleLogin(event)">
+        <input type="email" id="loginEmail" placeholder="Email" required class="form-control">
+        <div class="password-container">
+            <input type="password" id="loginPassword" placeholder="Password" required class="form-control">
+            <i class="fa fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+        </div>
+        <button type="submit" class="submit-button">Login</button>
+        <div class="links">
+            <a href="#" onclick="showForgotPassword(event)">Forgot Password?</a>
+            <a href="#" onclick="showSignUp(event)">Sign Up</a>
+        </div>
+    </form>
+</div>
+
+<!-- Giriş Yaptıktan Sonraki Panel -->
+<div id="userPanelContent" class="user-panel-section" style="display: none;">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <div class="user-info">
+        <div class="user-header">
+            <i class="fa-regular fa-user"></i>
+            <span id="welcomeUsername">Welcome, User</span>
+        </div>
+    </div>
+    
+    <nav class="user-nav">
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-user"></i>
+            <span>My Profile</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-paper-plane"></i>
+            <span>My Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-comment"></i>
+            <span>My Comments</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-heart"></i>
+            <span>Liked Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-bookmark"></i>
+            <span>Saved Posts</span>
+        </a>
+        
+    </nav>
+    <div class="logout-container">
+        <button id="logoutButton" onclick="handleLogout()">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+    </div>
+</div>
+
+
+        <!-- Şifremi Unuttum Paneli -->
+        <div id="forgotPasswordForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Reset Password</h2>
+            <p class="auth-description">Enter your email address and we'll send you a link to reset your password.</p>
+            <form onsubmit="handleForgotPassword(event)">
+                <input type="email" id="resetEmail" placeholder="Email" required class="form-control">
+                <button type="submit" class="submit-button">Send Reset Link</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Back to Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kaydolma Paneli -->
+        <div id="signUpForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Sign Up</h2>
+            <form onsubmit="handleSignUp(event)">
+                <div class="form-group">
+                    <input type="text" id="firstName" placeholder="First Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="lastName" placeholder="Last Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="signUpEmail" placeholder="Email" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="signUpPassword" placeholder="Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder="Phone Number" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="birthDate" placeholder="Birth Date" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <select id="gender" class="form-control" required>
+                        <option value="">Select Gender</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
+                        <option value="prefer-not">Prefer not to say</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-button">Sign Up</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Already have an account? Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kullanıcı Panel İçeriği (giriş yapıldıktan sonra) -->
+        <div id="userPanelContent" class="user-panel-section" style="display: none;">
+            <!-- Mevcut kullanıcı paneli içeriği buraya -->
+        </div>
+    </div>
+</div>
+
+
+    <!-- Sol Sütun -->
+    <div id="sol-sutun">
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div> <!-- Menü Butonu -->
+    </div>
+    
+    <!-- Menü Aç/Kapat İşlevi -->
+    <script>
+        function toggleLeftMenu() {
+            const sidenav = document.getElementById('sidenav');
+            sidenav.classList.toggle('active');
+        }
+    </script>   
+
+<!-- Sol Menü -->
+<div id="sidenav" class="sidenav">
+    <div class="sidenav__inner">
+        <div class="menu-header">
+            <div id="logo-menu">
+                <span style="color:#e7bcbc; font-size: 30px;">
+                    W♀men, Peace and Security
+                </span>
+            </div>
+            <div class="close-btn" onclick="toggleLeftMenu()">✖</div>
+        </div>
+        <nav>
+            <a href="index.html"><i class="fa-solid fa-home"></i>Home</a>
+            <a href="hakkimizda.html"><i class="fa-solid fa-info"></i>About</a>
+            <a href="yorumPolitikasi.html"><i class="fa-solid fa-comment"></i>Comment Policy</a>
+            <a href="haklarinibil.html"><i class="fa-solid fa-balance-scale"></i>Know Your Rights</a>
+            <a href="blog.html"><i class="fa-solid fa-blog"></i>Blog</a>
+            <a href="forum/forum.html"><i class="fa-solid fa-comments"></i>Forum</a>
+            <a href="#"><i class="fa-solid fa-map-marker-alt"></i>Safe Map</a>
+            <a href="#"><i class="fa-solid fa-calendar"></i>Events</a>
+        </nav>
+    </div>
+</div>
+    
+
+    
+<!-- Sidebar -->
+<div class="sidebarHAKKIMIZDA">
+    <div class="logo-boxHAKKIMIZDA">
+        <img src="img/2logo.png" alt="Logo"> <!-- Logo -->
+        <div class="logo-text">W♀men, Peace <p>and Security</p></div> <!-- Slogan -->
+    </div>
+ 
+    <div class="twitter-boxHAKKIMIZDA">
+        <h2>Follow Us</h2>
+        <div class="twitter-feed">
+            <!-- Twitter Widget -->
+            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" title="Twitter Timeline"
+                src="https://syndication.twitter.com/srv/timeline-profile/screen-name/NOT#ALONE=false&amp;embedId=twitter-widget-0&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfZm9zbnJfc29mdF9pbnRlcnZlbnRpb25zX2VuYWJsZWQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X21peGVkX21lZGlhXzE1ODk3Ijp7ImJ1Y2tldCI6InRyZWF0bWVudCIsInZlcnNpb24iOm51bGx9LCJ0ZndfZXhwZXJpbWVudHNfY29va2llX2V4cGlyYXRpb24iOnsiYnVja2V0IjoxMjA5NjAwLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3Nob3dfYmlyZHdhdGNoX3Bpdm90c19lbmFibGVkIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19kdXBsaWNhdGVfc2NyaWJlc190b19zZXR0aW5ncyI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdXNlX3Byb2ZpbGVfaW1hZ2Vfc2hhcGVfZW5hYmxlZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdmlkZW9faGxzX2R5bmFtaWNfbWFuaWZlc3RzXzE1MDgyIjp7ImJ1Y2tldCI6InRydWVfYml0cmF0ZSIsInZlcnNpb24iOm51bGx9LCJ0ZndfbGVnYWN5X3RpbWVsaW5lX3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9mcm9udGVuZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9fQ%3D%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=true&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=en&amp;maxHeight=400px&amp;origin=https%3A%2F%2Fblogs.lse.ac.uk%2Fwps%2F&amp;partner=jetpack&amp;sessionId=0c6952bf47c9281de6889593d9528bcc3401e8f5&amp;showHeader=true&amp;showReplies=false&amp;siteScreenName=NOT#ALONE&amp;theme=light&amp;transparent=false&amp;widgetsVersion=2615f7e52b7e0%3A1702314776716"
+                style="position: static; visibility: visible; width: 100%; height: 400px; display: block;">
+            </iframe>
+        </div>
+    </div>
+ </div>
+
+ 
+
+<!-- Ana Sayfa İçeriği (Slider Benzeri Yapı) -->
+<div id="makale">
+    <img src="../img/makale4.jpg" alt="OGIP" class="makale-img">
+    <div class="post-info">
+        <div class="author-date">
+            <h3 class="author">Aida A. Hozić</h3>
+            <h3>Juliana Restrepo Sanín</h3>
+            <h3 style="margin-top: 20px;"class="date">May 10th, 2022</h3>
+        </div>
+        <div class="post-main-content"style="margin-left: -180px;">
+            <h1 style="margin-top: 320px;">Reimagining the aftermath of war, now</h1>
+        </div>
+    </div>
+</div>
+
+
+    <main>
+        <div class="makale-box">
+
+            <div class="single-post__main">
+                <div class="single-post__main-sidebar">
+                  <div class="social-share static" data-post="4973" style="top: 0px;">
+              
+                <div class="single-post__main-content">
+                  <div class="post-content post-builder">
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p><em>Aida A. Hozić and Juliana Restrepo Sanín look at the political and economic realities of the war in Ukraine, the racialised and anti-gendered discourse that is shaping political futures, and the silence on the war’s gendered and racialised global effects that, once again, is marginalising the most vulnerable. </em></p>
+            <p>Feminist scholars stress two aspects of wars. First, they emphasise <a href="https://california.universitypressscholarship.com/view/10.1525/california/9780520230729.001.0001/upso-9780520230729-chapter-2">continuums</a> and <a href="https://doi.org/10.1080/09692290.2020.1732443">circuits of violence</a>, challenging the usual dichotomies of war and peace, public and private, domestic and international. From the feminist perspective, wars are not territorially bound and cannot be contained. They travel (and return) with refugees, humanitarian workers, mercenaries, and veterans. They circulate within the global economic system through arms trade, informal and illicit markets, looted goods and drugs, and official aid packages. And they are enunciated by crime, extremism, and domestic violence and stretch into the future through trauma, displacement, domestic abuse, addictions, and suicides among survivors and veterans.</p>
+            <p>Second, feminist scholars highlight <a href="https://doi.org/10.1177/0022343320905619">enduring and transformative aspects of wars</a> – their ability to make and remake men, women, sexualities, and gender relations. Wars can reshape <a href="https://doi.org/10.1017/9781108236003">women activism and participation</a> but also <a href="https://blogs.lse.ac.uk/wps/2021/02/15/dayton-wps-and-the-entrenched-manliness-of-ethnic-power-sharing-peace-agreements/">entrench manly power agreements</a> even after the armed conflict ends. They profoundly alter economic landscape, creating new riches and destroying livelihoods with serious consequences for gendered division of labour. Wars redistribute resources and create new <a href="https://doi.org/10.1093/isr/viac003">narratives of love and care</a> as well as of loss, mourning, heroism, and victimhood.</p>
+            <p>Because feminist scholars view these spatial and temporal aspects of war differently, their analyses of wars always imply considerations of political futures forged through conflict and violence, and of the gendered power relations that wars might enshrine. Thus, for feminists thinking about the current war in Ukraine, it is not too soon to ask – what gendered prospects does this war generate? What political and economic realities present and future might it bring about in Ukraine and Europe but also in the rest of the world?</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">Wars redistribute resources and create new narratives of love and care as well as of loss, mourning, heroism, and victimhood. 
+            </p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p><strong>Racialised discourse, anti-gender politics and white masculinity</strong></p>
+            <p>There is an image whose contradictory messaging prompts us to ask these questions, and one which frames our analysis: in the early days of the war, <a href="https://www.washingtonpost.com/lifestyle/2022/03/09/ukrainie-refugee-mother-strollers/">Polish mothers left empty strollers</a> at a train station welcoming Ukrainian women fleeing the conflict. The image quickly became iconic. It was subsequently recreated in cities from <a href="https://www.euronews.com/culture/2022/03/21/lviv-displays-109-empty-baby-strollers-to-mark-each-child-killed-by-putin-s-forces">Lviv</a> to <a href="https://montrealgazette.com/news/local-news/efforts-to-help-ukraine-multiplying-in-montreal">Montreal</a> to <a href="https://www.yahoo.com/video/empty-strollers-placed-san-francisco-051300473.html">San Francisco</a> to symbolise children killed in the war and to protest Russian invasion. The image and the installations evoke the cruelty of the Russian indiscriminate violence and elicit powerful emotional responses.</p>
+            <p>But empty strollers also tap into the <a href="https://www.routledge.com/Anti-Gender-Politics-in-the-Populist-Moment/Graff-Korolczuk/p/book/9780367679491">obsessive focus on reproductive and anti-gender politics</a> in Eastern Europe and beyond. Right-wing politicians capitalise on fears about the <a href="https://doi.org/10.1111/amet.12867">emptiness of nations and spaces</a> due to <a href="10.1353/jod.2018.0049.">demographic decline</a> and exodus to the West. Racialised discourses about the influx of refugees from Afghanistan, Syria, Iraq and elsewhere, informed by <a href="https://www.adl.org/resources/backgrounders/the-great-replacement-an-explainer">the Great Replacement Theory</a>, have structured political contestation since 2015. &nbsp;The angst that white Christians will be replaced by invaders from the Global South results in identification of (white) women with motherhood and desire to control them as such. It has been the core of anti-gender politics in Poland and Hungary where conservative governments have attempted to renew <a href="https://doi.org/10.1080/09688080.2018.1467361">restrictions on abortion</a> or introduced <a href="https://www.nytimes.com/2019/02/11/world/europe/orban-hungary-babies-mothers-population-immigration.html">stimuli for mothers to have more children</a>.</p>
+            <p>Ethno-nationalists and white supremacists in Western Europe and <a href="https://www.nytimes.com/2022/05/03/us/supreme-court-abortion-opinion-draft.html">the U.S.</a> have latched on to the same rhetoric, undermining <a href="https://www.guttmacher.org/state-policy">women’s </a>and <a href="https://www.theguardian.com/us-news/2022/apr/28/lgbtq-rights-us-dont-say-gay">LGBT rights </a>in the name of a racialised gender order that centres white masculinity. Ironically, Russia itself <a href="https://www.aidsmap.com/news/may-2021/whos-financing-anti-gender-movement-europe">has funded</a> many of these transnational anti-gender movements and portrayed LGBTQ rights and gender equality as existential threats to the nation. The replication of these contradictory logics in the embrace of Ukrainian refugees and mothers gives us pause when thinking about racial and gender politics that are emerging from this war – not only in Ukraine or Russia but in Europe and the world beyond.</p>
+            <p><strong>An entrenched gendered economy</strong></p>
+            <p>The contradictory messaging about Ukrainian women in the current war is unsurprising as it builds upon years of their, often unrecognised and invisibilised, contributions to the Ukrainian economy and the conflict in Donbas. More than <a href="https://data2.unhcr.org/en/situations/ukraine">5 million refugees have left Ukraine s</a>ince the beginning of the war. Due to the requirements for the men to stay and fight, <a href="https://www.nytimes.com/2022/04/13/world/europe/ukraine-refugees-women.html">90 per cent of the refugees are women and children</a>. They have joined <a href="https://migrants-refugees.va/country-profile/ukraine/">20 million Ukrainians already in diaspora</a>, whose <a href="https://data.worldbank.org/indicator/BX.TRF.PWKR.DT.GD.ZS?locations=UA">remittances were contributing 10 per cent of the GDP</a> before the Russian invasion. In the post-Cold War period, women have consistently represented the <a href="https://voxeu.org/article/labour-market-disadvantages-immigrant-women">majority of Ukrainian labour migrants</a>. For years, Ukraine was infamous as the <a href="https://www.cfr.org/blog/guest-post-promoting-ukraine-eu-agenda-human-trafficking">source country</a> of trafficked women and sexual exploitation in Europe, although most Ukrainian women in diaspora found <a href="https://link.springer.com/content/pdf/10.1007/s12134-019-00656-1.pdf">employment in care industry and domestic sector</a>. And while the state benefitted from their work in exile, women migrants were portrayed as <a href="https://doi.org/10.1080/1369183X.2014.897600">prostitutes and defectors</a> because their exodus contradicted the idealised vision of womanhood as the bedrock of the Ukrainian national identity.</p>
+            <p>Two recent articles in <a href="https://www.tandfonline.com/journals/rrip20">Review of Political Economy</a> further analyse the interplay of gender, political economy and conflict in Ukraine and ways in which they invisiblise women. Jenny Mathers details gendered effects of <a href="https://doi.org/10.1080/09692290.2020.1725903">Ukraine’s austere economic restructuring</a> under the conditions imposed by International Financial Institutions (IFI), particularly the International Monetary Fund (IMF) and the World Bank. The government had privatised state institutions, opened the land market, and cut social services, education, and healthcare. The consequences of that restructuring disproportionately fell on women.</p>
+            <p>Just as importantly, as military expenditures continued to rise since they were excluded from IFI restructuring, and ongoing conflict in Donbas demanded gendered sacrifices (men called to battle, women drawn into additional care work) the resulting militarisation of the society protected Kyiv’s manly elites while deepening the economic insecurities of women and households. Elliot Dolan-Evans expands that analysis by focusing on the <a href="https://doi.org/10.1080/09692290.2021.2012223">liberalisation of the gas market</a>, pushed by the IMF, which increased household energy expenditures by <a href="https://doi.org/10.1080/09692290.2021.2012223">4,000 percent between 2000 and 2019 (and 650 percent during the war in Donbas)</a>. Rising cost of energy pushed women, especially in rural areas, into risky search for biofuel and requiring that they compensate for increased prices of other necessities (including water) with their own – additional – unpaid labour.</p>
+            <p><strong>Feminist calls for military aid </strong></p>
+            <p>There is no doubt that the Russian invasion of Ukraine has left few options – but military – to Ukrainian citizens to defend themselves. Despite their courage and surprising ability to rebuff Russian forces, the loss of life, reports of atrocities – <a href="https://reliefweb.int/report/ukraine/mounting-reports-crimes-against-women-children-ukraine-raising-red-flags-over">including of rape and other forms of gender-based violence</a> – and the utter destruction of physical infrastructure, agricultural production, and livelihood have been devastating. Instead of calling for peace and negotiations, as essentialist notions would expect, some <a href="http://blokmagazine.com/we-talked-to-fellow-feminists-from-ukraine-about-military-aid-heres-what-they-told-us/">Ukrainian feminists</a> are urging their colleagues in the West to understand the need for increased military aid and advanced weapons systems. The presumed feminist pacifism has given way to feminists lobbying on behalf of the Ukrainian army and demanding additional resources to fight against the aggressor: weapons, airplanes, body armour, drones, a no-fly zone. And although <a href="https://polis180.org/polisblog/2016/12/08/women-ukraine-peacebuilding/">women were not included in the negotiations of the Minsk agreement</a> and are not a part of any of the negotiations between Ukraine and Russia currently under way, they have <a href="https://eca.unwomen.org/en/news/stories/2016/10/women-are-changing-the-face-of-armed-forces-in-ukraine">significant representation in Ukrainian military</a> and have readily mobilised in the war as fighters, weapons procurers, information war activists, aids and soldiers.</p>
+            <p>The current war is exponentially increasing and redistributing these well researched gendered economic and military pressures on women in Ukraine. And yet, as Mila O’Sullivan has shown, <a href="https://cz.boell.org/en/node/2573">gender considerations are largely absent from Western policy responses</a> to the Russian invasion. This is unlikely to change when the conflict ceases as the Ukrainian <a href="http://1325naps.peacewomen.org/index.php/ukraine/">National Action Plan</a> (NAP) for Women Peace and Security (WPS) agenda implementation is focused on <a href="https://www.tandfonline.com/doi/abs/10.1080/14616742.2019.1599981?journalCode=rfjp20">women in security forces and their role in the country’s ability to defend itself</a> to the exclusion of all other issues as well as the gendered impact of the war on civilians. In other words, the NAP itself embodies contradictory expectations placed on women by this war, underscoring tensions between militarization and legitimate defence, gender equality and sacrifice, combat and motherhood.</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">Instead of calling for peace and negotiations, as essentialist notions would expect, some Ukrainian feminists are urging their colleagues in the West to understand the need for increased military aid and advanced weapons systems. The presumed feminist pacifism has given way to feminists lobbying on behalf of the Ukrainian army and demanding additional resources to fight against the aggressor: weapons, airplanes, body armour, drones, a no-fly zone.</p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p><strong>Global gendered effects</strong></p>
+            <p>Since wars travel and their reach extends far beyond conflict zones, Russian invasion and Western sanctions are also resonating throughout the world, with profound implications for racial and gender relations. In addition, the war is happening in a world still going through and not fully recovered from a pandemic that <a href="https://www.bbc.com/news/health-61327778">is estimated to have killed nearly 15 million people</a>, left several thousand disabled or with long-term illness, disturbed global and regional supply chains, increased inflation, poverty, and inequality. It is, therefore, even more alarming that the conflict, might cause <a href="https://time.com/6162598/ukraine-war-food-shortage/">the gravest food crisis in the world since WWII</a>.</p>
+            <p>The rise in energy prices and the costs of fertilisers are compounding its effects while intersecting with great power competition across the globe. About 80 per cent of the wheat that <a href="https://reliefweb.int/report/lebanon/russia-s-invasion-ukraine-exacerbates-hunger-middle-east-north-africa-enar">Lebanon</a> imported in 2020 came from Ukraine. The country’s free-falling economy is taking a further hit and the increase in food prices is sending most of its population into poverty. In <a href="https://www.reuters.com/news/picture/sri-lanka-turns-off-street-lights-as-eco-idUSRTS6OX7V">Sri Lanka</a>, street lights had to be turned off because of the deepening economic crisis, with significant implications for women’s security and mobility. In <a href="https://www.cnn.com/2022/04/06/americas/peru-protests-russia-ukraine-war-impact-intl-latam/index.html">Peru</a>, protests over energy prices have led to violent clashes with the police and government-imposed curfew, that risks increasing gender-based violence at home, as it did with the pandemic lockdowns. Even these few highlighted cases quickly demonstrate that the wide-ranging impact of the war is likely to lead to increases in domestic and gender-based violence, already at <a href="https://www.unwomen.org/en/news/in-focus/in-focus-gender-equality-in-covid-19-response/violence-against-women-during-covid-19">historic high because of the pandemic</a>.</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">Since wars travel and their reach extends far beyond conflict zones, Russian invasion and Western sanctions are also resonating throughout the world, with profound implications for racial and gender relations. 
+            </p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>The war in Ukraine, like all wars, affects and transforms gender relations. Silences about the war’s gendered and racialised global effects, which characterise current Western responses to the Russian invasion, are troubling. As feminists, we fear that the war’s price will be paid – as is often the case – by the most vulnerable, both in Ukraine and elsewhere. We are also concerned that to ignore gender and race in discussions about the war’s conduct now may lead to renewed marginalisation of more just and equitable gender and racial policies later.</p>
+            <p>Feminist scholars and activists – especially in the comforts of the West – have a lot to learn from their Ukrainian counterparts. They must acknowledge the legitimate agency and needs of Ukrainian feminists for their defence and the plurality of demands that wars place upon those who are fighting for survival. Their perspective forces us to re-envision the Women Peace and Security agenda, not just as a mechanism for the inclusion of women, either as victims or combatants, in the aftermath of war and in peace, but as a mechanism to think about the gendered and racialised effects of war, and to reimagine a new world order not governed by domination and imperialism but one based on collaboration, reciprocity, equity, and justice. To imagine this war as a war of democracy against autocracy, as it is often described, demands that supporters of democracy in the East and the West recognise and address the multiple contradictions of war and peace, and confront anti-democratic policies and rhetoric at home as much as abroad.</p>
+            <hr>
+            <p><em>The views, thoughts and&nbsp;opinions expressed in this blog post are those of the author(s)&nbsp;only.</em></p>
+            <p>Image credit: <a href="https://www.flickr.com/photos/unwomen/51970325891/">UN Women</a> (CC BY-NC-ND 2.0)</p>
+            <p>&nbsp;</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                          </div>
+                        <div class="author">
+              <h3>About the author</h3>
+            
+                  <div class="author__main">
+                  <div class="author__image">
+                    <img width="96" height="96" src="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2021/02/Aida--150x150.jpeg" class="avatar avatar-96 photo wp-post-image" alt="" scale="0">
+                    <h3>Aida A. Hozić</h3>
+                  </div>
+                          <div class="author__content">
+                      <p>Aida A. Hozić is an Associate Professor of International Relations and Associate Chair of the Department of Political Science at the University of Florida, United States. Her research is situated at the intersection of political economy, cultural studies, and international security. She is the author of Hollyworld: Space, Power and Fantasy in the American Economy  (Cornell University Press, 2002), co-editor (with Jacqui True) of Scandalous Economics: Gender and Politics of Financial Crises (Oxford University Press, 2016). Her current research project explores interplays between feminist art, “manly” conceptualisations of warfare, and the growth of art markets in the 21st century.</p>
+                    </div>
+                      </div>
+                  <div class="author__main">
+                  <div class="author__image">
+                    <img width="96" height="96" src="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/05/Restrepo-small-100x100.jpeg" class="avatar avatar-96 photo wp-post-image" alt="" srcset="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/05/Restrepo-small-100x100.jpeg 100w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/05/Restrepo-small-150x150.jpeg 150w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/05/Restrepo-small-300x300.jpeg 300w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/05/Restrepo-small-768x768.jpeg 768w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/05/Restrepo-small-1024x1024.jpeg 1024w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/05/Restrepo-small.jpeg 1414w" sizes="(max-width: 96px) 100vw, 96px">
+                    <h3>Juliana Restrepo Sanín</h3>
+                  </div>
+                          <div class="author__content">
+                      <p>Juliana Restrepo Sanín is Assistant Professor of Political Science at the University of Florida, United States. Her current book project analyzes violence and harassment against women politicians in Latin America, the role of women’s activism in bringing attention to this problem, and the development and effectiveness of state measures to end it. Before joining the faculty at the University of Florida, Dr. Restrepo Sanín was a postdoctoral fellow at the Sié Chéou-Kang Center for International Security &amp; Diplomacy at the Josef Korbel School of International Studies (University of Denver) and the One Earth Future foundation. </p>
+                    </div>
+                      </div>
+            </section>
+                      </div>
+              </div>
+ 
+        </div>
+    </main>
+ 
+    <!-- footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <!-- Footer Logo Section -->
+        <div class="footer-logo">
+            <div id="logoFooter">NOTALONE</div>
+            <div class="logo-text"><p>W♀men, Peace </p><p>and Security</p></div> 
+        </div>
+
+        <!-- Quick Links Section -->
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>
+                <i class='bx bx-map'></i>
+                Türk Hava Kurumu Üniversitesi Bahçekapı Mah.
+            </p>
+            <p>
+                <i class='bx bx-phone'></i>
+                (0212) 389 99 99
+            </p>
+            <p>
+                <i class='bx bx-envelope'></i>
+                örnek@gmail.com
+            </p>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="footer-social">
+            <h4>Social Media</h4>
+            <div class="social-icons">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-twitter'></i></a>
+                <a href="#"><i class='bx bxl-instagram'></i></a>
+                <a href="#"><i class='bx bxl-linkedin'></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="footer-bottom">
+        <p>&copy; 2024 NOTALONE</p>
+    </div>
+</footer>
+
+    <script src="owl/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1..min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="makale.js"></script> <!-- JavaScript dosyasını bağladık -->
+
+</body>
+</html>

@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home | NOTALONE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/581952776c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../owl/owl.carousel.min.css">
+    <link rel="stylesheet" href="../owl/owl.theme.default.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../owl/owl.carousel.min.js"></script>
+    <script src="../owl/script.js"></script>
+
+</head>
+<body>
+
+    <!-- Sabit Üst Menü -->
+    <section id="menu">
+        <div id="logo">NOTALONE</div>
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div>
+        <nav>
+            <li><a href="../html/home.html">Home</a></li>
+            <li><a href="../html/about.html">About</a></li>
+            <li><a href="../html/knowyourrights.html">Know Your Rights</a></li>
+            <li><a href="../html/stories.html">Stories</a></li>
+            <li><a href="../html/blog.html">Blog</a></li>
+            <li><a href="../html/forum.html">Forum</a></li>
+            <li><a href="../html/support.html">Support</a></li>
+            <li><a href="../html/commentPolicy.html">Comment Policy</a></li>
+            <li><a href="javascript:void(0);" id="userIcon"><i class="fa-regular fa-user"></i></a></li>
+        </nav>
+    </section>
+
+<!-- Sağ Menü -->
+<div id="loginPanel" class="sidenav-right">
+    <div class="sidenav__inner">
+<!-- Login Panel -->
+<div id="loginForm" class="auth-section">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <h2>Login</h2>
+    <form onsubmit="handleLogin(event)">
+        <input type="email" id="loginEmail" placeholder="Email" required class="form-control">
+        <div class="password-container">
+            <input type="password" id="loginPassword" placeholder="Password" required class="form-control">
+            <i class="fa fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+        </div>
+        <button type="submit" class="submit-button">Login</button>
+        <div class="links">
+            <a href="#" onclick="showForgotPassword(event)">Forgot Password?</a>
+            <a href="#" onclick="showSignUp(event)">Sign Up</a>
+        </div>
+    </form>
+</div>
+
+<!-- Giriş Yaptıktan Sonraki Panel -->
+<div id="userPanelContent" class="user-panel-section" style="display: none;">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <div class="user-info">
+        <div class="user-header">
+            <i class="fa-regular fa-user"></i>
+            <span id="welcomeUsername">Welcome, User</span>
+        </div>
+    </div>
+
+    <nav class="user-nav">
+        <a href="/userpanel#profile" class="nav-item">
+            <i class="fa-regular fa-user"></i>
+            <span>My Profile</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-paper-plane"></i>
+            <span>My Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-comment"></i>
+            <span>My Comments</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-heart"></i>
+            <span>Liked Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-bookmark"></i>
+            <span>Saved Posts</span>
+        </a>
+        
+    </nav>
+    <div class="logout-container">
+        <button id="logoutButton" onclick="handleLogout()">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+    </div>
+</div>
+
+
+        <!-- Şifremi Unuttum Paneli -->
+        <div id="forgotPasswordForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Reset Password</h2>
+            <p class="auth-description">Enter your email address and we'll send you a link to reset your password.</p>
+            <form onsubmit="handleForgotPassword(event)">
+                <input type="email" id="resetEmail" placeholder="Email" required class="form-control">
+                <button type="submit" class="submit-button">Send Reset Link</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Back to Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kaydolma Paneli -->
+        <div id="signUpForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Sign Up</h2>
+            <form onsubmit="handleSignUp(event)">
+                <div class="form-group">
+                    <input type="text" id="firstName" placeholder="First Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="lastName" placeholder="Last Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="signUpEmail" placeholder="Email" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="signUpPassword" placeholder="Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder="Phone Number" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="birthDate" placeholder="Birth Date" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <select id="gender" class="form-control" required>
+                        <option value="">Select Gender</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
+                        <option value="prefer-not">Prefer not to say</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-button">Sign Up</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Already have an account? Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kullanıcı Panel İçeriği (giriş yapıldıktan sonra) -->
+        <div id="userPanelContent" class="user-panel-section" style="display: none;">
+            <!-- Mevcut kullanıcı paneli içeriği buraya -->
+        </div>
+    </div>
+</div>
+
+
+    <!-- Sol Sütun -->
+    <div id="sol-sutun">
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div> <!-- Menü Butonu -->
+    </div>
+    
+    <!-- Menü Aç/Kapat İşlevi -->
+    <script>
+        function toggleLeftMenu() {
+            const sidenav = document.getElementById('sidenav');
+            sidenav.classList.toggle('active');
+        }
+    </script>   
+
+<!-- Sol Menü -->
+<div id="sidenav" class="sidenav">
+    <div class="sidenav__inner">
+        <div class="menu-header">
+            <div id="logo-menu">
+                <span style="color:#e7bcbc; font-size: 30px;">
+                    W♀men, Peace and Security
+                </span>
+            </div>
+            <div class="close-btn" onclick="toggleLeftMenu()">✖</div>
+        </div>
+        <nav>
+            <a href="../html/home.html"><i class="fa-solid fa-home"></i>Home</a>
+            <a href="../html/about.html"><i class="fa-solid fa-info"></i>About</a>
+            <a href="../html/knowyourrights.html"><i class="fa-solid fa-balance-scale"></i>Know Your Rights</a>
+            <a href="../html/stories.html"><i class="fa-solid fa-pen"></i>Stories</a>
+            <a href="../html/blog.html"><i class="fa-solid fa-blog"></i>Blog</a>
+            <a href="../html/forum.html"><i class="fa-solid fa-comments"></i>Forum</a>
+            <a href="../html/support.html"><i class="fa-solid fa-calendar"></i>Support</a>
+            <a href="../html/commentPolicy.html"><i class="fa-solid fa-comment"></i>Comment Policy</a>
+        </nav>
+    </div>
+</div>
+    
+
+    <!-- Ana Sayfa İçeriği (Slider Benzeri Yapı) -->
+    <div id="anasayfa">
+        <div id="icerik">
+            <h1>Women, Peace and Security</h1>
+            <p>Promoting gender equality, enhancing women's</p>
+            <p>security and economic, social, and political</p>
+            <p>participation</p>
+        </div>
+    </div>
+
+    <!-- popular -->
+    <section id="popular">
+        <div class="container">
+            <h3 style="font-size: 2.9rem; color: #865e7a;">Most Popular</h3>
+            <div class="owl-carousel owl-theme">
+                <div class="item">
+                    <div class="card">
+                        <a href="../makaleler/makale1.html" class="article-card" data-title="Turkey's withdrawal from the Istanbul Convention: A step in the wrong direction" data-date="May 5th, 2021">
+                            <img src="../img/makale1.jpg" alt="Article Image">
+                            <div class="article-info">
+                                <h3 class="title">Turkey's withdrawal from the Istanbul Convention: A step in the wrong direction</h3>
+                                <p class="date">May 5th, 2021</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="card">
+                        <a href="../makaleler/makale11.html" class="article-card" data-title="The Saturday Mothers movement in Turkey: 26-year quest for justice and truth" data-date="September 9th, 2021">
+                            <img src="../img/makale11.jpg" alt="Article Image">
+                            <div class="article-info">
+                                <h3 class="title">The Saturday Mothers movement in Turkey: 26-year quest for justice and truth</h3>
+                                <p class="date">September 9th, 2021</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="card">
+                        <a href="../makaleler/makale12.html" class="article-card" data-title="My voice was heard: Centring civilian agency in responses to sexual and gender-based violence" data-date="February 11th, 2022">
+                            <img src="../img/makale12.jpg" alt="Article Image">
+                            <div class="article-info">
+                                <h3 class="title">My voice was heard: Centring civilian agency in responses to sexual and gender-based violence</h3>
+                                <p class="date">February 11th, 2022</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+
+<!-- son paylaşılanlar -->
+<section id="son-paylasilanlar">
+    <h3 style="font-size: 2.9rem; color: #865e7a; margin-left: 70px; margin-top: 30px;">Latest Posts</h3>
+
+            <div class="articles-container" style="margin-left: 50px;">
+                <!-- Örnek Makale Kartı -->
+                <a href="../makaleler/makale1.html" class="article-card" data-title="Turkey's withdrawal from the Istanbul Convention: A step in the wrong direction" data-date="May 5th, 2021">
+                    <img src="../img/makale1.jpg" alt="Article Image">
+                    <div class="article-info">
+                        <h3 class="title">Turkey's withdrawal from the Istanbul Convention: A step in the wrong direction</h3>
+                        <p class="date">May 5th, 2021</p>
+                    </div>
+                </a>
+
+                <a href="../makaleler/makale2.html" class="article-card" data-title="The radical potential of feminist approaches to relief and recovery" data-date="June 27th, 2022">
+                    <img src="../img/makale2.jpg" alt="Article Image">
+                    <div class="article-info">
+                        <h3 class="title">The radical potential of feminist approaches to relief and recovery</h3>
+                        <p class="date">June 27th, 2022</p>
+                    </div>
+                </a>
+
+                <a href="../makaleler/makale3.html" class="article-card" data-title="There Are No Feminist Borders" data-date="October 28th, 2022">
+                    <img src="../img/makale3.jpeg" alt="Article Image">
+                    <div class="article-info">
+                        <h3 class="title">There Are No Feminist Borders</h3>
+                        <p class="date">October 28th, 2022</p>
+                    </div>
+                </a>
+
+                <a href="../makaleler/makale4.html" class="article-card" data-title="Reimagining the aftermath of war, now" data-date="May 10th, 2022">
+                    <img src="../img/makale4.jpg" alt="Article Image">
+                    <div class="article-info">
+                        <h3 class="title">Reimagining the aftermath of war, now</h3>
+                        <p class="date">May 10th, 2022</p>
+                    </div>
+                </a>
+
+                
+                <a href="../makaleler/makale6.html" class="article-card" data-title="Media (mis)representation of conflicted-related sexual violence" data-date="February 1st, 2022">
+                    <img src="../img/makale5.jpg" alt="Article Image">
+                    <div class="article-info">
+                        <h3 class="title">Media (mis)representation of conflicted-related sexual violence</h3>
+                        <p class="date">February 1st, 2022</p>
+                    </div>
+                </a>
+
+                <a href="../makaleler/makale7.html" class="article-card" data-title="The political economy of Women, Peace, and Security funding in Canada" data-date="April 14th, 2022">
+                    <img src="../img/makale7.jpg" alt="Article Image">
+                    <div class="article-info">
+                        <h3 class="title">The political economy of Women, Peace, and Security funding in Canada</h3>
+                        <p class="date">April 14th, 2022</p>
+                    </div>
+                </a>
+                
+                <a href="../makaleler/makale8.html" class="article-card" data-title="Male Victims and Female Perpetrators of International Crimes" data-date="July 20th, 2022">
+                    <img src="../img/makale8.jpg" alt="Article Image">
+                    <div class="article-info">
+                        <h3 class="title">Male Victims and Female Perpetrators of International Crimes</h3>
+                        <p class="date">July 20th, 2022</p>
+                    </div>
+                </a>
+
+                <a href="../makaleler/makale9.html" class="article-card" data-title="Architecture, Gender, Peace and International Law: conversations with Caterina Polidoro" data-date="November 20th, 2020">
+                    <img src="../img/makale8.jpg" alt="Article Image">
+                    <div class="article-info">
+                        <h3 class="title">Architecture, Gender, Peace and International Law: conversations with Caterina Polidoro</h3>
+                        <p class="date">November 20th, 2020</p>
+                    </div>
+                </a>
+                
+                <!-- Diğer makale kartları buraya eklenecek -->
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Sidebar -->
+
+<!-- Sidebar -->
+<div class="sidebar-twitter">
+   <div class="logo-box">
+       <img src="../img/2logo.png" alt="Logo"> <!-- Logo -->
+       <div class="logo-text">W♀men, Peace <p>and Security</p></div> <!-- Slogan -->
+   </div>
+
+   <div class="sidebar-twitter-box">
+       <h2>Follow Us</h2>
+       <div class="twitter-feed">
+           <!-- Twitter Widget -->
+           <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" title="Twitter Timeline"
+               src="https://syndication.twitter.com/srv/timeline-profile/screen-name/NOT#ALONE=false&amp;embedId=twitter-widget-0&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfbGVnYWN5X3RpbWVsaW5lX3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9mcm9udGVuZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9fQ%3D%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=true&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=en&amp;maxHeight=400px&amp;origin=https%3A%2F%2Fblogs.lse.ac.uk%2Fwps%2F&amp;partner=jetpack&amp;sessionId=0c6952bf47c9281de6889593d9528bcc3401e8f5&amp;showHeader=true&amp;showReplies=false&amp;siteScreenName=NOT#ALONE&amp;theme=light&amp;transparent=false&amp;widgetsVersion=2615f7e52b7e0%3A1702314776716"
+               style="position: static; visibility: visible; width: 100%; height: 400px; display: block;">
+           </iframe>
+       </div>
+   </div>
+</div>
+
+<!-- Show More Button -->
+<div class="show-more-container">
+    <a href="blog.html" class="show-more-button">Show More</a>
+</div>
+
+<!-- iletişim kısmı -->
+<section class="iletisim">
+    <div id="iletisimopaklik">
+        <!-- Başlık Kısmı -->
+        <h2 style="color: #e7bcbc; text-align: left; width: 100%;">Contact Us</h2>
+        <div id="form-container">
+            <!-- Form Kısmı -->
+            <div id="formgroup">
+                <div id="solform">
+                    <input type="text" name="name" placeholder="Full Name" required class="form-control">
+                    <input type="email" name="email" placeholder="Your Email Address" required class="form-control">
+                </div>
+                <div id="sagform">
+                    <input type="text" name="phone" placeholder="Phone Number" required class="form-control">
+                    <input type="text" name="subject" placeholder="Subject" required class="form-control">
+                </div>
+                <textarea name="message" cols="30" placeholder="Enter Your Message" rows="10" required class="form-control"></textarea>
+                <input type="submit" value="Send" class="submit-button">
+            </div>
+            <!-- Adres Kısmı -->
+            <div id="adres-map-container">
+                <div id="adres">
+                    <h4 id="adresbaslik">Address: </h4>
+                    <p class="adresp">Türk Hava Kurumu Üniversitesi Bahçekapı Mah.</p>
+                    <p class="adresp">Okul Sk. No:11 06790 Etimesgut ANKARA</p>
+                    <p class="adresp">(0212) 389 99 99</p>
+                    <p class="adresp">Notalone@gmail.com</p>
+                </div>
+                <div id="map">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3132.9556267346494!2d-122.41941538468255!3d37.77492957975953!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808a5e8f23fb%3A0x45bfe4566b1a20cd!2sGoogle!5e0!3m2!1sen!2sus!4v1607638462842!5m2!1sen!2sus"
+                        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <!-- Footer Logo Section -->
+        <div class="footer-logo">
+            <div id="logoFooter">NOTALONE</div>
+            <div class="logo-text"><p>W♀men, Peace </p><p>and Security</p></div> 
+        </div>
+
+        <!-- Quick Links Section -->
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../html/home.html">Home</a></li>
+                <li><a href="../html/about.html">About</a></li>
+                <li><a href="../html/knowyourrights.html">Know Your Rights</a></li>
+                <li><a href="../html/stories.html">Stories</a></li>
+                <li><a href="../html/blog.html">Blog</a></li>
+                <li><a href="../html/forum.html">Forum</a></li>
+                <li><a href="../html/support.html">Support</a></li>
+                <li><a href="../html/commentPolicy.html">Comment Policy</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>
+                <i class='bx bx-map'></i>
+                Türk Hava Kurumu Üniversitesi Bahçekapı Mah.
+            </p>
+            <p>
+                <i class='bx bx-phone'></i>
+                (0212) 389 99 99
+            </p>
+            <p>
+                <i class='bx bx-envelope'></i>
+                notalone@gmail.com
+            </p>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="footer-social">
+            <h4>Social Media</h4>
+            <div class="social-icons">
+                <a href="https://www.facebook.com" target="_blank"><i class='bx bxl-facebook'></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class='bx bxl-twitter'></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class='bx bxl-instagram'></i></a>
+                <a href="https://www.linkedin.com/in" target="_blank"><i class='bx bxl-linkedin'></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="footer-bottom">
+        <p>&copy; 2024 NOTALONE</p>
+    </div>
+</footer>
+
+    <script src="../owl/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1..min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="../owl/owl.carousel.min.js"></script>
+    <script src="../js/script.js"></script> <!-- JavaScript dosyasını bağladık -->
+
+</body>
+</html>

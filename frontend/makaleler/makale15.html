@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Making women’s voices count – what does the move from “more” to “meaningful” participation look like in peace negotiations?</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/581952776c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="makale.css">
+    <link rel="stylesheet" href="owl/owl.carousel.min.css">
+    <link rel="stylesheet" href="owl/owl.theme.default.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="owl/script.js"></script>
+
+</head>
+<body>
+
+    <!-- Sabit Üst Menü -->
+    <section id="menu">
+        <div id="logo">NOTALONE</div>
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div>
+        <nav>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="javascript:void(0);" id="userIcon"><i class="fa-regular fa-user"></i></a></li>
+        </nav>
+    </section>
+
+<!-- Sağ Menü -->
+<div id="loginPanel" class="sidenav-right">
+    <div class="sidenav__inner">
+       <!-- Giriş Paneli -->
+<div id="loginForm" class="auth-section">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <h2>Login</h2>
+    <form onsubmit="handleLogin(event)">
+        <input type="email" id="loginEmail" placeholder="Email" required class="form-control">
+        <div class="password-container">
+            <input type="password" id="loginPassword" placeholder="Password" required class="form-control">
+            <i class="fa fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+        </div>
+        <button type="submit" class="submit-button">Login</button>
+        <div class="links">
+            <a href="#" onclick="showForgotPassword(event)">Forgot Password?</a>
+            <a href="#" onclick="showSignUp(event)">Sign Up</a>
+        </div>
+    </form>
+</div>
+
+<!-- Giriş Yaptıktan Sonraki Panel -->
+<div id="userPanelContent" class="user-panel-section" style="display: none;">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <div class="user-info">
+        <div class="user-header">
+            <i class="fa-regular fa-user"></i>
+            <span id="welcomeUsername">Welcome, User</span>
+        </div>
+    </div>
+    
+    <nav class="user-nav">
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-user"></i>
+            <span>My Profile</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-paper-plane"></i>
+            <span>My Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-comment"></i>
+            <span>My Comments</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-heart"></i>
+            <span>Liked Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-bookmark"></i>
+            <span>Saved Posts</span>
+        </a>
+        
+    </nav>
+    <div class="logout-container">
+        <button id="logoutButton" onclick="handleLogout()">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+    </div>
+</div>
+
+
+        <!-- Şifremi Unuttum Paneli -->
+        <div id="forgotPasswordForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Reset Password</h2>
+            <p class="auth-description">Enter your email address and we'll send you a link to reset your password.</p>
+            <form onsubmit="handleForgotPassword(event)">
+                <input type="email" id="resetEmail" placeholder="Email" required class="form-control">
+                <button type="submit" class="submit-button">Send Reset Link</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Back to Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kaydolma Paneli -->
+        <div id="signUpForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Sign Up</h2>
+            <form onsubmit="handleSignUp(event)">
+                <div class="form-group">
+                    <input type="text" id="firstName" placeholder="First Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="lastName" placeholder="Last Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="signUpEmail" placeholder="Email" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="signUpPassword" placeholder="Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder="Phone Number" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="birthDate" placeholder="Birth Date" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <select id="gender" class="form-control" required>
+                        <option value="">Select Gender</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
+                        <option value="prefer-not">Prefer not to say</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-button">Sign Up</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Already have an account? Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kullanıcı Panel İçeriği (giriş yapıldıktan sonra) -->
+        <div id="userPanelContent" class="user-panel-section" style="display: none;">
+            <!-- Mevcut kullanıcı paneli içeriği buraya -->
+        </div>
+    </div>
+</div>
+
+
+    <!-- Sol Sütun -->
+    <div id="sol-sutun">
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div> <!-- Menü Butonu -->
+    </div>
+    
+    <!-- Menü Aç/Kapat İşlevi -->
+    <script>
+        function toggleLeftMenu() {
+            const sidenav = document.getElementById('sidenav');
+            sidenav.classList.toggle('active');
+        }
+    </script>   
+
+<!-- Sol Menü -->
+<div id="sidenav" class="sidenav">
+    <div class="sidenav__inner">
+        <div class="menu-header">
+            <div id="logo-menu">
+                <span style="color:#e7bcbc; font-size: 30px;">
+                    W♀men, Peace and Security
+                </span>
+            </div>
+            <div class="close-btn" onclick="toggleLeftMenu()">✖</div>
+        </div>
+        <nav>
+            <a href="index.html"><i class="fa-solid fa-home"></i>Home</a>
+            <a href="hakkimizda.html"><i class="fa-solid fa-info"></i>About</a>
+            <a href="yorumPolitikasi.html"><i class="fa-solid fa-comment"></i>Comment Policy</a>
+            <a href="haklarinibil.html"><i class="fa-solid fa-balance-scale"></i>Know Your Rights</a>
+            <a href="blog.html"><i class="fa-solid fa-blog"></i>Blog</a>
+            <a href="forum/forum.html"><i class="fa-solid fa-comments"></i>Forum</a>
+            <a href="#"><i class="fa-solid fa-map-marker-alt"></i>Safe Map</a>
+            <a href="#"><i class="fa-solid fa-calendar"></i>Events</a>
+        </nav>
+    </div>
+</div>
+    
+
+    
+<!-- Sidebar -->
+<div class="sidebarHAKKIMIZDA">
+    <div class="logo-boxHAKKIMIZDA">
+        <img src="img/2logo.png" alt="Logo"> <!-- Logo -->
+        <div class="logo-text">W♀men, Peace <p>and Security</p></div> <!-- Slogan -->
+    </div>
+ 
+    <div class="twitter-boxHAKKIMIZDA">
+        <h2>Follow Us</h2>
+        <div class="twitter-feed">
+            <!-- Twitter Widget -->
+            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" title="Twitter Timeline"
+                src="https://syndication.twitter.com/srv/timeline-profile/screen-name/NOT#ALONE=false&amp;embedId=twitter-widget-0&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfZm9zbnJfc29mdF9pbnRlcnZlbnRpb25zX2VuYWJsZWQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X21peGVkX21lZGlhXzE1ODk3Ijp7ImJ1Y2tldCI6InRyZWF0bWVudCIsInZlcnNpb24iOm51bGx9LCJ0ZndfZXhwZXJpbWVudHNfY29va2llX2V4cGlyYXRpb24iOnsiYnVja2V0IjoxMjA5NjAwLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3Nob3dfYmlyZHdhdGNoX3Bpdm90c19lbmFibGVkIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19kdXBsaWNhdGVfc2NyaWJlc190b19zZXR0aW5ncyI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdXNlX3Byb2ZpbGVfaW1hZ2Vfc2hhcGVfZW5hYmxlZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdmlkZW9faGxzX2R5bmFtaWNfbWFuaWZlc3RzXzE1MDgyIjp7ImJ1Y2tldCI6InRydWVfYml0cmF0ZSIsInZlcnNpb24iOm51bGx9LCJ0ZndfbGVnYWN5X3RpbWVsaW5lX3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9mcm9udGVuZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9fQ%3D%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=true&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=en&amp;maxHeight=400px&amp;origin=https%3A%2F%2Fblogs.lse.ac.uk%2Fwps%2F&amp;partner=jetpack&amp;sessionId=0c6952bf47c9281de6889593d9528bcc3401e8f5&amp;showHeader=true&amp;showReplies=false&amp;siteScreenName=NOT#ALONE&amp;theme=light&amp;transparent=false&amp;widgetsVersion=2615f7e52b7e0%3A1702314776716"
+                style="position: static; visibility: visible; width: 100%; height: 400px; display: block;">
+            </iframe>
+        </div>
+    </div>
+ </div>
+
+<!-- Ana Sayfa İçeriği (Slider Benzeri Yapı) -->
+<div id="makale">
+    <img src="../img/makale15.jpg" alt="OGIP" class="makale-img">
+    <div class="post-info">
+        <div class="author-date">
+            <h3 class="author">Agnieszka-Fal Dutra Santo</h3>
+            <h3 class="date">March 28th, 2022</h3>
+        </div>
+        <div class="post-main-content"style="margin-left: -180px;">
+            <h1 style="margin-top: 320px; ">Making women’s voices count: </h1>
+            <h1>From 'more' to 'meaningful'</h1>
+        </div>
+    </div>
+</div>
+
+
+    <main>
+        <div class="makale-box">
+            <div class="single-post__main">
+                <div class="single-post__main-content">
+                  <div class="post-content post-builder">
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p><em>The move from “more” to “meaningful” participation is urgently needed – not only in peacekeeping operations, but across the international efforts to build and sustain peace, including – crucially – peace negotiations. In this piece, <a href="https://twitter.com/AgnieszkaFal">Agnieszka Fal-Dutra Santos</a> demonstrates what such a move might practically look like in the context of a peace process.</em></p>
+            <p>Last month, Ingrid Munch and Callum Watson published an <a href="https://blogs.lse.ac.uk/wps/2022/02/09/from-more-to-meaningful-six-strategies-to-make-womens-participation-count-in-peace-support-operations/">article on this blog</a>, making a compelling argument for a “radical, systemic change” to not only increase women’s participation in peacekeeping missions, but also to make it more meaningful. Munch and Watson argue that the challenges of exclusion and gender inequality in peacekeeping cannot be resolved by simply adding more women, but that they require institutional and attitudinal changes.</p>
+            <p>Peace agreements have become <a href="https://www.jstor.org/stable/3651152">one of the most common, if not the most common</a>, ways of ending a violent conflict. Women’s right to participate in those processes has been enshrined in international law, including the <a href="https://documents-dds-ny.un.org/doc/UNDOC/GEN/N00/720/18/PDF/N0072018.pdf?OpenElement">United Nations Security Council Resolution (UNSCR) 1325</a> (2000), which calls for “an increase in the participation of women at decision making levels in conflict resolution and peace processes”, and the nine other Women, Peace and Security (WPS) resolutions that followed it. Furthermore, there is a strong and constantly growing body of evidence that women’s participation <a href="https://www.inclusivepeace.org/sites/default/files/IPTI-UN-Women-Report-Making-Women-Count-60-Pages.pdf">increases the likelihood of an agreement being reached</a>, <a href="https://www.tandfonline.com/doi/full/10.1080/03050629.2018.1492386">makes peace more durable</a>, and <a href="https://gnwp.org/wp-content/uploads/GNWP-NYU_ResearchReport2020-final-web.pdf">contributes to the inclusion of progressive provisions</a> – such as those related to women’s rights and socioeconomic conditions – in the final agreement.</p>
+            <p>Yet, despite the strong normative framework and evidence showing that ensuring women’s participation is not only <em>right</em>, but also <em>smart</em>, women remain severely underrepresented in peace processes. Between 1991 and 2011, only <a href="https://wps.unwomen.org/pdf/CH03.pdf">2% of chief mediators, 4% of witnesses and signatories, and 9% of negotiators</a> were women. Women are also typically absent in early stages of peace processes, when the agenda for future talks is set. Experiences of <a href="https://foreignpolicy.com/2021/03/30/afghanistan-women-taliban-peace-talks-biden/">Afghanistan</a>, <a href="https://carnegieendowment.org/sada/83158">Syria</a> and <a href="https://www.cfr.org/womens-participation-in-peace-processes/explore-the-data">Yemen</a> demonstrate that even when women play key roles in responding to the impacts of conflict, have mobilised and organised, and have the support of international actors, they may be denied a seat and the voice in the formal negotiations. These and other examples also demonstrate the potential cost of excluding women from peace processes. Yet, one look at the negotiating tables in <a href="https://kyivindependent.com/national/first-round-of-ukraine-russia-negotiations-inconclusive-as-casualties-pile-up/">the latest talks between Russia and Ukraine</a> suggests that the bitter lesson has not been learned. Even in contexts, which have been praised for the inclusion of women in the peace process – such as Colombia – women <a href="https://reliefweb.int/report/colombia/towards-implementation-women-s-rights-colombian-final-peace-accord-progress">are excluded during the implementation stage</a>, and the mechanisms to ensure that the gains they fought for are not lost are either non-existent or insufficient.</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">Between 1991 and 2011, only 2% of chief mediators, 4% of witnesses and signatories, and 9% of negotiators were women. Women are also typically absent in early stages of peace processes.</p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p><strong>What is <em>meaningful </em>participation?</strong></p>
+            <p>Thus, we urgently need more women in peace negotiations. However, merely adding women to the table will not result in a more gender equal and sustainable peace. What is needed is a <em>redesigning of the table</em>, to ensure that women can not only participate, but influence the discussions and the final shape of the peace agreement.</p>
+            <p><a href="https://blogs.lse.ac.uk/wps/2022/02/09/from-more-to-meaningful-six-strategies-to-make-womens-participation-count-in-peace-support-operations/">Munch and Watson</a> define meaningful participation of women in peacekeeping as the kind of participation “whereby women have equal opportunities to access any desired functions, decision-making roles, or hierarchal level with the absence of institutional or attitudinal barriers.”</p>
+            <p>Indeed, structural, institutional and attitudinal barriers are also a key obstacle for women’s meaningful participation in peace processes. In the context of peace negotiations, women are often viewed or represented as not sufficiently qualified, and met with higher requirements for participation than their counterparts. Because of patriarchal norms that relegate women to the “private” or domestic sphere, women are also often viewed as <a href="https://gnwp.org/sustaining-peace-report/">“non-political beings”</a>, and thus not relevant or not well-equipped to participate in a peace process.</p>
+            <p>Finally, even barriers to participation that may at first sight appear logistical – such as the lack of funds for travel to negotiation sites or to arrange childcare – are fundamentally linked to deeper, structural causes. One example of this is the <a href="https://www.oecd.org/dev/development-gender/Unpaid_care_work.pdf">unequal share of unpaid, domestic labour</a> carried by women, amplified by the artificial distinction between the “private” and “public” realm used by peacekeeping and peace-making institutions to view <a href="https://blogs.lse.ac.uk/wps/2022/02/09/from-more-to-meaningful-six-strategies-to-make-womens-participation-count-in-peace-support-operations/">“family caregiving responsibilities as outside their purview”</a>.</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">What is needed is a redesigning of the table, to ensure that women can not only participate, but influence the discussions and the final shape of the peace agreement.</p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p><strong>Towards meaningful participation in peace negotiations</strong></p>
+            <p>In a <a href="https://www.hdcentre.org/publications/towards-gender-equal-peace-from-counting-women-to-meaningful-participation/">recent essay</a> published by the Center for Humanitarian Dialogue, I identify three key components of women’s meaningful participation in peace negotiations:</p>
+            <ol>
+            <li><strong>Participation at <u>all stages</u> of a peace processes</strong>, from agenda-setting and ceasefire talks to agreement implementation and monitoring</li>
+            <li><strong>Participation at <u>all levels</u> and in various modalities</strong> – from negotiators in formal processes, to advisors to the official peace process, to leaders in community dialogues. Critically, one type of engagement or participation should not be seen as a replacement for other forms of participation. Notably, consultations with women peacebuilders or including women on advisory boards must not replace giving women a seat at the table.</li>
+            <li><strong>Participation of women in <u>all their diversity</u></strong>– including civil society activists, refugees and internally displaced persons, veterans and ex-combatants, war widows, young women, women with disabilities, women of diverse ethnicities, and lesbian, bi-sexual and trans-gender women.</li>
+            </ol>
+            <p>How do we get there? I conclude by proposing three solutions, which – together – can bring us a step closer to women’s meaningful participation.</p>
+            <ol>
+            <li><strong>Institutionalising participation</strong>, so that it is not up to women to demand it. Mediators or facilitators of a peace process – including the UN or regional organisations – can use their influence to demand women’s participation in a peace process – a strategy that proved <a href="https://www.hdcentre.org/wp-content/uploads/2021/12/Towards_gender-equal_peace_WEB.pdf">effective in South Sudan</a>. It makes women’s participation “routine” and expected, and makes it more likely that women will be included <em>at all stages </em>of the peace process – and not only after considerable advocacy has taken place.Critically – and in line with <a href="https://blogs.lse.ac.uk/wps/2022/02/09/from-more-to-meaningful-six-strategies-to-make-womens-participation-count-in-peace-support-operations/">Munch and Watson’s argument</a> such an approach helps “shift the focus from individuals to institutions”, and place the burden of ensuring inclusivity where it belongs – not on women peace activists, but on the institutions facilitating the peace process.</li>
+            <li><strong>Strengthen coordination and cohesion between different processes. </strong>Women’s <a href="https://giwps.georgetown.edu/resource/advancing-womens-participation-in-track-ii-peace-processes/">influence and leadership in informal peace processes</a> is well-documented and often highly praised. However, it rarely translates into their participation <em>at all levels </em>– in particular in official, “Track 1” negotiations. Moreover, the mechanisms to transfer the knowledge and outcomes of the unofficial processes to formal talks are often lacking. Once again, the burden of ensuring the transfers rests on women peace activists and their advocacy, as well as women negotiators (where they exist), who are required to act as representatives of the broader women’s movement. Better, more agile and systematic transfers for transfer of knowledge and recommendations between formal and informal peace processes are critical to more meaningful participation of women. Some solutions already exist – these include Track 1.5 meetings organised between official negotiators and local actors active in the informal processes, as well as the <a href="https://gnwp.org/digitalization-research-report/">use of digital technologies</a> to support broad-base inclusion in formal processes. However, these need to be institutionalised and amplified.</li>
+            <li><strong>Resource women’s networks and local women peacebuilders. </strong>More inclusive financing systems are necessary to ensure women are included in <em>all their diversity</em>. Participating in a peace process requires resources – not only to travel to the negotiations’ location, but to organise, mobilise and strategise ahead of it. However, women’s peacebuilding work is <a href="https://gnwp.org/fund-us-like-you-want-us-to-win/">grossly underfunded</a>, and the available financing often concentrates in a few, large organisations. Marginalised groups of women – such as women from ethnic minorities and young women – face multiple layers of <a href="https://gnwp.org/fund-us-like-you-want-us-to-win/">structural barriers to access funding</a> for their work.</li>
+            </ol>
+            <p>These are three initial concrete steps that can be taken towards “redesigning” a table. What is truly needed is a transformative change. On the one hand, a transformative approach means challenging patriarchal cultures and structures that view women as “non-political” and relegate them to the realm of the “private”. On the other hand, it means a change in narrow approaches that view peace process as linear, firmly time-bound bargaining between the war-mongers, and recognise peace for what it truly is: a process that is messy, iterative, driven by diverse actors working at multiple level, and a goal that – ultimately – unites us all in a shared humanity.</p>
+            <hr>
+            <p><em>The views, thoughts and&nbsp;opinions expressed in this blog post are those of the author(s)&nbsp;only.&nbsp;</em></p>
+            <p><em>Image credit: <a href="https://www.flickr.com/photos/unwomen/23711415223/in/album-72157661127207874/">UN Women</a> (CC BY-NC-ND 4.0)</em></p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                          </div>
+                        <div class="author">
+              <h3>About the author</h3>
+            
+                  <div class="author__main">
+                  <div class="author__image">
+                    <img width="96" height="96" src="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2020/08/Agnieszka-Image-150x150.jpg" class="avatar avatar-96 photo wp-post-image" alt="" scale="0">
+                    <h3>Agnieszka-Fal Dutra Santo</h3>
+                  </div>
+                          <div class="author__content">
+                      <p>Agnieszka-Fal Dutra Santos is a researcher in gender in peacebuilding and Women, Peace and Security (WPS), and the former Director of Programs at the Global Network of Women Peacebuilders (GNWP). She is currently pursuing doctoral research at the Graduate Institute for Development and International Studies in Geneva (IHEID). Agnieszka supported WPS implementation and worked with women peacebuilders in Armenia, Colombia, Cote d’Ivoire, the Democratic Republic of Congo, Georgia, Iraq, Jordan, Lebanon, Moldova, Nepal, Nigeria, Palestine and Ukraine. She led a global study on local women and civil society perspectives on sustaining peace in 2018, and has authored/co-authored multiple publications on peacebuilding and WPS, including a research report on gender-sensitive provisions in peace agreements and women’s advancement post-conflict; GNWP’s submission to the Global Study on UNSCR 1325; the policy brief on CEDAW and the WPS resolutions, and the Toolkit on Localization of UNSCR 1325. She tweets @AgnieszkaFal.</p>
+                    </div>
+                      </div>
+            
+        </div>
+    </main>
+ 
+    <!-- footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <!-- Footer Logo Section -->
+        <div class="footer-logo">
+            <div id="logoFooter">NOTALONE</div>
+            <div class="logo-text"><p>W♀men, Peace </p><p>and Security</p></div> 
+        </div>
+
+        <!-- Quick Links Section -->
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>
+                <i class='bx bx-map'></i>
+                Türk Hava Kurumu Üniversitesi Bahçekapı Mah.
+            </p>
+            <p>
+                <i class='bx bx-phone'></i>
+                (0212) 389 99 99
+            </p>
+            <p>
+                <i class='bx bx-envelope'></i>
+                örnek@gmail.com
+            </p>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="footer-social">
+            <h4>Social Media</h4>
+            <div class="social-icons">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-twitter'></i></a>
+                <a href="#"><i class='bx bxl-instagram'></i></a>
+                <a href="#"><i class='bx bxl-linkedin'></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="footer-bottom">
+        <p>&copy; 2024 NOTALONE</p>
+    </div>
+</footer>
+
+    <script src="owl/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1..min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="makale.js"></script> <!-- JavaScript dosyasını bağladık -->
+
+</body>
+</html>

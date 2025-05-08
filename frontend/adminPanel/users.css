@@ -1,0 +1,245 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Rubik', sans-serif;
+}
+
+body {
+    background-color: #f4f6f9;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 250px 1fr; /* Menüyü 250px, içerik alanını ise geri kalan alana yay */
+    grid-template-areas: 
+        'sidebar main'; /* Sidebar solda, içerik alanı sağda */
+    grid-gap: 20px;
+    padding: 30px;
+}
+
+.dashboard-content {
+    grid-area: main; /* İçerik alanını 'main' olarak tanımla */
+}
+
+.sidebar {
+    grid-area: sidebar;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #adacac;
+    color: #fff;
+    padding: 20px;
+    border-radius: 1.5rem;
+    height: 100%;
+    width: 250px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+    position: fixed; /* Menü sabit olsun */
+    top: 30px;
+    left: 30px;
+    height: 100vh;
+    z-index: 100;
+}
+
+.sidebar .title {
+    margin-bottom: 20px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.sidebar .icons ul {
+    list-style: none;
+}
+
+.sidebar .icons ul li {
+    display: flex;
+    align-items: center;
+    margin: 15px 0; /* Daha dengeli bir boşluk */
+}
+
+.sidebar .icons ul li a {
+    color: #fff;
+    font-size: 1.5rem;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 15px; /* İkon ve metin arasındaki boşluk artırıldı */
+    transition: all 0.3s ease;
+}
+
+.sidebar .icons ul li a span {
+    font-size: 1.1rem; /* Yazı boyutu biraz büyütüldü */
+    color: #ecf0f1; /* Daha açık bir beyaz tonu */
+    font-weight: 500; /* Yazı biraz daha kalın */
+    text-transform: capitalize; /* İlk harf büyük yapılır */
+}
+
+.sidebar .icons ul li a:hover {
+    color: #e7bcbc;
+}
+
+.sidebar .icons ul li a:hover span {
+    color: #e7bcbc;
+}
+
+.sidebar .icons ul li a i {
+    min-width: 30px; /* İkon boyutlarının hizalı olmasını sağlar */
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            'sidebar'
+            'main'
+            'messages'
+            'chart-and-stats';
+    }
+
+    .sidebar {
+        width: 250px;
+        height: 100vh;
+        background-color: #e7bcbc;
+        padding: 20px;
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        position: fixed;
+    }
+}
+
+/* Tablo stil */
+.table-container {
+    margin-left: 300px; /* Menü alanı kadar boşluk bırak */
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Mobil uyumlu tasarım */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 200px;
+    }
+    .dashboard-content {
+        margin-left: 200px;
+    }
+}
+
+/* Tablo üstündeki seçenekler */
+.table-options {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+}
+
+.search-box {
+    width: 300px;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+}
+
+.sort-select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 1rem;
+}
+
+.action-btn {
+    padding: 8px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background: #e7bcbc;
+    color: white;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .action-btn:hover {
+    background:rgb(231, 161, 161);
+  }
+  
+.block-btn {
+    background-color:rgb(158, 158, 160);
+    color: white;
+}
+
+.block-btn:hover {
+    background-color: #c0392b;
+}
+
+.view-btn {
+    background-color:#e7bcbc;
+    ;
+    color: white;
+}
+
+.view-btn:hover {
+    background-color:rgb(223, 161, 161);
+    ;
+}
+
+/* Tooltip stil */
+.action-btn .tooltip {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Tooltip'in butonun üstünde görünmesi için */
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.action-btn .tooltip::after {
+    content: "";
+    position: absolute;
+    top: 100%; /* Tooltip'in altına üçgen eklemek için */
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+.action-btn:hover .tooltip {
+    visibility: visible;
+    opacity: 0.8;
+}

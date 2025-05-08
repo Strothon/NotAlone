@@ -1,0 +1,351 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Rubik', sans-serif;
+}
+
+body {
+  background-color: #f4f6f9;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 0.1fr 1fr;
+  grid-template-rows: auto auto auto;
+  grid-template-areas: 
+    'sidebar header'
+    'sidebar main'
+    'sidebar messages'
+    'sidebar chart-and-stats';
+  grid-gap: 20px;
+  padding: 30px;
+}
+
+.sidebar {
+  grid-area: sidebar;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #adacac;
+  color: #fff;
+  padding: 20px;
+  border-radius: 1.5rem;
+  height: 100%;
+  width: 250px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar .title {
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.sidebar .icons ul {
+  list-style: none;
+}
+
+.sidebar .icons ul li {
+  display: flex;
+  align-items: center;
+  margin: 15px 0; /* Daha dengeli bir boşluk */
+}
+
+.sidebar .icons ul li a {
+  color: #fff;
+  font-size: 1.5rem;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 15px; /* İkon ve metin arasındaki boşluk artırıldı */
+  transition: all 0.3s ease;
+}
+
+.sidebar .icons ul li a span {
+  font-size: 1.1rem; /* Yazı boyutu biraz büyütüldü */
+  color: #ecf0f1; /* Daha açık bir beyaz tonu */
+  font-weight: 500; /* Yazı biraz daha kalın */
+  text-transform: capitalize; /* İlk harf büyük yapılır */
+}
+
+.sidebar .icons ul li a:hover {
+  color: #e7bcbc;
+}
+.sidebar .icons ul li a:hover span {
+  color: #e7bcbc;
+}
+.sidebar .icons ul li a i {
+  min-width: 30px; /* İkon boyutlarının hizalı olmasını sağlar */
+  text-align: center;
+}
+
+.board {
+  margin-left: 100px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: rgba(17, 12, 46, 0.1) 0px 8px 20px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  min-width: 240px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.board:hover {
+  transform: translateY(-5px);
+  box-shadow: rgba(17, 12, 46, 0.2) 0px 20px 50px;
+}
+
+.board-icons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 1.2rem;
+}
+
+.board-content p {
+  color: #e7bcbc;
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin: 10px 0;
+}
+
+.board-content span {
+  color: #7f8c8d;
+  font-size: 0.8rem;
+}
+
+.messages-table {
+  grid-area: messages;
+  width: 95%;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: rgba(17, 12, 46, 0.1) 0px 8px 20px;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.messages-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.messages-table th {
+  background: #adacac;
+  color: #fff;
+  padding: 15px;
+  text-align: left;
+}
+
+.messages-table td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.messages-table tr:hover {
+  background:rgb(243, 243, 243);
+}
+
+.action-btn {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #e7bcbc;
+  color: white;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.action-btn:hover {
+  background:rgb(231, 161, 161);
+}
+
+main {
+  grid-area: main;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.board-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+.chart-and-stats {
+  display: flex;
+  gap: 220px;
+  align-items: flex-start;
+}
+
+.stats-container {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.chart {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48.5%;
+}
+
+.table {
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+  padding: 20px;
+  width: 100%;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.title p {
+  font-weight: 600;
+  font-size: 20px;
+  color: #555079;
+}
+
+.title span {
+  color: #383754;
+  font-size: 14px;
+}
+
+#myChart {
+  width: 100%;
+  height: 400px; /* İsteğe göre ayarlayın */
+}
+
+@media (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'sidebar'
+      'main'
+      'messages'
+      'chart-and-stats';
+  }
+
+  .sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: #e7bcbc;
+  padding: 20px;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  position: fixed;
+}
+
+  .board {
+    min-width: 100%;
+  }
+
+  .board-content p {
+    font-size: 1.5rem;
+  }
+
+  .board-content span {
+    font-size: 0.9rem;
+  }
+
+  .action-btn {
+    font-size: 0.9rem;
+  }
+
+  .board-container {
+    flex-direction: column;
+  }
+
+  .chart-and-stats {
+    flex-direction: column;
+  }
+
+  .chart {
+    width: 100%;
+  }
+}
+
+.main{
+  height:60%;
+  .content{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-evenly;
+    padding-left:40px;
+    gap: 10px;
+    height:100%;
+    .toDo{
+      display:flex;
+      align-items:center;
+      .icon{
+        padding-top:12px;
+        text-align:center;
+        font-size:25px;
+        height:40px;
+        width:50px;
+        background:rgb(229, 230, 240);
+        border-radius:10px;
+        margin-right:10px;
+      }
+      .paragraf{
+        line-height:28px;
+      }
+      #bottomParag{
+      color: #c6c6d6;
+      }
+    }
+  }
+}
+.footer{
+  margin-top: 20px;
+  height:20%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  .card{
+    margin:20px;
+    height:150px;
+    width:3000px;
+    background:#fff;
+    border-radius:20px;
+    .content{
+      padding-left:20px;
+      line-height:40px;
+
+      #title{
+      margin-left:20px;
+      }
+        .status{
+        display:inline-block;
+        margin-right:10px;
+        width:12px;
+        height:12px;
+        border-radius:50%;
+        background:#7273fa;
+      }
+    }
+      #parag{
+         padding-left:20px;
+         margin-left:20px;
+      }
+  }
+}
+
+

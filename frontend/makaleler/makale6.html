@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media (mis)representation of conflicted-related sexual violence</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/581952776c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="makale.css">
+    <link rel="stylesheet" href="owl/owl.carousel.min.css">
+    <link rel="stylesheet" href="owl/owl.theme.default.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="owl/script.js"></script>
+
+</head>
+<body>
+
+    <!-- Sabit Üst Menü -->
+    <section id="menu">
+        <div id="logo">NOTALONE</div>
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div>
+        <nav>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="javascript:void(0);" id="userIcon"><i class="fa-regular fa-user"></i></a></li>
+        </nav>
+    </section>
+
+<!-- Sağ Menü -->
+<div id="loginPanel" class="sidenav-right">
+    <div class="sidenav__inner">
+       <!-- Giriş Paneli -->
+<div id="loginForm" class="auth-section">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <h2>Login</h2>
+    <form onsubmit="handleLogin(event)">
+        <input type="email" id="loginEmail" placeholder="Email" required class="form-control">
+        <div class="password-container">
+            <input type="password" id="loginPassword" placeholder="Password" required class="form-control">
+            <i class="fa fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+        </div>
+        <button type="submit" class="submit-button">Login</button>
+        <div class="links">
+            <a href="#" onclick="showForgotPassword(event)">Forgot Password?</a>
+            <a href="#" onclick="showSignUp(event)">Sign Up</a>
+        </div>
+    </form>
+</div>
+
+<!-- Giriş Yaptıktan Sonraki Panel -->
+<div id="userPanelContent" class="user-panel-section" style="display: none;">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <div class="user-info">
+        <div class="user-header">
+            <i class="fa-regular fa-user"></i>
+            <span id="welcomeUsername">Welcome, User</span>
+        </div>
+    </div>
+    
+    <nav class="user-nav">
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-user"></i>
+            <span>My Profile</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-paper-plane"></i>
+            <span>My Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-comment"></i>
+            <span>My Comments</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-heart"></i>
+            <span>Liked Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-bookmark"></i>
+            <span>Saved Posts</span>
+        </a>
+        
+    </nav>
+    <div class="logout-container">
+        <button id="logoutButton" onclick="handleLogout()">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+    </div>
+</div>
+
+
+        <!-- Şifremi Unuttum Paneli -->
+        <div id="forgotPasswordForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Reset Password</h2>
+            <p class="auth-description">Enter your email address and we'll send you a link to reset your password.</p>
+            <form onsubmit="handleForgotPassword(event)">
+                <input type="email" id="resetEmail" placeholder="Email" required class="form-control">
+                <button type="submit" class="submit-button">Send Reset Link</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Back to Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kaydolma Paneli -->
+        <div id="signUpForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Sign Up</h2>
+            <form onsubmit="handleSignUp(event)">
+                <div class="form-group">
+                    <input type="text" id="firstName" placeholder="First Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="lastName" placeholder="Last Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="signUpEmail" placeholder="Email" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="signUpPassword" placeholder="Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder="Phone Number" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="birthDate" placeholder="Birth Date" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <select id="gender" class="form-control" required>
+                        <option value="">Select Gender</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
+                        <option value="prefer-not">Prefer not to say</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-button">Sign Up</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Already have an account? Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kullanıcı Panel İçeriği (giriş yapıldıktan sonra) -->
+        <div id="userPanelContent" class="user-panel-section" style="display: none;">
+            <!-- Mevcut kullanıcı paneli içeriği buraya -->
+        </div>
+    </div>
+</div>
+
+
+    <!-- Sol Sütun -->
+    <div id="sol-sutun">
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div> <!-- Menü Butonu -->
+    </div>
+    
+    <!-- Menü Aç/Kapat İşlevi -->
+    <script>
+        function toggleLeftMenu() {
+            const sidenav = document.getElementById('sidenav');
+            sidenav.classList.toggle('active');
+        }
+    </script>   
+
+<!-- Sol Menü -->
+<div id="sidenav" class="sidenav">
+    <div class="sidenav__inner">
+        <div class="menu-header">
+            <div id="logo-menu">
+                <span style="color:#e7bcbc; font-size: 30px;">
+                    W♀men, Peace and Security
+                </span>
+            </div>
+            <div class="close-btn" onclick="toggleLeftMenu()">✖</div>
+        </div>
+        <nav>
+            <a href="index.html"><i class="fa-solid fa-home"></i>Home</a>
+            <a href="hakkimizda.html"><i class="fa-solid fa-info"></i>About</a>
+            <a href="yorumPolitikasi.html"><i class="fa-solid fa-comment"></i>Comment Policy</a>
+            <a href="haklarinibil.html"><i class="fa-solid fa-balance-scale"></i>Know Your Rights</a>
+            <a href="blog.html"><i class="fa-solid fa-blog"></i>Blog</a>
+            <a href="forum/forum.html"><i class="fa-solid fa-comments"></i>Forum</a>
+            <a href="#"><i class="fa-solid fa-map-marker-alt"></i>Safe Map</a>
+            <a href="#"><i class="fa-solid fa-calendar"></i>Events</a>
+        </nav>
+    </div>
+</div>
+    
+
+    
+<!-- Sidebar -->
+<div class="sidebarHAKKIMIZDA">
+    <div class="logo-boxHAKKIMIZDA">
+        <img src="img/2logo.png" alt="Logo"> <!-- Logo -->
+        <div class="logo-text">W♀men, Peace <p>and Security</p></div> <!-- Slogan -->
+    </div>
+ 
+    <div class="twitter-boxHAKKIMIZDA">
+        <h2>Follow Us</h2>
+        <div class="twitter-feed">
+            <!-- Twitter Widget -->
+            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" title="Twitter Timeline"
+                src="https://syndication.twitter.com/srv/timeline-profile/screen-name/NOT#ALONE=false&amp;embedId=twitter-widget-0&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfZm9zbnJfc29mdF9pbnRlcnZlbnRpb25zX2VuYWJsZWQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X21peGVkX21lZGlhXzE1ODk3Ijp7ImJ1Y2tldCI6InRyZWF0bWVudCIsInZlcnNpb24iOm51bGx9LCJ0ZndfZXhwZXJpbWVudHNfY29va2llX2V4cGlyYXRpb24iOnsiYnVja2V0IjoxMjA5NjAwLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3Nob3dfYmlyZHdhdGNoX3Bpdm90c19lbmFibGVkIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19kdXBsaWNhdGVfc2NyaWJlc190b19zZXR0aW5ncyI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdXNlX3Byb2ZpbGVfaW1hZ2Vfc2hhcGVfZW5hYmxlZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdmlkZW9faGxzX2R5bmFtaWNfbWFuaWZlc3RzXzE1MDgyIjp7ImJ1Y2tldCI6InRydWVfYml0cmF0ZSIsInZlcnNpb24iOm51bGx9LCJ0ZndfbGVnYWN5X3RpbWVsaW5lX3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9mcm9udGVuZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9fQ%3D%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=true&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=en&amp;maxHeight=400px&amp;origin=https%3A%2F%2Fblogs.lse.ac.uk%2Fwps%2F&amp;partner=jetpack&amp;sessionId=0c6952bf47c9281de6889593d9528bcc3401e8f5&amp;showHeader=true&amp;showReplies=false&amp;siteScreenName=NOT#ALONE&amp;theme=light&amp;transparent=false&amp;widgetsVersion=2615f7e52b7e0%3A1702314776716"
+                style="position: static; visibility: visible; width: 100%; height: 400px; display: block;">
+            </iframe>
+        </div>
+    </div>
+ </div>
+
+<!-- Ana Sayfa İçeriği (Slider Benzeri Yapı) -->
+<div id="makale">
+    <img src="../img/makale5.jpg" alt="OGIP" class="makale-img">
+    <div class="post-info">
+        <div class="author-date">
+            <h3 class="author">Rose Khan</h3>
+            <h3 style="margin-right: 15px;" class="date">February 1st, 2022</h3>
+        </div>
+        <div class="post-main-content"style="margin-left: -180px;">
+            <h1 style="margin-top: 320px;">Media (mis)representation of</h1>
+            <h1>conflicted-related sexual violence</h1>
+        </div>
+    </div>
+</div>
+
+
+    <main>
+        <div class="makale-box">
+            <div class="single-post__main">
+                <div class="single-post__main-sidebar">
+                  <div class="social-share static" data-post="4882" style="top: 0px;">
+                <div class="single-post__main-content">
+                  <div class="post-content post-builder">
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p><em>Rose Khan looks at how the media shapes our understanding of events, interpretations and attitudes, and addresses the media’s responsibility to present a more accurate representation of the experiences of conflict-related sexual violence in order to challenge deeply entrenched gender patterns.</em></p>
+            <p>Media coverage of conflict-related sexual violence (CRSV) focuses on female victims of sexual and gender-based violence, drawing on narrow depictions and gender stereotypes to provoke empathy and horror, galvanising calls for action. However, they provide an incomplete picture of the everyday experiences of war and conflict, reinforcing the narrative that sexual violence in conflict is a crime committed by men against women. Although <a href="https://www.hrw.org/news/2019/05/03/men-can-experience-sexual-violence-war-too">international organisations</a> and the academic community are aware of the <a href="https://www.un.org/sexualviolenceinconflict/doc-theme/male-victims/">diversity</a> of <a href="https://www.cambridge.org/core/journals/international-review-of-the-red-cross/article/abs/letting-go-of-the-gender-binary-charting-new-pathways-for-humanitarian-interventions-on-genderbased-violence/E8A10F2D9EF459ED90DE2BB0B9F85D17">experiences</a> of those victimised by CRSV, this has not been translated into media coverage.</p>
+            <p><strong>Media representations and social norms </strong></p>
+            <p>The media portrayal of conflict-related sexual violence can shape public perceptions, social norms and <a href="https://www.frontiersin.org/articles/10.3389/fpsyg.2017.00774/full">attitudes.</a> In some cases it can supersede normal institutions of <a href="https://www.tandfonline.com/doi/abs/10.1080/09644000008404613">policy</a> <a href="https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1541-0072.2011.00436.x">making</a>. With this is mind, the media is essential to changing narratives, discourses and the way in which we conceptualise facts. It socially constructs reality, shaping and reproducing norms about <a href="https://www1.udel.edu/comm245/readings/GenderedMedia.pdf">gender</a> and <a href="https://books.google.fr/books/about/MAKING_NEWS_A_STUDY_IN_THE_CONSTRUCTION.html?id=X61iAAAAMAAJ&amp;redir_esc=y">sexuality.</a> We construct our reality based on our observations and experiences; the media presents us with many of those experiences, observations, interpretations and attitudes.</p>
+            <p>The widespread access to information disseminated by the media has the potential to impact a broad range of attitudes and behaviours. For example, a <a href="https://gap.hks.harvard.edu/how-does-media-influence-social-norms-field-experiment-role-common-knowledge">study in partnership with UNESCO</a> conducted in Quialana, Mexico of a radio programme intervention designed to challenge gender roles, attitudes and norms around violence against women found that the social mechanism, that is information disseminated publicly via mass media or public meetings, had a stronger impact than the individual mechanism, whereby individuals are provided with new information on an individual basis, e.g. through leaflets. The social mechanism caused the individual to reject violence against women because others rejected it too. It informs individuals about what others learn and encourages coordination, by influencing perceptions of collective change.</p>
+            <p>This example shows that the media can impact public perception through the visibility and coverage given to a particular topic. Stories covered gain legitimacy and deem what is noteworthy and deserving of public attention. However, media outlets have limited space to inform, leaving the reader to complete the picture with existing knowledge. This tends to be based on gendered stereotypes about the role men, women and children play in conflict, while perpetuating familiar notions of what sexual violence is, who perpetrates it and who is victimised by it.</p>
+            <p><strong>Media stories&nbsp;&nbsp; </strong></p>
+            <p>The kidnapping of Nigerian students by the insurgent group Boko Haram garnered worldwide <a href="https://www.bbc.com/news/world-africa-32299943">media attention.</a> The media coverage of the kidnapping featured gendered accounts of the victims and perpetrators with a particular focus on the gendered risks that the victims faced if not released from their captors. In one such piece featured in Ms. <a href="https://msmagazine.com/2014/05/01/we-all-are-the-kidnapped-nigerian-girls/">magazine</a>, the author emphasises the sexual victimisation of the students, assuming that because they had been kidnapped their abduction was bound to involve sexual abuse. Furthermore, in <a href="https://www.buzzfeednews.com/article/jinamoore/nigeria-prepares-to-treat-rape-sexual-trauma-of-kidnapped-sc">Buzzfeed World</a>, Dr Valerie Obote, the national president of the Women’s Medical Association in Nigeria was reported as saying “the first thing those men will be thinking of is sexual violence.” Gendering also occurred when those kidnapped were referred to as “girls” or “<a href="https://www.researchgate.net/publication/336107792_Women_as_Wartime_Rapists_Beyond_Sensation_and_Stereotyping">school girls</a>”, despite some of them being as old as eighteen.</p>
+            <p>The use of this framing by the media calls attention to the behaviour of Boko Haram, which is well-known for its systematic targeting of women and girls, but it also conjures up stereotypes about the age and gender of those kidnapped. The students were portrayed as the targets of violence because they were <a href="https://www.researchgate.net/publication/336107792_Women_as_Wartime_Rapists_Beyond_Sensation_and_Stereotyping">girls.</a> They were defined as a group by their vulnerability to sexual assault and need for protection, which is associated to the idea of <a href="https://www.researchgate.net/publication/341090588_Gender_and_Violence_in_News_Media_and_Photography">femininity and infantilism.</a> Boys were also kidnapped but referred to as <a href="https://www.wsj.com/articles/the-kidnapped-boys-of-boko-haram-1471013062">boy soldiers</a> and not victims of gender-based violence.</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">Media outlets have limited space to inform, leaving the reader to complete the picture with existing knowledge. This tends to be based on gendered stereotypes about the role men, women and children play in conflict</p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>An <a href="https://www.dukeupress.edu/the-body-of-war">examination</a> of media narratives of the conflict in the former Yugoslavia found that the media portrayal of sexual violence was skewed toward gender stereotypes of perpetrators and victims. On both sides of the conflict the rape of women was emphasised in the media. In some cases aligning the victimisation of women with that of the group, state and <a href="https://www.annualreviews.org/doi/abs/10.1146/annurev.anthro.36.081406.094430">nation</a>. Moreover, there was an excessive presence of victimised female bodies and a near invisibility of male victimised <a href="https://globalvoices.org/2021/10/13/combatting-stereotypes-the-need-to-recognize-male-victims-of-wartime-sexual-violence-in-bosnia/">bodies</a>. The influence of such representational practices impacts the reproduction of traditional gender roles. The over-representation of women as victims refused them agency and restricted them to the passive role of the victim, while denying men their vulnerability and reinforcing the narrative that men victimise women.</p>
+            <p>New America’s Better Life Lab<a href="http://www.peacewomen.org/resource/beyond-helpless-victim-media-representation-women-conflict-zones"> analysis</a> into media representations of women in conflict zones (Iraq, Syria and South Sudan) found that across all publications studied (the <em>Wall Street Post</em>, the <em>New York Times</em> and the <em>Wall street Journal)</em> women are often represented as casualties of sexual violence, injury or death. Sixty per cent of the Wall Street Journal articles paired women with children.</p>
+            <p>Women are constructed as <em>perpetual victims;</em> individuals like children that are vulnerable to attack and should be protected at all costs. South Sudanese women were predominantly represented as victims of sexual violence. Scant attention was given to other challenges that these women encounter, such as the lack of basic services, illiteracy and land and property issues. Only 5 per cent of articles featured women as activists, protestors or politicians and none included women in peacekeeping roles. The findings concluded that despite their participation in formal and informal politics and peace efforts, conflict reporting frequently portrayed women as helpless victims of violence and conflict.</p>
+            <p><strong>Female perpetrators and male victims </strong></p>
+            <p>Coverage of conflict and humanitarian crises often shows women akin to children as passive, without agency and in need of protection. To view them as capable of violence would subvert the logic of gender norms that define masculinity and femininity. The idea of male victims transforms our understanding of the gendered structure of society, especially that of the militarised male. However, women and girls like men and boys are capable of committing acts of violence in times of conflict, including sexual violence against male and female victims. Several <a href="https://www.cambridge.org/core/books/gender-and-war/male-victims-and-female-perpetrators-of-sexual-violence-in-conflict/EEFE8FF07174E2674D7CBE3D96F2FE9B">studies</a> have identified girls and women as the <a href="https://www.researchgate.net/publication/330347163_Chapter_12_Evidence-Based_Documentation_of_Gender-Based_Violence">perpetrators</a> and <a href="https://pure.uvt.nl/ws/portalfiles/portal/1546084/The_legacy_of_the_Gacaca_courts_in_Rwanda.pdf">co-perpetrators</a> of such violence.</p>
+            <p>A <a href="https://www.researchgate.net/publication/23165891_Association_of_combatant_status_and_sexual_violence_with_health_and_mental_health_outcomes_in_postconflict_Liberia_Journal_of_the_American_Medical_Association_3006_676-690">study</a> on the patterns of sexual violence in post-conflict Liberia found that 32.6 per cent of male former combatants and 42.3 per cent of female former combatants experienced sexual violence, by both male and female perpetrators, during the conflict. In a<a href="https://pubmed.ncbi.nlm.nih.gov/20682935/https:/www.cambridge.org/core/books/abs/gender-and-war/male-victims-and-female-perpetrators-of-sexual-violence-in-conflict/EEFE8FF07174E2674D7CBE3D96F2FE9B"> study</a> involving 593 women and 405 men in the Democratic Republic of the Congo, researchers reported that 41.1 per cent of female survivors and 10 per cent of male survivors of sexual violence stated that the perpetrator was female. In Sierra Leone around 20 per cent of all fighters were female. In becoming combatants, women and girls often became perpetrators of extreme violence and <a href="https://www.jstor.org/stable/30140875">atrocities.</a>&nbsp;In the former Yugoslavia, a female commander of a women’s detention camp forced female prisoners to the front line for soldiers to <a href="https://balkaninsight.com/2011/02/07/bosnian-war-s-wicked-women-get-off-lightly/">rape them. </a></p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">Coverage of conflict and humanitarian crises often shows women akin to children as passive, without agency and in need of protection. To view them as capable of violence would subvert the logic of gender norms that define masculinity and femininity.</p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>The prisoner abuse scandal in Abu Ghraib prison drew widespread public attention and created a media crisis for the U.S. military. Media outlets broadcast photographs of Iraqi prisoners being sexually assaulted by US soldiers, including female soldiers. At the forefront of the scandal was Lynndie England. Media constructions framed her as the main perpetrator of the mistreatment and torture of prisoners, deflecting attention away from the U.S. military.</p>
+            <p>She was placed at the centre of the controversy, captured standing in front of a pyramid of naked prisoners, holding a naked prisoner on a leash, and pointing to the penis of a man forced to masturbate. In media <a href="https://www.marieclaire.com/politics/news/a170/lynndie-england-1/">publications</a> her behaviour was characterised as deviant, or many were incredulous that she willingly participated in <a href="http://news.bbc.co.uk/1/hi/world/americas/3695559.stm">the abuse.</a> Media discourse and imagery of England either vilified her as a monster and cast her as <a href="https://archive.nytimes.com/www.nytimes.com/learning/students/pop/articles/04abus.html">dishonourable and sexually deviant</a>. Her perceived apathy only intensifying the <a href="https://www.latimes.com/archives/la-xpm-2004-may-16-op-ehrenreich16-story.html">media fascination with her</a>, while yet other pieces unable to accept her as the perpetrator of such crimes regarded her as a psychological abnormality unable to tell the difference between <a href="https://www.nytimes.com/2005/05/04/us/sentencing-hearing-starts-for-gi-featured-in-abu-ghraib-pictures.html">right and wrong</a>.</p>
+            <p>Others focused on the exploitation of England by her male military superiors reinforcing her<em> femininity </em>and subsequent incapacity to commit such <a href="https://www.independent.co.uk/voices/commentators/paul-vallely-why-it-is-wrong-to-demonise-lynndie-england-59771.html">violence.</a> She was consistently depicted as “petite,” “small,” ”waif-like,” and infantilised as “young girl,” “poster child,” and “<a href="https://www.tandfonline.com/doi/abs/10.1080/07491409.2008.10162544">poster girl.”</a> The story was significant because it featured a female protagonist of sexual violence within a male profession and called into question the <a href="https://www.tandfonline.com/doi/abs/10.1080/14791420903049744">role of women</a> in the U.S. <a href="https://www.theguardian.com/world/2004/may/09/usa.iraq1">military</a>.</p>
+            <p>Although these accounts affirm a higher proportion of female victims when compared to men and boys, they contradict widespread media reporting that conflict-related sexual violence is something men do to women. Sexual violence is often framed in such a way that it is discursively impossible to encounter stories about male victims or female perpetrators. When it does occur they are often portrayed as an unusual or exceptional phenomenon.</p>
+            <p>The pervasive use of feminine and masculine gender stereotypes comes to represent and shape how readers perceive conflict and humanitarian disaster more generally. These stereotypes feed into and perpetuate deeply entrenched gender narratives of global politics. Within this climate, the idea of female perpetrators and male victims of sexual violence becomes difficult to imagine, as they are inconsistent with the overarching gender narrative of <a href="https://blogs.lse.ac.uk/africaatlse/2020/01/10/child-soldiers-complicate-gender-roles-of-victim-and-perpetrator/">war and conflict</a>.</p>
+            <p style="margin-bottom: 20px;"">The media has a responsibility in presenting a more accurate representation of the experiences of conflict-related sexual violence and challenging deeply entrenched gender patterns. By reframing its narrative, it could disrupt the dominant discourse and encourage a more nuanced and conflict-specific approach into the global problem of conflict-related sexual violence, to become an effective tool in building relationships, fostering greater understanding between differing groups and be a space for the voices of those marginalised.</p>
+            <hr>
+            <p><em>The views, thoughts and&nbsp;opinions expressed in this blog post are those of the author(s)&nbsp;only.</em></p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                          </div>
+                        <div class="author">
+              <h3>About the author</h3>
+            
+                  <div class="author__main">
+                  <div class="author__image">
+                    <img width="96" height="96" src="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/02/Rose-Khan-100x100.jpg" class="avatar avatar-96 photo wp-post-image" alt="" srcset="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/02/Rose-Khan-100x100.jpg 100w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/02/Rose-Khan-150x150.jpg 150w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/02/Rose-Khan-300x300.jpg 300w, https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2022/02/Rose-Khan.jpg 390w" sizes="(max-width: 96px) 100vw, 96px">
+                    <h3>Rose Khan</h3>
+                  </div>
+                          <div class="author__content">
+                      <p>Rose Khan has a Masters degree in Political Science specialising in human rights and humanitarian action from Sciences Po Paris. Rose has worked on UN policy development assignments on women's access to justice and GBV and is currently conducting research on child soldiers, conflict-related sexual violence and issues of gender identity. </p>
+                    </div>
+                      </div>
+              
+            
+ 
+        </div>
+    </main>
+ 
+    <!-- footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <!-- Footer Logo Section -->
+        <div class="footer-logo">
+            <div id="logoFooter">NOTALONE</div>
+            <div class="logo-text"><p>W♀men, Peace </p><p>and Security</p></div> 
+        </div>
+
+        <!-- Quick Links Section -->
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>
+                <i class='bx bx-map'></i>
+                Türk Hava Kurumu Üniversitesi Bahçekapı Mah.
+            </p>
+            <p>
+                <i class='bx bx-phone'></i>
+                (0212) 389 99 99
+            </p>
+            <p>
+                <i class='bx bx-envelope'></i>
+                örnek@gmail.com
+            </p>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="footer-social">
+            <h4>Social Media</h4>
+            <div class="social-icons">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-twitter'></i></a>
+                <a href="#"><i class='bx bxl-instagram'></i></a>
+                <a href="#"><i class='bx bxl-linkedin'></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="footer-bottom">
+        <p>&copy; 2024 NOTALONE</p>
+    </div>
+</footer>
+
+    <script src="owl/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1..min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="makale.js"></script> <!-- JavaScript dosyasını bağladık -->
+
+</body>
+</html>

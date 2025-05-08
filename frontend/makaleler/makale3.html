@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>There Are No Feminist Borders</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/581952776c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="makale.css">
+    <link rel="stylesheet" href="owl/owl.carousel.min.css">
+    <link rel="stylesheet" href="owl/owl.theme.default.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="owl/script.js"></script>
+
+</head>
+<body>
+
+    <!-- Sabit Üst Menü -->
+    <section id="menu">
+        <div id="logo">NOTALONE</div>
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div>
+        <nav>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="javascript:void(0);" id="userIcon"><i class="fa-regular fa-user"></i></a></li>
+        </nav>
+    </section>
+
+<!-- Sağ Menü -->
+<div id="loginPanel" class="sidenav-right">
+    <div class="sidenav__inner">
+       <!-- Giriş Paneli -->
+<div id="loginForm" class="auth-section">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <h2>Login</h2>
+    <form onsubmit="handleLogin(event)">
+        <input type="email" id="loginEmail" placeholder="Email" required class="form-control">
+        <div class="password-container">
+            <input type="password" id="loginPassword" placeholder="Password" required class="form-control">
+            <i class="fa fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+        </div>
+        <button type="submit" class="submit-button">Login</button>
+        <div class="links">
+            <a href="#" onclick="showForgotPassword(event)">Forgot Password?</a>
+            <a href="#" onclick="showSignUp(event)">Sign Up</a>
+        </div>
+    </form>
+</div>
+
+<!-- Giriş Yaptıktan Sonraki Panel -->
+<div id="userPanelContent" class="user-panel-section" style="display: none;">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <div class="user-info">
+        <div class="user-header">
+            <i class="fa-regular fa-user"></i>
+            <span id="welcomeUsername">Welcome, User</span>
+        </div>
+    </div>
+    
+    <nav class="user-nav">
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-user"></i>
+            <span>My Profile</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-paper-plane"></i>
+            <span>My Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-comment"></i>
+            <span>My Comments</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-heart"></i>
+            <span>Liked Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-bookmark"></i>
+            <span>Saved Posts</span>
+        </a>
+        
+    </nav>
+    <div class="logout-container">
+        <button id="logoutButton" onclick="handleLogout()">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+    </div>
+</div>
+
+
+        <!-- Şifremi Unuttum Paneli -->
+        <div id="forgotPasswordForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Reset Password</h2>
+            <p class="auth-description">Enter your email address and we'll send you a link to reset your password.</p>
+            <form onsubmit="handleForgotPassword(event)">
+                <input type="email" id="resetEmail" placeholder="Email" required class="form-control">
+                <button type="submit" class="submit-button">Send Reset Link</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Back to Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kaydolma Paneli -->
+        <div id="signUpForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Sign Up</h2>
+            <form onsubmit="handleSignUp(event)">
+                <div class="form-group">
+                    <input type="text" id="firstName" placeholder="First Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="lastName" placeholder="Last Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="signUpEmail" placeholder="Email" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="signUpPassword" placeholder="Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder="Phone Number" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="birthDate" placeholder="Birth Date" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <select id="gender" class="form-control" required>
+                        <option value="">Select Gender</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
+                        <option value="prefer-not">Prefer not to say</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-button">Sign Up</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Already have an account? Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kullanıcı Panel İçeriği (giriş yapıldıktan sonra) -->
+        <div id="userPanelContent" class="user-panel-section" style="display: none;">
+            <!-- Mevcut kullanıcı paneli içeriği buraya -->
+        </div>
+    </div>
+</div>
+
+
+    <!-- Sol Sütun -->
+    <div id="sol-sutun">
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div> <!-- Menü Butonu -->
+    </div>
+    
+    <!-- Menü Aç/Kapat İşlevi -->
+    <script>
+        function toggleLeftMenu() {
+            const sidenav = document.getElementById('sidenav');
+            sidenav.classList.toggle('active');
+        }
+    </script>   
+
+<!-- Sol Menü -->
+<div id="sidenav" class="sidenav">
+    <div class="sidenav__inner">
+        <div class="menu-header">
+            <div id="logo-menu">
+                <span style="color:#e7bcbc; font-size: 30px;">
+                    W♀men, Peace and Security
+                </span>
+            </div>
+            <div class="close-btn" onclick="toggleLeftMenu()">✖</div>
+        </div>
+        <nav>
+            <a href="index.html"><i class="fa-solid fa-home"></i>Home</a>
+            <a href="hakkimizda.html"><i class="fa-solid fa-info"></i>About</a>
+            <a href="yorumPolitikasi.html"><i class="fa-solid fa-comment"></i>Comment Policy</a>
+            <a href="haklarinibil.html"><i class="fa-solid fa-balance-scale"></i>Know Your Rights</a>
+            <a href="blog.html"><i class="fa-solid fa-blog"></i>Blog</a>
+            <a href="forum/forum.html"><i class="fa-solid fa-comments"></i>Forum</a>
+            <a href="#"><i class="fa-solid fa-map-marker-alt"></i>Safe Map</a>
+            <a href="#"><i class="fa-solid fa-calendar"></i>Events</a>
+        </nav>
+    </div>
+</div>
+    
+
+    
+<!-- Sidebar -->
+<div class="sidebarHAKKIMIZDA">
+    <div class="logo-boxHAKKIMIZDA">
+        <img src="img/2logo.png" alt="Logo"> <!-- Logo -->
+        <div class="logo-text">W♀men, Peace <p>and Security</p></div> <!-- Slogan -->
+    </div>
+ 
+    <div class="twitter-boxHAKKIMIZDA">
+        <h2>Follow Us</h2>
+        <div class="twitter-feed">
+            <!-- Twitter Widget -->
+            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" title="Twitter Timeline"
+                src="https://syndication.twitter.com/srv/timeline-profile/screen-name/NOT#ALONE=false&amp;embedId=twitter-widget-0&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfZm9zbnJfc29mdF9pbnRlcnZlbnRpb25zX2VuYWJsZWQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X21peGVkX21lZGlhXzE1ODk3Ijp7ImJ1Y2tldCI6InRyZWF0bWVudCIsInZlcnNpb24iOm51bGx9LCJ0ZndfZXhwZXJpbWVudHNfY29va2llX2V4cGlyYXRpb24iOnsiYnVja2V0IjoxMjA5NjAwLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3Nob3dfYmlyZHdhdGNoX3Bpdm90c19lbmFibGVkIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19kdXBsaWNhdGVfc2NyaWJlc190b19zZXR0aW5ncyI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdXNlX3Byb2ZpbGVfaW1hZ2Vfc2hhcGVfZW5hYmxlZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdmlkZW9faGxzX2R5bmFtaWNfbWFuaWZlc3RzXzE1MDgyIjp7ImJ1Y2tldCI6InRydWVfYml0cmF0ZSIsInZlcnNpb24iOm51bGx9LCJ0ZndfbGVnYWN5X3RpbWVsaW5lX3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9mcm9udGVuZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9fQ%3D%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=true&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=en&amp;maxHeight=400px&amp;origin=https%3A%2F%2Fblogs.lse.ac.uk%2Fwps%2F&amp;partner=jetpack&amp;sessionId=0c6952bf47c9281de6889593d9528bcc3401e8f5&amp;showHeader=true&amp;showReplies=false&amp;siteScreenName=NOT#ALONE&amp;theme=light&amp;transparent=false&amp;widgetsVersion=2615f7e52b7e0%3A1702314776716"
+                style="position: static; visibility: visible; width: 100%; height: 400px; display: block;">
+            </iframe>
+        </div>
+    </div>
+ </div>
+
+<!-- Ana Sayfa İçeriği (Slider Benzeri Yapı) -->
+<div id="makale">
+    <img src="../img/makale3.jpeg" alt="OGIP" class="makale-img">
+    <div class="post-info">
+        <div class="author-date">
+            <h3 class="author">Dr Hannah Wright</h3>
+            <h3 class="date">October 28th, 2022</h3>
+        </div>
+        <div class="post-main-content"style="margin-left: -180px;">
+            <h1 style="margin-top: 320px;">There Are No Feminist Borders</h1>
+        </div>
+    </div>
+</div>
+
+
+    <main>
+        <div class="makale-box">
+
+            <div class="single-post__main">
+                <div class="single-post__main-sidebar">
+                  <div class="social-share fixed" data-post="5059" style="top: 0px;">
+            <p style="margin-bottom: 20px;"><em><span class="TextRun SCXW216983477 BCX0" lang="EN-US" xml:lang="EN-US"><span class="NormalTextRun SCXW216983477 BCX0">Hannah Wright discuss how feminists must resist gendered and </span><span class="NormalTextRun SpellingErrorV2Themed SCXW216983477 BCX0">racialised</span><span class="NormalTextRun SCXW216983477 BCX0"> bordering practices towards migrants and asylum seekers of all genders who cross UK borders</span><span class="NormalTextRun SCXW216983477 BCX0">. She calls on feminist advocacy </span><span class="NormalTextRun SCXW216983477 BCX0">and grassroots action&nbsp;</span><span class="NormalTextRun SCXW216983477 BCX0">for halting</span><span class="NormalTextRun SCXW216983477 BCX0">&nbsp;these practices and </span><span class="NormalTextRun SCXW216983477 BCX0">build strong movements against them in the present moment.&nbsp;</span></span><span class="EOP SCXW216983477 BCX0">&nbsp;</span></em></p>
+            <p style="margin-bottom: 20px;">On a sunny day in June 2014, a <a href="https://www.newhamrecorder.co.uk/news/local-council/women-against-rape-protest-disrupts-home-secretry-s-visit-to-2993422">group of protesters</a> from the organisation Women Against Rape stood in the foyer of London’s Excel Centre, holding banners reading “UK stop imprisoning and deporting rape survivors”. The UK government was using the venue to host a <a href="https://www.bbc.co.uk/news/world-europe-27769132">Global Summit to End Sexual Violence in Conflict</a>, which sought to step up efforts to end impunity for the use of sexual violence in conflict settings. As politicians, diplomats, celebrities and civil society organisations gathered for the conference, the protesters underlined the duplicity of government policies that condemn acts of sexual violence in distant conflicts while <a href="https://www.huffingtonpost.co.uk/sarah-cope/yarls-wood-immigration-detention_b_18434990.html">incarcerating migrant survivors</a> of such violence, often without adequate access to healthcare or legal support, and sometimes deporting them back to the conflict zones from which they have fled. While the government is planning a <a href="https://www.gov.uk/government/publications/international-ministerial-conference-on-preventing-sexual-violence-in-conflict-initiative-2022-overview/international-ministerial-conference-on-preventing-sexual-violence-in-conflict-initiative-psvi-2022-an-overview">follow-up conference</a> next month, eight years on from the first event, the gendered and racialised violence of the UK border regime has only intensified in the intervening period. As feminists, I argue that we must resist these bordering practices and their reach into our communities.</p>
+            <p style="margin-bottom: 20px;" >The UK government’s efforts to tackle impunity for sexual violence in conflict form part of its wider implementation of the Women, Peace and Security (WPS) agenda. While the <a href="http://www.peacewomen.org/why-WPS/solutions/resolutions">UN Security Council resolutions</a> underpinning WPS call on states to recognise the rights and vulnerabilities of female refugees in contexts the Council interprets as ‘conflict-affected’, the same principles should surely apply once refugees leave the conflict zone.&nbsp; Although many European governments have WPS action plans to support women in conflict and peace processes, if and when these women seek asylum in Europe they <a href="https://blogs.lse.ac.uk/wps/2017/06/26/the-wps-agenda-and-the-refugee-crisis-missing-connections-and-missed-opportunities-in-europe-aiko-holvikivi-and-audrey-reeves-62017/">slip from the view</a> of these plans and are often subject to draconian <a href="https://academic.oup.com/ia/article/96/5/1209/5901383">anti-immigrant policy regimes</a>. In the UK, WPS advocates have <a href="https://gaps-uk.org/assessing-uk-government-action-women-peace-security-2016/">persistently</a> <a href="https://gaps-uk.org/statement-on-the-uk-governments-rwanda-plan-and-deportation-flight/">called</a> on the government to bring migration policy into line with its WPS commitments and uphold the rights of people of all genders who cross UK borders. Yet immigration and asylum have <a href="https://blogs.lse.ac.uk/wps/2022/08/17/doing-women-peace-and-security-better-opportunities-for-the-next-uk-national-action-plan/">remained conspicuously absent</a> from UK WPS policies.</p>
+            <p style="margin-bottom: 20px;">In the UK, survivors of gender-based violence can face <a href="https://www.independent.co.uk/news/uk/home-news/home-office-rape-survivors-sexual-abuse-destitution-homeless-a9250746.html">hostile questioning and disbelief</a> when making asylum claims. Asylum seekers can be detained without time limits and, as the protesters from Women Against Rape noted, there have been <a href="https://www.theguardian.com/uk-news/2015/jun/15/yarls-wood-report-calling-for-closure-decade-abuse-complaints">disturbing reports</a> of sexual abuse of detainees by guards at Yarl’s Wood Immigration Removal Centre (IRC), which (until recently) detained mainly women and families. Even while hosted in communities, the precarious status imposed upon those seeking asylum leaves them vulnerable to further harm: the ‘no recourse to public funds’ rule means they cannot access basic services such as domestic violence refuges, while the prohibition on taking up employment leaves some asylum seekers <a href="https://www.refugeewomen.co.uk/not-safe/">destitute</a> or even economically dependent on an abusive partner or family. Meanwhile, due to co-operation between police and immigration authorities, undocumented women who experience gendered violence <a href="https://www.politics.co.uk/news/2017/11/28/woman-reports-rape-to-police-and-is-arrested-on-immigration-charges/">can be deported</a> if they report it to the police.</p>
+            <p style="margin-bottom: 20px;">It perhaps feels naïve to ask the government to adopt a more ‘gender-sensitive’ approach to migration and asylum when it has openly <a href="https://www.theguardian.com/uk-news/2022/may/25/from-go-home-vans-to-windrush-scandal-a-timeline-of-uks-hostile-environment">declared its hostility</a> toward immigration, except for the wealthy and highly educated. Most recently, the Home Office has sought to <a href="https://www.bbc.co.uk/news/uk-61806383">deport asylum seekers to Rwanda</a> and to forcibly <a href="https://www.theguardian.com/uk-news/2022/apr/25/uk-refugee-pushback-policy-withdrawn-judicial-review-priti-patel">push back</a> migrant vessels crossing the English Channel, putting lives in danger — measures only stopped thus far by legal challenges. In other words, the cruelty is the point:</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">These policies are intended to deter migrants and asylum seekers from coming to the UK by making the process as dangerous and unappealing as possible.</p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p style="margin-top: 20px;">Previously, where WPS principles have clashed with other government priorities — such as its objective of increasing its overseas arms exports, or its refusal to recognise the <a href="https://blogs.lse.ac.uk/wps/2022/10/19/domestication-of-the-uk-national-action-plan-considerations-from-northern-ireland/">situation in Northern Ireland</a> as a conflict — the latter have often won out, and migration policies are no different.</p>
+            <p style="margin-bottom: 20px; margin-top: 20px;">Setting aside questions about the likelihood of success, however, while calls for <a href="https://www.dcaf.ch/training-resources-border-management-and-gender">gender-sensitive border management</a> could reduce specific gendered harms wrought by migration policies, they typically do not problematise borders themselves as forms of gendered and racialised violence and exclusion. Since the mid-twentieth century as Britain’s empire was dismantled, decades of anti-immigrant legislation brought in by both Conservative and Labour governments has <a href="https://manchesteruniversitypress.co.uk/blog/2019/11/06/britain-as-the-spoils-of-empire/">continued processes of dispossession</a> inaugurated by colonialism, preventing colonised people (among others) from accessing the spoils of empire amassed in the UK. ‘Borders’ on this reading are not mere lines on a map or physical barriers but <a href="https://globalsocialtheory.org/topics/border-imperialism/">ongoing practices</a> of differentiation and hierarchy that organise the distribution of the means of survival and flourishing and structure our relations with one another. Borders also reproduce the <a href="https://gal-dem.com/against-borders-book-extract/">hetero-patriarchal family</a> by determining which kinds of relationship ‘count’ in the eyes of the state, while also deciding who is deserving of a ‘<a href="https://www.independent.co.uk/news/uk/home-news/immigration-child-separation-parents-uk-home-office-immigrant-detention-a8431671.html">family life</a>’ in racialised and classed ways. Like calls for <a href="https://medium.com/@nonewwomensjailnyc/over-200-community-members-organizers-scholars-and-formerly-incarcerated-people-and-their-ce9218e021ba">feminist jails</a>, then, demands for a more feminist border risk merely tinkering with an institution whose purpose is anti-emancipatory at its very heart.</p>
+            <p style="margin-bottom: 20px;">Much as the WPS framework cannot address capitalism as a root cause of climate change, as <a href="https://blogs.lse.ac.uk/wps/2022/10/21/re-arranging-deck-chairs-on-the-titanic-the-uk-government-and-the-wps-agenda-in-a-time-of-climate-crisis/">Claire and Carol</a> argue in their blog, neither is it designed to dismantle borders.</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">If the incorporation of WPS into migration policy (or vice versa) simply means more female border guards or more funding for specialist women’s IRCs, for example, this will be no feminist victory.</p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p style="margin-top: 20px;">However, we might think about how feminist advocacy can be used to mobilise for <a href="https://jacobin.com/2021/07/andre-gorz-non-reformist-reforms-revolution-political-theory"><i>non-reformist</i> reforms</a> — that is, those that shrink, rather than extend, the power of immigration controls to intervene in people’s lives — and Gracie Mae Bradley and Luke de Noronha’s recent book <a href="https://www.versobooks.com/books/3983-against-borders"><i>Against Borders</i></a> gives some clues as to what these might look like. Calls to shut down IRCs, for example, and not replace them with electronic tagging or other control measures, would reduce coercion and surveillance and offer more freedom to migrants to go about their lives. Creating a ‘firewall’ between immigration enforcement and other public bodies would allow undocumented people to access vital services such as healthcare and employment support without fear of deportation — though the Home Office has <a href="https://bylinetimes.com/2021/12/22/the-hostile-environment-continues-home-office-rejects-firewall-for-migrant-victims-of-abuse/">already rejected</a> the idea of firewall for migrants survivors of abuse.</p>
+            <p style="margin-top: 20px; margin-bottom: 20px;"">Given the current government’s determination to reduce net migration despite the human costs, the chances of a policy reversal seem slim. Grassroots action to <a href="https://gal-dem.com/peckham-immigration-raid-mutual-aid-resist/">resist immigration raids</a> and <a href="https://inews.co.uk/news/rwanda-deportations-protesters-block-road-detention-centre-stop-flight-1686845">stop deportations</a> coupled with <a href="https://www.bbc.co.uk/news/uk-61806383">legal challenges</a> are offering most hope for halting the encroachment of borders and building strong movements against them in the present moment. Policy frameworks like WPS — of which the UK government has positioned itself as a champion — and events like the upcoming conference on ending sexual violence, however, create opportunities to expose the colonial mindset that poor, mostly racialised women should be saved from sexual violence in conflict zones but still subjected to the violence of our own border regimes. At the same time, we should remain attentive to the risk of creating hierarchies of deservingness when it comes to migration, including gendered ones. While feminists rightly highlight the particular gendered impacts of bordering practices, we must avoid reinforcing racialised narratives of <a href="https://journals.sagepub.com/doi/full/10.1177/0967010619830590">female vulnerability and masculine threat</a> that position ‘womenandchildren’ as more deserving of safety and mobility than migrant men. Ultimately, patriarchy and borders work together to divide, exploit and control us — a feminist politics of freedom demands that we dismantle them both.</p>
+            <hr>
+            <p style="margin-bottom: 20px;"><i>The views, thoughts and&nbsp;opinions expressed in this blog post are those of the author(s)&nbsp;only.</i></p>
+            <p>Image credit: <a href="https://www.flickr.com/photos/38070199@N08/20249894419">Darren Johnson</a> (CC BY-NC-ND 2.0)</p>
+            <p>&nbsp;</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                          </div>
+                        <div class="author">
+              <h3>About the author</h3>
+            
+                  <div class="author__main">
+                  <div class="author__image">
+                    <img width="96" height="96" src="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2019/12/Hannah-Wright-150x150.jpg" class="avatar avatar-96 photo wp-post-image" alt="" scale="0">
+                    <h3>Dr Hannah Wright</h3>
+                  </div>
+                          <div class="author__content">
+                      <p>Dr Hannah Wright is a Postdoctoral Fellow in the School of Politics and International Relations at Queen Mary University of London. Her research addresses the relationships among gender, race, class, militarism, coloniality and state violence. She has worked on gender, peace and security issues for over a decade in a variety of research and policy roles, including in Parliament, NGOs and academia. Twitter: @hannahlwright </p>
+                    </div>
+                      </div>
+       
+            </section>
+                      </div>
+              </div>
+            </section>
+                      </div>
+              </div>
+ 
+        </div>
+    </main>
+ 
+    <!-- footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <!-- Footer Logo Section -->
+        <div class="footer-logo">
+            <div id="logoFooter">NOTALONE</div>
+            <div class="logo-text"><p>W♀men, Peace </p><p>and Security</p></div> 
+        </div>
+
+        <!-- Quick Links Section -->
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>
+                <i class='bx bx-map'></i>
+                Türk Hava Kurumu Üniversitesi Bahçekapı Mah.
+            </p>
+            <p>
+                <i class='bx bx-phone'></i>
+                (0212) 389 99 99
+            </p>
+            <p>
+                <i class='bx bx-envelope'></i>
+                örnek@gmail.com
+            </p>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="footer-social">
+            <h4>Social Media</h4>
+            <div class="social-icons">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-twitter'></i></a>
+                <a href="#"><i class='bx bxl-instagram'></i></a>
+                <a href="#"><i class='bx bxl-linkedin'></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="footer-bottom">
+        <p>&copy; 2024 NOTALONE</p>
+    </div>
+</footer>
+
+    <script src="owl/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1..min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="makale.js"></script> <!-- JavaScript dosyasını bağladık -->
+
+</body>
+</html>

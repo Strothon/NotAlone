@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turkey’s withdrawal from the Istanbul
+        Convention: A step in the wrong
+        direction</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/581952776c.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="makale.css">
+    <link rel="stylesheet" href="owl/owl.carousel.min.css">
+    <link rel="stylesheet" href="owl/owl.theme.default.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="owl/script.js"></script>
+
+</head>
+<body>
+
+    <!-- Sabit Üst Menü -->
+    <section id="menu">
+        <div id="logo">NOTALONE</div>
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div>
+        <nav>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="javascript:void(0);" id="userIcon"><i class="fa-regular fa-user"></i></a></li>
+        </nav>
+    </section>
+
+<!-- Sağ Menü -->
+<div id="loginPanel" class="sidenav-right">
+    <div class="sidenav__inner">
+       <!-- Giriş Paneli -->
+<div id="loginForm" class="auth-section">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <h2>Login</h2>
+    <form onsubmit="handleLogin(event)">
+        <input type="email" id="loginEmail" placeholder="Email" required class="form-control">
+        <div class="password-container">
+            <input type="password" id="loginPassword" placeholder="Password" required class="form-control">
+            <i class="fa fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+        </div>
+        <button type="submit" class="submit-button">Login</button>
+        <div class="links">
+            <a href="#" onclick="showForgotPassword(event)">Forgot Password?</a>
+            <a href="#" onclick="showSignUp(event)">Sign Up</a>
+        </div>
+    </form>
+</div>
+
+<!-- Giriş Yaptıktan Sonraki Panel -->
+<div id="userPanelContent" class="user-panel-section" style="display: none;">
+    <div class="menu-header">
+        <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+    </div>
+    <div class="user-info">
+        <div class="user-header">
+            <i class="fa-regular fa-user"></i>
+            <span id="welcomeUsername">Welcome, User</span>
+        </div>
+    </div>
+    
+    <nav class="user-nav">
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-user"></i>
+            <span>My Profile</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-paper-plane"></i>
+            <span>My Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-comment"></i>
+            <span>My Comments</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-heart"></i>
+            <span>Liked Posts</span>
+        </a>
+        <a href="#" class="nav-item">
+            <i class="fa-regular fa-bookmark"></i>
+            <span>Saved Posts</span>
+        </a>
+        
+    </nav>
+    <div class="logout-container">
+        <button id="logoutButton" onclick="handleLogout()">
+            <i class="fa-solid fa-right-from-bracket"></i> Logout
+        </button>
+    </div>
+</div>
+
+
+        <!-- Şifremi Unuttum Paneli -->
+        <div id="forgotPasswordForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Reset Password</h2>
+            <p class="auth-description">Enter your email address and we'll send you a link to reset your password.</p>
+            <form onsubmit="handleForgotPassword(event)">
+                <input type="email" id="resetEmail" placeholder="Email" required class="form-control">
+                <button type="submit" class="submit-button">Send Reset Link</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Back to Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kaydolma Paneli -->
+        <div id="signUpForm" class="auth-section" style="display: none;">
+            <div class="menu-header">
+                <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+            </div>
+            <h2>Sign Up</h2>
+            <form onsubmit="handleSignUp(event)">
+                <div class="form-group">
+                    <input type="text" id="firstName" placeholder="First Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="lastName" placeholder="Last Name" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="email" id="signUpEmail" placeholder="Email" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="signUpPassword" placeholder="Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="password" id="confirmPassword" placeholder="Confirm Password" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" placeholder="Phone Number" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <input type="date" id="birthDate" placeholder="Birth Date" required class="form-control">
+                </div>
+                <div class="form-group">
+                    <select id="gender" class="form-control" required>
+                        <option value="">Select Gender</option>
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
+                        <option value="prefer-not">Prefer not to say</option>
+                    </select>
+                </div>
+                <button type="submit" class="submit-button">Sign Up</button>
+                <div class="links">
+                    <a href="#" onclick="showLogin(event)">Already have an account? Login</a>
+                </div>
+            </form>
+        </div>
+
+        <!-- Kullanıcı Panel İçeriği (giriş yapıldıktan sonra) -->
+        <div id="userPanelContent" class="user-panel-section" style="display: none;">
+            <!-- Mevcut kullanıcı paneli içeriği buraya -->
+        </div>
+    </div>
+</div>
+
+
+    <!-- Sol Sütun -->
+    <div id="sol-sutun">
+        <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div> <!-- Menü Butonu -->
+    </div>
+    
+    <!-- Menü Aç/Kapat İşlevi -->
+    <script>
+        function toggleLeftMenu() {
+            const sidenav = document.getElementById('sidenav');
+            sidenav.classList.toggle('active');
+        }
+    </script>   
+
+<!-- Sol Menü -->
+<div id="sidenav" class="sidenav">
+    <div class="sidenav__inner">
+        <div class="menu-header">
+            <div id="logo-menu">
+                <span style="color:#e7bcbc; font-size: 30px;">
+                    W♀men, Peace and Security
+                </span>
+            </div>
+            <div class="close-btn" onclick="toggleLeftMenu()">✖</div>
+        </div>
+        <nav>
+            <a href="index.html"><i class="fa-solid fa-home"></i>Home</a>
+            <a href="hakkimizda.html"><i class="fa-solid fa-info"></i>About</a>
+            <a href="yorumPolitikasi.html"><i class="fa-solid fa-comment"></i>Comment Policy</a>
+            <a href="haklarinibil.html"><i class="fa-solid fa-balance-scale"></i>Know Your Rights</a>
+            <a href="blog.html"><i class="fa-solid fa-blog"></i>Blog</a>
+            <a href="forum/forum.html"><i class="fa-solid fa-comments"></i>Forum</a>
+            <a href="#"><i class="fa-solid fa-map-marker-alt"></i>Safe Map</a>
+            <a href="#"><i class="fa-solid fa-calendar"></i>Events</a>
+        </nav>
+    </div>
+</div>
+    
+
+    
+<!-- Sidebar -->
+<div class="sidebarHAKKIMIZDA">
+    <div class="logo-boxHAKKIMIZDA">
+        <img src="img/2logo.png" alt="Logo"> <!-- Logo -->
+        <div class="logo-text">W♀men, Peace <p>and Security</p></div> <!-- Slogan -->
+    </div>
+ 
+    <div class="twitter-boxHAKKIMIZDA">
+        <h2>Follow Us</h2>
+        <div class="twitter-feed">
+            <!-- Twitter Widget -->
+            <iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" title="Twitter Timeline"
+                src="https://syndication.twitter.com/srv/timeline-profile/screen-name/NOT#ALONE=false&amp;embedId=twitter-widget-0&amp;features=eyJ0ZndfdGltZWxpbmVfbGlzdCI6eyJidWNrZXQiOltdLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X2ZvbGxvd2VyX2NvdW50X3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9iYWNrZW5kIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19yZWZzcmNfc2Vzc2lvbiI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfZm9zbnJfc29mdF9pbnRlcnZlbnRpb25zX2VuYWJsZWQiOnsiYnVja2V0Ijoib24iLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X21peGVkX21lZGlhXzE1ODk3Ijp7ImJ1Y2tldCI6InRyZWF0bWVudCIsInZlcnNpb24iOm51bGx9LCJ0ZndfZXhwZXJpbWVudHNfY29va2llX2V4cGlyYXRpb24iOnsiYnVja2V0IjoxMjA5NjAwLCJ2ZXJzaW9uIjpudWxsfSwidGZ3X3Nob3dfYmlyZHdhdGNoX3Bpdm90c19lbmFibGVkIjp7ImJ1Y2tldCI6Im9uIiwidmVyc2lvbiI6bnVsbH0sInRmd19kdXBsaWNhdGVfc2NyaWJlc190b19zZXR0aW5ncyI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdXNlX3Byb2ZpbGVfaW1hZ2Vfc2hhcGVfZW5hYmxlZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9LCJ0ZndfdmlkZW9faGxzX2R5bmFtaWNfbWFuaWZlc3RzXzE1MDgyIjp7ImJ1Y2tldCI6InRydWVfYml0cmF0ZSIsInZlcnNpb24iOm51bGx9LCJ0ZndfbGVnYWN5X3RpbWVsaW5lX3N1bnNldCI6eyJidWNrZXQiOnRydWUsInZlcnNpb24iOm51bGx9LCJ0ZndfdHdlZXRfZWRpdF9mcm9udGVuZCI6eyJidWNrZXQiOiJvbiIsInZlcnNpb24iOm51bGx9fQ%3D%3D&amp;frame=false&amp;hideBorder=false&amp;hideFooter=true&amp;hideHeader=false&amp;hideScrollBar=false&amp;lang=en&amp;maxHeight=400px&amp;origin=https%3A%2F%2Fblogs.lse.ac.uk%2Fwps%2F&amp;partner=jetpack&amp;sessionId=0c6952bf47c9281de6889593d9528bcc3401e8f5&amp;showHeader=true&amp;showReplies=false&amp;siteScreenName=NOT#ALONE&amp;theme=light&amp;transparent=false&amp;widgetsVersion=2615f7e52b7e0%3A1702314776716"
+                style="position: static; visibility: visible; width: 100%; height: 400px; display: block;">
+            </iframe>
+        </div>
+    </div>
+ </div>
+
+<!-- Ana Sayfa İçeriği (Slider Benzeri Yapı) -->
+<div id="makale">
+    <img src="img/makale1.jpg" alt="OGIP" class="makale-img">
+    <div class="post-info">
+        <div class="author-date">
+            <h3 class="author">Ipek Bengisu</h3>
+            <h3 class="date">May 5th, 2021</h3>
+        </div>
+        <div class="post-main-content" style="margin-left: -130px;">
+            <h1>Turkey’s withdrawal from the Istanbul </h1>
+            <h1>Convention: A step in the wrong </h1>
+            <h1>direction</h1>
+        </div>
+    </div>
+</div>
+
+
+    <main>
+        <div class="makale-box">
+            <div class="single-post__main">
+                <div class="single-post__main-sidebar">
+                  <div class="social-share static" data-post="4532" style="top: 0px;">
+              </div>
+                </div>
+                <div class="single-post__main-content">
+                  <div class="post-content post-builder">
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p><em>Ipek Bengisu looks at Turkey’s withdrawal from the Istanbul Convention, the national and international response, and the potential wider implications of the decision for tackling violence against women.</em></p>
+            <p>On 20 March 2021, women in Turkey woke up to a <a href="https://www.resmigazete.gov.tr/eskiler/2021/03/20210320-49.pdf">Presidential Decision</a> announcing Turkey’s withdrawal from the Council of Europe Convention on Preventing and Combating Violence Against Women and Domestic Violence. In the international area, the Convention is commonly referred to as <a href="https://www.coe.int/en/web/conventions/full-list/-/conventions/rms/090000168008482e">Istanbul Convention</a> as it was opened for signature in Istanbul, during Turkey’s Chairmanship of the Council of Europe (CoE). Along with playing a pioneering role during the negotiations of the Convention, Turkey was also the first signatory state and the first state that submitted its <a href="http://www.mfa.gov.tr/no_-78_-15-march-2012_-press-release-regarding-turkey_s-ratification-of-the-council-of-europe-convention-on-preventing-and-combating-violence-against-women-and-domestic-violence.en.mfa">ratification</a> to CoE subsequent to unanimous voting by the Turkish Parliament. Ironically, with this controversial decision, Turkey has also become the first state that announced its withdrawal from the Istanbul Convention on its 10th anniversary.</p>
+            <p>Indeed, Turkey has taken major steps in order for the implementation of the Convention, notably in the legal area. Primarily, on 8 March 2012, “<a href="http://www.lawsturkey.com/law/law-to-protect-family-and-prevent-violence-against-woman-6284">Law no. 6284</a> on Protection of the Family and Prevention of Violence against Women” was adopted, which not only aligned the national legislation with the requirements in the Convention and addressed the shortcomings of the preceding Law, but also constituted a crucial step for the advocacy of the Istanbul Convention. Further, implementation of this Law was supported by a chain of measures, comprising of three consecutive national action plans.</p>
+            <p>Despite these efforts, however, the Group of Experts on Action against Violence against Women and Domestic Violence (GREVIO) underlined in its <a href="https://rm.coe.int/eng-grevio-report-turquie/16808e5283">Baseline Evaluation Report on Turkey</a> that, to eliminate violence against women, there was still a need for efficient measures and policies ensuring the on-the-ground implementation of laws and practical realisation of gender equality. Particularly, restrictions due to Covid-19 had caused an upsurge in violence against women, and as a consequence of this “<a href="https://www.unwomen.org/en/news/in-focus/in-focus-gender-equality-in-covid-19-response/violence-against-women-during-covid-19">shadow pandemic</a>”, public pressure increased for more effective enforcement of the Istanbul Convention and Law no. 6284.</p>
+            <p>Under this climate, the Presidential Decision announcing Turkey’s withdrawal from the Istanbul Convention prompted a strong public reaction and widespread criticism. However, the decision is also problematic from a legal perspective as it was issued without Parliamentary consent, which raised claims that it was against the Turkish Constitution.</p>
+            <p><span style="color: #4e4e4e"><strong>Assessment of the withdrawal decision under the Turkish Constitution</strong></span></p>
+            <p>According to the <a href="https://global.tbmm.gov.tr/docs/constitution_en.pdf">Turkish Constitution</a>, ratification of international treaties shall be subject to adoption by the Parliament of a law approving ratification. Subsequent to the Parliament’s ratification, the President approves and promulgates the treaties. Once coming into effect, these international treaties have the force of law and, where they concern fundamental rights and freedoms, their provisions prevail over laws.</p>
+            <p>Consistent with the parallelism of competence and procedure principle, administrative acts must be dissolved by the same mode in which they are established. Therefore, to amend or repeal an international treaty that has become domestic law concerning fundamental rights, the Turkish Parliament must pass a law, and only then, the President may complete this legislative act by using his/her executive powers.</p>
+            <p>Further, Article 104 of the Constitution, which regulates the duties and powers of the President, states that presidential decisions may be issued on matters regarding executive power, and in the hierarchy of norms these decisions are below the laws that have been enacted by the Parliament, to whom legislative power belongs. The same article also explicitly states that fundamental rights cannot be regulated by presidential decisions as such an important matter can only be regulated by laws. In this respect, the Presidential Decision does not only attract criticisms about its conformity, or lack thereof, with the Constitution, but also raises questions concerning its conformity with one of the core Constitutional values, namely the principle of separation of powers.</p>
+            <p><span style="color: #4e4e4e"><strong>The consequences of the withdrawal decision </strong></span></p>
+            <p>As underlined by the GREVIO’s Turkey evaluation report, to combat violence against women, Turkey needed to ensure not only normative (<em>de jure</em>) gender equality but factual (<em>de facto</em>) equality as well. More precisely, parallel to legal reforms, Turkey needed to ensure practical realisation of the principle of gender equality and prevention of practices which discriminate against women.</p>
+            <p>The Convention was an important tool to address gender inequalities from the social perspective as, unlike current national legislation, it contains references to root causes of gender inequality such as “socially constructed roles”, “crimes committed in the name of honour”, and “prejudices”, for example.</p>
+            <p>In addition, the European Court of Human Rights’ (ECHR) <u>Opuz v. Turkey case</u> might be regarded in this context (which was the first case that the ECHR elaborated State obligations with respect to domestic violence and the case therefore played a significant role in the creation of the Istanbul Convention). In the Opuz case, the ECHR states that the problem was not the law per se but the general and discriminatory judicial passivity and the attitude of local authorities in providing effective protection to victims, which was creating a climate conducive to domestic violence (para. 198). In the Opuz case, the ECHR also made reference to the Inter-American Commission on Human Rights’ report in <u>Maria Da Penha v. Brazil case</u>, in which the Commission assesses the consequences of State organs’ tolerance of violence against women, and states that, from the society’s point of view, as the representative of the society, a State’s willingness o take effective actions, or not, against violence against women impacts this climate conducive to domestic violence. (para. 86).</p>
+            <p>&nbsp;</p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                              <div class="quote">
+              <div class="container">
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5018.000000)" fill="#393D3E">
+                  <g id="speech-mark-1" transform="translate(812.000000, 5018.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__text">The Convention was an important tool to address gender inequalities from the social perspective as, unlike current national legislation, it contains references to root causes of gender inequality such as “socially constructed roles”, “crimes committed in the name of honour”, and “prejudices”</p>
+                <svg width="36px" height="25px" viewBox="0 0 36 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+              <g id="design" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.25">
+                <g id="blog-post-all-modules" transform="translate(-812.000000, -5232.000000)" fill="#393D3E">
+                  <g id="speech-mark-2" transform="translate(830.000000, 5244.500000) scale(-1, -1) translate(-830.000000, -5244.500000) translate(812.000000, 5232.000000)">
+                    <path d="M3.62146928,9.42062053 L13.7837838,0 L16.0810811,0 L7.53178863,7.92532448 C7.84954313,7.8890207 8.17261004,7.87037037 8.5,7.87037037 C13.1944204,7.87037037 17,11.7049686 17,16.4351852 C17,21.1654018 13.1944204,25 8.5,25 C3.80557963,25 0,21.1654018 0,16.4351852 C0,13.5341169 1.43144495,10.9699299 3.62146928,9.42062053 Z" id="Combined-Shape"></path>
+                    <path d="M22.6214693,9.42062053 L32.7837838,0 L35.0810811,0 L26.5317886,7.92532448 C26.8495431,7.8890207 27.17261,7.87037037 27.5,7.87037037 C32.1944204,7.87037037 36,11.7049686 36,16.4351852 C36,21.1654018 32.1944204,25 27.5,25 C22.8055796,25 19,21.1654018 19,16.4351852 C19,13.5341169 20.4314449,10.9699299 22.6214693,9.42062053 Z" id="Combined-Shape"></path>
+                  </g>
+                </g>
+              </g>
+            </svg>
+                <p class="quote__by"></p>
+              </div>
+            </div>
+                              <div class="page-builder content-wysiwyg">
+            
+                      <div class="container content-block">
+                    
+                    <p>Turkey’s welcoming attitude towards the Istanbul Convention was a significant indication of its commitment and willingness to combat violence against women by adopting a zero-tolerance approach. Therefore, the Convention had an effect on the lack of on-the-ground-enforcement of laws and this pervasive climate contributing to domestic violence portrayed in the Opuz case. The withdrawal from the Convention might potentially reverse these effects and set back years of efforts to combat violence against women in Turkey.</p>
+            <p>Moreover, Turkey’s withdrawal decision might also have negative regional and international consequences. Despite the progress the CoE has achieved on the promotion of gender equality and women’s rights in the last decade, the momentum of the developments has not been maintained. In recent years, this overall progress has provoked a <a href="https://rm.coe.int/1st-general-report-on-grevio-s-activities/16809cd382">backlash against gender equality</a> in many societies.</p>
+            <p>In several CoE member states, this backlash has translated into concrete initiatives against the Istanbul Convention due to claims that the Convention <a href="https://www.coe.int/en/web/portal/-/fighting-violence-against-women-is-not-about-gender-ideology-or-breaking-families">undermines a traditional notion of family or promotes gender ideology</a>. For instance, in Bulgaria, Slovakia and Hungary, the ratification process was suspended and <a href="https://www.euronews.com/2021/04/01/istanbul-convention-poland-moves-a-step-closer-to-quitting-domestic-violence-treaty">in Poland, there are some recent initiatives to withdraw from the Istanbul Convention</a>. Nevertheless, Article 80 of the Istanbul Convention, which regulates withdrawal from the treaty, had not been invoked until the Turkey case. In this regard, Turkey’s withdrawal decision risks weakening the Istanbul Convention’s position in combating violence against women as part of the gender backlash in Europe, while <a href="https://www.coe.int/en/web/genderequality/-/how-does-the-istanbul-convention-guide-countries-actions-against-violence-against-women-during-the-covid-19-pandemic-#:~:text=Given%20COVID-19%20and%20the,now%20more%20than%20ever%20before.&amp;text=Never%20before%20has%20the%20need,keep%20women%20safe%20from%20violence.">women across Europe need protection now more than ever before</a>.</p>
+            <p>Since the publication of the Presidential Decision, there has been immense reaction and criticism against Turkey’s withdrawal announcement at both the national and international levels. At the national level, <a href="https://www.bbc.com/news/world-europe-56516462">protests</a> have been taking place by women all over the country. Opposition parties and <a href="https://www.istanbulbarosu.org.tr/NewsDetail.aspx?ID=16267">Bar Associations</a> in Turkey have also challenged the Presidential Decision before Turkey’s Supreme Administrative Court, claiming that the decision is unconstitutional and should therefore be deemed null and void from a legal perspective. Further, numerous country representatives and international organisations (including <a href="https://www.coe.int/en/web/commissioner/-/turkey-s-announced-withdrawal-from-the-istanbul-convention-endangers-women-s-rights#:~:text=Turkey's%20announced%20withdrawal%20from%20the%20Istanbul%20Convention%20endangers%20women's%20rights,-English%20fran%C3%A7ais%20%D1%80%D1%83%D1%81%D1%81%D0%BA%D0%B8%D0%B9&amp;text=%E2%80%9CTurkey's%20Presidential%20Decree%20published%20on,is%20an%20ill%2Dadvised%20decision.">the CoE</a>, <a href="https://www.unwomen.org/en/news/stories/2021/3/statement-un-women-turkey-withdrawal-from-the-istanbul-convention">UN Women</a> and <a href="https://www.euronews.com/2021/04/06/eu-calls-out-turkey-over-istanbul-convention-after-constructive-meeting">the European Union</a>) have called on the Turkish Government to cancel the withdrawal process and renew its commitment to the Istanbul Convention.</p>
+            <p>Although this decision has provoked significant response, time will show whether Turkey will actually complete the withdrawal process to become a non-party to the Istanbul Convention as of July 2021. Most importantly, it remains to be seen what the outcome of this controversial decision will be for the safety and well-being of women in Turkey.</p>
+            <hr>
+            <p style="margin-bottom: 20px;"><em>This blog was written with the support of an Arts and Humanities Research Council grant and a European Research Council (ERC) grant under the European Union’s Horizon 2020 research and innovation programme (Grant agreement No. 786494)</em></p>
+            <p><em>The views, thoughts, and opinions expressed in this blog post are those of the author(s) only.</em></p>
+
+            <p><em>Image credit:&nbsp;<a href="https://www.flickr.com/photos/condevcenter/33397033076">Grantee Özge Sebzeci</a> (CC BY-NC-ND 4.0)</em></p>
+            
+            
+                          </div>
+                
+              </div>
+            
+                          </div>
+                        <div class="author">
+              <h3>About the author</h3>
+            
+                  <div class="author__main">
+                  <div class="author__image">
+                    <img width="96" height="96" src="https://blogsmedia.lse.ac.uk/blogs.dir/111/files/2021/05/Ipek-Bengisu_cropped-149x150.jpg" class="avatar avatar-96 photo wp-post-image" alt="" scale="0">
+                    <h3>Ipek Bengisu</h3>
+                  </div>
+                          <div class="author__content">
+                      <p>Ipek Bengisu is an attorney of law specialised in international human rights law registered with the Istanbul Bar. She holds an LLM in European and International Human Rights Law from Leiden University and an LLB from Bilkent University. She has recently completed an internship at the United Nations High Commissioner for Refugees Istanbul Field Office and has been accepted to a legal internship at the International Criminal Court in the Hague.</p>
+                    </div>
+                      </div>
+              
+              </div>
+                 
+            </section>
+                      </div>
+              </div>
+    </main>
+ 
+    <!-- footer -->
+<footer class="footer">
+    <div class="footer-content">
+        <!-- Footer Logo Section -->
+        <div class="footer-logo">
+            <div id="logoFooter">NOTALONE</div>
+            <div class="logo-text"><p>W♀men, Peace </p><p>and Security</p></div> 
+        </div>
+
+        <!-- Quick Links Section -->
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="hakkimizda.html">About</a></li>
+            <li><a href="yorumPolitikasi.html">Comment Policy</a></li>
+            <li><a href="haklarinibil.html">Know Your Rights</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="forum/forum.html">Forum</a></li>
+            <li><a href="#">Safe Map</a></li>
+            <li><a href="#">Events</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>
+                <i class='bx bx-map'></i>
+                Türk Hava Kurumu Üniversitesi Bahçekapı Mah.
+            </p>
+            <p>
+                <i class='bx bx-phone'></i>
+                (0212) 389 99 99
+            </p>
+            <p>
+                <i class='bx bx-envelope'></i>
+                örnek@gmail.com
+            </p>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="footer-social">
+            <h4>Social Media</h4>
+            <div class="social-icons">
+                <a href="#"><i class='bx bxl-facebook'></i></a>
+                <a href="#"><i class='bx bxl-twitter'></i></a>
+                <a href="#"><i class='bx bxl-instagram'></i></a>
+                <a href="#"><i class='bx bxl-linkedin'></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="footer-bottom">
+        <p>&copy; 2024 NOTALONE</p>
+    </div>
+</footer>
+
+    <script src="owl/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1..min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="makale.js"></script> <!-- JavaScript dosyasını bağladık -->
+
+</body>
+</html>

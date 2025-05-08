@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribers</title>
+    <link rel="stylesheet" href="../adminPanel/users.css"> <!-- CSS dosyasını bağla -->
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/581952776c.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="title">
+            <p>Dashboard</p>
+        </div>
+        <div class="icons">
+            <ul>
+                <li><a href="../adminPanel/adminPanel.html"><i class='bx bx-home-circle'></i><span>Home</span></a></li>
+                <li><a href="../adminPanel/users.html"><i class='bx bx-user'></i><span>Users</span></a></li>
+                <li><a href="../adminPanel/messages.html"><i class='bx bx-comment'></i><span>Messages</span></a></li>
+                <li><a href="../adminPanel/posts.html"><i class='bx bx-message-square-detail'></i><span>Posts</span></a></li>
+                <li><a href="../adminPanel/stories.html"><i class='bx bx-message-square-detail'></i><span>Stories</span></a></li>
+                <li><a href="../adminPanel/blockedusers.html"><i class='bx bx-block'></i><span>Blocked Users</span></a></li>
+                <!-- <li><a href="../adminPanel/settings.html"><i class='bx bx-cog'></i><span>Settings</span></a></li>-->
+              </ul>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <div class="table-options">
+            <input type="text" id="search" placeholder="Search..." class="search-box">
+            <select id="sort-options" class="sort-select">
+                <option value="newest">Newest</option>
+                <option value="oldest">Oldest</option>
+            </select>
+        </div>
+        
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Author</th>
+                    <th>Story Content</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Dynamic content will be inserted here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const tableBody = document.querySelector('tbody');
+            const searchInput = document.getElementById('search');
+            const sortSelect = document.getElementById('sort-options');
+        
+            // Fetch and display stories
+            async function loadStories() {
+                try {
+                    const response = await fetch('/api/stories');
+                    const stories = await response.json();
+                    
+                    tableBody.innerHTML = ''; // Clear existing rows
+                    
+                    stories.forEach(story => {
+                        const row = document.createElement('tr');
+                        row.dataset.storyId = story.id;
+                        
+                        row.innerHTML = `
+                            <td>${story.author_info}</td>
+                            <td>${story.content}</td>
+                            <td data-created-at="${story.created_at}"> <!-- Add data attribute -->
+                                <button class="action-btn" 
+                                        onclick="approveStory(${story.id})" 
+                                        ${story.is_approved ? 'disabled' : ''}>
+                                    ${story.is_approved ? 'Approved' : 'Share'}
+                                </button>
+                            </td>
+                        `;
+                        
+                        tableBody.appendChild(row);
+                    });
+                } catch (error) {
+                    console.error('Error loading stories:', error);
+                }
+            }
+        
+            // Approve story function
+            window.approveStory = async function(storyId) {
+                try {
+                    const response = await fetch(`/api/stories/${storyId}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        }
+                    });
+        
+                    if (response.ok) {
+                        // Update UI without reload
+                        const button = document.querySelector(`tr[data-story-id="${storyId}"] button`);
+                        button.textContent = 'Approved';
+                        button.disabled = true;
+                    }
+                } catch (error) {
+                    console.error('Error approving story:', error);
+                }
+            }
+        
+            // Initial load
+            loadStories();
+        
+            // Search functionality
+            searchInput.addEventListener('input', function() {
+                const term = this.value.toLowerCase();
+                document.querySelectorAll('tbody tr').forEach(row => {
+                    const text = row.textContent.toLowerCase();
+                    row.style.display = text.includes(term) ? '' : 'none';
+                });
+            });
+        
+            // Sort functionality
+            rowsArray.sort((a, b) => {
+                const dateA = new Date(a.dataset.createdAt); // Use dataset attribute
+                const dateB = new Date(b.dataset.createdAt);
+                
+                if (sortOption === 'newest') {
+                    return dateB - dateA;
+                } else {
+                    return dateA - dateB;
+                }
+            });
+                rows.forEach(row => tableBody.appendChild(row));
+                row.dataset.createdAt = story.created_at;
+            });
+
+        </script>
+</body>
+</html>

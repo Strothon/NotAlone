@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Know Your Rights  | NOTALONE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/581952776c.js" crossorigin="anonymous"></script>
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="../css/knowyourrights.css">
+    <link rel="stylesheet" href="owl/owl.carousel.min.css">
+    <link rel="stylesheet" href="owl/owl.theme.default.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="owl/script.js"></script>
+</head>
+<body>
+    <body>
+        <!-- Sabit Üst Menü -->
+        <section id="menu">
+            <div id="logo">NOTALONE</div>
+            <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div>
+            <nav>
+                <li><a href="../html/home.html">Home</a></li>
+                <li><a href="../html/about.html">About</a></li>
+                <li><a href="../html/knowyourrights.html">Know Your Rights</a></li>
+                <li><a href="../html/stories.html">Stories</a></li>
+                <li><a href="../html/blog.html">Blog</a></li>
+                <li><a href="../html/forum.html">Forum</a></li>
+                <li><a href="../html/support.html">Support</a></li>
+                <li><a href="../html/commentPolicy.html">Comment Policy</a></li>
+                <li><a href="javascript:void(0);" id="userIcon"><i class="fa-regular fa-user"></i></a></li>
+            </nav>
+        </section>
+    
+    <!-- Sağ Menü -->
+    <div id="loginPanel" class="sidenav-right">
+        <div class="sidenav__inner">
+           <!-- Giriş Paneli -->
+    <div id="loginForm" class="auth-section">
+        <div class="menu-header">
+            <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+        </div>
+        <h2>Login</h2>
+        <form onsubmit="handleLogin(event)">
+            <input type="email" id="loginEmail" placeholder="Email" required class="form-control">
+            <div class="password-container">
+                <input type="password" id="loginPassword" placeholder="Password" required class="form-control">
+                <i class="fa fa-eye" id="togglePassword" style="cursor: pointer;"></i>
+            </div>
+            <button type="submit" class="submit-button">Login</button>
+            <div class="links">
+                <a href="#" onclick="showForgotPassword(event)">Forgot Password?</a>
+                <a href="#" onclick="showSignUp(event)">Sign Up</a>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Giriş Yaptıktan Sonraki Panel -->
+    <div id="userPanelContent" class="user-panel-section" style="display: none;">
+        <div class="menu-header">
+            <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+        </div>
+        <div class="user-info">
+            <div class="user-header">
+                <i class="fa-regular fa-user"></i>
+                <span id="welcomeUsername">Welcome, User</span>
+            </div>
+        </div>
+        
+        <nav class="user-nav">
+            <a href="#" class="nav-item">
+                <i class="fa-regular fa-user"></i>
+                <span>My Profile</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fa-regular fa-paper-plane"></i>
+                <span>My Posts</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fa-regular fa-comment"></i>
+                <span>My Comments</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fa-regular fa-heart"></i>
+                <span>Liked Posts</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fa-regular fa-bookmark"></i>
+                <span>Saved Posts</span>
+            </a>
+            
+        </nav>
+        <div class="logout-container">
+            <button id="logoutButton" onclick="handleLogout()">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+            </button>
+        </div>
+    </div>
+            <!-- Şifremi Unuttum Paneli -->
+            <div id="forgotPasswordForm" class="auth-section" style="display: none;">
+                <div class="menu-header">
+                    <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+                </div>
+                <h2>Reset Password</h2>
+                <p class="auth-description">Enter your email address and we'll send you a link to reset your password.</p>
+                <form onsubmit="handleForgotPassword(event)">
+                    <input type="email" id="resetEmail" placeholder="Email" required class="form-control">
+                    <button type="submit" class="submit-button">Send Reset Link</button>
+                    <div class="links">
+                        <a href="#" onclick="showLogin(event)">Back to Login</a>
+                    </div>
+                </form>
+            </div>
+    
+            <!-- Kaydolma Paneli -->
+            <div id="signUpForm" class="auth-section" style="display: none;">
+                <div class="menu-header">
+                    <div class="close-btn" onclick="toggleRightMenu()">✖</div>
+                </div>
+                <h2>Sign Up</h2>
+                <form onsubmit="handleSignUp(event)">
+                    <div class="form-group">
+                        <input type="text" id="firstName" placeholder="First Name" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="lastName" placeholder="Last Name" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="signUpEmail" placeholder="Email" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="signUpPassword" placeholder="Password" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="confirmPassword" placeholder="Confirm Password" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" id="phone" placeholder="Phone Number" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <input type="date" id="birthDate" placeholder="Birth Date" required class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <select id="gender" class="form-control" required>
+                            <option value="">Select Gender</option>
+                            <option value="female">Female</option>
+                            <option value="male">Male</option>
+                            <option value="other">Other</option>
+                            <option value="prefer-not">Prefer not to say</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="submit-button">Sign Up</button>
+                    <div class="links">
+                        <a href="#" onclick="showLogin(event)">Already have an account? Login</a>
+                    </div>
+                </form>
+            </div>
+    
+            <!-- Kullanıcı Panel İçeriği (giriş yapıldıktan sonra) -->
+            <div id="userPanelContent" class="user-panel-section" style="display: none;">
+                <!-- Mevcut kullanıcı paneli içeriği buraya -->
+            </div>
+        </div>
+    </div>
+        <!-- Sol Sütun -->
+        <div id="sol-sutun">
+            <div id="menu-toggle" onclick="toggleLeftMenu()">☰</div> <!-- Menü Butonu -->
+        </div>
+        
+        <!-- Menü Aç/Kapat İşlevi -->
+        <script>
+            function toggleLeftMenu() {
+                const sidenav = document.getElementById('sidenav');
+                sidenav.classList.toggle('active');
+            }
+        </script>   
+    
+    <!-- Sol Menü -->
+    <div id="sidenav" class="sidenav">
+        <div class="sidenav__inner">
+            <div class="menu-header">
+                <div id="logo-menu">
+                    <span style="color:#e7bcbc; font-size: 30px;">
+                        W♀men, Peace and Security
+                    </span>
+                </div>
+                <div class="close-btn" onclick="toggleLeftMenu()">✖</div>
+            </div>
+            <nav>
+                <a href="../html/home.html"><i class="fa-solid fa-home"></i>Home</a>
+                <a href="../html/about.html"><i class="fa-solid fa-info"></i>About</a>
+                <a href="../html/knowyourrights.html"><i class="fa-solid fa-balance-scale"></i>Know Your Rights</a>
+                <a href="../html/stories.html"><i class="fa-solid fa-pen"></i>Stories</a>
+                <a href="../html/blog.html"><i class="fa-solid fa-blog"></i>Blog</a>
+                <a href="../html/forum.html"><i class="fa-solid fa-comments"></i>Forum</a>
+                <a href="../html/support.html"><i class="fa-solid fa-calendar"></i>Support</a>
+                <a href="../html/commentPolicy.html"><i class="fa-solid fa-comment"></i>Comment Policy</a>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<div class="highlighted-text">
+    <h2 class="fusion-title-heading title-heading-center">
+        <span class="title-text">Know Your Rights</span>
+        <svg class="scribble-underline" role="presentation" viewBox="-320 -70.8161 640.4 59.82" preserveAspectRatio="none">
+            <path d="M-300,-56 C-50,-72 298,-65 300,-59 C332,-53 -239,-36 -255,-27 C-271,-18 -88,-24 91,-20" stroke="rgba(91,62,148,0.67)" pathLength="1" stroke-width="11.111111111111" fill="none"></path>
+        </svg>
+    </h2>
+</div>
+
+<main class="main-container">
+    <section class="haklarinizi-bil">
+        <p>Knowing your rights is one of the fundamental steps to being a strong and conscious individual. Your rights, as defined in the Constitution, protect your life and offer you freedom. These rights ensure that you live equally and freely in society, and include legal remedies you can pursue if your individual rights are violated. Knowing your rights is important not only for protecting your personal interests but also for the welfare and order of society.</p>
+        
+        <p>Knowing these rights provided by the state is an important responsibility both individually and socially. These rights will guide you in the challenges and legal processes you may encounter in your daily life. Below is more information about fundamental rights and freedoms:</p>
+
+        <h2>Fundamental Rights and Freedoms</h2>
+        <ul>
+            <li><strong>Principle of Equality:</strong> No one can be discriminated against based on language, race, color, gender, political opinion, or religion. This principle guarantees equal rights for all citizens.</li>
+            <li><strong>Privacy:</strong> Every individual has the right to demand respect for their private life. Family life, private life, and freedom of communication are guaranteed.</li>
+            <li><strong>Freedom of Thought and Expression:</strong> Every individual has the right to express their thoughts freely. This freedom applies to journalism, art, and academic fields.</li>
+            <li><strong>Right to Assembly and Demonstration:</strong> Individuals have the right to gather collectively, demonstrate, organize marches, and engage in other peaceful activities.</li>
+            <li><strong>Freedom of Religion and Conscience:</strong> Every individual has the right to freely choose, live, and express their beliefs.</li>
+            <li><strong>Protection Against Addiction:</strong> The state takes necessary measures to protect individuals against alcohol or drug addiction.</li>
+            <li><strong>Right to Health:</strong> Every individual has the right to access health services. The state must ensure equal access to health services for everyone.</li>
+            <li><strong>Right to Housing:</strong> Every individual has the right to housing for a healthy life. The state takes necessary measures to meet housing needs.</li>
+            <li><strong>Right to Work:</strong> Every individual has the right to work according to their skills and abilities.</li>
+        </ul>
+
+        <h2>Right to Fair Trial</h2>
+        <ul>
+            <li><strong>Fair Trial:</strong> Every individual has the right to a fair trial before the judiciary. Trials must be open and transparent.</li>
+            <li><strong>Independent Judiciary:</strong> Judges perform their duties independently and make decisions according to law.</li>
+            <li><strong>Equitable Trial:</strong> The trial process must be based on principles of impartiality, supervision, and justice.</li>
+            <li><strong>Right to Legal Aid:</strong> Every individual has the right to fair representation in trials.</li>
+        </ul>
+
+        <h2>Women's Rights</h2>
+        <ul>
+            <li><strong>Protection Against Violence and Discrimination:</strong> Women are legally protected against physical and psychological violence.</li>
+            <li><strong>Equal Work and Pay Rights:</strong> Women have equal working conditions and wages with men.</li>
+            <li><strong>Pregnancy and Maternity Leave:</strong> Women have the right to pregnancy and maternity leave.</li>
+            <li><strong>Education of Women and Children:</strong> Education of women and children is critical for social equality and development.</li>
+        </ul>
+
+        <h2>Children's Rights</h2>
+        <ul>
+            <li><strong>Right to Life:</strong> Every child has the right to life, and the state takes necessary measures to protect this right.</li>
+            <li><strong>Right to Education:</strong> Children have the right to free and quality education.</li>
+            <li><strong>Protection of Children:</strong> Children must be protected from all forms of neglect, violence, and exploitation.</li>
+            <li><strong>Fight Against Child Labor:</strong> It is forbidden to employ children in heavy work.</li>
+        </ul>
+
+        <h2>Labor Rights</h2>
+        <ul>
+            <li><strong>Freedom to Work:</strong> Every individual has the right to work according to their skills and abilities.</li>
+            <li><strong>Right to Form Unions:</strong> Workers have the right to form unions, join unions, and engage in collective bargaining.</li>
+            <li><strong>Prohibition of Child Labor:</strong> Employment of children in heavy work is prohibited.</li>
+        </ul>
+
+        <h2>Environmental Rights</h2>
+        <ul>
+            <li><strong>Right to Clean Environment:</strong> Every individual has the right to live in a clean environment.</li>
+            <li><strong>Protection of Natural Resources:</strong> Sustainable use of natural resources must be ensured.</li>
+        </ul>
+
+        <h2>Address Protection</h2>
+        <ul>
+            <li>Every individual has the right to be protected from unauthorized disclosure of their address.</li>
+            <li>This right is especially important for women and children who are victims of violence.</li>
+            <li>Address confidentiality is particularly crucial for victims of domestic violence.</li>
+            <li>The state must take extra measures regarding address confidentiality for victims of domestic violence.</li>
+            <li>This right is vital not only for women's safety but for all individuals' security.</li>
+        </ul>
+
+        <section class="books-section">
+            <div class="books-container">
+                <!-- Book 1 -->
+                <div class="book-item">
+                    <div class="book-inner">
+                        <div class="book-hover">
+                            <div class="book-image">
+                                <a href="../img/haklarimiz-var.pdf" target="_blank">
+                                    <img src="../img/haklarimiz-var.jpg" alt="We Have Rights!" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Book 2 -->
+                <div class="book-item">
+                    <div class="book-inner">
+                        <div class="book-hover">
+                            <div class="book-image">
+                                <a href="../img/cinselligimiz-var.pdf" target="_blank">
+                                    <img src="../img/cinselligimiz-var.jpg" alt="We Have Sexuality!" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Book 3 -->
+                <div class="book-item">
+                    <div class="book-inner">
+                        <div class="book-hover">
+                            <div class="book-image">
+                                <a href="../img/dogurganlik-haklarimiz-var.pdf" target="_blank">
+                                    <img src="../img/dogurganlik-haklarimiz-var.jpg" alt="We Have Reproductive Rights!" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Book 4 -->
+                <div class="book-item">
+                    <div class="book-inner">
+                        <div class="book-hover">
+                            <div class="book-image">
+                                <a href="../img/ekonomik-haklarimiz-var.pdf" target="_blank">
+                                    <img src="../img/ekonomik-haklarimiz-var-725x1024.jpg" alt="We Have Economic Rights!" />
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+            </div>
+        </section>
+    </section>
+
+    
+</main>
+<section class="timeline-container">
+        <h2 class="highlight-title">DAY BY DAY CHRONOLOGY</h2>
+        <div class="vc_separator wpb_content_element vc_separator_align_center vc_sep_width_100 vc_sep_border_width_2 vc_sep_pos_align_center vc_sep_color_purple titleCenter vc_separator-has-text">
+            <h4 class="subtitle">WHAT HAPPENED REGARDING THE ISTANBUL CONVENTION<br>FROM MARCH 20 ONWARDS?</h4>
+            <span class="vc_sep_holder vc_sep_holder_r"><span class="vc_sep_line"></span></span>
+        </div>
+    
+    <div class="timeline-list">
+        <div class="timeline-item">
+            <div class="timeline-date">March 20, 2021</div>
+            <div class="timeline-content">
+                The decision to withdraw from the Istanbul Convention was published in the <a href="https://www.resmigazete.gov.tr/eskiler/2021/03/20210320-49.pdf" class="highlight-link">Resmî Gazete</a> at 02:30 AM.
+            </div>
+        </div>
+        
+        <div class="timeline-item">
+            <div class="timeline-date">March 20, 2021</div>
+            <div class="timeline-content">
+                The platform where women's organizations came together; <a href="https://x.com/kadinkoalisyonu/status/1373078314106064897" class="highlight-link">Kadın Koalisyonu</a> made a statement and quickly objected to the decision. 
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 20, 2021</div>
+            <div class="timeline-content">
+                Women and LGBTQ+ started protesting this decision in the streets. After the demonstration in Istanbul, which was attended by thousands of women and LGBTQ+, here is the video prepared by BBC Türkçe: 
+                <iframe    width: 100%; height: 100%; src="https://www.youtube.com/embed/0HGOm7ERMeQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 20, 2021</div>
+            <div class="timeline-content">
+                The Secretary General of the Council of Europe, Marija Pejcinovic Buric, described the withdrawal from the convention as <a href="https://www.coe.int/en/web/portal/-/secretary-general-responds-to-turkey-s-announced-withdrawal-from-the-istanbul-convention" class="highlight-link">"devastating news."</a> 
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 20, 2021</div>
+            <div class="timeline-content">
+                The United Nations Special Rapporteur on Violence Against Women, Dubravka Simonovic, stated that violence against women is a human rights violation and criticized Turkey's step back on women's  <a href="https://x.com/DubravkaSRVAW/status/1373263512353538056" class="highlight-link">rights.</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 20, 2021</div>
+            <div class="timeline-content">
+                The United Nations Women’s Unit expressed concern that this decision comes “at a time when international cooperation and commitment to ending violence against women and girls is more important than ever” and called on Turkey to reconsider its <a href="https://www.unwomen.org/en/news/stories/2021/3/statement-un-women-turkey-withdrawal-from-the-istanbul-convention" class="highlight-link">decision.</a>  
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 20, 2021</div>
+            <div class="timeline-content">
+                The United Nations Turkey team stated that "comprehensive and integrated actions at the policy, legislative, and institutional levels are needed to address violence against women and girls," expressing concern over the decision to withdraw from the Istanbul Convention. <a href="https://turkiye.un.org/tr/122727-t%C3%BCrkiye%E2%80%99nin-i%CC%87stanbul-s%C3%B6zle%C5%9Fmesi%E2%80%99nden-%C3%A7ekilmesine-i%CC%87li%C5%9Fkin-bm-ortak-a%C3%A7%C4%B1klamas%C4%B1" class="highlight-link">Read more.</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 20, 2021</div>
+            <div class="timeline-content">
+                TÜSİAD requested that the decision to withdraw from the convention, which would encourage the distorted mentality that fuels all forms of violence against women, be <a href="https://tusiad.org/tr/basin-bultenleri/item/10738-i-stanbul-sozlesmesi-nin-feshedilmesi-kadina-yonelik-her-turlu-siddeti-besleyen-carpik-zihniyeti-cesaretlendirir" class="highlight-link">reconsidered.</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 20, 2021</div>
+            <div class="timeline-content">
+                77 bar associations and the Women's Rights Commission of the Union of Turkish Bar Associations (TÜBAKKOM) jointly stated that the decision to withdraw is unlawful and that the convention is still in <a href="https://www.evrensel.net/haber/428589/77-barodan-ortak-aciklama-istanbul-sozlesmesi-yururluktedir" class="highlight-link">effect.</a> "First and foremost, we call on the Grand National Assembly of Turkey to stand by its will; we also invite the political will to comply with all legal principles and rules in the Republic of Turkey, which is clearly defined as a rule of law state in Article 2 of the Constitution." 
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 20, 2021</div>
+            <div class="timeline-content">
+                Interior Minister Süleyman Soylu stated that the withdrawal from the convention, which aims to prevent violence against women, will not affect efforts to prevent violence against <a href="https://x.com/suleymansoylu/status/1373244937358213122" class="highlight-link">women.</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 20, 2021</div>
+            <div class="timeline-content">
+                The Women and Democracy Association (KADEM), known for its proximity to the government, commented on the withdrawal from the convention as <a href="https://x.com/kademorgtr/status/1373216451885207553" class="highlight-link">follows:</a> "The Istanbul Convention was an important initiative for combating violence against women. At this point, it has been detached from its foundation and turned into a subject of social tension. We interpret the decision to terminate it as a result of this tension." 
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 20, 2021</div>
+            <div class="timeline-content">
+                Numerous international networks and national organizations, including the <a href="https://istanbulsozlesmesi.org/dayanisma-mesajlari/"class="highlight-link">European Women's Lobby</a>, <a href="https://x.com/IWRAW_AP/status/1373872570378809345?s=20"class="highlight-link">IWRAW AP</a> (International Women's Rights Action Watch Asia Pacific), <a href="https://wave-network.org/wp-content/uploads/WAVE-Statement-IC-Turkey-23.03.2021.pdf"class="highlight-link">WAVE</a> (Women Against Violence Europe), <a href="https://roks.se/aktuellt/nyheter-och-kalendarium"class="highlight-link">ROKS</a> (National Network of Women's and Girls' Shelters), <a href="https://x.com/RESURJ/status/1374099340210315264?s=20"class="highlight-link">RESURJ</a> (Realizing Sexual and Reproductive Justice), <a href="https://x.com/ippfen/status/1374675145411993601?s=20"class="highlight-link">IPPF European Network</a> (International Planned Parenthood Federation European Network), <a href="IPPF European Network"class="highlight-link">WECF International</a>  (Women in Europe for a Common Future), <a href="https://x.com/whatthewomensay/status/1374734914415964160?s=20"class="highlight-link">ICAN</a> (International Civil Society Action Network), <a href="https://x.com/WLUML/status/1379805992997691397?s=20"class="highlight-link">WLUML</a>  (Women Living Under Muslim Laws), and <a href="https://x.com/Safe_Abortion/status/1374739715556007937?s=20"class="highlight-link">International Campaign for Safe Abortion</a> shared messages of solidarity with Turkish women against the Presidential Decision. You can access all the solidarity messages <a href="https://istanbulsozlesmesi.org/dayanisma-mesajlari/" class="highlight-link">here.</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 21, 2021</div>
+            <div class="timeline-content">
+                The governments of Germany, France, Spain, Finland, Iceland, Denmark, Norway, and Sweden expressed their regret regarding the <a href="https://t24.com.tr/haber/istanbul-sozlesmesi-nden-ayrilma-kararina-avrupa-genelinde-tepki-kadin-haklari-insan-haklaridir,940448" class="highlight-link">decision.</a> U.S. President Joe Biden stated that they received Turkey's decision to withdraw from the Istanbul Convention with <a href="https://www.dw.com/tr/bidendan-i%CC%87stanbul-s%C3%B6zle%C5%9Fmesi-a%C3%A7%C4%B1klamas%C4%B1-hayal-k%C4%B1r%C4%B1kl%C4%B1%C4%9F%C4%B1-yaratt%C4%B1/a-56945507" class="highlight-link"> "deep disappointment."</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 21, 2021</div>
+            <div class="timeline-content">
+                On March 21, 2021, the Ministry of Foreign Affairs stated that Turkey's withdrawal from the most comprehensive convention against violence should not be interpreted as "compromising the fight against violence against <a href="https://www.cumhuriyet.com.tr/haber/disisleri-bakanligindan-istanbul-sozlesmesi-aciklamasi-1822303" class="highlight-link">women."</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 21, 2021</div>
+            <div class="timeline-content">
+                European Parliament Turkey Rapporteur Nacho Sanchez Amor stated that this decision means completely disregarding the rule of law and a full regression in human <a href="https://x.com/NachoSAmor/status/1373221583947501570" class="highlight-link">rights.</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 21, 2021</div>
+            <div class="timeline-content">
+                The Presidency's Directorate of Communications explained that the reason for the withdrawal was the "manipulation of the convention by a group attempting to normalize homosexuality," attempting to legitimize the withdrawal by targeting LGBTQ+ individuals as a manifestation of the recent systematic <a href="https://www.iletisim.gov.tr/turkce/haberler/detay/turkiyenin-istanbul-sozlesmesinden-cekilmesine-iliskin-aciklama" class="highlight-link">attacks.</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 21, 2021</div>
+            <div class="timeline-content">
+                Women’s and LGBTQ+ organizations called on everyone to make noise from their windows and balconies at 9:00 PM for a <a href="https://x.com/KBGuclu/status/1374054008663461890" class="highlight-link">week.</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 21, 2021</div>
+            <div class="timeline-content">
+                The Chairman of the Council of Europe Committee of Ministers, German Foreign Minister Heiko Maas, the President of the Parliamentary Assembly of the Council of Europe, Rik Daems, and the Secretary General of the Council of Europe, Marija Pejcinovic Buric, made a <a href="https://www.coe.int/en/web/portal/-/council-of-europe-leaders-react-to-turkey-s-announced-withdrawal-from-the-istanbul-conventi-1" class="highlight-link">joint statement.</a> The statement emphasized that the convention was enacted in Turkey following unanimous approval in the parliament, and it was regrettable that the withdrawal was not discussed in the parliament. It also reminded that the convention protects women's fundamental human right to live free from violence.
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 22, 2021</div>
+            <div class="timeline-content">
+                35 baros, including those from Adana, Ankara, Antalya, Bursa, Istanbul, Izmir, and Mersin, filed a lawsuit with the Council of State, requesting the suspension of the executive action on the grounds that Presidential Decree No. 3718 constitutes a usurpation of authority and violates Article 104 of the <a href="https://www.dw.com/tr/barolar-cumhurba%C5%9Fkanl%C4%B1%C4%9F%C4%B1na-kar%C5%9F%C4%B1-dava-a%C3%A7t%C4%B1/a-56952853" class="highlight-link">Constitution.</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 22, 2021</div>
+            <div class="timeline-content">
+                Council of Europe Commissioner for Human Rights Dunja Mijatovic criticized the decision and declared her support for women in <a href="https://x.com/kadinkoalisyonu/status/1373078314106064897" class="highlight-link">Turkey.</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 22, 2021</div>
+            <div class="timeline-content">
+                Amnesty International emphasized that targeting LGBTQ+ individuals to justify the withdrawal from the Istanbul Convention is a "dangerous step" and called for the decision to be <a href="https://www.amnesty.org/en/latest/press-release/2021/03/turkey-targeting-of-lgbti-people-to-justify-quitting-convention-on-combating-violence-against-women-is-dangerous/" class="highlight-link">reversed.</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 22, 2021</div>
+            <div class="timeline-content">
+                Turkey notified the Council of Europe of its withdrawal from the convention. The notification has been processed. According to Article 80 of the convention, a 3-month period has begun for the withdrawal. Unless the notification is withdrawn, Turkey will have officially withdrawn from the Istanbul Convention on July 1, 2021.
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 23, 2021</div>
+            <div class="timeline-content">
+                The Women's Coalition emphasized that human rights treaties cannot be abandoned without the decision of the parliament and called on members of parliament to uphold their legislative powers. <a href="https://x.com/kadinkoalisyonu/status/1374353865315848194" class="highlight-link">Read more.</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 23, 2021</div>
+            <div class="timeline-content">
+                UN human rights special rapporteurs and independent experts expressed their regret over the decision to withdraw from the convention. The experts emphasized that the Istanbul Convention is a human rights treaty and provides tools for states to protect women and girls. <a href="https://www.ohchr.org/en/press-releases/2021/03/turkey-withdrawal-istanbul-convention-pushback-against-womens-rights-say?LangID=E&NewsID=26936" class="highlight-link">Read more.</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 23, 2021</div>
+            <div class="timeline-content">
+                The Chairman of the Workers' Party of Turkey (TİP), Erkan Baş, stated that they would fight the withdrawal from the Istanbul Convention on legal grounds and announced that they had filed a lawsuit against the decision at the Council of State. <a href="https://www.cumhuriyet.com.tr/haber/tip-genel-baskani-erkan-bas-turkiye-siyasi-tarihinin-utanmazlik-rekorlari-kirildi-1822756" class="highlight-link">Read more.</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 23, 2021</div>
+            <div class="timeline-content">
+                Kadın Koalisyonu emphasized that human rights treaties cannot be abandoned without the decision of the parliament and called on members of parliament to uphold their legislative powers. <a href="https://x.com/kadinkoalisyonu/status/1374353865315848194" class="highlight-link">Read more.</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 24, 2021</div>
+            <div class="timeline-content">
+                Women's and LGBTQ+ organizations sent letters to intergovernmental human rights bodies, including the Council of Europe, declaring that Turkey's withdrawal from the Istanbul Convention is unlawful and illegitimate. The letters emphasized that the legality of the withdrawal request should be examined. You can access the call made by the Equality for Women Platform to the council <a href="https://esikplatform.net/avrupa-konseyine-cagrida-bulunduk/" class="highlight-link">here.</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 24, 2021</div>
+            <div class="timeline-content">
+                Erdoğan, at the congress of his party, AKP, stated, "We have things to say to those who seek women's rights not in hearts but on paper," once again opposing those who defend international agreements that guarantee protection from violence, the constitution, laws, and the legal system. <a href="https://halktv.com.tr/gundem/istanbul-sozlesmesi-cikisi-kadinlarimizin-haklarini-korumayi-kagitlarda-arayanlar-451588h" class="highlight-link">Read more.</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 24, 2021</div>
+            <div class="timeline-content">
+                Minister of Family, Labor, and Social Services, Zehra Zümrüt Selçuk, stated that Turkey withdrew from the fundamental human rights treaty created to protect women from violence because it caused "societal division." <a href="https://www.cnnturk.com/video/turkiye/bakan-zehra-zumrut-selcuktan-istanbul-sozlesmesi-aciklamasi-1635114" class="highlight-link">Read more.</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 25, 2021</div>
+            <div class="timeline-content">
+                Vice President of the Women and Democracy Association (KADEM) and daughter of Recep Tayyip Erdoğan, Sümeyye Erdoğan Bayraktar, in a newspaper interview, stated that the Istanbul Convention is an important tool and framework treaty for combating violence. She added that the termination of the treaty, especially being understood by implementers as the annulment of Law No. 6284, would have dangerous consequences. She also emphasized that public officials and NGOs should show special sensitivity to ensure there are no disruptions in the implementation of Law No. 6284. <a href="https://www.yenisafak.com/hayat/sumeyye-erdogan-yeni-safaka-konustu-genetik-kodlarimizda-kadina-saygi-var-3620213" class="highlight-link">Read the interview.</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 26, 2021</div>
+            <div class="timeline-content">
+                During the 65th session of the UN Commission on the Status of Women, political parties, municipalities, and academics gave the message "The Istanbul Convention saves lives." <a href="https://www.youtube.com/watch?v=wxXhqqL7s8s" class="highlight-link">Watch the video.</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 26, 2021</div>
+            <div class="timeline-content">
+                Interior Minister Süleyman Soylu announced that an investigation was opened, claiming that Bilecik Municipality's Istanbul Convention billboards implicated the police and teachers. Bilecik Mayor Semih Şahin stated, "As my ideological stance, I take a stand against violence towards women. [...] I am still against it, no matter where it comes from or who it comes from." <a href="https://www.sozcu.com.tr/son-dakika-bilecik-belediye-baskanina-istanbul-sozlesmesi-sorusturmasi-wp6335934" class="highlight-link">Read more.</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 26, 2021</div>
+            <div class="timeline-content">
+                President and AKP Chairman Erdoğan, following a week of intense criticism from various groups, stated that the parliament has no authority over the Istanbul Convention and claimed that interference in the legislative domain via Presidential Decree is lawful. <a href="https://www.sozcu.com.tr/erdogandan-istanbul-sozlesmesi-aciklamasi-2-wp6336638" class="highlight-link">Read more.</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 26, 2021</div>
+            <div class="timeline-content">
+                The Istanbul Provincial Organization of CHP shared the results of a public opinion survey conducted just before the decision to withdraw from the Istanbul Convention. According to women, the three biggest issues are violence, harassment, and family pressure. Istanbul Provincial Chair Canan Kaftancıoğlu, while sharing the results, stated, “The government, by abolishing the Istanbul Convention, has left us women even more vulnerable.” She also invited women to join the Istanbul Convention Solidarity Network they established. <a href="https://www.gazeteduvar.com.tr/istanbul-sozlesmesi-dayanisma-agi-kuruldu-haber-1517184" class="highlight-link">Read more.</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 27, 2021</div>
+            <div class="timeline-content">
+                Following numerous protests across Turkey throughout the week, thousands of women and LGBTQ+ individuals took to the streets in many cities on Saturday to protest the withdrawal from the Istanbul Convention. Women’s and LGBTQ+ organizations announced that they would closely monitor the process until July 1. <a href="https://www.evrensel.net/haber/429116/kadinlar-istanbul-sozlesmesi-icin-sokakta-bu-is-burada-bitmemistir-27-mart-2021" class="highlight-link">Read more.</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 28, 2021</div>
+            <div class="timeline-content">
+                The administration of the University of Health Sciences launched an investigation into the "Gender Equality" course, claiming it challenged religious and national values. <a href="https://www.gazeteduvar.com.tr/milli-gazetenin-hedef-gosterdigi-toplumsal-cinsiyet-esitligi-dersine-sorusturma-haber-1517470" class="highlight-link">Read more.</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 29, 2021</div>
+            <div class="timeline-content">
+                <a href="https://www.sozcu.com.tr/chp-ve-devadan-istanbul-sozlesmesi-icin-dava-wp6341490" class="highlight-link">CHP Women's Branch,</a> <a href="https://www.sozcu.com.tr/chp-ve-devadan-istanbul-sozlesmesi-icin-dava-wp6341490" class="highlight-link">DEVA Party Women's Policies Presidency,</a> and <a href="https://x.com/KadinPartisi/status/1376469701992284160?s=03" class="highlight-link">Women's Party</a> filed lawsuits at the Council of State for the annulment of the Presidential Decree withdrawing from the Istanbul Convention.
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 30, 2021</div>
+            <div class="timeline-content">
+                İYİ Parti General Chairman Meral Akşener applied to the Council of State for the annulment of the decision to withdraw from the Istanbul Convention. <a href="https://www.birgun.net/haber/aksener-istanbul-sozlesmesi-ni-danistay-a-tasidi-339467" class="highlight-link">Read more</a>.
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 30, 2021</div>
+            <div class="timeline-content">
+                In Mersin, six members of the Mersin Women’s Platform, who protested the decision to withdraw from the Istanbul Convention, were fined a total of 21,598 TL. 
+                <a href="https://www.evrensel.net/haber/429340/mersinde-lebalep-kongre-serbest-istanbul-sozlesmesi-icin-eylem-yapan-kadinlara-ceza#:~:text=Mersin'de%20%C4%B0stanbul%20S%C3%B6zle%C5%9Fmesi'nden,598%20bin%20TL%20ceza%20kesildi.&text=MA'n%C4%B1n%20haberine%20g%C3%B6re%20%C4%B0stanbul,598%20bin%20TL%20ceza%20kesildi." class="highlight-link">Read more</a>.
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 31, 2021</div>
+            <div class="timeline-content">
+                Eğitim Sen brought the decision to withdraw from the Istanbul Convention to the Council of State, requesting a suspension of execution and annulment of the decision. 
+                <a href="https://www.evrensel.net/haber/429459/egitim-sen-istanbul-sozlesmesinden-cekilme-kararina-karsi-dava-acti" class="highlight-link">Read more</a>.
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">March 31, 2021</div>
+            <div class="timeline-content">
+                27 out of 47 Council of Europe member countries called on Turkey to reaffirm its commitment to the Istanbul Convention, the most comprehensive instrument on combating violence against women. The countries that signed the statement are: Austria, Belgium, Croatia, Cyprus, Denmark, Estonia, France, Germany, Greece, Iceland, Ireland, Italy, Luxembourg, Malta, Monaco, Montenegro, Netherlands, North Macedonia, Norway, Portugal, Serbia, Slovenia, Spain, Sweden, Switzerland, United Kingdom, and Finland. 
+                <a href="https://kaosgl.org/haber/27-ulkeden-ortak-istanbul-sozlesmesi-aciklamasi-turkiye-yi-fesih-bildirimini-geri-cekmeye-cagiriyoruz" class="highlight-link">Read more</a>.
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">April 1, 2021</div>
+            <div class="timeline-content">
+                HDP Women's Assembly applied to the Council of State to annul the decision to withdraw from the Istanbul Convention.
+                <a href="https://www.evrensel.net/haber/429563/hdp-istanbul-sozlesmesi-icin-danistaya-basvurdu" class="highlight-link">Read more</a>.
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">April 2, 2021</div>
+            <div class="timeline-content">
+                The only office worker of Boğaziçi University's Sexual Harassment Prevention Committee was placed on compulsory unpaid leave by the appointed rector.
+                <a href="https://catlakzemin.com/bogazici-universitesi-cinsel-tacizi-onleme-komisyonu-fiilen-kapatiliyor-mu-cemre-baytok-ile-soylesi/" class="highlight-link">Read more</a>.
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">April 2, 2021</div>
+            <div class="timeline-content">
+                The complaint letter with the words "I don't want to die" written on it, which was hung by the We Will Stop Femicide Platform on a building in Zincirlikuyu, was removed.
+                <a href="https://www.evrensel.net/haber/429717/olmek-istemiyorum-yazan-dilekce-asildigi-yerden-indirildi-tahammul-edemediler" class="highlight-link">Read more</a>.
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">April 5, 2021</div>
+            <div class="timeline-content">
+                The police raided the Rosa Women's Association, which operates in Diyarbakır, and conducted a search at the association's office. 24 women, including activists from Rosa Women's Association and TJA, were detained.
+                <a href="https://gazetekarinca.com/2021/04/rosa-kadin-dernegine-polis-baskini-cok-sayida-kadin-gozaltinda/" class="highlight-link">Read more</a>.
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">April 6, 2021</div>
+            <div class="timeline-content">
+                22 HDP female members of parliament submitted a parliamentary question to the Minister of Family, Labour, and Social Services. The only question in the proposal was: “As the Minister of Family, Labour, and Social Services and as a woman, how will you defend yourself if you are subjected to violence? A) Conscience B) Istanbul Convention.”
+                <a href="https://www.hdp.org.tr/Images/UserFiles/Documents/Editor/2021/isoz-onerge-nisan.pdf" class="highlight-link">Read more</a>.
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">April 6, 2021</div>
+            <div class="timeline-content">
+                The President of the European Commission, Ursula von der Leyen, and the President of the European Council, Charles Michel, came to Turkey to negotiate EU relations. Von der Leyen stated regarding the Istanbul Convention: “Turkey’s withdrawal from the Istanbul Convention is wrong and sends the wrong message. We had an intense discussion with the President on this matter and asked him to withdraw the decision.”
+                <a href="https://www.gazeteduvar.com.tr/avrupa-komisyonu-baskani-ursula-von-der-leyen-turkiyenin-aihm-kararlarina-uymasi-onemli-haber-1518453" class="highlight-link">Read more</a>.
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">April 6, 2021</div>
+            <div class="timeline-content">
+                Four refugees who participated in the Istanbul Convention protest were issued deportation orders. The reasons for their detention were "participating in a press statement" and "holding a banner."
+                <a href="https://kaosgl.org/haber/istanbul-sozlesmesi-eylemine-katilan-dort-multeciye-sinirdisi-karari" class="highlight-link">Read more</a>.
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">April 6, 2021</div>
+            <div class="timeline-content">
+                The Health and Social Services Workers' Union (SES), organized in women's shelters, SHÖNIMs, hospitals, and family medicine units, filed a lawsuit at the Council of State requesting the annulment and suspension of the presidential decree regarding the termination of the Istanbul Convention, citing its unconstitutionality.
+                <a href="https://ses.org.tr/2021/04/istanbul-sozlesmesinin-feshine-iliskin-cumhurbaskanligi-kararnamesinin-iptali-icin-danistaya-dava-actik/" class="highlight-link">Read more</a>.
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">April 9, 2021</div>
+            <div class="timeline-content">
+                CHP Leader Kemal Kılıçdaroğlu said, “Why would LGBTİ+ disrupt the family structure? I will not make people’s way of life a political tool. We must respect people’s freedom, beliefs, and identity.”
+                <a href="https://www.diken.com.tr/kilicdaroglu-lgbti-niye-aile-yapisini-bozsun/" class="highlight-link">Read more</a>.
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">April 14, 2021</div>
+            <div class="timeline-content">
+                Erdoğan, in a program where he met with young people at the Presidential National Library, responded to a question about Turkey's withdrawal from the Istanbul Convention by claiming that the convention did not bring respect for women's rights, and that domestic law was sufficient. He also presented the prohibition of violence against women in Islam as a guarantee.
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">April 14, 2021</div>
+            <div class="timeline-content">
+                CHP women MPs held a press conference in the Turkish Grand National Assembly, stating, "While our rights and achievements are being taken away one by one, we will not stand idly by, we will not accept the attacks. We will not bow to the will that unilaterally withdrew our country from the Istanbul Convention, trampling on law and national will."
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">April 14, 2021</div>
+            <div class="timeline-content">
+                The "Apply the Istanbul Convention" campaign group hung banners with the message "Istanbul Convention is ours. We won't give up!" on towers and bridges in Istanbul.
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">April 16, 2021</div>
+            <div class="timeline-content">
+                19 women from the Çanakkale Istanbul Convention Initiative filed a lawsuit for the annulment of the Presidential Decree, declaring that they could not give up on the convention and the struggle.
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">April 19, 2021</div>
+            <div class="timeline-content">
+                The "Before Children and Women Association" announced that the 10th Chamber of the Council of State, which signed the Hagia Sophia decision, has been assigned to the lawsuit they filed against the Presidential Decree regarding the annulment of the Istanbul Convention.
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">April 21, 2021</div>
+            <div class="timeline-content">
+                CHP's Vice President for Human Rights, Gülizar Biçer Karaca, published a summary of the European Women's Lobby's report titled "Towards an Europe Where Women and Girls are Free from Male Violence," which was translated into Turkish. The report, titled "The 10th Anniversary of the Istanbul Convention," includes the views from the information note prepared by the Human Rights Action Plan (KİH-YÇ) regarding the Human Rights Action Plan announced on March 2.
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">April 21, 2021</div>
+            <div class="timeline-content">
+                On March 9, the parliamentary commission on violence against women, named "Parliamentary Research Commission to Investigate the Causes of Violence Against Women and Identify the Necessary Measures," held its first meeting. Despite the CHP and HDP members requesting an additional week to complete preparations before starting the work, the Presidency of the Commission, consisting of AKP and MHP members, scheduled the meeting for the next day. During the session on April 22, AKP and MHP members proposed inviting legal experts specializing in Islamic law to the commission. CHP and HDP members boycotted the meeting and in their written proposals, they demanded that women's organizations working on preventing violence against women and ensuring gender equality be included in the commission's work.
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">April 21, 2021</div>
+            <div class="timeline-content">
+                The Ministry of Family underwent structural changes once again. Originally established as the Ministry of State for Women and Family in 2011, it transformed into the Ministry of Family and Social Services. In 2018, it merged with the Ministry of Labor and adopted the term "social services" instead of "social policy," and started working under the name Ministry of Family, Social Services, and Labor. Three years later, the two ministries were separated again. During this time, former minister Zehra Zümrüt Selçuk was replaced by Derya Yanık, a board member of KADEM, as the new Minister of Family and Social Services.
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">April 22, 2021</div>
+            <div class="timeline-content">
+                Süleyman Soylu claimed on his social media account that the number of femicides decreased within a month after the withdrawal from the Istanbul Convention. However, this claim is based only on data compared to the previous month, and since other variables were not taken into account, it is difficult to establish a clear cause-and-effect relationship between the withdrawal from the convention and the decrease in femicides. Moreover, the data on domestic violence and femicides are not properly recorded, and the available data is not shared with the public in an organized manner.
+                <br><a href="https://www.sozcu.com.tr/2021/gundem/chp-istanbul-sozlesmesi-icin-danistaya-basvurdu-6389198/">Source</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">April 22, 2021</div>
+            <div class="timeline-content">
+                After Turkey announced its withdrawal from the Istanbul Convention without complying with internal legal procedures, the Parliamentary Assembly of the Council of Europe will ask the Venice Commission, the Council's constitutional law body, for an opinion on the procedures for withdrawal from international human rights treaties. Requesting such an opinion from the Venice Commission will be a first in the history of the Council of Europe.
+                <br><a href="https://www.dw.com/tr/akpmden-i%CC%87stanbul-s%C3%B6zle%C5%9Fmesi-ad%C4%B1m%C4%B1/a-57279221">Source</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">April 22, 2021</div>
+            <div class="timeline-content">
+                At Yıldız Technical University, a student with the profile description 'Istanbul Convention saves lives' was removed from an online class by academic Nurullah Arvas. The following day, at a panel, Arvas was protested by students who repeatedly shouted "Istanbul Convention saves lives!"
+                <br><a href="https://www.cumhuriyet.com.tr/haber/ytude-profilinde-istanbul-sozlesmesi-yasatir-yazan-ogrenci-online-dersten-atildi-1830289">Source</a>
+            </div>
+        </div>
+        <div class="timeline-item">
+            <div class="timeline-date">April 22, 2021</div>
+            <div class="timeline-content">
+                Özgür Özel, the parliamentary group deputy chair of CHP, took the presidential decree regarding the withdrawal from the convention to the Council of State, arguing that it is null and void and unconstitutional. Additionally, he requested the suspension of the execution of the decree due to the negative atmosphere it created and the increased danger for women.
+                <br><a href="https://www.sozcu.com.tr/2021/gundem/chp-istanbul-sozlesmesi-icin-danistaya-basvurdu-6389198/">Source</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer">
+    <div class="footer-content">
+        <!-- Footer Logo Section -->
+        <div class="footer-logo">
+            <div id="logoFooter">NOTALONE</div>
+            <div class="logo-text"><p>W♀men, Peace </p><p>and Security</p></div> 
+        </div>
+
+        <!-- Quick Links Section -->
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a href="../html/home.html">Home</a></li>
+                <li><a href="../html/about.html">About</a></li>
+                <li><a href="../html/knowyourrights.html">Know Your Rights</a></li>
+                <li><a href="../html/stories.html">Stories</a></li>
+                <li><a href="../html/blog.html">Blog</a></li>
+                <li><a href="../html/forum.html">Forum</a></li>
+                <li><a href="../html/support.html">Support</a></li>
+                <li><a href="../html/commentPolicy.html">Comment Policy</a></li>
+            </ul>
+        </div>
+
+        <!-- Contact Section -->
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>
+                <i class='bx bx-map'></i>
+                Türk Hava Kurumu Üniversitesi Bahçekapı Mah.
+            </p>
+            <p>
+                <i class='bx bx-phone'></i>
+                (0212) 389 99 99
+            </p>
+            <p>
+                <i class='bx bx-envelope'></i>
+                notalone@gmail.com
+            </p>
+        </div>
+
+        <!-- Social Media Section -->
+        <div class="footer-social">
+            <h4>Social Media</h4>
+            <div class="social-icons">
+                <a href="https://www.facebook.com" target="_blank"><i class='bx bxl-facebook'></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class='bx bxl-twitter'></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class='bx bxl-instagram'></i></a>
+                <a href="https://www.linkedin.com/in" target="_blank"><i class='bx bxl-linkedin'></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copyright Section -->
+    <div class="footer-bottom">
+        <p>&copy; 2024 NOTALONE</p>
+    </div>
+</footer>
+      
+    <script src="owl/script.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1..min.js" integrity="sha256-kmHvs0B+OpCW5GVHUNjv9rOmY0IvSIRcf7zGUDTDQM8=" crossorigin="anonymous"></script>
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="owl/owl.carousel.min.js"></script>
+    <script src="../js/script.js"></script> 
+
+</body>
+</html>
