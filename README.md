@@ -15,10 +15,7 @@ NotAlone is an informative web platform dedicated to women's rights and support,
 
 - **Backend**: Python with Sanic framework
 - **Frontend**: HTML, CSS, JavaScript
-- **Database**: (Please specify your database system)
-- **Additional Libraries**: 
-  - Sanic for web server
-  - (Add other major libraries used)
+- **Database**: PostgreSQL with Asyncpg
 
 ## 🚀 Getting Started
 
@@ -94,4 +91,4 @@ This project is licensed under the MIT License - see the [LICENSE] file for deta
 
 ## 📧 Contact
 
-For any questions or suggestions, please feel free to reach out to . 
+For any questions or suggestions, please feel free to reach out to info@mehmetcanirmak.com 
