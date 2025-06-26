@@ -69,7 +69,7 @@ NotAlone/
 
 ## 👥 Contributors
 
-- Strothon - Backend Development
+- Mehmet Can Irmak - Backend Development
 - BİLGE ZERDA KEKLİK - Frontend Development
 
 ## 📝 License
